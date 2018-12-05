@@ -1,0 +1,325 @@
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\ApplicationInsights.config
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\csc.exe
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\System.Collections.Immutable.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\System.Reflection.Metadata.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\vbc.exe
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\VBCSCompiler.exe
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\VBCSCompiler.exe.config
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.dll.config
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.pdb
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Antlr3.Runtime.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\AspNet.ScriptManager.bootstrap.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\AspNet.ScriptManager.jQuery.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.SqlServer.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Agent.Intercept.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.DependencyCollector.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Web.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.WindowsServer.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ApplicationInsights.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Core.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Cookies.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Facebook.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Google.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.OAuth.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Twitter.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ScriptManager.WebForms.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Web.Infrastructure.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Newtonsoft.Json.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Owin.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Optimization.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Providers.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\WebGrease.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.DependencyCollector.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Web.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.WindowsServer.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ApplicationInsights.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Optimization.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Antlr3.Runtime.pdb
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Newtonsoft.Json.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.SqlServer.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Core.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Providers.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Facebook.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Cookies.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Google.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Twitter.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.csprojResolveAssemblyReference.cache
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.dll
+D:\BRIAN\Documents\Integrador 2\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.pdb
+<<<<<<< HEAD
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\ApplicationInsights.config
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\csc.exe
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\vbc.exe
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\VBCSCompiler.exe
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.dll.config
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.pdb
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Antlr3.Runtime.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\AspNet.ScriptManager.bootstrap.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Web.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Newtonsoft.Json.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Owin.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Optimization.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Providers.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\WebGrease.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Web.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Optimization.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Antlr3.Runtime.pdb
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Newtonsoft.Json.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Providers.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.csprojResolveAssemblyReference.cache
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.dll
+C:\Users\Sebastian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.pdb
+=======
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\ApplicationInsights.config
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\csc.exe
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\vbc.exe
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\VBCSCompiler.exe
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.dll.config
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.pdb
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Antlr3.Runtime.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\AspNet.ScriptManager.bootstrap.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.SqlServer.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Web.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Newtonsoft.Json.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Owin.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Optimization.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Providers.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\WebGrease.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Web.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Optimization.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Antlr3.Runtime.pdb
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Newtonsoft.Json.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Providers.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.dll
+C:\Users\Brian\Documents\GitHub\CAIDEN\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.pdb
+>>>>>>> c729685f6eef2487b4a05f4fd6db36ae7202801b
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\ApplicationInsights.config
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\csc.exe
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\System.Collections.Immutable.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\System.Reflection.Metadata.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\vbc.exe
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\VBCSCompiler.exe
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\roslyn\VBCSCompiler.exe.config
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.dll.config
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Ejemplo.Web.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Antlr3.Runtime.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\AspNet.ScriptManager.bootstrap.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\AspNet.ScriptManager.jQuery.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.SqlServer.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Agent.Intercept.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.DependencyCollector.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Web.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.WindowsServer.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ApplicationInsights.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Core.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Cookies.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Facebook.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Google.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.OAuth.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Twitter.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ScriptManager.WebForms.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Web.Infrastructure.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Newtonsoft.Json.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Owin.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Optimization.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Providers.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\WebGrease.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.DependencyCollector.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.Web.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AI.WindowsServer.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.ApplicationInsights.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Optimization.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Antlr3.Runtime.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Newtonsoft.Json.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\EntityFramework.SqlServer.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Core.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\System.Web.Providers.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Facebook.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Cookies.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Google.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.Twitter.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Microsoft.Owin.Security.OAuth.xml
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.csprojResolveAssemblyReference.cache
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Common.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Dominio.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Persistencia.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Common.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Dominio.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Persistencia.pdb

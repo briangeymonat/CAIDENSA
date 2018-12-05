@@ -1,0 +1,9 @@
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\bin\Debug\Dominio.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\bin\Debug\Dominio.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\bin\Debug\Common.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\bin\Debug\Persistencia.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\bin\Debug\Common.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\bin\Debug\Persistencia.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\obj\Debug\Dominio.csprojResolveAssemblyReference.cache
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\obj\Debug\Dominio.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Dominio\obj\Debug\Dominio.pdb

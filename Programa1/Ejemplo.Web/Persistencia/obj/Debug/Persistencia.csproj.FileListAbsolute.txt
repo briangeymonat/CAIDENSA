@@ -1,0 +1,7 @@
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\bin\Debug\Persistencia.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\bin\Debug\Persistencia.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\bin\Debug\Common.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\bin\Debug\Common.pdb
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\obj\Debug\Persistencia.csprojResolveAssemblyReference.cache
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\obj\Debug\Persistencia.dll
+C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\obj\Debug\Persistencia.pdb

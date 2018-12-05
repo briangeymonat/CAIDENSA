@@ -1,0 +1,86 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Ejemplo.Web.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link href="~/Style/Style.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body >
+     <form id="form1" runat="server">
+    <div class="page">
+        <div class="header">
+            <table style="width:100%">
+                <tr>
+                    <td>
+                         <div class="title">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h1>C.A.I.DE.N</h1>
+                                    </td>
+                                    <td>
+                                        <h2>Centro de Asistencia Integral del Desarrollo del Niño</h2>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="clear hideSkiplink">
+            <asp:Menu ID="MenuNavegacion" runat="server" Orientation="Horizontal" CssClass="menu" EnableViewState="false" IncludeStyleBlock="true" >
+                <Items>
+                    <asp:MenuItem Text="Inicio" Value="Inicio" NavigateUrl="~/vInicio.aspx"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/vMiPerfil.aspx" Text="Mi perfil" Value="Mi perfil"></asp:MenuItem>
+
+                    <asp:MenuItem Text="Usuarios" Value="Usuarios">
+                        <asp:MenuItem NavigateUrl="~/vUsuarioAgregar.aspx" Text="Agregar nuevo" Value="Agregar nuevo"></asp:MenuItem>
+                        <asp:MenuItem Text="Mostrar " Value="Mostrar" NavigateUrl="~/vUsuarioMostrar.aspx"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Beneficiarios" Value="Beneficiarios">
+                        <asp:MenuItem Text="Agregar nuevo" Value="Agregar nuevo" NavigateUrl="~/vBeneficiarioAgregar.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Mostrar todos" Value="Mostrar todos" NavigateUrl="~/vBeneficiarioMostrar.aspx"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Itinerario" Value="Itinerario">
+                        <asp:MenuItem Text="Nuevo itinerario" Value="Nuevo itinerario" NavigateUrl="~/vItinerarioNuevaSesion.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Ver itinerario diario" Value="Ver itinerario diario" NavigateUrl="~/vItinerarioDiario.aspx"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Informes" Value="Informes">
+                        <asp:MenuItem Text="Nuevo informe" Value="Nuevo informe" NavigateUrl="~/vInformeNuevo.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Redactar informe" Value="Redactar informe" NavigateUrl="~/vInformeRedactar.aspx"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/vInformeMostrar.aspx" Text="Mostrar todos" Value="Mostrar todos"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/vDiagnosticoAgregar.aspx" Text="Diagnóstico" Value="Diagnóstico"></asp:MenuItem>
+                    <asp:MenuItem Text="Asistencias" Value="Asistencias" NavigateUrl="~/vAsistencias.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Estadísticas" Value="Estadísticas">
+                        <asp:MenuItem NavigateUrl="~/vEstadisticasDiagnosticos.aspx" Text="Diagnóstico" Value="Diagnóstico"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/vEstadisticasBeneficiariosPorEdad.aspx" Text="Beneficiarios por edad" Value="Beneficiarios por edad"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/vEstadisticasCantidadSesionesPorTecnico.aspx" Text="Cantidad de sesiones de técnicos" Value="Cantidad de sesiones de técnicos"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Notificaciones" Value="Notificaciones" NavigateUrl="~/vTareas.aspx"></asp:MenuItem>
+                    <asp:MenuItem Text="Cerrar Sesión" Value="Cerrar Sesión" NavigateUrl="~/vLogin.aspx" ></asp:MenuItem>
+                </Items>
+            </asp:Menu>
+        </div>
+                    </td>
+                </tr>
+            </table>
+           
+        
+            </div>
+         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+        </asp:ContentPlaceHolder>
+         
+        </div>
+    </form>
+</body>
+</html>
