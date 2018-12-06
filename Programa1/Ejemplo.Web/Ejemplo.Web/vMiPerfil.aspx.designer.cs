@@ -10,7 +10,7 @@
 namespace Ejemplo.Web {
     
     
-    public partial class DetallesUsuario {
+    public partial class vMiPerfil {
         
         /// <summary>
         /// Control lblNickname.
@@ -236,33 +236,6 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConfirmar;
-        
-        /// <summary>
-        /// Control btnInhabilitar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnInhabilitar;
-        
-        /// <summary>
-        /// Control btnHabilitar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHabilitar;
-        
-        /// <summary>
-        /// Control btnRestablecerContrasena.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRestablecerContrasena;
         
         /// <summary>
         /// Control lblBeneficiariosQueAtiende.

@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using Common.Clases;
 
 namespace Ejemplo.Web
 {
@@ -69,13 +70,31 @@ namespace Ejemplo.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(vMiPerfil.U.Tipo==cUtilidades.TipoDeUsuario.Administrador)
+            {
+                
+            }
+            else if(vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
+            {
 
+            }
+            else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Usuario)
+            {
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Usuarios"));
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Beneficiarios"));
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Itinerario"));
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Informes"));
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Diagnóstico"));
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Asistencias"));
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Estadísticas"));
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+        
     }
 
 }

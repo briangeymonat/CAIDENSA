@@ -1,8 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vUsuarioDetalles.aspx.cs" Inherits="Ejemplo.Web.DetallesUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vMiPerfil.aspx.cs" Inherits="Ejemplo.Web.vMiPerfil" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>Detalles del usuario</h3>
+    <h3>
+        Mi perfil
+    </h3>
     <br />
     <table>
         <tr>
@@ -72,7 +74,7 @@
                     <asp:Label ID="lblCi" runat="server" Text="Cédula de identidad:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCi" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtCi" runat="server"></asp:TextBox>
                 </td>
                 <td>
 
@@ -131,7 +133,7 @@
                     <asp:Label ID="lblTel" runat="server" Text="Telefono:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtTelefono" runat="server"  TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtTelefono" runat="server"  TextMode="Phone"></asp:TextBox>
                 </td>
                 <td>
 
@@ -221,16 +223,6 @@
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="button" OnClick="btnCancelar_Click"/>
                     <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="button" OnClick="btnConfirmar_Click"/>
                 </td>
-                <td colspan="2">
-                    <asp:Button ID="btnInhabilitar" runat="server" Text="Inhabilitar" CssClass="button" OnClick="btnInhabilitar_Click"/>
-                    <asp:Button ID="btnHabilitar" runat="server" Text="Habilitar" CssClass="button" OnClick="btnHabilitar_Click"  />
-                    
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6"> 
-                    <asp:Button ID="btnRestablecerContrasena" runat="server" Text="Restablecer Contraseña" CssClass="button" OnClick="btnRestablecerContrasena_Click"/>
-                </td>
             </tr>
         </table>
             </td>
@@ -282,6 +274,4 @@
             </tr>
         </table>
     </div>
-        
-    
 </asp:Content>

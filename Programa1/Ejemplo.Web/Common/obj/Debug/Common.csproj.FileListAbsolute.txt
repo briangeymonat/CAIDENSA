@@ -3,8 +3,3 @@ C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Common\bin\Debug\Common.pdb
 C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Common\obj\Debug\Common.dll
 C:\GitHub\CAIDENSA\Programa1\Ejemplo.Web\Common\obj\Debug\Common.pdb
-F:\Proyecto\Programa1\Ejemplo.Web\Common\bin\Debug\Common.dll
-F:\Proyecto\Programa1\Ejemplo.Web\Common\bin\Debug\Common.pdb
-F:\Proyecto\Programa1\Ejemplo.Web\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
-F:\Proyecto\Programa1\Ejemplo.Web\Common\obj\Debug\Common.dll
-F:\Proyecto\Programa1\Ejemplo.Web\Common\obj\Debug\Common.pdb

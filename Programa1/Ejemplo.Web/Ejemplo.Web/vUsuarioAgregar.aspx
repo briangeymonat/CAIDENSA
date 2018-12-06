@@ -70,7 +70,7 @@
                     <asp:Label ID="lblCi" runat="server" Text="Cédula de identidad:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCi" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCi" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>
 
@@ -130,7 +130,7 @@
                     <asp:Label ID="lblTel" runat="server" Text="Telefono:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtTelefono" runat="server"  TextMode="Phone"></asp:TextBox>
+                    <asp:TextBox ID="txtTelefono" runat="server"  TextMode="Number"></asp:TextBox>
                 </td>
                 <td>
 
@@ -197,7 +197,7 @@
                 </td>
                 <td>
                     <asp:RadioButtonList ID="rbTipoDeEmpleado" runat="server" RepeatDirection="Horizontal">
-                        <asp:ListItem>Empleado</asp:ListItem>
+                        <asp:ListItem Selected="True">Empleado</asp:ListItem>
                         <asp:ListItem>Contratado</asp:ListItem>
                         <asp:ListItem>Socio</asp:ListItem>
                     </asp:RadioButtonList>
@@ -216,7 +216,7 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <asp:Button ID="btnAgregarUsuario" runat="server" Text="Agregar"/>
+                    <asp:Button ID="btnAgregarUsuario" runat="server" Text="Agregar" OnClick="btnAgregarUsuario_Click"/>
                 </td>
             </tr>
         </table>

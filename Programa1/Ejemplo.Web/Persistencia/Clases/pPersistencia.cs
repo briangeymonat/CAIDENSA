@@ -12,8 +12,7 @@ namespace Persistencia.Clases
         {
             get
             {
-                //return "Data Source=Brian\\MSSQLSERVER2;Initial Catalog=SACAIDEN_DB;Trusted_Connection=yes";
-                return "Data Source=DESKTOP-20O7FSI;Initial Catalog=SACAIDEN_DB;Trusted_Connection=yes";
+                return "Data Source=Brian\\MSSQLSERVER2;Initial Catalog=SACAIDEN_DB;Trusted_Connection=yes";
             }
         }
     }
