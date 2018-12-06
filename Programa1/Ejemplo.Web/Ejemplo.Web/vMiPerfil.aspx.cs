@@ -34,7 +34,7 @@ namespace Ejemplo.Web
             usuario.NickName = nickname;
             try
             {
-                usuario = dFachada.TraerEspecificoXNickNameUsuario(usuario);
+                usuario = dFachada.UsuarioTraerEspecificoXNickName(usuario);
                 U = usuario;
                 if (usuario == null)
                 {
@@ -82,7 +82,7 @@ namespace Ejemplo.Web
         {
             ddlTipoUsuario.DataSource = Enum.GetNames(typeof(cUtilidades.TipoDeUsuario));
             ddlTipoUsuario.DataBind();
-            ddlEspecialidad.DataSource = dFachada.TraerTodasEspecialidades();
+            ddlEspecialidad.DataSource = dFachada.EspecialidadTraerTodas();
             ddlEspecialidad.DataTextField = "Nombre";
             ddlEspecialidad.DataValueField = "Codigo";
             ddlEspecialidad.DataBind();
@@ -135,7 +135,7 @@ namespace Ejemplo.Web
                 usuario.Telefono = txtTelefono.Text;
                 usuario.Email = txtEmail.Text;
 
-                int i = dFachada.VerificarNickNameYCiUsuario(usuario);
+                int i = dFachada.UsuarioVerificarNickNameYCi(usuario);
                 if (i > 0)
                 {
                     ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: El NickName o Cédula de identidad ya existe')", true);
@@ -172,7 +172,7 @@ namespace Ejemplo.Web
 
                     try
                     {
-                        bool resultado = dFachada.ModificarUsuario(usuario);
+                        bool resultado = dFachada.UsuarioModificar(usuario);
                         if (resultado)
                         {
                             lblMensaje.Text = "Modificado correctamente";

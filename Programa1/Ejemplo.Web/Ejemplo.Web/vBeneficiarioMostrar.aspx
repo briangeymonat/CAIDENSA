@@ -14,12 +14,18 @@
                             <asp:Label ID="Label6" runat="server" Text="Beneficiarios"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtBuscarBeneficiarios" runat="server" PlaceHolder="Buscar por CI, Nombre o Apellido"></asp:TextBox>
+                            <asp:TextBox ID="txtBuscarBeneficiarios" runat="server" PlaceHolder="Buscar por CI, Nombre o Apellido"
+                                TextMode="Search"
+                                OnTextChanged="txtBuscarBeneficiarios_TextChanged" AutoPostBack="true">
+                            </asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="grdBeneficiarios" runat="server"></asp:GridView>
+                            <asp:GridView ID="grdBeneficiarios" runat="server"
+                                EmptyDataText="No se encuentran beneficiarios ingresados" ShowHeaderWhenEmpty="true"
+                                AutoGenerateSelectButton="true" OnSelectedIndexChanging="grdBeneficiarios_SelectedIndexChanging">
+                            </asp:GridView>
                         </td>
                     </tr>
                 </table>
@@ -63,7 +69,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:CheckBoxList ID="cblSexo" runat="server" >
+                            <asp:CheckBoxList ID="cblSexo" runat="server">
                                 <asp:ListItem Text="Masculino"></asp:ListItem>
                                 <asp:ListItem Text="Femenino"></asp:ListItem>
                             </asp:CheckBoxList>
@@ -71,42 +77,20 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <asp:Label ID="Label3" runat="server" Text="Plan:"></asp:Label>
+                            <asp:Label ID="Label10" runat="server" Text="Plan:"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:CheckBox ID="cbASSE" runat="server" Text="ASSE" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbAYEX" runat="server" Text="AYEX" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbCAMEC" runat="server" Text="CAMEC" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbCirculocatolico" runat="server" Text="Círculo Católico" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbMIDES" runat="server" Text="MIDES" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbParticular" runat="server" Text="Particular" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbPolicial" runat="server" Text="Policial" />
+                            <asp:CheckBoxList ID="cblPlan" runat="server">
+                                <asp:ListItem Text="ASSE"></asp:ListItem>
+                                <asp:ListItem Text="AYEX"></asp:ListItem>
+                                <asp:ListItem Text="CAMEC"></asp:ListItem>
+                                <asp:ListItem Text="Círulo Católico"></asp:ListItem>
+                                <asp:ListItem Text="MIDES"></asp:ListItem>
+                                <asp:ListItem Text="Particular"></asp:ListItem>
+                                <asp:ListItem Text="Policial"></asp:ListItem>
+                            </asp:CheckBoxList>
                         </td>
                     </tr>
                     <tr>
@@ -133,27 +117,13 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:CheckBox ID="cbFisioterapeuta" runat="server" Text="Fisioterapeuta" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbFonoaudiologo" runat="server" Text="Fonoaudiólogo" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbPedagogo" runat="server" Text="Pedagogo" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbPsicologo" runat="server" Text="Psicólogo" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:CheckBox ID="cbPsicomotricista" runat="server" Text="Psicomotricista" />
+                            <asp:CheckBoxList ID="cblEspecialidad" runat="server">
+                                <asp:ListItem Text="Fisioterapeuta"></asp:ListItem>
+                                <asp:ListItem Text="Fonoaudiólogo"></asp:ListItem>
+                                <asp:ListItem Text="Pedagogo"></asp:ListItem>
+                                <asp:ListItem Text="Psicólogo"></asp:ListItem>
+                                <asp:ListItem Text="Psicomotricista"></asp:ListItem>
+                            </asp:CheckBoxList>
                         </td>
                     </tr>
                     <tr>
@@ -168,7 +138,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" />
+                            <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" OnClick="btnAplicarFiltros_Click" />
                             <asp:Button ID="btnLimpiarFiltros" runat="server" Text="Limpiar filtros" />
                         </td>
                     </tr>

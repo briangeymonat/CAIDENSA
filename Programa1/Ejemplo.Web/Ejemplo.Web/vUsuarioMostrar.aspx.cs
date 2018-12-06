@@ -29,12 +29,12 @@ namespace Ejemplo.Web
         {
             if (!Page.IsPostBack)
             {
-                lstUsuariosActivos = dFachada.TraerTodosActivosUsuario();
+                lstUsuariosActivos = dFachada.UsuarioTraerTodosActivos();
                 lstUsuariosCBActivos = new List<cUsuario>();
                 lstUsuariosBActivos = new List<cUsuario>();
                 ListarActivos = new List<cUsuario>();
 
-                lstUsuariosInactivos = dFachada.TraerTodosInactivosUsuario();
+                lstUsuariosInactivos = dFachada.UsuarioTraerTodosInactivos();
                 lstUsuariosCBInactivos = new List<cUsuario>();
                 lstUsuariosBInactivos = new List<cUsuario>();
                 ListarInactivos = new List<cUsuario>();
@@ -45,9 +45,9 @@ namespace Ejemplo.Web
                 lstUsuariosCBInactivos = lstUsuariosInactivos;
 
 
-                grdUsuariosActivos.DataSource = dFachada.TraerTodosActivosUsuario();
+                grdUsuariosActivos.DataSource = dFachada.UsuarioTraerTodosActivos();
                 grdUsuariosActivos.DataBind();
-                grdUsuariosInactivos.DataSource = dFachada.TraerTodosInactivosUsuario();
+                grdUsuariosInactivos.DataSource = dFachada.UsuarioTraerTodosInactivos();
                 grdUsuariosInactivos.DataBind();
 
                 FiltroPorBusqueda = false;
@@ -1148,8 +1148,8 @@ namespace Ejemplo.Web
              }*/
             #endregion
 
-            lstUsuariosActivos = dFachada.TraerTodosActivosUsuario();
-            lstUsuariosInactivos = dFachada.TraerTodosInactivosUsuario();
+            lstUsuariosActivos = dFachada.UsuarioTraerTodosActivos();
+            lstUsuariosInactivos = dFachada.UsuarioTraerTodosInactivos();
             lstUsuariosCBActivos = new List<cUsuario>();
             lstUsuariosCBInactivos = new List<cUsuario>();
 
@@ -1752,8 +1752,8 @@ namespace Ejemplo.Web
             #endregion         
 
             string texto = txtBuscarBeneficiario.Text;
-            lstUsuariosActivos = dFachada.TraerTodosActivosUsuario();
-            lstUsuariosInactivos = dFachada.TraerTodosInactivosUsuario();
+            lstUsuariosActivos = dFachada.UsuarioTraerTodosActivos();
+            lstUsuariosInactivos = dFachada.UsuarioTraerTodosInactivos();
             lstUsuariosBActivos = new List<cUsuario>();
             lstUsuariosBInactivos = new List<cUsuario>();
 
@@ -1780,14 +1780,14 @@ namespace Ejemplo.Web
                 if (int.TryParse(txtBuscarBeneficiario.Text, out val))
                 {
                     // es numerico
-                    lstUsuariosBActivos = dFachada.TraerTodosActivosPorCI(texto);
-                    lstUsuariosBInactivos = dFachada.TraerTodosInactivosPorCI(texto);
+                    lstUsuariosBActivos = dFachada.UsuarioTraerTodosActivosPorCI(texto);
+                    lstUsuariosBInactivos = dFachada.UsuarioTraerTodosInactivosPorCI(texto);
                 }
                 else
                 {
                     //no lo es 
-                    lstUsuariosBActivos = dFachada.TraerTodosActivosPorNombreApellidoUsuario(texto);
-                    lstUsuariosBInactivos = dFachada.TraerTodosInactivosPorNombreApellidoUsuario(texto);
+                    lstUsuariosBActivos = dFachada.UsuarioTraerTodosActivosPorNombreApellido(texto);
+                    lstUsuariosBInactivos = dFachada.UsuarioTraerTodosInactivosPorNombreApellido(texto);
                 }
                 if (FiltroPorCheckBox)
                 {

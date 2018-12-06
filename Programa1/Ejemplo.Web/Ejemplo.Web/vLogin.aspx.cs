@@ -26,7 +26,7 @@ namespace Ejemplo.Web
             usuario.Contrasena = txtContrasena.Text;
             try
             {
-                usuario = dFachada.VerificarInicioSesionUsuario(usuario);
+                usuario = dFachada.UsuarioVerificarInicioSesion(usuario);
                 if(usuario!=null)
                 {
                     Response.Redirect("vMiPerfil.aspx?nick="+usuario.NickName);

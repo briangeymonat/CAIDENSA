@@ -31,7 +31,7 @@ namespace Ejemplo.Web
                 usuario.Apellidos = this.txtApellidos.Text;
                 usuario.CI = int.Parse(this.txtCi.Text);
 
-                int i = dFachada.VerificarNickNameYCiUsuario(usuario);
+                int i = dFachada.UsuarioVerificarNickNameYCi(usuario);
                 if (i > 0)
                 {
                     ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: El NickName o Cédula de identidad ya existe')", true);
@@ -79,7 +79,7 @@ namespace Ejemplo.Web
                     usuario.Especialidad = new cEspecialidad();
                     usuario.Especialidad.Codigo = int.Parse(this.ddlEspecialidad.SelectedValue);
 
-                    usuario.Especialidad = dFachada.TraerEspecificaEspecialidad(usuario.Especialidad);
+                    usuario.Especialidad = dFachada.EspecialidadTraerEspecifica(usuario.Especialidad);
                     if (ddlTipoUsuario.SelectedValue == "Usuario" && usuario.Especialidad.Nombre == "Sin especialidad")
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puede crear un usuario de tipo usuario que no tenga especialidad.')", true);
@@ -88,7 +88,7 @@ namespace Ejemplo.Web
                     {
                         try
                         {
-                            bool resultado = dFachada.AgregarUsuario(usuario);
+                            bool resultado = dFachada.UsuarioAgregar(usuario);
                             if (resultado)
                             {
                                 lblMensaje.Text = "Agregado correctamente.";
@@ -116,7 +116,7 @@ namespace Ejemplo.Web
         {
             ddlTipoUsuario.DataSource = Enum.GetNames(typeof(cUtilidades.TipoDeUsuario));
             ddlTipoUsuario.DataBind();
-            ddlEspecialidad.DataSource = dFachada.TraerTodasEspecialidades();
+            ddlEspecialidad.DataSource = dFachada.EspecialidadTraerTodas();
             ddlEspecialidad.DataTextField = "Nombre";
             ddlEspecialidad.DataValueField = "Codigo";
             ddlEspecialidad.DataBind();

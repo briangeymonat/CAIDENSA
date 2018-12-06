@@ -27,7 +27,7 @@ namespace Ejemplo.Web
             {
                 if(txtContrasena.Text==txtContrasenaRepetir.Text)
                 {
-                    int i = dFachada.ExisteNickNameSinContrasenaUsuario(usuario);
+                    int i = dFachada.UsuarioExisteNickNameSinContrasena(usuario);
                     if (i==0)
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: El NickName no existe o ya tiene contraseña ingresada')", true);
@@ -35,7 +35,7 @@ namespace Ejemplo.Web
                     else
                     {
                         usuario.Contrasena = txtContrasena.Text;
-                        bool resultado = dFachada.AgregarConstrasenaUsuario(usuario);
+                        bool resultado = dFachada.UsuarioAgregarConstrasena(usuario);
                         if(resultado)
                         {
                             ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se restableció la contraseña correctamente')", true);
