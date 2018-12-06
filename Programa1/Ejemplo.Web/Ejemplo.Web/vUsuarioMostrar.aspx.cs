@@ -24,6 +24,8 @@ namespace Ejemplo.Web
         static bool FiltroPorBusqueda;
         static bool FiltroPorCheckBox;
 
+        //TATO ME VES?
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
