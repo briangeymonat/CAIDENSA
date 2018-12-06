@@ -265,15 +265,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnAgregarBeneficiario;
         
         /// <summary>
-        /// Control lblMensajeBeneficiario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensajeBeneficiario;
-        
-        /// <summary>
         /// Control lblTipo.
         /// </summary>
         /// <remarks>
@@ -346,13 +337,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtHasta;
         
         /// <summary>
-        /// Control lblMensajePlan.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensajePlan;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
         
         /// <summary>
         /// Control btnAgregarPlan.

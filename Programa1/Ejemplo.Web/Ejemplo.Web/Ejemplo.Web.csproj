@@ -199,6 +199,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="vInicio.aspx" />
     <Content Include="vBeneficiarioAgregarPasivo.aspx" />
     <Content Include="vBeneficiarioMostrar.aspx" />
     <Content Include="vDetallesSesion.aspx" />
@@ -216,6 +217,9 @@
     <Content Include="vItinerarioDiario.aspx" />
     <Content Include="vItinerarioModificarSesion.aspx" />
     <Content Include="vItinerarioNuevaSesion.aspx" />
+    <Content Include="vLogin.aspx" />
+    <Content Include="vMiPerfil.aspx" />
+    <Content Include="vNuevaContraseña.aspx" />
     <Content Include="vSesionNueva.aspx" />
     <Content Include="vTareas.aspx" />
     <Content Include="vUsuarioAgregar.aspx" />
@@ -388,6 +392,13 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="vInicio.aspx.cs">
+      <DependentUpon>vInicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vInicio.aspx.designer.cs">
+      <DependentUpon>vInicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="vBeneficiarioAgregarPasivo.aspx.cs">
       <DependentUpon>vBeneficiarioAgregarPasivo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -506,6 +517,27 @@
     </Compile>
     <Compile Include="vItinerarioNuevaSesion.aspx.designer.cs">
       <DependentUpon>vItinerarioNuevaSesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vLogin.aspx.cs">
+      <DependentUpon>vLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vLogin.aspx.designer.cs">
+      <DependentUpon>vLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vMiPerfil.aspx.cs">
+      <DependentUpon>vMiPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vMiPerfil.aspx.designer.cs">
+      <DependentUpon>vMiPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vNuevaContraseña.aspx.cs">
+      <DependentUpon>vNuevaContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vNuevaContraseña.aspx.designer.cs">
+      <DependentUpon>vNuevaContraseña.aspx</DependentUpon>
     </Compile>
     <Compile Include="vSesionNueva.aspx.cs">
       <DependentUpon>vSesionNueva.aspx</DependentUpon>

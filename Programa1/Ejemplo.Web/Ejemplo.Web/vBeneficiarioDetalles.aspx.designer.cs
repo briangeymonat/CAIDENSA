@@ -166,13 +166,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// Control txtEmail.
+        /// Control txtMail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtMail;
         
         /// <summary>
         /// Control Label9.
@@ -191,15 +191,6 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAtributario;
-        
-        /// <summary>
-        /// Control cbPensionista.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbPensionista;
         
         /// <summary>
         /// Control Label10.
@@ -346,22 +337,22 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblItinerario;
         
         /// <summary>
-        /// Control LAbel.
+        /// Control Label16.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LAbel;
+        protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
-        /// Control grdUltimosDiagnosticos.
+        /// Control GridView1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdUltimosDiagnosticos;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
         /// Control Label17.
@@ -373,13 +364,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label17;
         
         /// <summary>
-        /// Control grdHistorialDiagnosticos.
+        /// Control GridView2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdHistorialDiagnosticos;
+        protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
         /// Control Label18.
@@ -391,49 +382,49 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label18;
         
         /// <summary>
-        /// Control grdPlanesActivos.
+        /// Control GridView3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdPlanesActivos;
+        protected global::System.Web.UI.WebControls.GridView GridView3;
         
         /// <summary>
-        /// Control Labelq.
+        /// Control Label19.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Labelq;
+        protected global::System.Web.UI.WebControls.Label Label19;
         
         /// <summary>
-        /// Control grdPlanesInactivos.
+        /// Control GridView4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdPlanesInactivos;
+        protected global::System.Web.UI.WebControls.GridView GridView4;
         
         /// <summary>
-        /// Control Labelqq.
+        /// Control Label20.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Labelqq;
+        protected global::System.Web.UI.WebControls.Label Label20;
         
         /// <summary>
-        /// Control grdInformes.
+        /// Control GridView5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdInformes;
+        protected global::System.Web.UI.WebControls.GridView GridView5;
         
         /// <summary>
         /// Control btnAgregarInforme.

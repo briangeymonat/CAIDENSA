@@ -10,84 +10,90 @@ namespace Dominio
 {
     public class dFachada
     {
-        #region BENEFICIARIO
+        #region Usuario
 
-        public static bool BeneficiarioAgregar(cBeneficiario elBeneficiario)
+        public static bool AgregarUsuario(cUsuario parUsuario)
         {
-            cBeneficiario unBeneficiario = null;
-            if (dBeneficiario.Agregar(elBeneficiario))
-            {
-                unBeneficiario = BeneficiarioTraerEspecificoCI(elBeneficiario);
-            }
-            if (unBeneficiario != null)
-            {
-                elBeneficiario.Codigo = unBeneficiario.Codigo;
-                if (elBeneficiario.lstPlanes != null)
-                {
-                    PlanAgregar(elBeneficiario);
-                }
-
-                return true;
-            }
-            return false;
+            return dUsuario.Agregar(parUsuario);
         }
-        public static bool BeneficiarioHabilitar(cBeneficiario elBeneficiario)
+        public static bool EliminarUsuario(cUsuario parUsuario)
         {
-            return dBeneficiario.Habilitar(elBeneficiario);
+            return dUsuario.Eliminar(parUsuario);
         }
-        public static bool BeneficiarioInhabilitar(cBeneficiario elBeneficiario)
+        public static bool HabilitarUsuario(cUsuario parUsuario)
         {
-            return dBeneficiario.Inhabilitar(elBeneficiario);
-        }
-        public static bool BeneficiarioModificar(cBeneficiario elBeneficiario)
-        {
-            return dBeneficiario.Modificar(elBeneficiario);
-        }
-        public static cBeneficiario BeneficiarioTraerEspecifico(cBeneficiario elBeneficiario)
-        {
-            return dBeneficiario.TraerEspecifico(elBeneficiario);
-        }
-        public static cBeneficiario BeneficiarioTraerEspecificoCI(cBeneficiario elBeneficiario)
-        {
-            return dBeneficiario.TraerEspecificoCI(elBeneficiario);
-        }
-        public static List<cBeneficiario> BeneficiarioTraerTodos()
-        {
-            return dBeneficiario.TraerTodos();
-        }
-        public static List<cBeneficiario> BeneficiarioTraerTodosConFiltros(string parConsulta)
-        {
-            return dBeneficiario.TraerTodosConFiltros(parConsulta);
+            return dUsuario.Habilitar(parUsuario);
         }
 
-
+        public static bool ModificarUsuario(cUsuario parUsuario)
+        {
+            return dUsuario.Modificar(parUsuario);
+        }
+        public static bool AgregarConstrasenaUsuario(cUsuario parUsuario)
+        {
+            return dUsuario.AgregarContrasena(parUsuario);
+        }
+        public static bool RestablecerContrasenaUsuario(cUsuario parUsuario)
+        {
+            return dUsuario.RestablecerContrasena(parUsuario);
+        }
+        public static cUsuario TraerEspecificoUsuario(cUsuario parUsuario)
+        {
+            return dUsuario.TraerEspecifico(parUsuario);
+        }
+        public static cUsuario TraerEspecificoXNickNameUsuario(cUsuario parUsuario)
+        {
+            return dUsuario.TraerEspecificoXNickName(parUsuario);
+        }
+        public static List<cUsuario> TraerTodosActivosUsuario()
+        {
+            return dUsuario.TraerTodosActivos();
+        }
+        public static List<cUsuario> TraerTodosInactivosUsuario()
+        {
+            return dUsuario.TraerTodosInactivos();
+        }
+        public static int VerificarNickNameYCiUsuario(cUsuario parUsuario)
+        {
+            return dUsuario.VerificarNickNameYCi(parUsuario);
+        }
+        public static int ExisteNickNameSinContrasenaUsuario(cUsuario parUsuario)
+        {
+            return dUsuario.ExisteNickNameSinContrasena(parUsuario);
+        }
+        public static cUsuario VerificarInicioSesionUsuario(cUsuario parUsuario)
+        {
+            return dUsuario.VerificarInicioSesion(parUsuario);
+        }
+        public static List<cUsuario> TraerTodosActivosPorNombreApellidoUsuario(string texto)
+        {
+            return dUsuario.TraerTodosActivosPorNombreApellido(texto);
+        }
+        public static List<cUsuario> TraerTodosInactivosPorNombreApellidoUsuario(string texto)
+        {
+            return dUsuario.TraerTodosInactivosPorNombreApellido(texto);
+        }
+        public static List<cUsuario> TraerTodosActivosPorCI(string texto)
+        {
+            return dUsuario.TraerTodosActivosPorCI(texto);
+        }
+        public static List<cUsuario> TraerTodosInactivosPorCI(string texto)
+        {
+            return dUsuario.TraerTodosInactivosPorCI(texto);
+        }
 
         #endregion
 
-        #region PLAN
+        #region
 
-
-        public static bool PlanAgregar(cBeneficiario elBeneficiario)
+        public static List<cEspecialidad> TraerTodasEspecialidades()
         {
-            return dPlan.Agregar(elBeneficiario);
+            return dEspecialidad.TraerTodas();
         }
-        public static bool PlanEliminar(cPlan elPlan)
+        public static cEspecialidad TraerEspecificaEspecialidad(cEspecialidad parEspecialidad)
         {
-            return dPlan.Eliminar(elPlan);
+            return dEspecialidad.TraerEspecifica(parEspecialidad);
         }
-        public static List<cPlan> PlanTraerActivosPorBeneficiario(cBeneficiario elBeneficiario)
-        {
-            return dPlan.TraerActivosPorBeneficiario(elBeneficiario);
-        }
-        public static List<cPlan> PlanTraerInactivosPorBeneficiario(cBeneficiario elBeneficiario)
-        {
-            return dPlan.TraerInactivosPorBeneficiario(elBeneficiario);
-        }
-        public static List<cPlan> PlanTraerTodosPorBeneficiario(cBeneficiario elBeneficiario)
-        {
-            return dPlan.TraerTodosPorBeneficiario(elBeneficiario);
-        }
-
         #endregion
     }
 }
