@@ -40,18 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\dEspecialidad.cs" />
-    <Compile Include="Clases\dUsuario.cs" />
+    <Compile Include="Clases\dBeneficiario.cs" />
+    <Compile Include="Clases\dPlan.cs" />
     <Compile Include="dFachada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{031C9D2B-83B5-4156-8A8C-FC4450775407}</Project>
+      <Project>{031c9d2b-83b5-4156-8a8c-fc4450775407}</Project>
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Persistencia\Persistencia.csproj">
-      <Project>{662F7252-11CE-4758-BD1B-27307513D54D}</Project>
+      <Project>{662f7252-11ce-4758-bd1b-27307513d54d}</Project>
       <Name>Persistencia</Name>
     </ProjectReference>
   </ItemGroup>
