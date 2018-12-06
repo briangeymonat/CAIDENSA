@@ -60,7 +60,6 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-
         public static bool Eliminar(cUsuario parUsuario)
         {
             bool retorno = true;
@@ -121,7 +120,6 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-
         public static bool Modificar(cUsuario parUsuario)
         {
             bool retorno = true;
@@ -173,7 +171,6 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-
         public static bool AgregarContrasena(cUsuario parUsuario)
         {
             bool retorno = true;
@@ -370,8 +367,7 @@ namespace Persistencia.Clases
                 throw ex;
             }
             return retorno;
-        }
-        
+        }        
         public static List<cUsuario> TraerTodosActivos()
         {
             List<cUsuario> retorno = new List<cUsuario>();
@@ -442,7 +438,6 @@ namespace Persistencia.Clases
             return retorno;
 
         }
-
         public static List<cUsuario> TraerTodosInactivos()
         {
             List<cUsuario> retorno = new List<cUsuario>();
@@ -513,7 +508,6 @@ namespace Persistencia.Clases
             return retorno;
 
         }
-
         public static int VerificarNickNameYCi(cUsuario parUsuario)
         {
             int retorno=-1;
@@ -546,8 +540,6 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-
-
         public static int ExisteNickNameSinContrasena(cUsuario parUsuario)
         {
             int retorno = -1;
@@ -647,7 +639,6 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-
         public static List<cUsuario> TraerTodosActivosPorNombreApellido(string texto)
         {
             List<cUsuario> retorno = new List<cUsuario>();
@@ -791,8 +782,6 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-
-
         public static List<cUsuario> TraerTodosActivosPorCI(string texto)
         {
             List<cUsuario> retorno = new List<cUsuario>();
@@ -864,7 +853,6 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-
         public static List<cUsuario> TraerTodosInactivosPorCI(string texto)
         {
             List<cUsuario> retorno = new List<cUsuario>();
