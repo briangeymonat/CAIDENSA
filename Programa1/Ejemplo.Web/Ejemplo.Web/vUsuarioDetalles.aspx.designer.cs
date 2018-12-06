@@ -229,13 +229,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnCancelar;
         
         /// <summary>
-        /// Control btnConfirmar.
+        /// Control btnHabilitar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmar;
+        protected global::System.Web.UI.WebControls.Button btnHabilitar;
         
         /// <summary>
         /// Control btnInhabilitar.
@@ -247,13 +247,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnInhabilitar;
         
         /// <summary>
-        /// Control btnHabilitar.
+        /// Control btnConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHabilitar;
+        protected global::System.Web.UI.WebControls.Button btnConfirmar;
         
         /// <summary>
         /// Control btnRestablecerContrasena.

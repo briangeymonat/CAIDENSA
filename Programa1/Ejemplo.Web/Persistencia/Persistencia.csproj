@@ -40,14 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\pEspecialidad.cs" />
+    <Compile Include="Clases\pBeneficiario.cs" />
     <Compile Include="Clases\pPersistencia.cs" />
-    <Compile Include="Clases\pUsuario.cs" />
+    <Compile Include="Clases\pPlan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{031C9D2B-83B5-4156-8A8C-FC4450775407}</Project>
+      <Project>{031c9d2b-83b5-4156-8a8c-fc4450775407}</Project>
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>

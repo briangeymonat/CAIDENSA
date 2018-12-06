@@ -10,7 +10,7 @@ namespace Common.Clases
     {
         public int Codigo { get; set; }
         public string NickName { get; set; }
-        public string Contrasena { get; set; }
+        public string Constrasena { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public int CI { get; set; }
@@ -18,10 +18,8 @@ namespace Common.Clases
         public string Domicilio { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
-        public string Email { get; set; }
         public Boolean Estado { get; set; }
         public cEspecialidad Especialidad { get; set; }
-        public string TipoContrato { get; set; } //S=Socio C=Contratado E=Empleado
 
     }
 }

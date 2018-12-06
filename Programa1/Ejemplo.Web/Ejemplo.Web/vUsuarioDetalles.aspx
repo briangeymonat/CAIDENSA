@@ -72,7 +72,7 @@
                     <asp:Label ID="lblCi" runat="server" Text="Cédula de identidad:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCi" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtCi" runat="server"></asp:TextBox>
                 </td>
                 <td>
 
@@ -131,7 +131,7 @@
                     <asp:Label ID="lblTel" runat="server" Text="Telefono:"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtTelefono" runat="server"  TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtTelefono" runat="server"  TextMode="Phone"></asp:TextBox>
                 </td>
                 <td>
 
@@ -219,17 +219,16 @@
                 <td colspan="2">
                     <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="button" OnClick="btnModificar_Click"/>
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="button" OnClick="btnCancelar_Click"/>
-                    <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="button" OnClick="btnConfirmar_Click"/>
+                    <asp:Button ID="btnHabilitar" runat="server" Text="Habilitar" CssClass="button"  />
                 </td>
                 <td colspan="2">
-                    <asp:Button ID="btnInhabilitar" runat="server" Text="Inhabilitar" CssClass="button" OnClick="btnInhabilitar_Click"/>
-                    <asp:Button ID="btnHabilitar" runat="server" Text="Habilitar" CssClass="button" OnClick="btnHabilitar_Click"  />
-                    
+                    <asp:Button ID="btnInhabilitar" runat="server" Text="Inhabilitar" CssClass="button"/>
+                    <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="button" OnClick="btnConfirmar_Click"/>
                 </td>
             </tr>
             <tr>
                 <td colspan="6"> 
-                    <asp:Button ID="btnRestablecerContrasena" runat="server" Text="Restablecer Contraseña" CssClass="button" OnClick="btnRestablecerContrasena_Click"/>
+                    <asp:Button ID="btnRestablecerContrasena" runat="server" Text="Restablecer Contraseña" CssClass="button"/>
                 </td>
             </tr>
         </table>

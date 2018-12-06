@@ -31,22 +31,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblFiltros;
         
         /// <summary>
-        /// Control lblUsuariosActivos.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsuariosActivos;
-        
-        /// <summary>
-        /// Control PanelUsuariosActivos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelUsuariosActivos;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// Control grdUsuariosActivos.
@@ -58,22 +49,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdUsuariosActivos;
         
         /// <summary>
-        /// Control lblUsuariosInactivos.
+        /// Control Label2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsuariosInactivos;
-        
-        /// <summary>
-        /// Control PanelUsuariosInactivos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelUsuariosInactivos;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// Control grdUsuariosInactivos.
@@ -121,13 +103,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.CheckBox cbPedagogo;
         
         /// <summary>
-        /// Control cbPsicologo.
+        /// Control cbPsicolgo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbPsicologo;
+        protected global::System.Web.UI.WebControls.CheckBox cbPsicolgo;
         
         /// <summary>
         /// Control cbPsicomotricista.
@@ -157,31 +139,31 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblTipoUsuario;
         
         /// <summary>
-        /// Control cbAdministrador.
+        /// Control CheckBox1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAdministrador;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
         
         /// <summary>
-        /// Control cbAdministrativo.
+        /// Control CheckBox2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbAdministrativo;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox2;
         
         /// <summary>
-        /// Control cbEspecialista.
+        /// Control CheckBox3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbEspecialista;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox3;
         
         /// <summary>
         /// Control btnAplicarFiltros.
@@ -191,14 +173,5 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAplicarFiltros;
-        
-        /// <summary>
-        /// Control btnLimpiarFiltros.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLimpiarFiltros;
     }
 }
