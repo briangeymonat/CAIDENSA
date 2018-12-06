@@ -19,7 +19,6 @@ namespace Ejemplo.Web
         private static List<cPlan> lstPlanesInactivos;
         private static List<cInforme> lstInformes;
         private static bool Pensionista;
-        //fghjklkjhgf
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
