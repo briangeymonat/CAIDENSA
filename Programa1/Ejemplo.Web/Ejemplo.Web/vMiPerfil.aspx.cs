@@ -98,7 +98,7 @@ namespace Ejemplo.Web
             txtDomicilio.Enabled = pVisible;
             txtTelefono.Enabled = pVisible;
             txtEmail.Enabled = pVisible;
-            ddlTipoUsuario.Enabled = pVisible;
+            //ddlTipoUsuario.Enabled = pVisible;
             ddlEspecialidad.Enabled = pVisible;
             rbTipoDeEmpleado.Enabled = pVisible;
 
@@ -112,7 +112,8 @@ namespace Ejemplo.Web
         }
         private bool FaltanDatosObligatorios()
         {
-            if (this.txtNickName.Text == string.Empty || this.txtNombres.Text == string.Empty || this.txtApellidos.Text == string.Empty || this.txtCi.Text == string.Empty)
+            if (this.txtNickName.Text == string.Empty || this.txtNombres.Text == string.Empty || this.txtApellidos.Text == string.Empty || this.txtCi.Text == string.Empty ||
+                (this.rbTipoDeEmpleado.SelectedIndex !=0 && this.rbTipoDeEmpleado.SelectedIndex != 1 && this.rbTipoDeEmpleado.SelectedIndex != 2))
             {
                 return true;
             }

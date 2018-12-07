@@ -1903,7 +1903,7 @@ namespace Ejemplo.Web
             if (vMiPerfil.U.NickName == NickName)
             {
                 this.grdUsuariosActivos.SelectedIndex = 3;
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Ingresa a tu perfil para ver detalles personales.')", true);
+                Response.Redirect("vMiPerfil.aspx");
 
             }
             else

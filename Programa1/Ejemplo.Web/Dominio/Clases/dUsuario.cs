@@ -78,5 +78,9 @@ namespace Dominio.Clases
         {
             return pUsuario.TraerTodosInactivosPorCI(texto);
         }
+        public static int CantidadAdministradoresActivos()
+        {
+            return pUsuario.CantidadAdministradoresActivos();
+        }
     }
 }

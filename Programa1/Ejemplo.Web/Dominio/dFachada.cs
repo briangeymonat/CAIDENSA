@@ -81,6 +81,10 @@ namespace Dominio
         {
             return dUsuario.TraerTodosInactivosPorCI(texto);
         }
+        public static int UsuarioCantidadAdministradoresActivos()
+        {
+            return dUsuario.CantidadAdministradoresActivos();
+        }
 
         #endregion
 

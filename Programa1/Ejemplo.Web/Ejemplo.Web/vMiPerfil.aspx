@@ -173,7 +173,7 @@
                     <asp:Label ID="lblTipoUsuario" runat="server" Text="Tipo de usuario:"></asp:Label>
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlTipoUsuario" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlTipoUsuario" runat="server" Enabled="False"></asp:DropDownList>
                 </td>
                 <td>
 

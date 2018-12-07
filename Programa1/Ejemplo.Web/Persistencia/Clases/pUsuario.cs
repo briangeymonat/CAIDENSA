@@ -924,5 +924,33 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+        public static int CantidadAdministradoresActivos()
+        {
+            int retorno = -1;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Usuario_CantidadAdministradoresActivos", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        retorno = new int();
+                        retorno = int.Parse(oReader["cantidad"].ToString());
+                    }
+                    conn.Close();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
     }
 }

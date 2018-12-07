@@ -26,7 +26,22 @@ namespace Ejemplo.Web
 
         protected void btnModificar_Click(object sender, EventArgs e)
         {
-            ModoEdicion(true);
+            cUsuario unUsuario = new cUsuario();
+            unUsuario = vMiPerfil.U;
+
+            cUsuario usuario = new cUsuario();
+            usuario.NickName = txtNickName.Text;
+            usuario = dFachada.UsuarioTraerEspecificoXNickName(usuario);
+
+
+            if (unUsuario.Tipo == cUtilidades.TipoDeUsuario.Administrativo && usuario.Tipo == cUtilidades.TipoDeUsuario.Administrador)
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No puede modificar datos de un usuario administrador siendo adminsitrativo')", true);
+            }
+            else
+            {
+                ModoEdicion(true);
+            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -39,7 +54,7 @@ namespace Ejemplo.Web
         {
             if (!FaltanDatosObligatorios())
             {
-                
+
                 cUsuario usuario = new cUsuario();
                 usuario.Codigo = U.Codigo;
                 usuario.NickName = txtNickName.Text;
@@ -85,11 +100,10 @@ namespace Ejemplo.Web
                     }
                     usuario.Especialidad = new cEspecialidad();
                     usuario.Especialidad.Codigo = int.Parse(this.ddlEspecialidad.SelectedValue);
-
                     try
                     {
                         bool resultado = dFachada.UsuarioModificar(usuario);
-                        if(resultado)
+                        if (resultado)
                         {
                             lblMensaje.Text = "Modificado correctamente";
                             ModoEdicion(false);
@@ -99,7 +113,7 @@ namespace Ejemplo.Web
                             lblMensaje.Text = "ERROR: No se pudo agregar";
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         throw ex;
                     }
@@ -116,32 +130,32 @@ namespace Ejemplo.Web
             string nickname = Request.QueryString["nickname"];
             cUsuario usuario = new cUsuario();
             usuario.NickName = nickname;
-            
-                usuario = dFachada.UsuarioTraerEspecificoXNickName(usuario);
-                U = new cUsuario();
-                U = usuario;
-                txtNickName.Text = usuario.NickName;
-                txtNombres.Text = usuario.Nombres;
-                txtApellidos.Text = usuario.Apellidos;
-                txtCi.Text = usuario.CI.ToString();
-                txtFechaNac.Text = usuario.FechaNacimiento.ToString("yyyy-MM-dd");
-                txtDomicilio.Text = usuario.Domicilio;
-                txtTelefono.Text = usuario.Telefono;
-                txtEmail.Text = usuario.Email;
-                ddlTipoUsuario.SelectedValue = usuario.Tipo.ToString();
-                ddlEspecialidad.SelectedIndex = (usuario.Especialidad.Codigo - 1);
-                if (usuario.TipoContrato.ToString() == "Empleado")
-                {
-                    rbTipoDeEmpleado.SelectedIndex = 0;
-                }
-                if (usuario.TipoContrato.ToString() == "Contratado")
-                {
-                    rbTipoDeEmpleado.SelectedIndex = 1;
-                }
-                if (usuario.TipoContrato.ToString() == "Socio")
-                {
-                    rbTipoDeEmpleado.SelectedIndex = 2;
-                }
+
+            usuario = dFachada.UsuarioTraerEspecificoXNickName(usuario);
+            U = new cUsuario();
+            U = usuario;
+            txtNickName.Text = usuario.NickName;
+            txtNombres.Text = usuario.Nombres;
+            txtApellidos.Text = usuario.Apellidos;
+            txtCi.Text = usuario.CI.ToString();
+            txtFechaNac.Text = usuario.FechaNacimiento.ToString("yyyy-MM-dd");
+            txtDomicilio.Text = usuario.Domicilio;
+            txtTelefono.Text = usuario.Telefono;
+            txtEmail.Text = usuario.Email;
+            ddlTipoUsuario.SelectedValue = usuario.Tipo.ToString();
+            ddlEspecialidad.SelectedIndex = (usuario.Especialidad.Codigo - 1);
+            if (usuario.TipoContrato.ToString() == "Empleado")
+            {
+                rbTipoDeEmpleado.SelectedIndex = 0;
+            }
+            if (usuario.TipoContrato.ToString() == "Contratado")
+            {
+                rbTipoDeEmpleado.SelectedIndex = 1;
+            }
+            if (usuario.TipoContrato.ToString() == "Socio")
+            {
+                rbTipoDeEmpleado.SelectedIndex = 2;
+            }
         }
         private void CargarCombos()
         {
@@ -176,9 +190,9 @@ namespace Ejemplo.Web
             btnConfirmar.Visible = pVisible;
             btnCancelar.Visible = pVisible;
 
-            if(usuario.Estado)//si esta activo
+            if (usuario.Estado)//si esta activo
             {
-                
+
                 btnInhabilitar.Visible = true;
                 btnHabilitar.Visible = false;
                 btnRestablecerContrasena.Visible = true;
@@ -207,48 +221,75 @@ namespace Ejemplo.Web
             cUsuario usuario = new cUsuario();
             usuario = U;
 
-            try
+            cUsuario unUsuario = new cUsuario();
+            unUsuario = vMiPerfil.U;
+
+            if (usuario.Tipo == cUtilidades.TipoDeUsuario.Administrador && unUsuario.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
             {
-                bool resultado = dFachada.UsuarioEliminar(usuario);
-                if (resultado)
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No puede inhabilitar un usuario administrador siendo adminsitrativo')", true);
+            }
+            else
+            {
+                int i = dFachada.UsuarioCantidadAdministradoresActivos();
+                if (usuario.Tipo == cUtilidades.TipoDeUsuario.Administrador && i == 1)
                 {
-                    lblMensaje.Text = "Inhabilitado correctamente";
-                    ModoEdicion(false);
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Debe haber al menos un usuario administrador activo')", true);
                 }
                 else
                 {
-                    lblMensaje.Text = "ERROR: No se pudo inhabilitar";
+                    try
+                    {
+                        bool resultado = dFachada.UsuarioEliminar(usuario);
+                        if (resultado)
+                        {
+                            lblMensaje.Text = "Inhabilitado correctamente";
+                            ModoEdicion(false);
+                        }
+                        else
+                        {
+                            lblMensaje.Text = "ERROR: No se pudo inhabilitar";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-
         }
         protected void btnHabilitar_Click(object sender, EventArgs e)
         {
             cUsuario usuario = new cUsuario();
             usuario = U;
 
-            try
+            cUsuario unUsuario = new cUsuario();
+            unUsuario = vMiPerfil.U;
+
+            if (U.Tipo == cUtilidades.TipoDeUsuario.Administrador && unUsuario.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
             {
-                bool resultado = dFachada.UsuarioHabilitar(usuario);
-                if (resultado)
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No puede habilitar un usuario administrador siendo adminsitrativo')", true);
+            }
+            else
+            {
+                try
                 {
-                    lblMensaje.Text = "Habilitado correctamente";
-                    ModoEdicion(false);
+                    bool resultado = dFachada.UsuarioHabilitar(usuario);
+                    if (resultado)
+                    {
+                        lblMensaje.Text = "Habilitado correctamente";
+                        ModoEdicion(false);
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "ERROR: No se pudo habilitar";
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    lblMensaje.Text = "ERROR: No se pudo habilitar";
+                    throw ex;
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
         }
 
         protected void btnRestablecerContrasena_Click(object sender, EventArgs e)
@@ -256,22 +297,32 @@ namespace Ejemplo.Web
             cUsuario usuario = new cUsuario();
             usuario = U;
 
-            try
+            cUsuario unUsuario = new cUsuario();
+            unUsuario = vMiPerfil.U;
+
+            if (U.Tipo == cUtilidades.TipoDeUsuario.Administrador && unUsuario.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
             {
-                bool resultado = dFachada.UsuarioRestablecerContrasena(usuario);
-                if (resultado)
-                {
-                    lblMensaje.Text = "Contraseña restablecida correctamente";
-                    ModoEdicion(false);
-                }
-                else
-                {
-                    lblMensaje.Text = "ERROR: No se pudo restablecer la contraseña";
-                }
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No puede restablecer la contraseña de un usuario administrador siendo adminsitrativo')", true);
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                try
+                {
+                    bool resultado = dFachada.UsuarioRestablecerContrasena(usuario);
+                    if (resultado)
+                    {
+                        lblMensaje.Text = "Contraseña restablecida correctamente";
+                        ModoEdicion(false);
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "ERROR: No se pudo restablecer la contraseña";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
     }
