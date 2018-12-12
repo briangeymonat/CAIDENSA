@@ -19,7 +19,7 @@
                 </td>
                 <td colspan="2">
                     <asp:Label ID="Label7" runat="server" Text="Especialistas con informes pendientes:"></asp:Label>
-                    <asp:GridView ID="grdEspecialistasConInformesPendientes" runat="server"></asp:GridView>
+                    <asp:GridView ID="grdEspecialistasConInformesPendientes" runat="server" OnRowCreated="grdEspecialistasConInformesPendientes_RowCreated" ShowHeaderWhenEmpty="True"></asp:GridView>
                 </td>
                 <td>
                     <asp:Label ID="Label8" runat="server" Text="Beneficiarios que el plan no tiene fecha de vencimiento:"></asp:Label>

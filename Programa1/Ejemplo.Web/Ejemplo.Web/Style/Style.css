@@ -103,6 +103,8 @@ div.menu ul li a, div.menu ul li a:visited
 }
 .table{
     margin-left:20px;
+    vertical-align: bottom;
+
 }
 
 .VentanaEmergente{
