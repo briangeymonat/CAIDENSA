@@ -142,6 +142,10 @@ namespace Dominio
         {
             return dBeneficiario.TraerEspecificoCI(parBeneficiario);
         }
+        public static cBeneficiario BeneficiarioTraerEspecificoVerificarModificar(cBeneficiario parBeneficiario)
+        {
+            return dBeneficiario.TraerEspecificoVerificarModificar(parBeneficiario);
+        }
         public static List<cBeneficiario> BeneficiarioTraerTodos()
         {
             return dBeneficiario.TraerTodos();
