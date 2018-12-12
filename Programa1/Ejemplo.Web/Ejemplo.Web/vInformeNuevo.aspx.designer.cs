@@ -175,6 +175,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
         
         /// <summary>
+        /// Control Label2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// Control grdTodosEspecialistas.
         /// </summary>
         /// <remarks>
@@ -184,22 +193,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdTodosEspecialistas;
         
         /// <summary>
-        /// Control btnAgregarEspecialista.
+        /// Control Label11.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarEspecialista;
-        
-        /// <summary>
-        /// Control btnQuitarEspecialista.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnQuitarEspecialista;
+        protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
         /// Control grdEspecialistasAgregados.

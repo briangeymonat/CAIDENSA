@@ -82,5 +82,18 @@ namespace Dominio.Clases
         {
             return pUsuario.CantidadAdministradoresActivos();
         }
+        public static List<cUsuario> TraerTodosEspecialistasActivos()
+        {
+            return pUsuario.TraerTodosEspecialistasActivos();
+        }
+        public static List<cUsuario> TraerTodosEspecialistasActivosPorEspecialidad(cEspecialidad parEspecialidad)
+        {
+            return pUsuario.TraerTodosEspecialistasActivosPorEspecialidad(parEspecialidad);
+        }
+        public static List<cUsuario> TraerTodosEspecialistasConInformesPendientes()
+        {
+            return pUsuario.TraerTodosEspecialistasConInformesPendientes();
+        }
+
     }
 }
