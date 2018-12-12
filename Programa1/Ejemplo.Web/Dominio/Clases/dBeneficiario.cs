@@ -34,6 +34,10 @@ namespace Dominio.Clases
         {
             return pBeneficiario.TraerEspecificoCI(elBeneficiario);
         }
+        public static cBeneficiario TraerEspecificoVerificarModificar(cBeneficiario parBeneficiario)
+        {
+            return pBeneficiario.TraerEspecificoVerificarModificar(parBeneficiario);
+        }
         public static List<cBeneficiario> TraerTodos()
         {
             return pBeneficiario.TraerTodos();
