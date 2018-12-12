@@ -279,10 +279,5 @@ namespace Ejemplo.Web
                 txtAtributario.Text = string.Empty;
             }
         }
-
-        protected void btnAgregarInforme_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("vInformeNuevo.aspx?idBeneficiario=" + ElBeneficiario.Codigo.ToString());
-        }
     }
 }

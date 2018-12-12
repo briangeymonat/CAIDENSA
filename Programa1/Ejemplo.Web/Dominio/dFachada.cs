@@ -85,18 +85,6 @@ namespace Dominio
         {
             return dUsuario.CantidadAdministradoresActivos();
         }
-        public static List<cUsuario> UsuarioTraerTodosEspecialistasActivos()
-        {
-            return dUsuario.TraerTodosEspecialistasActivos();
-        }
-        public static List<cUsuario> UsuarioTraerTodosEspecialistasActivosPorEspecialidad(cEspecialidad parEspecialidad)
-        {
-            return dUsuario.TraerTodosEspecialistasActivosPorEspecialidad(parEspecialidad);
-        }
-        public static List<cUsuario> UsuarioTraerTodosEspecialistasConInformesPendientes()
-        {
-            return dUsuario.TraerTodosEspecialistasConInformesPendientes();
-        }
 
         #endregion
 
@@ -190,15 +178,6 @@ namespace Dominio
         public static List<cPlan> PlanTraerTodosPorBeneficiario(cBeneficiario parBeneficiario)
         {
             return dPlan.TraerTodosPorBeneficiario(parBeneficiario);
-        }
-
-        #endregion
-
-        #region Informe
-
-        public static bool InformeAgregar(cInforme parInforme)
-        {
-            return dInforme.Agregar(parInforme);
         }
 
         #endregion
