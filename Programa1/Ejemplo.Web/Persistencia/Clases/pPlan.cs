@@ -69,7 +69,7 @@ namespace Persistencia.Clases
                 var conn = new SqlConnection(CadenaDeConexion);
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Planes_Eliminar", conn);
+                SqlCommand cmd = new SqlCommand("Planes_Eliminar");
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@PlanId", elPlan.Codigo));
@@ -115,11 +115,7 @@ namespace Persistencia.Clases
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
                         unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString());
-                        if (oReader["PlanFechaFin"] != DBNull.Value)
-                        {
-                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
-                        }
-                        unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
+                        //unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 
                         retorno.Add(unPlan);
@@ -162,10 +158,7 @@ namespace Persistencia.Clases
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
                         unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString());
-                        if(oReader["PlanFechaFin"] != DBNull.Value)
-                        {
-                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
-                        }
+                        unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 
                         retorno.Add(unPlan);

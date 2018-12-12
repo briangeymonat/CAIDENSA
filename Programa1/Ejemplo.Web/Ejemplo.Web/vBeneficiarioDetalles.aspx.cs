@@ -44,7 +44,6 @@ namespace Ejemplo.Web
         {
             ElBeneficiario = dFachada.BeneficiarioTraerEspecifico(ElBeneficiario);
             lstPlanesActivos = dFachada.PlanTraerActivosPorBeneficiario(ElBeneficiario);
-            lstPlanesInactivos = dFachada.PlanTraerInactivosPorBeneficiario(ElBeneficiario);
             ddlTipos.DataSource = Tipos;
             ddlTipos.DataBind();
         }
@@ -69,26 +68,12 @@ namespace Ejemplo.Web
             txtApellidos.Text = ElBeneficiario.Apellidos;
             txtCi.Text = ElBeneficiario.CI.ToString();
             if (ElBeneficiario.Sexo == "M") rblSexo.Items[0].Selected = true; else rblSexo.Items[1].Selected = true;
-            txtFechaNac.Text = ElBeneficiario.FechaNacimiento.ToString("yyyy-MM-dd");
+            txtFechaNac.Text = ElBeneficiario.FechaNacimiento.ToString();
             txtDomicilio.Text = ElBeneficiario.Domicilio;
             txtTelefono1.Text = ElBeneficiario.Telefono1;
             txtTelefono2.Text = ElBeneficiario.Telefono2;
             txtEmail.Text = ElBeneficiario.Email;
-            if (ElBeneficiario.Atributario == "Pensionista")
-            {
-                cbPensionista.Checked = true;
-                cbPensionista_CheckedChanged(new object(), new EventArgs());
-                //txtAtributario.Text = string.Empty;
-                //txtAtributario.Enabled = false;
-                //cbPensionista.Checked = true;
-            }
-            else
-            {
-                cbPensionista.Checked = false;
-                cbPensionista_CheckedChanged(new object(), new EventArgs());
-                txtAtributario.Text = ElBeneficiario.Atributario;
-            }
-
+            txtAtributario.Text = ElBeneficiario.Atributario;
             txtEscolaridad.Text = ElBeneficiario.Escolaridad;
             txtDerivador.Text = ElBeneficiario.Derivador;
             txtMotivoConsulta.Text = ElBeneficiario.MotivoConsulta;
@@ -113,7 +98,6 @@ namespace Ejemplo.Web
         protected void btnModificar_Click(object sender, EventArgs e)
         {
             habilitarCampos(true);
-            cbPensionista_CheckedChanged(new object(), new EventArgs());
             this.btnCancelar.Visible = true;
             this.btnConfirmar.Visible = true;
             this.btnInhabilitar.Visible = false;
@@ -123,9 +107,7 @@ namespace Ejemplo.Web
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            ActualizarCampos();
             habilitarCampos(false);
-            cbPensionista_CheckedChanged(new object(), new EventArgs());
             this.btnCancelar.Visible = false;
             this.btnConfirmar.Visible = false;
             this.btnInhabilitar.Visible = true;
@@ -139,8 +121,12 @@ namespace Ejemplo.Web
                 txtApellidos.Text == string.Empty ||
                 txtCi.Text == string.Empty ||
                 txtFechaNac.Text == string.Empty ||
+                txtDomicilio.Text == string.Empty ||
+                txtTelefono1.Text == string.Empty ||
                 (txtAtributario.Text == string.Empty && !cbPensionista.Checked) ||
-                txtMotivoConsulta.Text == string.Empty)
+                txtMotivoConsulta.Text == string.Empty ||
+                txtEscolaridad.Text == string.Empty ||
+                txtDerivador.Text == string.Empty)
             {
                 return true;
             }
@@ -151,7 +137,6 @@ namespace Ejemplo.Web
             if (!FaltanDatosBeneficiario())
             {
                 cBeneficiario unBeneficiario = new cBeneficiario();
-                unBeneficiario.Codigo = ElBeneficiario.Codigo;
                 unBeneficiario.Nombres = txtNombres.Text;
                 unBeneficiario.Apellidos = txtApellidos.Text;
                 unBeneficiario.CI = int.Parse(txtCi.Text);
@@ -179,26 +164,20 @@ namespace Ejemplo.Web
                 unBeneficiario.Escolaridad = txtEscolaridad.Text;
                 unBeneficiario.Derivador = txtDerivador.Text;
                 unBeneficiario.Email = txtEmail.Text;
-                if (dFachada.BeneficiarioTraerEspecificoVerificarModificar(unBeneficiario) != null)
+                if (dFachada.BeneficiarioTraerEspecificoCI(unBeneficiario) != null)
                 {
                     lblMensaje.Text = "Ya existe un beneficiario en el sistema con esa CI.";
                 }
                 else
                 {
-                    if (dFachada.BeneficiarioModificar(unBeneficiario))
+                    if (dFachada.BeneficiarioAgregar(unBeneficiario))
                     {
-                        lblMensaje.Text = "Beneficiario modificado correctamente.";
+                        lblMensaje.Text = "Beneficiario agregado correctamente.";
                         ActualizarTodo();
-                        habilitarCampos(false);
-                        this.btnCancelar.Visible = false;
-                        this.btnConfirmar.Visible = false;
-                        this.btnInhabilitar.Visible = true;
-                        this.btnHabilitar.Visible = true;
-                        this.btnModificar.Visible = true;
                     }
                     else
                     {
-                        lblMensaje.Text = "No se pudo concretar la modificación del beneficiario.";
+                        lblMensaje.Text = "No se pudo concretar el registro del beneficiario.";
                         ActualizarTodo();
                     }
                 }
@@ -208,6 +187,12 @@ namespace Ejemplo.Web
             {
                 lblMensaje.Text = "Faltaron completar datos para el registro.";
             }
+            habilitarCampos(false);
+            this.btnCancelar.Visible = false;
+            this.btnConfirmar.Visible = false;
+            this.btnInhabilitar.Visible = true;
+            this.btnHabilitar.Visible = true;
+            this.btnModificar.Visible = true;
         }
 
 
@@ -217,7 +202,6 @@ namespace Ejemplo.Web
             this.txtApellidos.Enabled = b;
             this.txtCi.Enabled = b;
             this.txtAtributario.Enabled = b;
-            this.cbPensionista.Enabled = b;
             this.txtDerivador.Enabled = b;
             this.txtDomicilio.Enabled = b;
             this.txtEscolaridad.Enabled = b;
@@ -288,7 +272,7 @@ namespace Ejemplo.Web
 
         protected void cbPensionista_CheckedChanged(object sender, EventArgs e)
         {
-            Pensionista = cbPensionista.Checked;
+            Pensionista = !Pensionista;
             txtAtributario.Enabled = !Pensionista;
             if (Pensionista)
             {
