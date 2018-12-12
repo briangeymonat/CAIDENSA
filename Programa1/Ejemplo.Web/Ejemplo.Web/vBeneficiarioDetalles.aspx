@@ -230,7 +230,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btnAgregarInforme" runat="server" Text="Agregar informe" />
+                            <asp:Button ID="btnAgregarInforme" runat="server" Text="Agregar informe" OnClick="btnAgregarInforme_Click" style="height: 26px" />
                         </td>
                     </tr>
                 </table>

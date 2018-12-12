@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Clases\dBeneficiario.cs" />
     <Compile Include="Clases\dEspecialidad.cs" />
+    <Compile Include="Clases\dInforme.cs" />
     <Compile Include="Clases\dPlan.cs" />
     <Compile Include="Clases\dUsuario.cs" />
     <Compile Include="dFachada.cs" />
