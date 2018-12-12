@@ -78,8 +78,12 @@ namespace Ejemplo.Web
                 txtApellidos.Text == string.Empty ||
                 txtCi.Text == string.Empty ||
                 txtFechaNac.Text == string.Empty ||
+                txtDomicilio.Text == string.Empty ||
+                txtTel1.Text == string.Empty ||
                 (txtAtributario.Text == string.Empty && !cbPensionista.Checked) ||
-                txtMotivoConsulta.Text == string.Empty)
+                txtMotivoConsulta.Text == string.Empty ||
+                txtEscolaridad.Text == string.Empty ||
+                txtDerivador.Text == string.Empty)
             {
                 return true;
             }

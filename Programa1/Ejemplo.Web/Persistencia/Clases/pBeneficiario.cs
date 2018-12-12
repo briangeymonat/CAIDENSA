@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Persistencia.Clases
 {
-    public class pBeneficiario : pPersistencia
+    public class pBeneficiario:pPersistencia
     {
         public static bool Agregar(cBeneficiario elBeneficiario)
         {
@@ -40,11 +40,11 @@ namespace Persistencia.Clases
 
                 int rtn = cmd.ExecuteNonQuery();
 
-                if (rtn <= 0)
+                if(rtn<=0)
                 {
                     retorno = false;
                 }
-                if (conn.State == ConnectionState.Open)
+                if(conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
@@ -74,7 +74,7 @@ namespace Persistencia.Clases
 
                 int rtn = cmd.ExecuteNonQuery();
 
-                if (rtn <= 0)
+                if(rtn <=0)
                 {
                     retorno = false;
                 }
@@ -115,7 +115,7 @@ namespace Persistencia.Clases
             return retorno;
         }
 
-        public static bool Modificar(cBeneficiario elBeneficiario)
+        public static bool Modificar (cBeneficiario elBeneficiario)
         {
             bool retorno = true;
 
@@ -143,12 +143,12 @@ namespace Persistencia.Clases
 
                 int rtn = cmd.ExecuteNonQuery();
 
-                if (rtn <= 0)
+                if(rtn<=0)
                 {
                     retorno = false;
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -156,7 +156,7 @@ namespace Persistencia.Clases
             return retorno;
         }
 
-        public static cBeneficiario TraerEspecifico(cBeneficiario elBeneficiario)
+        public static cBeneficiario TraerEspecifico (cBeneficiario elBeneficiario)
         {
             cBeneficiario retorno = null;
 
@@ -169,7 +169,7 @@ namespace Persistencia.Clases
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", elBeneficiario.Codigo));
-                using (SqlDataReader oReader = cmd.ExecuteReader())
+                using(SqlDataReader oReader = cmd.ExecuteReader())
                 {
                     while (oReader.Read())
                     {
@@ -195,7 +195,7 @@ namespace Persistencia.Clases
                 }
                 conn.Close();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -215,53 +215,6 @@ namespace Persistencia.Clases
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@BeneficiarioCI", elBeneficiario.CI));
-                using (SqlDataReader oReader = cmd.ExecuteReader())
-                {
-                    while (oReader.Read())
-                    {
-                        retorno = new cBeneficiario();
-
-                        retorno.Codigo = int.Parse(oReader["BeneficiarioId"].ToString());
-                        retorno.Nombres = oReader["BeneficiarioNombres"].ToString();
-                        retorno.Apellidos = oReader["BeneficiarioApellidos"].ToString();
-                        retorno.CI = int.Parse(oReader["BeneficiarioCI"].ToString());
-                        retorno.Sexo = oReader["BeneficiarioSexo"].ToString();
-                        retorno.Telefono1 = oReader["BeneficiarioTelefono1"].ToString();
-                        retorno.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
-                        retorno.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
-                        retorno.Email = oReader["BeneficiarioEmail"].ToString();
-                        retorno.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString());
-                        retorno.Atributario = oReader["BeneficiarioAtributario"].ToString();
-                        retorno.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
-                        retorno.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
-                        retorno.Derivador = oReader["BeneficiarioDerivador"].ToString();
-                        retorno.Estado = bool.Parse(oReader["BeneficiarioEstado"].ToString());
-
-                    }
-                }
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return retorno;
-        }
-        public static cBeneficiario TraerEspecificoVerificarModificar(cBeneficiario elBeneficiario)
-        {
-            cBeneficiario retorno = null;
-
-            try
-            {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
-
-                SqlCommand cmd = new SqlCommand("Beneficiarios_VerificarCIModificar", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", elBeneficiario.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@BeneficiarioCI", elBeneficiario.CI));
-
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
                     while (oReader.Read())
@@ -335,7 +288,7 @@ namespace Persistencia.Clases
                 }
                 conn.Close();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -357,7 +310,7 @@ namespace Persistencia.Clases
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
-                    while (oReader.Read())
+                    while(oReader.Read())
                     {
                         unBeneficiario = new cBeneficiario();
 
@@ -382,7 +335,7 @@ namespace Persistencia.Clases
                 }
                 conn.Close();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
@@ -392,5 +345,5 @@ namespace Persistencia.Clases
         }
     }
 
-
+    
 }
