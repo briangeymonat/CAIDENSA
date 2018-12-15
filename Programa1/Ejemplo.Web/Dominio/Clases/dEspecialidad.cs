@@ -18,5 +18,9 @@ namespace Dominio.Clases
         {
             return pEspecialidad.TraerEspecifica(parEspecialidad);
         }
+        public static cEspecialidad TraerEspecificaPorNombre(cEspecialidad parEspecialidad)
+        {
+            return pEspecialidad.TraerEspecificaPorNombre(parEspecialidad);
+        }
     }
 }

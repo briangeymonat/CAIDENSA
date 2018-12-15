@@ -26,7 +26,7 @@
                 </asp:RadioButtonList>
             </td>
             <td>
-                <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar filtros" />
+                <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar filtros" OnClick="btnAplicarFiltros_Click" />
             </td>
         </tr>
     </table>

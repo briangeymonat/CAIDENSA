@@ -72,5 +72,34 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+        public static cEspecialidad TraerEspecificaPorNombre(cEspecialidad parEspecialidad)
+        {
+            cEspecialidad retorno = new cEspecialidad();
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Especialidad_TraerEspecificaPorNombre", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@EspecialidadNombre", parEspecialidad.Nombre));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        retorno.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
+                        retorno.Nombre = oReader["EspecialidadNombre"].ToString();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
     }
 }

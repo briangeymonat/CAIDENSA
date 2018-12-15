@@ -141,8 +141,8 @@
                         <td colspan="3">
                             <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
                             <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
-                            <asp:Button ID="btnHabilitar" runat="server" Text="Habilitar" />
-                            <asp:Button ID="btnInhabilitar" runat="server" Text="Inhabilitar" />
+                            <asp:Button ID="btnHabilitar" runat="server" Text="Habilitar" OnClick="btnHabilitar_Click" />
+                            <asp:Button ID="btnInhabilitar" runat="server" Text="Inhabilitar" OnClick="btnInhabilitar_Click" />
                             <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
                         </td>
                     </tr>

@@ -139,31 +139,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdBeneficiarios;
         
         /// <summary>
-        /// Control btnAgregarBeneficiario.
+        /// Control grdBeneficiariosAgregados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarBeneficiario;
-        
-        /// <summary>
-        /// Control btnQuitarBeneficiario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnQuitarBeneficiario;
-        
-        /// <summary>
-        /// Control grdBeneficiariosCargados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdBeneficiariosCargados;
+        protected global::System.Web.UI.WebControls.GridView grdBeneficiariosAgregados;
         
         /// <summary>
         /// Control Label7.
@@ -184,6 +166,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidades;
         
         /// <summary>
+        /// Control btnCargarEspecialidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCargarEspecialidad;
+        
+        /// <summary>
         /// Control Label8.
         /// </summary>
         /// <remarks>
@@ -200,24 +191,6 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdTodosEspecialistas;
-        
-        /// <summary>
-        /// Control btnAgregarEspecialista.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarEspecialista;
-        
-        /// <summary>
-        /// Control btnQuitarEspecialista.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnQuitarEspecialista;
         
         /// <summary>
         /// Control Label9.

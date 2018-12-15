@@ -12,7 +12,7 @@ namespace Common.Clases
         public cUtilidades.TipoSesion TipoSesion { get; set; }
         public string Dia { get; set; } //L,M,X,J,V,S
         public DateTime HoraInicio { get; set; }
-        public DateTime HotaFin { get; set; }
+        public DateTime HoraFin { get; set; }
         public string Comentario { get; set; }
         public cUtilidades.Centro Centro { get; set; }
         public Boolean Estado { get; set; }

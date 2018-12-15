@@ -93,9 +93,17 @@ namespace Dominio
         {
             return dUsuario.TraerTodosEspecialistasActivosPorEspecialidad(parEspecialidad);
         }
+        public static List<cUsuario> UsuarioTraerEspecialistasConFiltros(string parConsulta)
+        {
+            return dUsuario.TraerEspecialistasConFiltros(parConsulta);
+        }
         public static List<cUsuario> UsuarioTraerTodosEspecialistasConInformesPendientes()
         {
             return dUsuario.TraerTodosEspecialistasConInformesPendientes();
+        }
+        public static List<cUsuario> UsuarioTraerTodosPorItinerario(cItinerario parItinerario)
+        {
+            return dUsuario.TraerTodosPorItinerario(parItinerario);
         }
 
         #endregion
@@ -109,6 +117,10 @@ namespace Dominio
         public static cEspecialidad EspecialidadTraerEspecifica(cEspecialidad parEspecialidad)
         {
             return dEspecialidad.TraerEspecifica(parEspecialidad);
+        }
+        public static cEspecialidad EspecialidadTraerEspecificaPorNombre(cEspecialidad parEspecialidad)
+        {
+            return dEspecialidad.TraerEspecificaPorNombre(parEspecialidad);
         }
         #endregion
 
@@ -207,5 +219,31 @@ namespace Dominio
 
         #endregion
 
+        #region Itinerario
+
+        public static bool ItinerarioAgregar(cItinerario parItinerario)
+        {
+            return dItinerario.Agregar(parItinerario);
+        }
+        public static List<cUsuario> ItinerarioVerificarHorarioUsuario(cItinerario parItinerario)
+        {
+            return dItinerario.VerificarHorarioUsuario(parItinerario);
+        }
+        public static List<cBeneficiario> ItinerarioVerificarHorarioBeneficiarios(cItinerario parItinerario)
+        {
+            return dItinerario.VerificarHorarioBeneficiarios(parItinerario);
+        }
+
+        //FUNCIION SIN TERMINAR
+        public static List<cItinerario> ItinerarioTraerTodosPorDia(char parDia)
+        {
+            List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorDia(parDia);
+            for (int i = 0; i < LosItinerarios.Count; i++)
+            {
+                LosItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(LosItinerarios[i]);
+            }
+
+        }
+        #endregion
     }
 }

@@ -118,7 +118,7 @@ namespace Ejemplo.Web
 
             //BUSCADOR
             if (condiciones.Count > 1) condiciones.Add(string.Format(" and (BeneficiarioNombres LIKE '%{0}%' or BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, BeneficiarioCI) LIKE '%{0}%' )", txtBuscarBeneficiarios.Text));
-            else condiciones.Add(string.Format(" (BeneficiarioNombres LIKE '{0}%' or BeneficiarioApellidos LIKE '{0}%' or CONVERT(varchar, BeneficiarioCI) LIKE '{0}%' )", txtBuscarBeneficiarios.Text));
+            else condiciones.Add(string.Format(" (BeneficiarioNombres LIKE '%{0}%' or BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, BeneficiarioCI) LIKE '%{0}%' )", txtBuscarBeneficiarios.Text));
 
             if (condiciones.Count > 1)
             {

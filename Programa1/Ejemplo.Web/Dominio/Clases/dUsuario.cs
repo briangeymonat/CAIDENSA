@@ -90,10 +90,17 @@ namespace Dominio.Clases
         {
             return pUsuario.TraerTodosEspecialistasActivosPorEspecialidad(parEspecialidad);
         }
+        public static List<cUsuario> TraerEspecialistasConFiltros(string parConsulta)
+        {
+            return pUsuario.TraerEspecialistasConFiltros(parConsulta);
+        }
         public static List<cUsuario> TraerTodosEspecialistasConInformesPendientes()
         {
             return pUsuario.TraerTodosEspecialistasConInformesPendientes();
         }
-
+        public static List<cUsuario> TraerTodosPorItinerario(cItinerario parItinerario)
+        {
+            return pUsuario.TraerTodosPorItinerario(parItinerario);
+        }
     }
 }

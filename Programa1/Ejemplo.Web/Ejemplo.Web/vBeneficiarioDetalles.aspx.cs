@@ -31,6 +31,16 @@ namespace Ejemplo.Web
                 this.btnCancelar.Visible = false;
                 this.btnConfirmar.Visible = false;
                 ActualizarTodo();
+                if (ElBeneficiario.Estado)
+                {
+                    btnHabilitar.Visible = false;
+                    btnInhabilitar.Visible = true;
+                }
+                else
+                {
+                    btnHabilitar.Visible = true;
+                    btnInhabilitar.Visible = false;
+                }
             }
         }
         private void ActualizarTodo()
@@ -299,6 +309,36 @@ namespace Ejemplo.Web
         protected void btnAgregarInforme_Click(object sender, EventArgs e)
         {
             Response.Redirect("vInformeNuevo.aspx?idBeneficiario=" + ElBeneficiario.Codigo.ToString());
+        }
+
+        protected void btnHabilitar_Click(object sender, EventArgs e)
+        {
+            if (dFachada.BeneficiarioHabilitar(ElBeneficiario))
+            {
+                btnHabilitar.Visible = false;
+                btnInhabilitar.Visible = true;
+                ActualizarTodo();
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido habilitar el beneficiario.')", true);
+            }
+            
+        }
+
+        protected void btnInhabilitar_Click(object sender, EventArgs e)
+        {
+            if (dFachada.BeneficiarioInhabilitar(ElBeneficiario))
+            {
+                btnHabilitar.Visible = true;
+                btnInhabilitar.Visible = false;
+                ActualizarTodo();
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar el beneficiario.')", true);
+            }
+
         }
     }
 }

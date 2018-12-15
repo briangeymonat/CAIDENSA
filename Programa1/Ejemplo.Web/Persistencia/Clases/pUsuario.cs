@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Persistencia.Clases
 {
-    public class pUsuario:pPersistencia
+    public class pUsuario : pPersistencia
     {
         public static bool Agregar(cUsuario parUsuario)
         {
@@ -41,7 +41,7 @@ namespace Persistencia.Clases
                 {
                     cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", parUsuario.FechaNacimiento));
                 }
-                
+
                 cmd.Parameters.Add(new SqlParameter("@telefono", parUsuario.Telefono));
                 cmd.Parameters.Add(new SqlParameter("@email", parUsuario.Email));
                 cmd.Parameters.Add(new SqlParameter("@tipo", parUsuario.Tipo));
@@ -50,16 +50,16 @@ namespace Persistencia.Clases
                 cmd.Parameters.Add(new SqlParameter("@estado", parUsuario.Estado));
 
                 int rtn = cmd.ExecuteNonQuery();
-                if(rtn<=0)
+                if (rtn <= 0)
                 {
                     retorno = false;
                 }
-                if(conn.State ==ConnectionState.Open)
+                if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -80,16 +80,16 @@ namespace Persistencia.Clases
 
                 int rtn = cmd.ExecuteNonQuery();
 
-                if(rtn <=0)
+                if (rtn <= 0)
                 {
                     retorno = false;
                 }
-                if(conn.State == ConnectionState.Open)
+                if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -161,16 +161,16 @@ namespace Persistencia.Clases
                 cmd.Parameters.Add(new SqlParameter("@tipoContrato", parUsuario.TipoContrato));
 
                 int rtn = cmd.ExecuteNonQuery();
-                if(rtn<=0)
+                if (rtn <= 0)
                 {
                     retorno = false;
                 }
-                if(conn.State==ConnectionState.Open)
+                if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -190,17 +190,17 @@ namespace Persistencia.Clases
                 cmd.Parameters.Add(new SqlParameter("@contrasena", parUsuario.Contrasena));
 
                 int rtn = cmd.ExecuteNonQuery();
-                if(rtn <=0)
+                if (rtn <= 0)
                 {
                     retorno = false;
                 }
-                if(conn.State == ConnectionState.Open)
+                if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -249,7 +249,7 @@ namespace Persistencia.Clases
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
-                    while(oReader.Read())
+                    while (oReader.Read())
                     {
                         retorno = new cUsuario();
                         retorno.Codigo = int.Parse(oReader["UsuarioId"].ToString());
@@ -258,7 +258,7 @@ namespace Persistencia.Clases
                         retorno.Apellidos = oReader["UsuarioApellidos"].ToString();
                         retorno.CI = int.Parse(oReader["UsuarioCI"].ToString());
                         int i = int.Parse(oReader["UsuarioTipo"].ToString());
-                        if(i==0)
+                        if (i == 0)
                         {
                             retorno.Tipo = cUtilidades.TipoDeUsuario.Administrador;
                         }
@@ -279,7 +279,7 @@ namespace Persistencia.Clases
                         retorno.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         retorno.Email = oReader["UsuarioEmail"].ToString();
                         string a = oReader["UsuarioTipoContrato"].ToString();
-                        if (a=="S")
+                        if (a == "S")
                         {
                             retorno.TipoContrato = "Socio";
                         }
@@ -295,7 +295,7 @@ namespace Persistencia.Clases
                         retorno.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         retorno.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
 
-                       
+
 
                     }
                     conn.Close();
@@ -303,7 +303,7 @@ namespace Persistencia.Clases
 
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -368,7 +368,7 @@ namespace Persistencia.Clases
                         retorno.Especialidad = new cEspecialidad();
                         retorno.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         retorno.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        
+
 
                     }
                     conn.Close();
@@ -381,7 +381,7 @@ namespace Persistencia.Clases
                 throw ex;
             }
             return retorno;
-        }        
+        }
         public static List<cUsuario> TraerTodosActivos()
         {
             List<cUsuario> retorno = new List<cUsuario>();
@@ -397,7 +397,7 @@ namespace Persistencia.Clases
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
-                    while(oReader.Read())
+                    while (oReader.Read())
                     {
                         usuario = new cUsuario();
                         usuario.Codigo = int.Parse(oReader["UsuarioId"].ToString());
@@ -419,10 +419,10 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        if(oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
                         {
                             usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
-                        }                        
+                        }
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -442,14 +442,14 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        
+
                         retorno.Add(usuario);
                     }
                     conn.Close();
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -532,7 +532,7 @@ namespace Persistencia.Clases
         }
         public static int VerificarNickNameYCi(cUsuario parUsuario)
         {
-            int retorno=-1;
+            int retorno = -1;
             try
             {
                 var conn = new SqlConnection(CadenaDeConexion);
@@ -1139,6 +1139,78 @@ namespace Persistencia.Clases
             return retorno;
 
         }
+        public static List<cUsuario> TraerEspecialistasConFiltros(string parConsulta)
+        {
+            List<cUsuario> retorno = new List<cUsuario>();
+            cUsuario unUsuario;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(parConsulta, conn);
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        unUsuario = new cUsuario();
+                        unUsuario.Codigo = int.Parse(oReader["UsuarioId"].ToString());
+                        unUsuario.NickName = oReader["UsuarioNickName"].ToString();
+                        unUsuario.Nombres = oReader["UsuarioNombres"].ToString();
+                        unUsuario.Apellidos = oReader["UsuarioApellidos"].ToString();
+                        unUsuario.CI = int.Parse(oReader["UsuarioCI"].ToString());
+                        int i = int.Parse(oReader["UsuarioTipo"].ToString());
+                        if (i == 0)
+                        {
+                            unUsuario.Tipo = cUtilidades.TipoDeUsuario.Administrador;
+                        }
+                        if (i == 1)
+                        {
+                            unUsuario.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
+                        }
+                        if (i == 2)
+                        {
+                            unUsuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
+                        }
+                        unUsuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
+                        unUsuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        unUsuario.Telefono = oReader["UsuarioTelefono"].ToString();
+                        unUsuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
+                        unUsuario.Email = oReader["UsuarioEmail"].ToString();
+                        string a = oReader["UsuarioTipoContrato"].ToString();
+                        if (a == "S")
+                        {
+                            unUsuario.TipoContrato = "Socio";
+                        }
+                        if (a == "C")
+                        {
+                            unUsuario.TipoContrato = "Contratado";
+                        }
+                        if (a == "E")
+                        {
+                            unUsuario.TipoContrato = "Empleado";
+                        }
+                        unUsuario.Especialidad = new cEspecialidad();
+                        unUsuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
+                        unUsuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
+                        if (unUsuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        {
+                            unUsuario.FechaNacimiento = new DateTime();
+                        }
+                        retorno.Add(unUsuario);
+                    }
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return retorno;
+        }
         public static List<cUsuario> TraerTodosEspecialistasConInformesPendientes()
         {
             List<cUsuario> retorno = new List<cUsuario>();
@@ -1151,6 +1223,81 @@ namespace Persistencia.Clases
 
                 SqlCommand cmd = new SqlCommand("Usuario_TraerTodosEspecialistasConInformesPendientes", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        usuario = new cUsuario();
+                        usuario.Codigo = int.Parse(oReader["UsuarioId"].ToString());
+                        usuario.NickName = oReader["UsuarioNickName"].ToString();
+                        usuario.Nombres = oReader["UsuarioNombres"].ToString();
+                        usuario.Apellidos = oReader["UsuarioApellidos"].ToString();
+                        usuario.CI = int.Parse(oReader["UsuarioCI"].ToString());
+                        int i = int.Parse(oReader["UsuarioTipo"].ToString());
+                        if (i == 0)
+                        {
+                            usuario.Tipo = cUtilidades.TipoDeUsuario.Administrador;
+                        }
+                        if (i == 1)
+                        {
+                            usuario.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
+                        }
+                        if (i == 2)
+                        {
+                            usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
+                        }
+                        usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
+                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        usuario.Telefono = oReader["UsuarioTelefono"].ToString();
+                        usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
+                        usuario.Email = oReader["UsuarioEmail"].ToString();
+                        string a = oReader["UsuarioTipoContrato"].ToString();
+                        if (a == "S")
+                        {
+                            usuario.TipoContrato = "Socio";
+                        }
+                        if (a == "C")
+                        {
+                            usuario.TipoContrato = "Contratado";
+                        }
+                        if (a == "E")
+                        {
+                            usuario.TipoContrato = "Empleado";
+                        }
+                        usuario.Especialidad = new cEspecialidad();
+                        usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
+                        usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
+                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        {
+                            usuario.FechaNacimiento = new DateTime();
+                        }
+                        retorno.Add(usuario);
+                    }
+                    conn.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+        public static List<cUsuario> TraerTodosPorItinerario(cItinerario parItinerario)
+        {
+            List<cUsuario> retorno = new List<cUsuario>();
+            cUsuario usuario;
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Usuario_TraerTodosPorItinerario", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
