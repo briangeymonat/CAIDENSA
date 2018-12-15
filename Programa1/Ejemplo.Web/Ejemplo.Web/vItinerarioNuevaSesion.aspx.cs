@@ -147,10 +147,6 @@ namespace Ejemplo.Web
             CargarEspecialistas();
         }
 
-        protected void ddlEspecialidades_TextChanged(object sender, EventArgs e)
-        {
-            CargarEspecialistas();
-        }
 
         protected void grdTodosEspecialistas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
@@ -331,9 +327,5 @@ namespace Ejemplo.Web
 
         }
 
-        protected void btnCargarEspecialidad_Click(object sender, EventArgs e)
-        {
-            CargarEspecialistas();
-        }
     }
 }

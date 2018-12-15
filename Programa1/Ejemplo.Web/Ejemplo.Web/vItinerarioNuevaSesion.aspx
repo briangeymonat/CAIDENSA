@@ -51,7 +51,7 @@
                             <asp:Label ID="Label6" runat="server" Text="Beneficiarios"></asp:Label>
                         </td>
                         <td colspan="3">
-                            <asp:TextBox ID="txtBuscarBeneficiarios" runat="server" Width="100%" PlaceHolder="Buscar por CI, Nombre o Apellido" OnTextChanged="txtBuscarBeneficiarios_TextChanged"></asp:TextBox>
+                            <asp:TextBox ID="txtBuscarBeneficiarios" runat="server" Width="100%" PlaceHolder="Buscar por CI, Nombre o Apellido" OnTextChanged="txtBuscarBeneficiarios_TextChanged" AutoPostBack="True"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -77,11 +77,10 @@
                             <asp:Label ID="Label7" runat="server" Text="Especialidad:"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlEspecialidades" runat="server" OnTextChanged="ddlEspecialidades_TextChanged" OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlEspecialidades" runat="server"  OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                         </td>
                         <td>
-                            <asp:Button ID="btnCargarEspecialidad" runat="server" Text="Cargar Especialistas" OnClick="btnCargarEspecialidad_Click" />
-                        </td>
+                            &nbsp;</td>
                     </tr>
                 </table>
             </td>

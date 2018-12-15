@@ -235,7 +235,7 @@ namespace Dominio
         }
 
         //FUNCIION SIN TERMINAR
-        public static List<cItinerario> ItinerarioTraerTodosPorDia(char parDia)
+        /*public static List<cItinerario> ItinerarioTraerTodosPorDia(char parDia)
         {
             List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorDia(parDia);
             for (int i = 0; i < LosItinerarios.Count; i++)
@@ -243,7 +243,7 @@ namespace Dominio
                 LosItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(LosItinerarios[i]);
             }
 
-        }
+        }*/
         #endregion
     }
 }
