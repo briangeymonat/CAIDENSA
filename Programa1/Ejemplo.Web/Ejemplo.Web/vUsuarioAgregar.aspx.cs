@@ -38,9 +38,6 @@ namespace Ejemplo.Web
                 }
                 else
                 {
-
-
-
                     if (this.ddlTipoUsuario.SelectedValue == "Administrativo")
                     {
                         usuario.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
@@ -145,9 +142,5 @@ namespace Ejemplo.Web
             this.rbTipoDeEmpleado.SelectedIndex = 0;
         }
 
-        protected void btnAgregarUsuario_Click1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

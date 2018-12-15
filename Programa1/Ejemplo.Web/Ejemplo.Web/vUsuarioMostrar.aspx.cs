@@ -1724,33 +1724,7 @@ namespace Ejemplo.Web
         }
 
         protected void txtBuscarBeneficiario_TextChanged(object sender, EventArgs e)
-        {
-            #region obtendo lista de usuario B activos e inactivos cargada
-            /*if (texto == "")
-            {
-                lstUsuariosBActivos = lstUsuariosActivos;
-                lstUsuariosBInactivos = lstUsuariosInactivos;
-                FiltroPorBusqueda = false;
-            }
-            else
-            {
-                FiltroPorBusqueda = true;
-                int val = 0;
-                if (int.TryParse(txtBuscarBeneficiario.Text, out val))
-                {
-                    // es numerico
-                    lstUsuariosBActivos = dFachada.TraerTodosActivosPorCI(texto);
-                    lstUsuariosBInactivos = dFachada.TraerTodosInactivosPorCI(texto);
-                }
-                else
-                {
-                    //no lo es 
-                    lstUsuariosBActivos = dFachada.TraerTodosActivosPorNombreApellidoUsuario(texto);
-                    lstUsuariosBInactivos = dFachada.TraerTodosInactivosPorNombreApellidoUsuario(texto);
-                }
-            }*/
-            #endregion         
-
+        {            
             string texto = txtBuscarBeneficiario.Text;
             lstUsuariosActivos = dFachada.UsuarioTraerTodosActivos();
             lstUsuariosInactivos = dFachada.UsuarioTraerTodosInactivos();
