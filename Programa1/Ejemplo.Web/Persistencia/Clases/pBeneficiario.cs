@@ -433,7 +433,7 @@ namespace Persistencia.Clases
                         unBeneficiario.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
                         unBeneficiario.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
                         unBeneficiario.Email = oReader["BeneficiarioEmail"].ToString();
-                        unBeneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString());
+                        unBeneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString()).ToShortDateString();
                         unBeneficiario.Atributario = oReader["BeneficiarioAtributario"].ToString();
                         unBeneficiario.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
                         unBeneficiario.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
@@ -446,10 +446,10 @@ namespace Persistencia.Clases
                         unPlan.Tipo = oReader["PlanTipo"].ToString();
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
-                        unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString());
+                        unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString()).ToShortDateString();
                         if (oReader["PlanFechaFin"] != DBNull.Value)
                         {
-                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
+                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString()).ToShortDateString();
                         }
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 

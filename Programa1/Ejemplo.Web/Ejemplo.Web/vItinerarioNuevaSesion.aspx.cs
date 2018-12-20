@@ -126,8 +126,8 @@ namespace Ejemplo.Web
         protected void grdBeneficiarios_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             BeneficiariosAgregados.Add(TodosLosBenefiicarios[e.NewSelectedIndex]);
-            CargarBeneficiariosAgregados();
             CargarBeneficiarios();
+            CargarBeneficiariosAgregados();
 
         }
         protected void grdBeneficiariosAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -348,6 +348,48 @@ namespace Ejemplo.Web
             e.Row.Cells[12].Visible = false; //Estado
             e.Row.Cells[13].Visible = false; //TipoContrato
         }
-        
+
+        protected void grdEspecialistasAgregados_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //Codigo
+            e.Row.Cells[2].Visible = false; //NickName
+            e.Row.Cells[3].Visible = false; //Contrasena
+            e.Row.Cells[7].Visible = false; //TipoUsuario
+            e.Row.Cells[8].Visible = false; //Domicilio
+            e.Row.Cells[9].Visible = false; //FechaNacimiento
+            e.Row.Cells[11].Visible = false; //Email
+            e.Row.Cells[12].Visible = false; //Estado
+            e.Row.Cells[13].Visible = false; //TipoContrato
+        }
+
+        protected void grdBeneficiarios_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[5].Visible = false; //sexo
+            e.Row.Cells[7].Visible = false; //tel2
+            e.Row.Cells[8].Visible = false;//email
+            e.Row.Cells[9].Visible = false;//domicilio
+            e.Row.Cells[10].Visible = false;//fecha de nacimiento
+            e.Row.Cells[11].Visible = false;//atributario
+            e.Row.Cells[12].Visible = false;//motivo consulta
+            e.Row.Cells[13].Visible = false;//escolaridad
+            e.Row.Cells[14].Visible = false;//derivador
+            e.Row.Cells[15].Visible = false;//estado
+        }
+
+        protected void grdBeneficiariosAgregados_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[5].Visible = false; //sexo
+            e.Row.Cells[7].Visible = false; //tel2
+            e.Row.Cells[8].Visible = false;//email
+            e.Row.Cells[9].Visible = false;//domicilio
+            e.Row.Cells[10].Visible = false;//fecha de nacimiento
+            e.Row.Cells[11].Visible = false;//atributario
+            e.Row.Cells[12].Visible = false;//motivo consulta
+            e.Row.Cells[13].Visible = false;//escolaridad
+            e.Row.Cells[14].Visible = false;//derivador
+            e.Row.Cells[15].Visible = false;//estado
+        }
     }
 }

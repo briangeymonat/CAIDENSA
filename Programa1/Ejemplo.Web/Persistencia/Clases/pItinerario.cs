@@ -20,7 +20,7 @@ namespace Persistencia.Clases
                 var conn = new SqlConnection(CadenaDeConexion);
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerarios_Agregar", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_Agregar", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioTipoSesion", parItinerario.TipoSesion));

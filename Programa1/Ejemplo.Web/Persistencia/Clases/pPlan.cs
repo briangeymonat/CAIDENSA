@@ -215,22 +215,12 @@ namespace Persistencia.Clases
                         unPlan.Tipo = oReader["PlanTipo"].ToString();
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
-<<<<<<< HEAD
-                        unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString());
+
+                        unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString()).ToShortDateString();
                         if (oReader["PlanFechaFin"] != DBNull.Value)
                         {
-                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
-=======
-                        unPlan.FechaInicio = oReader["PlanFechaInicio"].ToString();
-                        string[] ss = unPlan.FechaInicio.Split(' ');
-                        unPlan.FechaInicio = ss[0];
-                        if (oReader["PlanFechaFin"] != DBNull.Value)
-                        {
-                            unPlan.FechaFin = oReader["PlanFechaFin"].ToString();
-                            string[] sa = unPlan.FechaFin.Split(' ');
-                            unPlan.FechaFin = sa[0];
->>>>>>> 46aa7094d4981fd35189909d5b312e618a7846f3
-                        }
+                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString()).ToShortDateString();
+                        }                        
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 
                         retorno.Add(unPlan);

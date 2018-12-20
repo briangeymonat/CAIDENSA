@@ -1389,16 +1389,14 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-<<<<<<< HEAD
-                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)  usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
-=======
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)  usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+
                         if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
                         {
                             usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
                         }
                         //string[] ss = usuario.FechaNacimiento.Split(' ');
                         //usuario.FechaNacimiento = ss[0];
->>>>>>> 46aa7094d4981fd35189909d5b312e618a7846f3
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -1418,14 +1416,13 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-<<<<<<< HEAD
-=======
+
+
                         /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
                         }*/
->>>>>>> 46aa7094d4981fd35189909d5b312e618a7846f3
-                        retorno.Add(usuario);
+                         retorno.Add(usuario);
                     }
                     conn.Close();
 

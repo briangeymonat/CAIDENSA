@@ -259,7 +259,6 @@ namespace Ejemplo.Web
         {
             if (!FaltanDatosPlan())
             {
-<<<<<<< HEAD
                 if ((txtHasta.Text != string.Empty && (DateTime.Parse(txtDesde.Text) <= DateTime.Parse(txtHasta.Text))) || txtHasta.Text == string.Empty)
                 {
                     cPlan unPlan = new cPlan();
@@ -267,10 +266,10 @@ namespace Ejemplo.Web
                     unPlan.Evaluacion = cbEvaluacion.Checked;
                     unPlan.Tratamiento = cbTratamiento.Checked;
                     unPlan.Tipo = ddlTipos.SelectedItem.Text;
-                    unPlan.FechaInicio = DateTime.Parse(txtDesde.Text);
+                    unPlan.FechaInicio = txtDesde.Text;
                     if (txtHasta.Text != string.Empty)
                     {
-                        unPlan.FechaFin = DateTime.Parse(txtHasta.Text);
+                        unPlan.FechaFin = txtHasta.Text;
                     }
                     ElBeneficiario.lstPlanes = new List<cPlan>();
                     ElBeneficiario.lstPlanes.Add(unPlan);
@@ -284,20 +283,6 @@ namespace Ejemplo.Web
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puedo agregar el plan.')", true);
                     }
-=======
-                cPlan unPlan = new cPlan();
-                unPlan.Activo = true;
-                unPlan.Evaluacion = cbEvaluacion.Checked;
-                unPlan.Tratamiento = cbTratamiento.Checked;
-                unPlan.Tipo = ddlTipos.SelectedItem.Text;
-                if (txtHasta.Text != string.Empty)
-                {
-                    unPlan.FechaFin =txtHasta.Text;
-                }
-                if (txtDesde.Text != string.Empty)
-                {
-                    unPlan.FechaInicio =txtDesde.Text;
->>>>>>> 46aa7094d4981fd35189909d5b312e618a7846f3
                 }
                 else
                 {
