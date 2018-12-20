@@ -84,7 +84,7 @@ namespace Persistencia.Clases
 
             return retorno;
         }
-        public static List<cUsuario> VerificarHorarioUsuario(cItinerario parItinerario) //Devuelve lista de usuarios que no están disponibles
+        public static List<cUsuario> VerificarHorarioUsuario(cItinerario parItinerario) //Devuelve lista de usuarios que están disponibles
         {
             List<cUsuario> retorno = new List<cUsuario>();
             try
@@ -122,7 +122,7 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-        public static List<cBeneficiario> VerificarHorarioBeneficiarios(cItinerario parItinerario) //Devuelve lista de beneficiarios que no están disponibles
+        public static List<cBeneficiario> VerificarHorarioBeneficiarios(cItinerario parItinerario) //Devuelve lista de beneficiarios que están disponibles
         {
             List<cBeneficiario> retorno = new List<cBeneficiario>();
             try
@@ -159,7 +159,7 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-        public static List<cItinerario> TraerTodosPorDia(char parDia)
+        public static List<cItinerario> TraerTodosPorDia(char parDia, int parCentro)
         {
             List<cItinerario> retorno = new List<cItinerario>();
             cItinerario unItinerario;
@@ -169,10 +169,11 @@ namespace Persistencia.Clases
                 var conn = new SqlConnection(CadenaDeConexion);
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("aaaaaaa", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodosPorDia", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("aaaaaaaaaa", parDia));
+                cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parDia));
+                cmd.Parameters.Add(new SqlParameter("@ItinerarioCentro", parCentro));
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {

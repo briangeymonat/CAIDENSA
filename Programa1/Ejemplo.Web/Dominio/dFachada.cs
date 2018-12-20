@@ -178,6 +178,10 @@ namespace Dominio
         {
             return dBeneficiario.TraerTodosConFiltros(parConsulta);
         }
+        public static List<cBeneficiarioItinerario> BeneficiarioTraerTodosPorItinerario(cItinerario parItinerario)
+        {
+            return dBeneficiario.TraerTodosPorItinerario(parItinerario);
+        }
 
 
 
@@ -233,17 +237,20 @@ namespace Dominio
         {
             return dItinerario.VerificarHorarioBeneficiarios(parItinerario);
         }
-
-        //FUNCIION SIN TERMINAR
-        /*public static List<cItinerario> ItinerarioTraerTodosPorDia(char parDia)
+        
+        public static List<cItinerario> ItinerarioTraerTodosPorDia(char parDia, int parCentro)
         {
-            List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorDia(parDia);
+            List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorDia(parDia, parCentro);
             for (int i = 0; i < LosItinerarios.Count; i++)
             {
                 LosItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(LosItinerarios[i]);
             }
-
-        }*/
+            for (int i = 0; i < LosItinerarios.Count; i++)
+            {
+                LosItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(LosItinerarios[i]);
+            }
+            return LosItinerarios;
+        }
         #endregion
     }
 }

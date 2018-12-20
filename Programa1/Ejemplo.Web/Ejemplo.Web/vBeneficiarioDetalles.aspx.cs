@@ -126,8 +126,6 @@ namespace Ejemplo.Web
             cbPensionista_CheckedChanged(new object(), new EventArgs());
             this.btnCancelar.Visible = true;
             this.btnConfirmar.Visible = true;
-            this.btnInhabilitar.Visible = false;
-            this.btnHabilitar.Visible = false;
             this.btnModificar.Visible = false;
         }
 
@@ -138,8 +136,6 @@ namespace Ejemplo.Web
             cbPensionista_CheckedChanged(new object(), new EventArgs());
             this.btnCancelar.Visible = false;
             this.btnConfirmar.Visible = false;
-            this.btnInhabilitar.Visible = true;
-            this.btnHabilitar.Visible = true;
             this.btnModificar.Visible = true;
         }
 
@@ -262,38 +258,46 @@ namespace Ejemplo.Web
         {
             if (!FaltanDatosPlan())
             {
-                cPlan unPlan = new cPlan();
-                unPlan.Activo = true;
-                unPlan.Evaluacion = cbEvaluacion.Checked;
-                unPlan.Tratamiento = cbTratamiento.Checked;
-                unPlan.Tipo = ddlTipos.SelectedItem.Text;
-                if (txtHasta.Text != string.Empty)
+                if ((txtHasta.Text != string.Empty && (DateTime.Parse(txtDesde.Text) <= DateTime.Parse(txtHasta.Text))) || txtHasta.Text == string.Empty)
                 {
-                    unPlan.FechaFin = DateTime.Parse(txtHasta.Text);
-                }
-                if (txtDesde.Text != string.Empty)
-                {
+                    cPlan unPlan = new cPlan();
+                    unPlan.Activo = true;
+                    unPlan.Evaluacion = cbEvaluacion.Checked;
+                    unPlan.Tratamiento = cbTratamiento.Checked;
+                    unPlan.Tipo = ddlTipos.SelectedItem.Text;
                     unPlan.FechaInicio = DateTime.Parse(txtDesde.Text);
+                    if (txtHasta.Text != string.Empty)
+                    {
+                        unPlan.FechaFin = DateTime.Parse(txtHasta.Text);
+                    }
+                    ElBeneficiario.lstPlanes = new List<cPlan>();
+                    ElBeneficiario.lstPlanes.Add(unPlan);
+                    if (dFachada.PlanAgregar(ElBeneficiario))
+                    {
+                        lblMensajeAgregarPlan.Text = "Plan agregado correctamente al beneficiario";
+                        LimpiarCamposPlan();
+                        ActualizarTodo();
+                    }
+                    else
+                    {
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puedo agregar el plan.')", true);
+                    }
                 }
-                ElBeneficiario.lstPlanes = new List<cPlan>();
-                ElBeneficiario.lstPlanes.Add(unPlan);
-                if (dFachada.PlanAgregar(ElBeneficiario))
+                else
                 {
-                    lblMensajeAgregarPlan.Text = "Plan agregado correctamente al beneficiario";
-                    LimpiarCamposPlan();
-                    ActualizarTodo();
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La fecha de fin del plan debe ser mayor a la de inicio.')", true);
                 }
-
             }
             else
             {
-                lblMensajeAgregarPlan.Text = "Faltan ingresar datos para registrar el plan.";
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan ingresar datos para registrar el plan.')", true);
             }
         }
 
         protected void grdPlanesActivos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             dFachada.PlanEliminar(lstPlanesActivos[e.RowIndex]);
+            ActualizarTodo();
         }
 
         protected void cbPensionista_CheckedChanged(object sender, EventArgs e)
@@ -323,7 +327,7 @@ namespace Ejemplo.Web
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido habilitar el beneficiario.')", true);
             }
-            
+
         }
 
         protected void btnInhabilitar_Click(object sender, EventArgs e)

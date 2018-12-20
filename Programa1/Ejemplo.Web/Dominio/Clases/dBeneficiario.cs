@@ -46,5 +46,9 @@ namespace Dominio.Clases
         {
             return pBeneficiario.TraerTodosConFiltros(parConsulta);
         }
+        public static List<cBeneficiarioItinerario> TraerTodosPorItinerario(cItinerario parItinerario)
+        {
+            return pBeneficiario.TraerTodosPorItinerario(parItinerario);
+        }
     }
 }

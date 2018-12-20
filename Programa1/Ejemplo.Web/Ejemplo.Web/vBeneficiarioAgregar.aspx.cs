@@ -132,18 +132,19 @@ namespace Ejemplo.Web
                 unBeneficiario.lstPlanes = LosPlanes;
                 if (dFachada.BeneficiarioTraerEspecificoCI(unBeneficiario) != null)
                 {
-                    lblMensajeBeneficiario.Text = "Ya existe un beneficiario en el sistema con esa CI.";
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Ya existe un beneficiario en el sistema con esa CI.')", true);
                 }
                 else
                 {
                     if (dFachada.BeneficiarioAgregar(unBeneficiario))
                     {
+                        
                         lblMensajeBeneficiario.Text = "Beneficiario agregado correctamente.";
                         ActualizarTodo();
                     }
                     else
                     {
-                        lblMensajeBeneficiario.Text = "No se pudo concretar el registro del beneficiario.";
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo concretar el registro del beneficiario.')", true);
                         ActualizarTodo();
                     }
                 }
@@ -151,7 +152,7 @@ namespace Ejemplo.Web
             }
             else
             {
-                lblMensajeBeneficiario.Text = "Faltaron completar datos para el registro.";
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltaron completar datos para el registro.')", true);
             }
         }
 
@@ -191,7 +192,7 @@ namespace Ejemplo.Web
             }
             else
             {
-                lblMensajePlan.Text = "Faltan ingresar datos para registrar el plan.";
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan registrar datos para agregar el plan.')", true);
             }
 
         }

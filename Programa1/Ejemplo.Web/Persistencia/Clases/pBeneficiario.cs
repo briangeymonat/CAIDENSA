@@ -390,6 +390,76 @@ namespace Persistencia.Clases
 
             return retorno;
         }
+        public static List<cBeneficiarioItinerario> TraerTodosPorItinerario (cItinerario parItinerario)
+        {
+            List<cBeneficiarioItinerario> retorno = new List<cBeneficiarioItinerario>();
+            cBeneficiarioItinerario BeneficiarioYPlan;
+            cBeneficiario unBeneficiario;
+            cPlan unPlan;
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Beneficiarios_TraerPorItinerario", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
+
+                using(SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        BeneficiarioYPlan = new cBeneficiarioItinerario();
+
+                        unBeneficiario = new cBeneficiario();
+                        unBeneficiario.Codigo = int.Parse(oReader["BeneficiarioId"].ToString());
+                        unBeneficiario.Nombres = oReader["BeneficiarioNombres"].ToString();
+                        unBeneficiario.Apellidos = oReader["BeneficiarioApellidos"].ToString();
+                        unBeneficiario.CI = int.Parse(oReader["BeneficiarioCI"].ToString());
+                        unBeneficiario.Sexo = oReader["BeneficiarioSexo"].ToString();
+                        unBeneficiario.Telefono1 = oReader["BeneficiarioTelefono1"].ToString();
+                        unBeneficiario.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
+                        unBeneficiario.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
+                        unBeneficiario.Email = oReader["BeneficiarioEmail"].ToString();
+                        unBeneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString());
+                        unBeneficiario.Atributario = oReader["BeneficiarioAtributario"].ToString();
+                        unBeneficiario.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
+                        unBeneficiario.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
+                        unBeneficiario.Derivador = oReader["BeneficiarioDerivador"].ToString();
+                        unBeneficiario.Estado = bool.Parse(oReader["BeneficiarioEstado"].ToString());
+
+                        unPlan = new cPlan();
+
+                        unPlan.Codigo = int.Parse(oReader["PlanId"].ToString());
+                        unPlan.Tipo = oReader["PlanTipo"].ToString();
+                        unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
+                        unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
+                        unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString());
+                        if (oReader["PlanFechaFin"] != DBNull.Value)
+                        {
+                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
+                        }
+                        unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
+
+                        BeneficiarioYPlan.Beneficiario = unBeneficiario;
+                        BeneficiarioYPlan.Plan = unPlan;
+
+                        retorno.Add(BeneficiarioYPlan);
+                    }
+                }
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
     }
 
 

@@ -21,12 +21,9 @@
             </td>
             <td>
                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal">
-                    <asp:ListItem Text="Juan Lacaze"></asp:ListItem>
+                    <asp:ListItem Text="Juan Lacaze" Selected="True"></asp:ListItem>
                     <asp:ListItem Text="Nueva Helevecia"></asp:ListItem>
                 </asp:RadioButtonList>
-            </td>
-            <td>
-                <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar filtros" OnClick="btnAplicarFiltros_Click" />
             </td>
         </tr>
     </table>
@@ -34,7 +31,9 @@
         </tr>
         <tr>
             <td>
-                <asp:GridView ID="grdItinerario" runat="server"></asp:GridView>
+                <formview ID="frmItinerario" runat="server"></formview>
+                <%--<asp:GridView ID="grdItinerario" runat="server">
+                </asp:GridView>--%>
     <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar un dato de la grilla y se muestran en una ventana flotante los detalles de la consulta" Height="51px" OnClick="btnSeleccionar_Click" Width="593px" />
                 <asp:Button ID="btnMostrarDetallesSesion" runat="server" Text="Mostar detalles de la sesión en esta misma ventana" Height="51px" Width="593px" OnClick="btnMostrarDetallesSesion_Click" />
             

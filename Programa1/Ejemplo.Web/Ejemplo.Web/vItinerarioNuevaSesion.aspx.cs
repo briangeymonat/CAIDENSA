@@ -12,7 +12,7 @@ namespace Ejemplo.Web
     public partial class vItinerarioNuevaConsulta : System.Web.UI.Page
     {
         private static List<string> TiposDeSesion = new List<string>() { "Individual", "Grupo 2", "Grupo 3", "Taller", "PROES" };
-        private static List<string> Dias = new List<string>() { "Lunes", "Martas", "Miercoles", "Jueves", "Viernes", "Sabado" };
+        private static List<string> Dias = new List<string>() { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
         private static List<string> Especialidades = new List<string>() { "Fonoaudiologia", "Fisioterapia", "Pedadogia", "Psicologia", "Psicomotricidad" };
         private static List<cBeneficiario> TodosLosBenefiicarios;
         private static List<cBeneficiario> BeneficiariosAgregados;
@@ -36,6 +36,7 @@ namespace Ejemplo.Web
             CargarBeneficiarios();
             CargarBeneficiariosAgregados();
             CargarEspecialistas();
+            CargarEspecialistasAgregados();
 
         }
         private void CargarDdlTiposDeSesion()
@@ -205,7 +206,7 @@ namespace Ejemplo.Web
                         case "Lunes":
                             unItinerario.Dia = "L";
                             break;
-                        case "Martas":
+                        case "Martes":
                             unItinerario.Dia = "M";
                             break;
                         case "Miercoles":
@@ -223,101 +224,109 @@ namespace Ejemplo.Web
                     }
                     if (RadioButtonList1.SelectedIndex == 0) unItinerario.Centro = cUtilidades.Centro.JuanLacaze;
                     else unItinerario.Centro = cUtilidades.Centro.NuevaHelvecia;
-                    unItinerario.HoraInicio = DateTime.Parse(txtDesde.Text);
-                    unItinerario.HoraFin = DateTime.Parse(txtHasta.Text);
-                    unItinerario.lstBeneficiarios = new List<cBeneficiarioItinerario>();
-                    cBeneficiarioItinerario unBen;
-                    for (int i = 0; i < BeneficiariosAgregados.Count; i++)
+                    if (DateTime.Parse(txtDesde.Text) >= DateTime.Parse(txtHasta.Text))
                     {
-                        unBen = new cBeneficiarioItinerario();
-                        unBen.Beneficiario = BeneficiariosAgregados[i];
-                        unBen.Plan = BeneficiariosAgregados[i].lstPlanes[0];
-                        unItinerario.lstBeneficiarios.Add(unBen);
-                    }
-                    unItinerario.lstEspecialistas = EspecialistasAgregados;
-                    unItinerario.Comentario = txtComentario.Text;
-                    List<cUsuario> EspecialistasNoDisponibles = dFachada.ItinerarioVerificarHorarioUsuario(unItinerario);
-                    List<cBeneficiario> BeneficiariosNoDisponibles = dFachada.ItinerarioVerificarHorarioBeneficiarios(unItinerario);
-                    string especialistas = "";
-                    string beneficiarios = "";
-
-
-                    //ESPECIALISTAS NO DISPONIBLES
-                    if (EspecialistasNoDisponibles.Count > 0)
-                    {
-                        if (EspecialistasNoDisponibles.Count > 1)
-                        {
-                            especialistas += "Los especialistas ";
-                        }
-                        for (int i = 0; i < EspecialistasNoDisponibles.Count; i++)
-                        {
-                            if (i == EspecialistasNoDisponibles.Count - 1)
-                            {
-                                especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos;
-                            }
-                            else if (i == 0)
-                            {
-                                especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos + ", ";
-                            }
-                            else if (i == EspecialistasNoDisponibles.Count - 2)
-                            {
-                                especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos + " y ";
-                            }
-                        }
-                        if (EspecialistasNoDisponibles.Count > 1)
-                        {
-                            especialistas += " no están disponibles para la sesión.";
-                        }
-                        else
-                        {
-                            especialistas += " no está disponible para la sesión.";
-                        }
-                    }
-
-                    //BENEFICIARIOS NO DISPONIBLES
-
-                    if (BeneficiariosNoDisponibles.Count > 0)
-                    {
-                        if (EspecialistasNoDisponibles.Count > 1)
-                        {
-                            beneficiarios += "Los beneficiarios ";
-                        }
-                        for (int i = 0; i < BeneficiariosNoDisponibles.Count; i++)
-                        {
-                            if (i == BeneficiariosNoDisponibles.Count - 1)
-                            {
-                                beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos;
-                            }
-                            else if (i == 0)
-                            {
-                                beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos + ", ";
-                            }
-                            else if (i == BeneficiariosNoDisponibles.Count - 2)
-                            {
-                                beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos + " y ";
-                            }
-                        }
-                        if (BeneficiariosNoDisponibles.Count > 1)
-                        {
-                            beneficiarios += " no están disponibles para la sesión.";
-                        }
-                        else
-                        {
-                            beneficiarios += " no está disponible para la sesión.";
-                        }
-                    }
-                    if (EspecialistasNoDisponibles.Count > 0 || BeneficiariosNoDisponibles.Count > 0)
-                    {
-                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", string.Format("alert('ERROR: {0}{1} Su horario coincide con el de otra sesión.')", especialistas, beneficiarios), true);
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La fecha de fin de la sesión debe ser mayor a la de inicio.')", true);
                     }
                     else
                     {
-                        if (dFachada.ItinerarioAgregar(unItinerario)) { CargarTodo(); }
+                        unItinerario.HoraInicio = DateTime.Parse(txtDesde.Text);
+                        unItinerario.HoraFin = DateTime.Parse(txtHasta.Text);
+                        unItinerario.lstBeneficiarios = new List<cBeneficiarioItinerario>();
+                        cBeneficiarioItinerario unBen;
+                        for (int i = 0; i < BeneficiariosAgregados.Count; i++)
+                        {
+                            unBen = new cBeneficiarioItinerario();
+                            unBen.Beneficiario = BeneficiariosAgregados[i];
+                            unBen.Plan = BeneficiariosAgregados[i].lstPlanes[0];
+                            unItinerario.lstBeneficiarios.Add(unBen);
+                        }
+                        unItinerario.lstEspecialistas = EspecialistasAgregados;
+                        unItinerario.Comentario = txtComentario.Text;
+                        List<cUsuario> EspecialistasNoDisponibles = dFachada.ItinerarioVerificarHorarioUsuario(unItinerario);
+                        List<cBeneficiario> BeneficiariosNoDisponibles = dFachada.ItinerarioVerificarHorarioBeneficiarios(unItinerario);
+                        string especialistas = "";
+                        string beneficiarios = "";
+
+
+                        //ESPECIALISTAS NO DISPONIBLES
+                        if (EspecialistasNoDisponibles.Count > 0)
+                        {
+                            if (EspecialistasNoDisponibles.Count > 1)
+                            {
+                                especialistas += "Los especialistas ";
+                            }
+                            for (int i = 0; i < EspecialistasNoDisponibles.Count; i++)
+                            {
+                                if (i == EspecialistasNoDisponibles.Count - 1)
+                                {
+                                    especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos;
+                                }
+                                else if (i == 0)
+                                {
+                                    especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos + ", ";
+                                }
+                                else if (i == EspecialistasNoDisponibles.Count - 2)
+                                {
+                                    especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos + " y ";
+                                }
+                            }
+                            if (EspecialistasNoDisponibles.Count > 1)
+                            {
+                                especialistas += " no están disponibles para la sesión.";
+                            }
+                            else
+                            {
+                                especialistas += " no está disponible para la sesión.";
+                            }
+                        }
+
+                        //BENEFICIARIOS NO DISPONIBLES
+
+                        if (BeneficiariosNoDisponibles.Count > 0)
+                        {
+                            if (EspecialistasNoDisponibles.Count > 1)
+                            {
+                                beneficiarios += "Los beneficiarios ";
+                            }
+                            for (int i = 0; i < BeneficiariosNoDisponibles.Count; i++)
+                            {
+                                if (i == BeneficiariosNoDisponibles.Count - 1)
+                                {
+                                    beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos;
+                                }
+                                else if (i == 0)
+                                {
+                                    beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos + ", ";
+                                }
+                                else if (i == BeneficiariosNoDisponibles.Count - 2)
+                                {
+                                    beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos + " y ";
+                                }
+                            }
+                            if (BeneficiariosNoDisponibles.Count > 1)
+                            {
+                                beneficiarios += " no están disponibles para la sesión.";
+                            }
+                            else
+                            {
+                                beneficiarios += " no está disponible para la sesión.";
+                            }
+                        }
+                        if (EspecialistasNoDisponibles.Count > 0 || BeneficiariosNoDisponibles.Count > 0)
+                        {
+                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", string.Format("alert('ERROR: {0}{1} Su horario coincide con el de otra sesión.')", especialistas, beneficiarios), true);
+                        }
                         else
                         {
-                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo agregar la sesión al itinerario.')", true);
+                            if (dFachada.ItinerarioAgregar(unItinerario)) { CargarTodo(); }
+                            else
+                            {
+                                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo agregar la sesión al itinerario.')", true);
+                            }
                         }
                     }
+
                 }
             }
             else
@@ -327,5 +336,18 @@ namespace Ejemplo.Web
 
         }
 
+        protected void grdTodosEspecialistas_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //Codigo
+            e.Row.Cells[2].Visible = false; //NickName
+            e.Row.Cells[3].Visible = false; //Contrasena
+            e.Row.Cells[7].Visible = false; //TipoUsuario
+            e.Row.Cells[8].Visible = false; //Domicilio
+            e.Row.Cells[9].Visible = false; //FechaNacimiento
+            e.Row.Cells[11].Visible = false; //Email
+            e.Row.Cells[12].Visible = false; //Estado
+            e.Row.Cells[13].Visible = false; //TipoContrato
+        }
+        
     }
 }

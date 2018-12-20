@@ -22,9 +22,9 @@ namespace Dominio.Clases
         {
             return pItinerario.VerificarHorarioBeneficiarios(parItinerario);
         }
-        public static List<cItinerario> TraerTodosPorDia(char parDia)
+        public static List<cItinerario> TraerTodosPorDia(char parDia, int parCentro)
         {
-            return pItinerario.TraerTodosPorDia(parDia);
+            return pItinerario.TraerTodosPorDia(parDia, parCentro);
         }
     }
 }

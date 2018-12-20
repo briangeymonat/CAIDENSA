@@ -1323,7 +1323,7 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)  usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -1343,10 +1343,6 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
-                        {
-                            usuario.FechaNacimiento = new DateTime();
-                        }
                         retorno.Add(usuario);
                     }
                     conn.Close();
