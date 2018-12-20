@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Common.Clases;
+using Dominio;
 
 namespace Ejemplo.Web
 {
@@ -70,31 +71,79 @@ namespace Ejemplo.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(vMiPerfil.U.Tipo==cUtilidades.TipoDeUsuario.Administrador)
-            {
-                
-            }
-            else if(vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
-            {
+            List<cNotificacion> notificacionesAdministrador = dFachada.NotifiacionTraerTodasNuevasAdministrador(vMiPerfil.U);
+            List<cNotificacion> notificacionesEspecialista = dFachada.NotifiacionTraerTodasNuevasEspecialista(vMiPerfil.U);
 
+            int a = notificacionesAdministrador.Count + notificacionesEspecialista.Count;
+            if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrador)
+            {
+                //int a = notificacionesAdministrador.Count;
+                if (a > 0)
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + a; // y color rojo falta
+            }
+            else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
+            {
+                //int a = notificacionesAdministrador.Count;
+                if (a > 0)
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + a; // y color rojo falta
             }
             else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Usuario)
             {
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Estadísticas"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Usuarios"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Beneficiarios"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Itinerario"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Informes"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Diagnóstico"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Asistencias"));
-                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Estadísticas"));
+                //int a = notificacionesEspecialista.Count;
+                if (a > 0)
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + a; // y color rojo falta
             }
+
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
-        
+
+        protected void MenuNavegacion_MenuItemClick(object sender, MenuEventArgs e)
+        {
+           
+            String a = e.Item.Text;
+            string[] parts = a.Split(' ');
+            string part1;
+            string part2;
+            if (parts.Length==1)
+            {
+                part1 = parts[0];
+            }
+            else
+            {
+                part1 = parts[0];
+                part2 = parts[1];
+            }             
+            if (part1=="Tareas")
+            {
+                cNotificacion notificacion = new cNotificacion();
+                notificacion.Usuario = vMiPerfil.U;
+                try
+                {
+                    bool resultado = dFachada.NotificacionCambiarEstadoVista(notificacion);
+                    if (resultado)
+                    {
+                        Response.Redirect("vTareas.aspx");
+                    }                    
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }               
+                
+            }
+            
+        }
     }
 
 }

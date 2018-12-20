@@ -10,12 +10,12 @@
             <tr>
                 <td>
                     <asp:Label ID="Label6" runat="server" Text="Sesiones que pasaron del día:"></asp:Label>
-                    <asp:GridView ID="grdSesionesPasadasDelDia" runat="server"></asp:GridView>
+                    <asp:GridView ID="grdSesionesPasadasDelDia" runat="server" ShowHeaderWhenEmpty="True"></asp:GridView>
                     <asp:Button ID="btnDetallesSesion" runat="server" Text="Ver detalles de la sesion" OnClick="btnDetallesSesion_Click" />
                 </td>
                 <td>
-                    <asp:Label ID="Label5" runat="server" Text="Planes cercanos al vencimiento:"></asp:Label>
-                    <asp:GridView ID="grdPlanesPorVencerse" runat="server"></asp:GridView>
+                    <asp:Label ID="Label5" runat="server" Text="Beneficiarios que tienen planes cercanos al vencimiento:" ></asp:Label>
+                    <asp:GridView ID="grdPlanesPorVencerse" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnRowCreated="grdPlanesPorVencerse_RowCreated" OnSelectedIndexChanging="grdPlanesPorVencerse_SelectedIndexChanging"></asp:GridView>
                 </td>
                 <td colspan="2">
                     <asp:Label ID="Label7" runat="server" Text="Especialistas con informes pendientes:"></asp:Label>
@@ -23,7 +23,7 @@
                 </td>
                 <td>
                     <asp:Label ID="Label8" runat="server" Text="Beneficiarios que el plan no tiene fecha de vencimiento:"></asp:Label>
-                    <asp:GridView ID="grdBeneficiariosConPlanSinFechaVencimiento" runat="server"></asp:GridView>
+                    <asp:GridView ID="grdBeneficiariosConPlanSinFechaVencimiento" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdBeneficiariosConPlanSinFechaVencimiento_RowCreated" OnSelectedIndexChanging="grdBeneficiariosConPlanSinFechaVencimiento_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
                 </td>
             </tr>
         </table>

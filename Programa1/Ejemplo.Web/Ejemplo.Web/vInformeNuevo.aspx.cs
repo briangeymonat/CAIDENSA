@@ -35,11 +35,20 @@ namespace Ejemplo.Web
             beneficiario = dFachada.BeneficiarioTraerEspecifico(beneficiario);
             this.lblNombres.Text = beneficiario.Nombres.ToString();
             this.lblApellidos.Text = beneficiario.Apellidos.ToString();
-            this.lblFechaNac.Text = beneficiario.FechaNacimiento.ToString("dd-MM-yyyy");
+            
+            string[] parts = beneficiario.FechaNacimiento.Split(' ');
+
+            this.lblFechaNac.Text = parts[0];
+            string fecha = parts[0];
+
             #region Hallar la edad cronológica edadAños, edadMeses, edadDias
-            int año = beneficiario.FechaNacimiento.Year;
-            int mes = beneficiario.FechaNacimiento.Month;
-            int dia = beneficiario.FechaNacimiento.Day;
+
+            string[] partes = fecha.Split('/');
+
+
+            int año = int.Parse(partes[2]);
+            int mes = int.Parse(partes[1]);
+            int dia = int.Parse(partes[0]);
             int añoActual = DateTime.Now.Year;
             int mesActual = DateTime.Now.Month;
             int diaActual = DateTime.Now.Day;
@@ -360,8 +369,21 @@ namespace Ejemplo.Web
                 try
                 {
                     bool resultado = dFachada.InformeAgregar(informe);
-                    if(resultado)
+                    if (resultado)
                     {
+                        int IdUltimoInforme = dFachada.InformeUltimoIngresado();
+                        cNotificacion notificacion;
+                        for (int i = 0; i < informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                        {
+                            notificacion = new cNotificacion();
+                            notificacion.Usuario = new cUsuario();
+                            notificacion.Usuario = informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
+                            notificacion.Informe = new cInforme();
+                            notificacion.Informe.Codigo = IdUltimoInforme;
+                            bool res = dFachada.NotificacionAgregarDeEspecialista(notificacion);
+                        }
+
+
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se realizó el nuevo informe correctamente')", true);
                         Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + beneficiario.Codigo);
                     }

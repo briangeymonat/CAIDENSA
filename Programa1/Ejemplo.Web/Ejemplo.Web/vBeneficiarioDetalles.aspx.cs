@@ -79,7 +79,8 @@ namespace Ejemplo.Web
             txtApellidos.Text = ElBeneficiario.Apellidos;
             txtCi.Text = ElBeneficiario.CI.ToString();
             if (ElBeneficiario.Sexo == "M") rblSexo.Items[0].Selected = true; else rblSexo.Items[1].Selected = true;
-            txtFechaNac.Text = ElBeneficiario.FechaNacimiento.ToString("yyyy-MM-dd");
+            DateTime fn = DateTime.Parse(ElBeneficiario.FechaNacimiento);
+            txtFechaNac.Text = fn.ToString("yyyy-MM-dd");
             txtDomicilio.Text = ElBeneficiario.Domicilio;
             txtTelefono1.Text = ElBeneficiario.Telefono1;
             txtTelefono2.Text = ElBeneficiario.Telefono2;
@@ -161,7 +162,7 @@ namespace Ejemplo.Web
                 unBeneficiario.Nombres = txtNombres.Text;
                 unBeneficiario.Apellidos = txtApellidos.Text;
                 unBeneficiario.CI = int.Parse(txtCi.Text);
-                unBeneficiario.FechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                unBeneficiario.FechaNacimiento = txtFechaNac.Text;
                 unBeneficiario.Domicilio = txtDomicilio.Text;
                 unBeneficiario.Telefono1 = txtTelefono1.Text;
                 unBeneficiario.Telefono2 = txtTelefono2.Text;
@@ -258,6 +259,7 @@ namespace Ejemplo.Web
         {
             if (!FaltanDatosPlan())
             {
+<<<<<<< HEAD
                 if ((txtHasta.Text != string.Empty && (DateTime.Parse(txtDesde.Text) <= DateTime.Parse(txtHasta.Text))) || txtHasta.Text == string.Empty)
                 {
                     cPlan unPlan = new cPlan();
@@ -282,6 +284,20 @@ namespace Ejemplo.Web
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puedo agregar el plan.')", true);
                     }
+=======
+                cPlan unPlan = new cPlan();
+                unPlan.Activo = true;
+                unPlan.Evaluacion = cbEvaluacion.Checked;
+                unPlan.Tratamiento = cbTratamiento.Checked;
+                unPlan.Tipo = ddlTipos.SelectedItem.Text;
+                if (txtHasta.Text != string.Empty)
+                {
+                    unPlan.FechaFin =txtHasta.Text;
+                }
+                if (txtDesde.Text != string.Empty)
+                {
+                    unPlan.FechaInicio =txtDesde.Text;
+>>>>>>> 46aa7094d4981fd35189909d5b312e618a7846f3
                 }
                 else
                 {

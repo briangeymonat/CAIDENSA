@@ -14,5 +14,9 @@ namespace Dominio.Clases
         {
             return pInforme.Agregar(parInforme);
         }
+        public static int UltimoIngresado()
+        {
+            return pInforme.UltimoIngresado();
+        }
     }
 }

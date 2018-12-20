@@ -11,10 +11,15 @@ namespace Ejemplo.Web
 {
     public partial class vTareasEspecialistas : System.Web.UI.Page
     {
+        List<cBeneficiario> BeneficiariosConPlanesPorVencerse;
+        List<cBeneficiario> BeneficiariosConPlanesSinFechaDeVencimiento;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                BeneficiariosConPlanesPorVencerse = new List<cBeneficiario>();
+                BeneficiariosConPlanesSinFechaDeVencimiento = new List<cBeneficiario>();
                 CargarGrillas();
             }
         }
@@ -29,6 +34,7 @@ namespace Ejemplo.Web
             CargarGrillaEspecialistasConInformesPendientes();
             CargarGrillaPlanesPorVencerse();
             CargarGrillaPlanesSinFechaVencimiento();
+            CargarGrillaSesionesDelDia();
         }
         protected void CargarGrillaPlanesPorVencerse()
         {
@@ -53,19 +59,22 @@ namespace Ejemplo.Web
                 {
                     if (listaBenConPlanes[a].lstPlanes[b].FechaFin != null)
                     {
-                        TimeSpan d = listaBenConPlanes[a].lstPlanes[b].FechaFin - fechaActual;
+                        DateTime fecha = new DateTime();
+                        fecha = DateTime.Parse(listaBenConPlanes[a].lstPlanes[b].FechaFin);
+                        TimeSpan d = fecha - fechaActual;
                         Double td = d.TotalDays;
                         if (td < 185)
                         {
                             BeneficiariosConPlanesAVencerse.Add(listaBenConPlanes[a]);
+                            break;
                             //si tiene varios planes se lista solo una vez el beneficiario
                         }
                     }
                 }
             }
-
-            this.grdPlanesPorVencerse.DataSource = BeneficiariosConPlanesAVencerse;
-            this.grdPlanesPorVencerse.DataBind();
+            BeneficiariosConPlanesPorVencerse = BeneficiariosConPlanesAVencerse;
+            grdPlanesPorVencerse.DataSource = BeneficiariosConPlanesAVencerse;
+            grdPlanesPorVencerse.DataBind();
         }
         protected void CargarGrillaPlanesSinFechaVencimiento()
         {
@@ -94,14 +103,20 @@ namespace Ejemplo.Web
                     }                    
                 }
             }
-
-            this.grdPlanesPorVencerse.DataSource = BeneficiariosConPlanesSinFechaVencimiento;
-            this.grdPlanesPorVencerse.DataBind();
+            BeneficiariosConPlanesSinFechaDeVencimiento = BeneficiariosConPlanesSinFechaVencimiento;
+            this.grdBeneficiariosConPlanSinFechaVencimiento.DataSource = BeneficiariosConPlanesSinFechaVencimiento;
+            this.grdBeneficiariosConPlanSinFechaVencimiento.DataBind();
         }
         protected void CargarGrillaEspecialistasConInformesPendientes()
         {
             grdEspecialistasConInformesPendientes.DataSource = dFachada.UsuarioTraerTodosEspecialistasConInformesPendientes();
             grdEspecialistasConInformesPendientes.DataBind();
+        }
+        protected void CargarGrillaSesionesDelDia()
+        {
+            List<cSesion> sesiones = new List<cSesion>();
+            grdSesionesDelDia.DataSource = sesiones;
+            grdSesionesDelDia.DataBind();
         }
 
         protected void grdEspecialistasConInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
@@ -116,5 +131,51 @@ namespace Ejemplo.Web
             e.Row.Cells[11].Visible = false;//estado
             e.Row.Cells[12].Visible = false;//tipo de contrato
         }
+
+        protected void grdPlanesPorVencerse_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[5].Visible = false; //sexo
+            e.Row.Cells[7].Visible = false; //tel2
+            e.Row.Cells[8].Visible = false;//email
+            e.Row.Cells[9].Visible = false;//domicilio
+            e.Row.Cells[10].Visible = false;//fecha de nacimiento
+            e.Row.Cells[11].Visible = false;//atributario
+            e.Row.Cells[12].Visible = false;//motivo consulta
+            e.Row.Cells[13].Visible = false;//escolaridad
+            e.Row.Cells[14].Visible = false;//derivador
+            e.Row.Cells[15].Visible = false;//estado
+        }
+
+        protected void grdPlanesPorVencerse_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            TableCell celdaCodigo = grdPlanesPorVencerse.Rows[e.NewSelectedIndex].Cells[1];
+            int codigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId="+codigo.ToString());
+        }
+
+        protected void grdBeneficiariosConPlanSinFechaVencimiento_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[5].Visible = false; //sexo
+            e.Row.Cells[7].Visible = false; //tel2
+            e.Row.Cells[8].Visible = false;//email
+            e.Row.Cells[9].Visible = false;//domicilio
+            e.Row.Cells[10].Visible = false;//fecha de nacimiento
+            e.Row.Cells[11].Visible = false;//atributario
+            e.Row.Cells[12].Visible = false;//motivo consulta
+            e.Row.Cells[13].Visible = false;//escolaridad
+            e.Row.Cells[14].Visible = false;//derivador
+            e.Row.Cells[15].Visible = false;//estado
+        }
+
+        protected void grdBeneficiariosConPlanSinFechaVencimiento_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            TableCell celdaCodigo = grdBeneficiariosConPlanSinFechaVencimiento.Rows[e.NewSelectedIndex].Cells[1];
+            int codigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + codigo.ToString());
+        }
+
+        
     }
 }

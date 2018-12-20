@@ -220,6 +220,10 @@ namespace Dominio
         {
             return dInforme.Agregar(parInforme);
         }
+        public static int InformeUltimoIngresado()
+        {
+            return dInforme.UltimoIngresado();
+        }
 
         #endregion
 
@@ -250,6 +254,34 @@ namespace Dominio
                 LosItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(LosItinerarios[i]);
             }
             return LosItinerarios;
+        }
+        #endregion
+
+        #region Notificacion
+
+        public static List<cNotificacion> NotifiacionTraerTodasNuevasAdministrador(cUsuario parUsuario)
+        {
+            return dNotificacion.TraerTodasNuevasAdministrador(parUsuario);
+        }
+        public static List<cNotificacion> NotifiacionTraerTodasNuevasEspecialista(cUsuario parUsuario)
+        {
+            return dNotificacion.TraerTodasNuevasEspecialista(parUsuario);
+        }
+        public static bool NotificacionAgregarDeEspecialista(cNotificacion parNotificacion)
+        {
+            return dNotificacion.AgregarDeEspecialista(parNotificacion);
+        }
+        public static bool NotificacionAgregarDeAdministrador(cNotificacion parNotificacion)
+        {
+            return dNotificacion.AgregarDeAdministrador(parNotificacion);
+        }
+        public static int NotificacionVerificarIngresoParaAdministrador(cNotificacion parNotificacion)
+        {
+            return dNotificacion.VerificarIngresoParaAdministrador(parNotificacion);
+        }
+        public static bool NotificacionCambiarEstadoVista(cNotificacion parNotificacion)
+        {
+            return dNotificacion.CambiarEstadoVista(parNotificacion);
         }
         #endregion
     }

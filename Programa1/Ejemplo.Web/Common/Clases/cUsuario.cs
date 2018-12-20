@@ -16,7 +16,7 @@ namespace Common.Clases
         public int CI { get; set; }
         public cUtilidades.TipoDeUsuario Tipo { get; set; }
         public string Domicilio { get; set; }
-        public DateTime FechaNacimiento { get; set; }
+        public string FechaNacimiento { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
         public Boolean Estado { get; set; }

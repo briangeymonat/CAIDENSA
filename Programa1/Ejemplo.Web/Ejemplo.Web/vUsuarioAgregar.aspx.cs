@@ -53,7 +53,7 @@ namespace Ejemplo.Web
                     usuario.Domicilio = this.txtDomicilio.Text;
                     if (this.txtFechaNac.Text.ToString() != string.Empty)
                     {
-                        usuario.FechaNacimiento = DateTime.Parse(this.txtFechaNac.Text);
+                        usuario.FechaNacimiento = this.txtFechaNac.Text;
                     }
                     usuario.Telefono = this.txtTelefono.Text;
                     usuario.Email = this.txtEmail.Text;

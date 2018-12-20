@@ -104,7 +104,7 @@ namespace Ejemplo.Web
                 unBeneficiario.Nombres = txtNombres.Text;
                 unBeneficiario.Apellidos = txtApellidos.Text;
                 unBeneficiario.CI = int.Parse(txtCi.Text);
-                unBeneficiario.FechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                unBeneficiario.FechaNacimiento = txtFechaNac.Text;
                 unBeneficiario.Domicilio = txtDomicilio.Text;
                 unBeneficiario.Telefono1 = txtTel1.Text;
                 unBeneficiario.Telefono2 = txtTel2.Text;
@@ -171,7 +171,7 @@ namespace Ejemplo.Web
                 unPlan.Tipo = ddlTipoPlanes.SelectedItem.Text;
                 if (txtHasta.Text != string.Empty)
                 {
-                    unPlan.FechaFin = DateTime.Parse(txtHasta.Text);
+                    unPlan.FechaFin = txtHasta.Text;
                 }
                 /*else
                 {
@@ -179,7 +179,7 @@ namespace Ejemplo.Web
                 }*/
                 if (txtDesde.Text != string.Empty)
                 {
-                    unPlan.FechaInicio = DateTime.Parse(txtDesde.Text);
+                    unPlan.FechaInicio = txtDesde.Text;
                 }
                 /*else
                 {

@@ -61,7 +61,7 @@ namespace Ejemplo.Web
                 usuario.Nombres = txtNombres.Text;
                 usuario.Apellidos = txtApellidos.Text;
                 usuario.CI = int.Parse(txtCi.Text);
-                usuario.FechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                usuario.FechaNacimiento = txtFechaNac.Text;
                 usuario.Domicilio = txtDomicilio.Text;
                 usuario.Telefono = txtTelefono.Text;
                 usuario.Email = txtEmail.Text;
@@ -138,7 +138,16 @@ namespace Ejemplo.Web
             txtNombres.Text = usuario.Nombres;
             txtApellidos.Text = usuario.Apellidos;
             txtCi.Text = usuario.CI.ToString();
-            txtFechaNac.Text = usuario.FechaNacimiento.ToString("yyyy-MM-dd");
+            DateTime fn = new DateTime();
+            if (usuario.FechaNacimiento!=null)
+            {
+                fn = DateTime.Parse(usuario.FechaNacimiento);
+                txtFechaNac.Text = fn.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                txtFechaNac.Text = string.Empty;
+            }
             txtDomicilio.Text = usuario.Domicilio;
             txtTelefono.Text = usuario.Telefono;
             txtEmail.Text = usuario.Email;

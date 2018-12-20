@@ -25,6 +25,7 @@ namespace Persistencia.Clases
                 cmd.Parameters.Add(new SqlParameter("@apellidos", parUsuario.Apellidos));
                 cmd.Parameters.Add(new SqlParameter("@ci", parUsuario.CI));
                 cmd.Parameters.Add(new SqlParameter("@domicilio", parUsuario.Domicilio));
+                cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", parUsuario.FechaNacimiento));
                 //DateTime fecha = new DateTime(20101753);
                 //string dateInput = "Jan 1, 1753";
                 //DateTime parsedDate = DateTime.Parse(dateInput);
@@ -37,10 +38,10 @@ namespace Persistencia.Clases
                 {
                     cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", parUsuario.FechaNacimiento));
                 }*/
-                if (parUsuario.FechaNacimiento != new DateTime())
+                /*if (parUsuario.FechaNacimiento != new DateTime())
                 {
                     cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", parUsuario.FechaNacimiento));
-                }
+                }*/
 
                 cmd.Parameters.Add(new SqlParameter("@telefono", parUsuario.Telefono));
                 cmd.Parameters.Add(new SqlParameter("@email", parUsuario.Email));
@@ -146,14 +147,14 @@ namespace Persistencia.Clases
                 string dateInput = "Jan 1, 1753";
                 DateTime parsedDate = DateTime.Parse(dateInput);
 
-                if (parUsuario.FechaNacimiento < parsedDate)
+                /*if (parUsuario.FechaNacimiento < parsedDate)
                 {
                     cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", parsedDate)); //    1/1/1753
-                }
-                else
-                {
+                }*/
+                //else
+                //{
                     cmd.Parameters.Add(new SqlParameter("@fechaNacimiento", parUsuario.FechaNacimiento));
-                }
+                //}
                 cmd.Parameters.Add(new SqlParameter("@telefono", parUsuario.Telefono));
                 cmd.Parameters.Add(new SqlParameter("@email", parUsuario.Email));
                 cmd.Parameters.Add(new SqlParameter("@tipo", parUsuario.Tipo));
@@ -270,10 +271,12 @@ namespace Persistencia.Clases
                         {
                             retorno.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
-                        retorno.Domicilio = oReader["UsuarioDomicilio"].ToString();
+                        retorno.Domicilio = oReader["UsuarioDomicilio"].ToString();                        
+                        //string[] ss = retorno.FechaNacimiento.Split(' ');
+                        //retorno.FechaNacimiento = ss[0];
                         if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
                         {
-                            retorno.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                            retorno.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
                         }
                         retorno.Telefono = oReader["UsuarioTelefono"].ToString();
                         retorno.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
@@ -347,8 +350,14 @@ namespace Persistencia.Clases
                         retorno.Domicilio = oReader["UsuarioDomicilio"].ToString();
                         if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
                         {
-                            retorno.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                            retorno.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
                         }
+                        //string[] ss = retorno.FechaNacimiento.Split(' ');
+                        //retorno.FechaNacimiento = ss[0];
+                        /*if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            retorno.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        }*/
                         retorno.Telefono = oReader["UsuarioTelefono"].ToString();
                         retorno.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         retorno.Email = oReader["UsuarioEmail"].ToString();
@@ -421,8 +430,15 @@ namespace Persistencia.Clases
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
                         if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
                         {
-                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
                         }
+                        
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
+                        /*if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        }*/
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -493,7 +509,12 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -513,10 +534,10 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(usuario);
                     }
                     conn.Close();
@@ -629,7 +650,12 @@ namespace Persistencia.Clases
                             retorno.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         retorno.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        retorno.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            retorno.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                       // string[] ss = retorno.FechaNacimiento.Split(' ');
+                       // retorno.FechaNacimiento = ss[0];
                         retorno.Telefono = oReader["UsuarioTelefono"].ToString();
                         retorno.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         retorno.Email = oReader["UsuarioEmail"].ToString();
@@ -698,7 +724,12 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -719,10 +750,10 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(usuario);
 
                     }
@@ -774,7 +805,12 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -794,10 +830,10 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(usuario);
 
                     }
@@ -849,7 +885,12 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -869,10 +910,10 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(usuario);
 
                     }
@@ -924,7 +965,12 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -944,10 +990,10 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(usuario);
 
                     }
@@ -1027,7 +1073,12 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -1047,10 +1098,10 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(usuario);
                     }
                     conn.Close();
@@ -1102,7 +1153,12 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -1122,10 +1178,10 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(usuario);
                     }
                     conn.Close();
@@ -1174,7 +1230,12 @@ namespace Persistencia.Clases
                             unUsuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         unUsuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        unUsuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            unUsuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = unUsuario.FechaNacimiento.Split(' ');
+                        //unUsuario.FechaNacimiento = ss[0];
                         unUsuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         unUsuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         unUsuario.Email = oReader["UsuarioEmail"].ToString();
@@ -1194,10 +1255,10 @@ namespace Persistencia.Clases
                         unUsuario.Especialidad = new cEspecialidad();
                         unUsuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         unUsuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (unUsuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (unUsuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             unUsuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(unUsuario);
                     }
                 }
@@ -1248,7 +1309,12 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
-                        usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -1268,10 +1334,10 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
                         {
                             usuario.FechaNacimiento = new DateTime();
-                        }
+                        }*/
                         retorno.Add(usuario);
                     }
                     conn.Close();
@@ -1323,7 +1389,16 @@ namespace Persistencia.Clases
                             usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                         }
                         usuario.Domicilio = oReader["UsuarioDomicilio"].ToString();
+<<<<<<< HEAD
                         if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)  usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString());
+=======
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            usuario.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+                        //string[] ss = usuario.FechaNacimiento.Split(' ');
+                        //usuario.FechaNacimiento = ss[0];
+>>>>>>> 46aa7094d4981fd35189909d5b312e618a7846f3
                         usuario.Telefono = oReader["UsuarioTelefono"].ToString();
                         usuario.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
                         usuario.Email = oReader["UsuarioEmail"].ToString();
@@ -1343,6 +1418,13 @@ namespace Persistencia.Clases
                         usuario.Especialidad = new cEspecialidad();
                         usuario.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
                         usuario.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
+<<<<<<< HEAD
+=======
+                        /*if (usuario.FechaNacimiento.ToShortDateString() == "01/01/1753")
+                        {
+                            usuario.FechaNacimiento = new DateTime();
+                        }*/
+>>>>>>> 46aa7094d4981fd35189909d5b312e618a7846f3
                         retorno.Add(usuario);
                     }
                     conn.Close();
