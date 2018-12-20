@@ -79,7 +79,8 @@ namespace Ejemplo.Web
             txtApellidos.Text = ElBeneficiario.Apellidos;
             txtCi.Text = ElBeneficiario.CI.ToString();
             if (ElBeneficiario.Sexo == "M") rblSexo.Items[0].Selected = true; else rblSexo.Items[1].Selected = true;
-            txtFechaNac.Text = ElBeneficiario.FechaNacimiento.ToString("yyyy-MM-dd");
+            DateTime fn = DateTime.Parse(ElBeneficiario.FechaNacimiento);
+            txtFechaNac.Text = fn.ToString("yyyy-MM-dd");
             txtDomicilio.Text = ElBeneficiario.Domicilio;
             txtTelefono1.Text = ElBeneficiario.Telefono1;
             txtTelefono2.Text = ElBeneficiario.Telefono2;
@@ -165,7 +166,7 @@ namespace Ejemplo.Web
                 unBeneficiario.Nombres = txtNombres.Text;
                 unBeneficiario.Apellidos = txtApellidos.Text;
                 unBeneficiario.CI = int.Parse(txtCi.Text);
-                unBeneficiario.FechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                unBeneficiario.FechaNacimiento = txtFechaNac.Text;
                 unBeneficiario.Domicilio = txtDomicilio.Text;
                 unBeneficiario.Telefono1 = txtTelefono1.Text;
                 unBeneficiario.Telefono2 = txtTelefono2.Text;
@@ -269,11 +270,11 @@ namespace Ejemplo.Web
                 unPlan.Tipo = ddlTipos.SelectedItem.Text;
                 if (txtHasta.Text != string.Empty)
                 {
-                    unPlan.FechaFin = DateTime.Parse(txtHasta.Text);
+                    unPlan.FechaFin =txtHasta.Text;
                 }
                 if (txtDesde.Text != string.Empty)
                 {
-                    unPlan.FechaInicio = DateTime.Parse(txtDesde.Text);
+                    unPlan.FechaInicio =txtDesde.Text;
                 }
                 ElBeneficiario.lstPlanes = new List<cPlan>();
                 ElBeneficiario.lstPlanes.Add(unPlan);

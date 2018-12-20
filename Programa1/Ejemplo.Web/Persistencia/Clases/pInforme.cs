@@ -63,7 +63,7 @@ namespace Persistencia.Clases
                             idSeccion = int.Parse(oReader2["ultimo"].ToString());
                         }
                     }
-                    
+
                     for (int k = 0; k < parInforme.lstSecciones[i].lstUsuariosSeccion.Count; k++)
                     {
                         SqlCommand cmd4 = new SqlCommand("UsuariosSecciones_Agregar", conn);
@@ -80,6 +80,31 @@ namespace Persistencia.Clases
 
                 if (conn.State == ConnectionState.Open)
                 {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+        public static int UltimoIngresado()
+        {
+            int retorno = -1;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("Informes_UltimoIngresado", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        retorno = new int();
+                        retorno = int.Parse(oReader["ultimo"].ToString());
+                    }
                     conn.Close();
                 }
             }

@@ -27,7 +27,7 @@ namespace Persistencia.Clases
                     cmd.Parameters.Add(new SqlParameter("@PlanTipo", elBeneficiario.lstPlanes[i].Tipo));
                     cmd.Parameters.Add(new SqlParameter("@PlanTratamiento", elBeneficiario.lstPlanes[i].Tratamiento));
                     cmd.Parameters.Add(new SqlParameter("@PlanEvaluacion", elBeneficiario.lstPlanes[i].Evaluacion));
-                    if(elBeneficiario.lstPlanes[i].FechaInicio != new DateTime())
+                    if(elBeneficiario.lstPlanes[i].FechaInicio != "")
                     {
                         cmd.Parameters.Add(new SqlParameter("@PlanFechaInicio", elBeneficiario.lstPlanes[i].FechaInicio));
                     }
@@ -35,7 +35,7 @@ namespace Persistencia.Clases
                     {
                         cmd.Parameters.Add(new SqlParameter("@PlanFechaInicio", null));
                     }
-                    if (elBeneficiario.lstPlanes[i].FechaFin != new DateTime())
+                    if (elBeneficiario.lstPlanes[i].FechaFin != "")
                     {
                         cmd.Parameters.Add(new SqlParameter("@PlanFechaFin", elBeneficiario.lstPlanes[i].FechaFin));
                     }
@@ -114,10 +114,14 @@ namespace Persistencia.Clases
                         unPlan.Tipo = oReader["PlanTipo"].ToString();
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
-                        unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString());
+                        unPlan.FechaInicio = oReader["PlanFechaInicio"].ToString();
+                        string[] ss = unPlan.FechaInicio.Split(' ');
+                        unPlan.FechaInicio = ss[0];
                         if (oReader["PlanFechaFin"] != DBNull.Value)
                         {
-                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
+                            unPlan.FechaFin = oReader["PlanFechaFin"].ToString();
+                            string[] sa = unPlan.FechaFin.Split(' ');
+                            unPlan.FechaFin = sa[0];
                         }
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
@@ -161,10 +165,14 @@ namespace Persistencia.Clases
                         unPlan.Tipo = oReader["PlanTipo"].ToString();
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
-                        unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString());
-                        if(oReader["PlanFechaFin"] != DBNull.Value)
+                        unPlan.FechaInicio = oReader["PlanFechaInicio"].ToString();
+                        string[] ss = unPlan.FechaInicio.Split(' ');
+                        unPlan.FechaInicio = ss[0];
+                        if (oReader["PlanFechaFin"] != DBNull.Value)
                         {
-                            unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
+                            unPlan.FechaFin =oReader["PlanFechaFin"].ToString();
+                            string[] sa = unPlan.FechaFin.Split(' ');
+                            unPlan.FechaFin = sa[0];
                         }
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 
@@ -207,8 +215,15 @@ namespace Persistencia.Clases
                         unPlan.Tipo = oReader["PlanTipo"].ToString();
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
-                        unPlan.FechaInicio = DateTime.Parse(oReader["PlanFechaInicio"].ToString());
-                        unPlan.FechaFin = DateTime.Parse(oReader["PlanFechaFin"].ToString());
+                        unPlan.FechaInicio = oReader["PlanFechaInicio"].ToString();
+                        string[] ss = unPlan.FechaInicio.Split(' ');
+                        unPlan.FechaInicio = ss[0];
+                        if (oReader["PlanFechaFin"] != DBNull.Value)
+                        {
+                            unPlan.FechaFin = oReader["PlanFechaFin"].ToString();
+                            string[] sa = unPlan.FechaFin.Split(' ');
+                            unPlan.FechaFin = sa[0];
+                        }
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 
                         retorno.Add(unPlan);

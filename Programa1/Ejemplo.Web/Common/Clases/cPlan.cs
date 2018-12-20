@@ -12,8 +12,8 @@ namespace Common.Clases
         public string Tipo { get; set; }
         public Boolean Tratamiento { get; set; }
         public Boolean Evaluacion { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaFin { get; set; }
+        public string FechaInicio { get; set; }
+        public string FechaFin { get; set; }
         public Boolean Activo { get; set; }
 
     }

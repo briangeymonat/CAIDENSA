@@ -17,7 +17,7 @@ namespace Common.Clases
         public string Telefono2 { get; set; }
         public string Email { get; set; }
         public string Domicilio { get; set; }
-        public DateTime FechaNacimiento { get; set; }
+        public string FechaNacimiento { get; set; }
         public string Atributario { get; set; }
         public string MotivoConsulta { get; set; }
         public string Escolaridad { get; set; }

@@ -184,7 +184,9 @@ namespace Persistencia.Clases
                         retorno.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
                         retorno.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
                         retorno.Email = oReader["BeneficiarioEmail"].ToString();
-                        retorno.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString());
+                        retorno.FechaNacimiento = oReader["BeneficiarioFechaNacimiento"].ToString();
+                        string[] ss = retorno.FechaNacimiento.Split(' ');
+                        retorno.FechaNacimiento = ss[0];
                         retorno.Atributario = oReader["BeneficiarioAtributario"].ToString();
                         retorno.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
                         retorno.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
@@ -230,7 +232,9 @@ namespace Persistencia.Clases
                         retorno.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
                         retorno.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
                         retorno.Email = oReader["BeneficiarioEmail"].ToString();
-                        retorno.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString());
+                        retorno.FechaNacimiento = oReader["BeneficiarioFechaNacimiento"].ToString();
+                        string[] ss = retorno.FechaNacimiento.Split(' ');
+                        retorno.FechaNacimiento = ss[0];
                         retorno.Atributario = oReader["BeneficiarioAtributario"].ToString();
                         retorno.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
                         retorno.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
@@ -277,7 +281,9 @@ namespace Persistencia.Clases
                         retorno.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
                         retorno.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
                         retorno.Email = oReader["BeneficiarioEmail"].ToString();
-                        retorno.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString());
+                        retorno.FechaNacimiento = oReader["BeneficiarioFechaNacimiento"].ToString();
+                        string[] ss = retorno.FechaNacimiento.Split(' ');
+                        retorno.FechaNacimiento = ss[0];
                         retorno.Atributario = oReader["BeneficiarioAtributario"].ToString();
                         retorno.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
                         retorno.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
@@ -323,7 +329,9 @@ namespace Persistencia.Clases
                         unBeneficiario.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
                         unBeneficiario.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
                         unBeneficiario.Email = oReader["BeneficiarioEmail"].ToString();
-                        unBeneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString());
+                        unBeneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString()).ToShortDateString();
+                        //string[] ss = unBeneficiario.FechaNacimiento.Split(' ');
+                        //unBeneficiario.FechaNacimiento = ss[0];
                         unBeneficiario.Atributario = oReader["BeneficiarioAtributario"].ToString();
                         unBeneficiario.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
                         unBeneficiario.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
@@ -370,7 +378,9 @@ namespace Persistencia.Clases
                         unBeneficiario.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
                         unBeneficiario.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
                         unBeneficiario.Email = oReader["BeneficiarioEmail"].ToString();
-                        unBeneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString());
+                        unBeneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString()).ToShortDateString();
+                        //string[] ss = unBeneficiario.FechaNacimiento.Split(' ');
+                        //unBeneficiario.FechaNacimiento = ss[0];
                         unBeneficiario.Atributario = oReader["BeneficiarioAtributario"].ToString();
                         unBeneficiario.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
                         unBeneficiario.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();

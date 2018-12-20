@@ -44,6 +44,7 @@
     <Compile Include="Clases\dEspecialidad.cs" />
     <Compile Include="Clases\dInforme.cs" />
     <Compile Include="Clases\dItinerario.cs" />
+    <Compile Include="Clases\dNotificacion.cs" />
     <Compile Include="Clases\dPlan.cs" />
     <Compile Include="Clases\dUsuario.cs" />
     <Compile Include="dFachada.cs" />
