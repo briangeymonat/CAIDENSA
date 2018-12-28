@@ -40,13 +40,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Control RadioButtonList1.
+        /// Control rdblCentro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.RadioButtonList rdblCentro;
         
         /// <summary>
         /// Control frmItinerario.
@@ -56,6 +56,24 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmItinerario;
+        
+        /// <summary>
+        /// Control grdItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdItinerario;
+        
+        /// <summary>
+        /// Control dtGrdItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid dtGrdItinerario;
         
         /// <summary>
         /// Control btnSeleccionar.

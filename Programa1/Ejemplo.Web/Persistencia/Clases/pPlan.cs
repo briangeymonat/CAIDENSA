@@ -236,5 +236,36 @@ namespace Persistencia.Clases
 
             return retorno;
         }
+
+        public static bool ModificarFechaVencimiento(cPlan parPlan)
+        {
+            bool retorno = true;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Planes_ModificarFechaVencimiento", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@PlanId", parPlan.Codigo));
+                cmd.Parameters.Add(new SqlParameter("@PlanFechaFin", parPlan.FechaFin));
+
+                int rtn = cmd.ExecuteNonQuery();
+                if(rtn<=0)
+                {
+                    retorno = false;
+                }
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
     }
 }

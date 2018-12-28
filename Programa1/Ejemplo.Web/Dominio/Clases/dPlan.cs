@@ -30,5 +30,9 @@ namespace Dominio.Clases
         {
             return pPlan.TraerTodosPorBeneficiario(elBeneficiario);
         }
+        public static bool ModificarFechaVencimiento(cPlan parPlan)
+        {
+            return pPlan.ModificarFechaVencimiento(parPlan);
+        }
     }
 }

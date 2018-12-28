@@ -17,7 +17,10 @@ namespace Ejemplo.Web
         {
             if (!Page.IsPostBack)
             {
-               
+                if (dFachada.SesionAgregarSesionesDelDia())
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('AVISO: Se acaban de crear las sesiones para hoy que se encuentran registradas en el itinerario.')", true);
+                }
             }
         }      
 

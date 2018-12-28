@@ -26,5 +26,9 @@ namespace Dominio.Clases
         {
             return pItinerario.TraerTodosPorDia(parDia, parCentro);
         }
+        public static bool ModificarEstadoDelDia(char parDia)
+        {
+            return pItinerario.ModificarEstadoDelDia(parDia);
+        }
     }
 }

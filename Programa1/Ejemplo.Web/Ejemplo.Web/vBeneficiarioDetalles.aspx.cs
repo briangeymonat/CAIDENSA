@@ -16,6 +16,7 @@ namespace Ejemplo.Web
         private static List<cDiagnostico> lstUltimosDiagnosticos;
         private static List<cDiagnostico> lstHistorialDiagnosticos;
         private static List<cPlan> lstPlanesActivos;
+        private static cPlan PlanAModificar;
         private static List<cPlan> lstPlanesInactivos;
         private static List<cInforme> lstInformes;
         private static bool Pensionista;
@@ -31,6 +32,7 @@ namespace Ejemplo.Web
                 this.btnCancelar.Visible = false;
                 this.btnConfirmar.Visible = false;
                 ActualizarTodo();
+                PanelModificarPlan.Visible = false;
                 if (ElBeneficiario.Estado)
                 {
                     btnHabilitar.Visible = false;
@@ -345,5 +347,75 @@ namespace Ejemplo.Web
             }
 
         }
+
+        protected void grdPlanesActivos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            if(lstPlanesActivos[e.NewSelectedIndex].FechaFin==null)
+            {
+                PlanAModificar = lstPlanesActivos[e.NewSelectedIndex];
+                PanelModificarPlan.Visible = true;
+                List<string> tipo = new List<string>() { PlanAModificar.Tipo };
+                ddlTipoPlanModificar.DataSource = tipo;
+                ddlTipoPlanModificar.DataBind();
+                ddlTipoPlanModificar.Enabled = false;
+                cboEvaluacionModificar.Checked = PlanAModificar.Evaluacion;
+                cboEvaluacionModificar.Enabled = false;
+                cboTratamientoModificar.Checked = PlanAModificar.Tratamiento;
+                cboTratamientoModificar.Enabled = false;
+                DateTime fn = DateTime.Parse(PlanAModificar.FechaInicio);
+                txtFechaInicioModificar.Text = fn.ToString("yyyy-MM-dd");
+                txtFechaInicioModificar.Enabled = false;
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: El Plan al que solicitar ingresar la fecha de vencimiento ya tiene una.')", true);
+            }
+        }
+        protected void btnCancelarModificarPlan_Click(object sender, EventArgs e)
+        {
+            PanelModificarPlan.Visible = false;
+            ddlTipoPlanModificar.DataSource = PlanAModificar.Tipo;
+            ddlTipoPlanModificar.DataBind();
+            ddlTipoPlanModificar.Enabled = false;
+            cboEvaluacionModificar.Checked = false;
+            cboEvaluacionModificar.Enabled = false;
+            cboTratamientoModificar.Checked = false;
+            cboTratamientoModificar.Enabled = false;
+            txtFechaInicioModificar.Text = string.Empty;
+            txtFechaInicioModificar.Enabled = false;
+        }
+
+        protected void btnModificarPlan_Click(object sender, EventArgs e)
+        {
+            if(txtFechaFinModificar.Text == string.Empty)
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Para modificar debe ingresar la fecha de vencimiento del plan.')", true);
+            }
+            else
+            {
+                PlanAModificar.FechaFin = txtFechaFinModificar.Text;
+                if(dFachada.PlanModificarFechaVencimiento(PlanAModificar))
+                {
+                    lblMensaje.Text = "La fecha del plan se ha modificado correctamente";
+                    PanelModificarPlan.Visible = false;
+                    ddlTipoPlanModificar.DataSource = PlanAModificar.Tipo;
+                    ddlTipoPlanModificar.DataBind();
+                    ddlTipoPlanModificar.Enabled = false;
+                    cboEvaluacionModificar.Checked = false;
+                    cboEvaluacionModificar.Enabled = false;
+                    cboTratamientoModificar.Checked = false;
+                    cboTratamientoModificar.Enabled = false;
+                    txtFechaInicioModificar.Text = string.Empty;
+                    txtFechaInicioModificar.Enabled = false;
+                    ActualizarTodo();
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Hubo un error al modificar la fecha de vencimiento del plan.')", true);
+                }
+            }
+            
+        }
+
     }
 }

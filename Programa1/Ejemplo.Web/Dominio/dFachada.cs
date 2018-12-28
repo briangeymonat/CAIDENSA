@@ -211,6 +211,10 @@ namespace Dominio
         {
             return dPlan.TraerTodosPorBeneficiario(parBeneficiario);
         }
+        public static bool PlanModificarFechaVencimiento(cPlan parPlan)
+        {
+            return dPlan.ModificarFechaVencimiento(parPlan);
+        }
 
         #endregion
 
@@ -241,7 +245,7 @@ namespace Dominio
         {
             return dItinerario.VerificarHorarioBeneficiarios(parItinerario);
         }
-        
+
         public static List<cItinerario> ItinerarioTraerTodosPorDia(char parDia, int parCentro)
         {
             List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorDia(parDia, parCentro);
@@ -254,6 +258,11 @@ namespace Dominio
                 LosItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(LosItinerarios[i]);
             }
             return LosItinerarios;
+        }
+
+        public static bool ItinerarioModificarEstadoDelDia(char parDia)
+        {
+            return dItinerario.ModificarEstadoDelDia(parDia);
         }
         #endregion
 
@@ -283,6 +292,97 @@ namespace Dominio
         {
             return dNotificacion.CambiarEstadoVista(parNotificacion);
         }
+        #endregion
+
+        #region Sesion
+
+        public static bool SesionAgregar(cSesion parSesion)
+        {
+            return dSesion.Agregar(parSesion);
+        }
+
+        public static bool SesionAgregarSesionesDelDia()
+        {
+            char dia;
+            switch (DateTime.Today.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    dia = 'L';
+                    break;
+                case DayOfWeek.Tuesday:
+                    dia = 'M';
+                    break;
+                case DayOfWeek.Wednesday:
+                    dia = 'X';
+                    break;
+                case DayOfWeek.Thursday:
+                    dia = 'J';
+                    break;
+                case DayOfWeek.Friday:
+                    dia = 'V';
+                    break;
+                default:
+                    dia = 'S';
+                    break;
+            }
+            List<cItinerario> lstJL = ItinerarioTraerTodosPorDia(dia, 0);
+            List<cItinerario> lstNH = ItinerarioTraerTodosPorDia(dia, 1);
+            cSesion unaSesion;
+            bool retorno = true;
+            foreach(cItinerario unItinerario in lstJL)
+            {
+                unaSesion = new cSesion();
+                if (!unItinerario.Estado)
+                {
+                    unaSesion.Centro = unItinerario.Centro;
+                    unaSesion.Codigo = unItinerario.Codigo;
+                    unaSesion.Fecha = DateTime.Today;
+                    unaSesion.HoraFin = unItinerario.HoraFin;
+                    unaSesion.HoraInicio = unItinerario.HoraInicio;
+                    unaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
+                    for (int i=0; i<unItinerario.lstBeneficiarios.Count;i++)
+                    {
+                        unaSesion.lstBeneficiarios.Add(new cBeneficiarioSesion());
+                        unaSesion.lstBeneficiarios[i].Beneficiario = unItinerario.lstBeneficiarios[i].Beneficiario;
+                        unaSesion.lstBeneficiarios[i].Plan = unItinerario.lstBeneficiarios[i].Plan;
+                    }
+                    unaSesion.lstUsuarios = unItinerario.lstEspecialistas;
+                    unaSesion.TipoSesion = unItinerario.TipoSesion;
+                    retorno = retorno == SesionAgregar(unaSesion);
+                }
+            }
+            foreach (cItinerario unItinerario in lstNH)
+            {
+                unaSesion = new cSesion();
+                if (!unItinerario.Estado)
+                {
+                    unaSesion.Centro = unItinerario.Centro;
+                    unaSesion.Codigo = unItinerario.Codigo;
+                    unaSesion.Fecha = DateTime.Today;
+                    unaSesion.HoraFin = unItinerario.HoraFin;
+                    unaSesion.HoraInicio = unItinerario.HoraInicio;
+                    unaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
+                    for (int i = 0; i < unItinerario.lstBeneficiarios.Count; i++)
+                    {
+                        unaSesion.lstBeneficiarios.Add(new cBeneficiarioSesion());
+                        unaSesion.lstBeneficiarios[i].Beneficiario = unItinerario.lstBeneficiarios[i].Beneficiario;
+                        unaSesion.lstBeneficiarios[i].Plan = unItinerario.lstBeneficiarios[i].Plan;
+                    }
+                    unaSesion.lstUsuarios = unItinerario.lstEspecialistas;
+                    unaSesion.TipoSesion = unItinerario.TipoSesion;
+                    retorno = retorno == SesionAgregar(unaSesion);
+                }
+            }
+            if(retorno)
+            {
+
+                retorno = retorno == ItinerarioModificarEstadoDelDia(dia);
+            }
+            
+            return retorno;
+            
+        }
+
         #endregion
     }
 }

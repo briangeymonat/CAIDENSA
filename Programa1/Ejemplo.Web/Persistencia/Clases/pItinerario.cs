@@ -229,5 +229,38 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+
+
+        public static bool ModificarEstadoDelDia(char parDia)
+        {
+            bool retorno = true;
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Itinerarios_CambiarEstado", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parDia));
+
+                int rtn = cmd.ExecuteNonQuery();
+                if(rtn<=0)
+                {
+                    retorno = false;
+                }
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            return retorno;
+        }
     }
 }
