@@ -10,7 +10,7 @@
             <tr>
                 <td>
                     <asp:Label ID="Label6" runat="server" Text="Sesiones que pasaron del día:"></asp:Label>
-                    <asp:GridView ID="grdSesionesPasadasDelDia" runat="server" ShowHeaderWhenEmpty="True"></asp:GridView>
+                    <asp:GridView ID="grdSesionesPasadasDelDia" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesPasadasDelDia_SelectedIndexChanging"></asp:GridView>
                     <asp:Button ID="btnDetallesSesion" runat="server" Text="Ver detalles de la sesion" OnClick="btnDetallesSesion_Click" />
                 </td>
                 <td>

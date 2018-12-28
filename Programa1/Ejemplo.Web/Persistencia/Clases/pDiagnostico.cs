@@ -76,9 +76,38 @@ namespace Persistencia.Clases
             return retorno;
         }
 
-        /*public static bool AgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario, cDiagnostico parDiagnostico)
+        public static bool AgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario, List<cDiagnostico> parLstDiagnosticos)
         {
+            bool retorno = true;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
 
-        }*/
+                for(int i=0; i<parLstDiagnosticos.Count; i++)
+                {
+                    SqlCommand cmd = new SqlCommand("DiagnosticosBeneficiarios_Agregar", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@idBeneficiario", parBeneficiario.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@idDiagnostico", parLstDiagnosticos[i].Codigo));
+                    int rtn = cmd.ExecuteNonQuery();
+                    if(rtn<=0)
+                    {
+                        retorno = false;
+                    }
+                    
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+
+        }
     }
 }

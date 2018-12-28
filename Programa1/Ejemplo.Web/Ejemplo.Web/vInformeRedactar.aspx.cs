@@ -732,7 +732,15 @@ namespace Ejemplo.Web
                         bool resultado = dFachada.InformeFinalizar(Informe);
                         if (resultado)
                         {
-                            Response.Redirect("vTareas.aspx");
+                            bool res = dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(Informe.Beneficiario, lstDiagnosticosAgregados);
+                            if(res)
+                            {
+                                Response.Redirect("vTareas.aspx");
+                            }
+                            else
+                            {
+                                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('No se pudo agregar los diagnosticos al beneficiario')", true);
+                            }                
 
                         }
                         else

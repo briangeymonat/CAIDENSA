@@ -18,5 +18,9 @@ namespace Dominio.Clases
         {
             return pDiagnostico.TraerTodos();
         }
+        public static bool AgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario, List<cDiagnostico> parLstDiagnosticos)
+        {
+            return pDiagnostico.AgregarDiagnosticoBeneficiario(parBeneficiario, parLstDiagnosticos);
+        }
     }
 }

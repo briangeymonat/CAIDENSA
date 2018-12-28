@@ -450,6 +450,10 @@ namespace Dominio
         {
             return dDiagnostico.TraerTodos();
         }
+        public static bool DiagnosticoAgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario, List<cDiagnostico> parLstDiagnosticos)
+        {
+            return dDiagnostico.AgregarDiagnosticoBeneficiario(parBeneficiario, parLstDiagnosticos);
+        }
         #endregion
     }
 }

@@ -38,7 +38,7 @@ namespace Ejemplo.Web
             CargarGrillaEspecialistasConInformesPendientes();
             CargarGrillaPlanesPorVencerse();
             CargarGrillaPlanesSinFechaVencimiento();
-            CargarGrillaSesionesDelDia();
+            CargarGrillaSesionesPasaronDelDia();
         }
         protected void CargarGrillaPlanesPorVencerse()
         {
@@ -116,12 +116,13 @@ namespace Ejemplo.Web
             grdEspecialistasConInformesPendientes.DataSource = dFachada.UsuarioTraerTodosEspecialistasConInformesPendientes();
             grdEspecialistasConInformesPendientes.DataBind();
         }
-        protected void CargarGrillaSesionesDelDia()
+        protected void CargarGrillaSesionesPasaronDelDia()
         {
-            List<cSesion> sesiones = new List<cSesion>();
-            grdSesionesDelDia.DataSource = sesiones;
-            grdSesionesDelDia.DataBind();
+            grdSesionesPasadasDelDia.DataSource = dFachada.SesionTraerPasaronDelDia();
+            grdSesionesPasadasDelDia.DataBind();
         }
+       
+
         protected void grdEspecialistasConInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Visible = false; //codigo
@@ -182,6 +183,7 @@ namespace Ejemplo.Web
             CargarGrillaInformesPendientes();
             CargarGrillaInformesEnProceso();
             CargarGrillaInformesTerminados();
+            CargarGrillaSesionesDelDia();
         }
         protected void CargarGrillaInformesPendientes()
         {
@@ -264,6 +266,12 @@ namespace Ejemplo.Web
             grdInformesTerminados.DataSource = ListaInformesParaListar;
             grdInformesTerminados.DataBind();
         }
+        protected void CargarGrillaSesionesDelDia()
+        {
+            List<cSesion> sesiones = new List<cSesion>();
+            grdSesionesDelDia.DataSource = sesiones;
+            grdSesionesDelDia.DataBind();
+        }
 
         protected void grdInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
         {
@@ -303,6 +311,11 @@ namespace Ejemplo.Web
         }
 
         protected void grdInformesTerminados_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+
+        }
+
+        protected void grdSesionesPasadasDelDia_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
         }
