@@ -1434,5 +1434,47 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+
+
+        #region USUARIOS SECCION
+        public static List<cUsuarioSeccion> TraerTodosPorSeccion(cSeccion parSeccion)
+        {
+            List<cUsuarioSeccion> retorno = new List<cUsuarioSeccion>();
+            cUsuarioSeccion us;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("UsuariosSecciones_TraerTodosPorSeccion", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idSeccion", parSeccion.Codigo));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        us = new cUsuarioSeccion();
+                        us.Usuario = new cUsuario();
+                        us.Usuario.Codigo = int.Parse(oReader["UsuarioId"].ToString());
+                        int i = int.Parse(oReader["UsuariosSeccionesEstado"].ToString());
+                        if (i == 0) us.Estado = cUtilidades.EstadoInforme.Pendiente;
+                        if (i == 1) us.Estado = cUtilidades.EstadoInforme.EnProceso;
+                        if (i == 2) us.Estado = cUtilidades.EstadoInforme.Terminado;
+                        retorno.Add(us);
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+        #endregion
+
+
+
     }
 }

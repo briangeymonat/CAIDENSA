@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\pBeneficiario.cs" />
+    <Compile Include="Clases\pDiagnostico.cs" />
     <Compile Include="Clases\pEspecialidad.cs" />
     <Compile Include="Clases\pInforme.cs" />
     <Compile Include="Clases\pItinerario.cs" />
     <Compile Include="Clases\pNotificacion.cs" />
     <Compile Include="Clases\pPersistencia.cs" />
+    <Compile Include="Clases\pSeccion.cs" />
     <Compile Include="Clases\pUsuario.cs" />
     <Compile Include="Clases\pPlan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

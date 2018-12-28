@@ -102,5 +102,10 @@ namespace Dominio.Clases
         {
             return pUsuario.TraerTodosPorItinerario(parItinerario);
         }
+
+        public static List<cUsuarioSeccion> TraerTodosPorSeccion(cSeccion parSeccion)
+        {
+            return pUsuario.TraerTodosPorSeccion(parSeccion);
+        }
     }
 }

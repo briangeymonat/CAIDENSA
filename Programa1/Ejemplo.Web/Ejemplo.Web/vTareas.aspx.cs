@@ -9,10 +9,11 @@ using System.Web.UI.WebControls;
 
 namespace Ejemplo.Web
 {
-    public partial class vTareasEspecialistas : System.Web.UI.Page
-    {
+    public partial class vTareas : System.Web.UI.Page
+    {        
         List<cBeneficiario> BeneficiariosConPlanesPorVencerse;
         List<cBeneficiario> BeneficiariosConPlanesSinFechaDeVencimiento;
+        public static bool enproceso;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,16 +21,19 @@ namespace Ejemplo.Web
             {
                 BeneficiariosConPlanesPorVencerse = new List<cBeneficiario>();
                 BeneficiariosConPlanesSinFechaDeVencimiento = new List<cBeneficiario>();
-                CargarGrillas();
+                CargarGrillasAdministrativas();
+                CargarGrillasEspecialistas();
+                enproceso = false;
             }
         }
 
+        #region TAREAS ADMINISTRATIVAS
         protected void btnDetallesSesion_Click(object sender, EventArgs e)
         {
             string vtn = "window.open('vDetallesSesionParaAsistencia.aspx','Detalles de sesion','scrollbars=yes,resizable=yes','height=300', 'width=300')";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
         }
-        protected void CargarGrillas()
+        protected void CargarGrillasAdministrativas()
         {
             CargarGrillaEspecialistasConInformesPendientes();
             CargarGrillaPlanesPorVencerse();
@@ -118,7 +122,6 @@ namespace Ejemplo.Web
             grdSesionesDelDia.DataSource = sesiones;
             grdSesionesDelDia.DataBind();
         }
-
         protected void grdEspecialistasConInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Visible = false; //codigo
@@ -131,7 +134,6 @@ namespace Ejemplo.Web
             e.Row.Cells[11].Visible = false;//estado
             e.Row.Cells[12].Visible = false;//tipo de contrato
         }
-
         protected void grdPlanesPorVencerse_RowCreated(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false; //codigo
@@ -146,14 +148,12 @@ namespace Ejemplo.Web
             e.Row.Cells[14].Visible = false;//derivador
             e.Row.Cells[15].Visible = false;//estado
         }
-
         protected void grdPlanesPorVencerse_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdPlanesPorVencerse.Rows[e.NewSelectedIndex].Cells[1];
             int codigo = int.Parse(celdaCodigo.Text);
             Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId="+codigo.ToString());
         }
-
         protected void grdBeneficiariosConPlanSinFechaVencimiento_RowCreated(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false; //codigo
@@ -168,14 +168,143 @@ namespace Ejemplo.Web
             e.Row.Cells[14].Visible = false;//derivador
             e.Row.Cells[15].Visible = false;//estado
         }
-
         protected void grdBeneficiariosConPlanSinFechaVencimiento_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdBeneficiariosConPlanSinFechaVencimiento.Rows[e.NewSelectedIndex].Cells[1];
             int codigo = int.Parse(celdaCodigo.Text);
             Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + codigo.ToString());
         }
+        #endregion
+        #region TAREAS ESPECIALISTAS
 
-        
+        protected void CargarGrillasEspecialistas()
+        {
+            CargarGrillaInformesPendientes();
+            CargarGrillaInformesEnProceso();
+            CargarGrillaInformesTerminados();
+        }
+        protected void CargarGrillaInformesPendientes()
+        {
+            List<cInforme> ListaInformes = dFachada.InformeTraerTodosPendientesPorEspecialista(vMiPerfil.U);
+            cInforme informe;
+
+            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
+            ListarInformes informeAListar;
+
+            for(int i=0; i<ListaInformes.Count; i++)
+            {
+                informe = new cInforme();
+                informe = ListaInformes[i];
+                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
+                informeAListar = new ListarInformes();
+                informeAListar.Codigo = informe.Codigo;
+                informeAListar.Fecha = informe.Fecha;
+                informeAListar.Estado = informe.Estado;
+                informeAListar.Tipo = informe.Tipo;
+                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
+                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
+                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                ListaInformesParaListar.Add(informeAListar);
+            }
+
+            grdInformesPendientes.DataSource = ListaInformesParaListar;
+            grdInformesPendientes.DataBind();
+        }
+        protected void CargarGrillaInformesEnProceso()
+        {
+            List<cInforme> ListaInformes = dFachada.InformeTraerTodosEnProcesoPorEspecialista(vMiPerfil.U);
+            cInforme informe;
+
+            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
+            ListarInformes informeAListar;
+
+            for (int i = 0; i < ListaInformes.Count; i++)
+            {
+                informe = new cInforme();
+                informe = ListaInformes[i];
+                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
+                informeAListar = new ListarInformes();
+                informeAListar.Codigo = informe.Codigo;
+                informeAListar.Fecha = informe.Fecha;
+                informeAListar.Estado = informe.Estado;
+                informeAListar.Tipo = informe.Tipo;
+                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
+                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
+                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                ListaInformesParaListar.Add(informeAListar);
+            }
+
+            grdInformesEnProceso.DataSource = ListaInformesParaListar;
+            grdInformesEnProceso.DataBind();
+        }
+        protected void CargarGrillaInformesTerminados()
+        {
+            List<cInforme> ListaInformes = dFachada.InformeTraerTodosTerminadosPorEspecialista(vMiPerfil.U);
+            cInforme informe;
+
+            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
+            ListarInformes informeAListar;
+
+            for (int i = 0; i < ListaInformes.Count; i++)
+            {
+                informe = new cInforme();
+                informe = ListaInformes[i];
+                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
+                informeAListar = new ListarInformes();
+                informeAListar.Codigo = informe.Codigo;
+                informeAListar.Fecha = informe.Fecha;
+                informeAListar.Estado = informe.Estado;
+                informeAListar.Tipo = informe.Tipo;
+                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
+                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
+                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                ListaInformesParaListar.Add(informeAListar);
+            }
+
+            grdInformesTerminados.DataSource = ListaInformesParaListar;
+            grdInformesTerminados.DataBind();
+        }
+
+        protected void grdInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            //e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[2].Visible = false; //fecha
+            e.Row.Cells[4].Visible = false; //estado
+            e.Row.Cells[5].Visible = false; //codigo beneficiario
+        }
+
+        protected void grdInformesPendientes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            TableCell celdaCodigo = grdInformesPendientes.Rows[e.NewSelectedIndex].Cells[1];
+            int codigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vInformeRedactar.aspx?InformeId=" + codigo.ToString());
+        }
+
+        protected void grdInformesEnProceso_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            enproceso = true;
+            TableCell celdaCodigo = grdInformesEnProceso.Rows[e.NewSelectedIndex].Cells[1];
+            int codigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vInformeRedactar.aspx?InformeId=" + codigo.ToString());
+        }
+
+        protected void grdInformesEnProceso_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            //e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[2].Visible = false; //fecha
+            e.Row.Cells[4].Visible = false; //estado
+            e.Row.Cells[5].Visible = false; //codigo beneficiario
+        }
+        #endregion
+
+        protected void grdInformesTerminados_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void grdInformesTerminados_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+
+        }
     }
 }

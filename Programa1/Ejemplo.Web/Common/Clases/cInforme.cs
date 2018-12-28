@@ -9,7 +9,7 @@ namespace Common.Clases
     public class cInforme
     {
         public int Codigo { get; set; }
-        public DateTime Fecha { get; set; } 
+        public string Fecha { get; set; } 
         public cUtilidades.TipoInforme Tipo { get; set; }
         public cUtilidades.EstadoInforme Estado { get; set; }
         public cBeneficiario Beneficiario { get; set; }

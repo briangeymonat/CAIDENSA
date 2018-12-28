@@ -14,9 +14,46 @@ namespace Dominio.Clases
         {
             return pInforme.Agregar(parInforme);
         }
+        public static bool Redactar(cInforme parInforme)
+        {
+            return pInforme.Redactar(parInforme);
+        }
+
+        public static bool Finalizar(cInforme parInforme)
+        {
+            return pInforme.Finalizar(parInforme);
+        }
+        public static bool FinalizarSecciones(cInforme parInforme, cUsuario parUsuario)
+        {
+            return pInforme.FinalizarSecciones(parInforme, parUsuario);
+        }
+
         public static int UltimoIngresado()
         {
             return pInforme.UltimoIngresado();
         }
+        public static List<cInforme> TraerTodosPendientesPorEspecialista(cUsuario parUsuario)
+        {
+            return pInforme.TraerTodosPendientesPorEspecialista(parUsuario);
+        }
+        public static List<cInforme> TraerTodosEnProcesoPorEspecialista(cUsuario parUsuario)
+        {
+            return pInforme.TraerTodosEnProcesoPorEspecialista(parUsuario);
+        }
+        public static List<cInforme> TraerTodosTerminadosPorEspecialista(cUsuario parUsuario)
+        {
+            return pInforme.TraerTodosTerminadosPorEspecialista(parUsuario);
+        }
+
+        public static cInforme TraerEspecifico(cInforme parInforme)
+        {
+            return pInforme.TraerEspecifico(parInforme);
+        }
+        public static int VerificarSeccionesTerminadas(cInforme parInforme, cUsuario parUsuario)
+        {
+            return pInforme.VerificarSeccionesTerminadas(parInforme, parUsuario);
+        }
+
+
     }
 }
