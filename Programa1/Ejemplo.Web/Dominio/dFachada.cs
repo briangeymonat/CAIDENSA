@@ -332,7 +332,7 @@ namespace Dominio
         }
         #endregion
 
-<<<<<<< HEAD
+
         #region Sesion
 
         public static bool SesionAgregar(cSesion parSesion)
@@ -421,8 +421,8 @@ namespace Dominio
             return retorno;
             
         }
+        #endregion
 
-=======
         #region Seccion
 
         public static List<cSeccion> SeccionTraerTodasPorInforme(cInforme parInforme)
@@ -443,7 +443,6 @@ namespace Dominio
         {
             return dDiagnostico.TraerTodos();
         }
->>>>>>> 7424f04f0d85e6a95dd2dbed437d8ca1fe69df6c
         #endregion
     }
 }

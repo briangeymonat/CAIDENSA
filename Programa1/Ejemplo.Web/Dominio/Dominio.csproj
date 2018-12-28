@@ -48,6 +48,7 @@
     <Compile Include="Clases\dNotificacion.cs" />
     <Compile Include="Clases\dPlan.cs" />
     <Compile Include="Clases\dSeccion.cs" />
+    <Compile Include="Clases\dSesion.cs" />
     <Compile Include="Clases\dUsuario.cs" />
     <Compile Include="dFachada.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

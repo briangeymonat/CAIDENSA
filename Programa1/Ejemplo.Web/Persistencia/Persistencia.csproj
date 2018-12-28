@@ -48,6 +48,7 @@
     <Compile Include="Clases\pNotificacion.cs" />
     <Compile Include="Clases\pPersistencia.cs" />
     <Compile Include="Clases\pSeccion.cs" />
+    <Compile Include="Clases\pSesion.cs" />
     <Compile Include="Clases\pUsuario.cs" />
     <Compile Include="Clases\pPlan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
