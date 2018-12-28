@@ -230,8 +230,8 @@ namespace Ejemplo.Web
                     }
                     else
                     {
-                        unItinerario.HoraInicio = DateTime.Parse(txtDesde.Text);
-                        unItinerario.HoraFin = DateTime.Parse(txtHasta.Text);
+                        unItinerario.HoraInicio = txtDesde.Text;
+                        unItinerario.HoraFin = txtHasta.Text;
                         unItinerario.lstBeneficiarios = new List<cBeneficiarioItinerario>();
                         cBeneficiarioItinerario unBen;
                         for (int i = 0; i < BeneficiariosAgregados.Count; i++)
@@ -319,7 +319,7 @@ namespace Ejemplo.Web
                         }
                         else
                         {
-                            if (dFachada.ItinerarioAgregar(unItinerario)) { CargarTodo(); }
+                            if (dFachada.ItinerarioAgregar(unItinerario)) { CargarTodo(); dFachada.SesionAgregarSesionesDelDia(); }
                             else
                             {
                                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo agregar la sesión al itinerario.')", true);

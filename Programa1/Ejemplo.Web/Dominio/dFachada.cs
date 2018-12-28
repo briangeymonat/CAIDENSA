@@ -375,7 +375,7 @@ namespace Dominio
                 {
                     unaSesion.Centro = unItinerario.Centro;
                     unaSesion.Codigo = unItinerario.Codigo;
-                    unaSesion.Fecha = DateTime.Today;
+                    unaSesion.Fecha = DateTime.Today.ToShortDateString();
                     unaSesion.HoraFin = unItinerario.HoraFin;
                     unaSesion.HoraInicio = unItinerario.HoraInicio;
                     unaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
@@ -397,7 +397,7 @@ namespace Dominio
                 {
                     unaSesion.Centro = unItinerario.Centro;
                     unaSesion.Codigo = unItinerario.Codigo;
-                    unaSesion.Fecha = DateTime.Today;
+                    unaSesion.Fecha = DateTime.Today.ToShortDateString();
                     unaSesion.HoraFin = unItinerario.HoraFin;
                     unaSesion.HoraInicio = unItinerario.HoraInicio;
                     unaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
@@ -421,6 +421,13 @@ namespace Dominio
             return retorno;
             
         }
+
+        public static List<cSesion> SesionTraerPasaronDelDia()
+        {
+            return dSesion.TraerPasaronDelDia();
+        }
+
+
         #endregion
 
         #region Seccion

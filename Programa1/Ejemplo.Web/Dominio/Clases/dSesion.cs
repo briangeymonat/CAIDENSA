@@ -14,5 +14,9 @@ namespace Dominio.Clases
         {
             return pSesion.Agregar(parSesion);
         }
+        public static List<cSesion> TraerPasaronDelDia()
+        {
+            return pSesion.TraerPasaronDelDia();
+        }
     }
 }

@@ -76,9 +76,9 @@ namespace Persistencia.Clases
             return retorno;
         }
 
-        public static bool AgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario, cDiagnostico parDiagnostico)
+        /*public static bool AgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario, cDiagnostico parDiagnostico)
         {
 
-        }
+        }*/
     }
 }

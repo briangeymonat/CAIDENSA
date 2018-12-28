@@ -96,8 +96,8 @@ namespace Persistencia.Clases
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parItinerario.Dia));
-                cmd.Parameters.Add(new SqlParameter("@ItinerarioHoraInicio", parItinerario.HoraInicio.ToShortTimeString()));
-                cmd.Parameters.Add(new SqlParameter("@ItinerarioHoraFin", parItinerario.HoraFin.ToShortTimeString()));
+                cmd.Parameters.Add(new SqlParameter("@ItinerarioHoraInicio", parItinerario.HoraInicio));
+                cmd.Parameters.Add(new SqlParameter("@ItinerarioHoraFin", parItinerario.HoraFin));
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
@@ -201,8 +201,8 @@ namespace Persistencia.Clases
                                 break;
                         }
                         unItinerario.Dia = oReader["ItinerarioDia"].ToString();
-                        unItinerario.HoraInicio = DateTime.Parse(oReader["ItinerarioHoraInicio"].ToString());
-                        unItinerario.HoraFin = DateTime.Parse(oReader["ItinerarioHoraFin"].ToString());
+                        unItinerario.HoraInicio = DateTime.Parse(oReader["ItinerarioHoraInicio"].ToString()).ToShortTimeString();
+                        unItinerario.HoraFin = DateTime.Parse(oReader["ItinerarioHoraFin"].ToString()).ToShortTimeString();
                         unItinerario.Comentario = oReader["ItinerarioComentario"].ToString();
                         switch (int.Parse(oReader["ItinerarioCentro"].ToString()))
                         {

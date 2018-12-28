@@ -163,7 +163,7 @@ namespace Ejemplo.Web
                     {
                         if (!HayAlgunaSesion)
                         {
-                            if (LosItinerarios[k].HoraInicio >= LasHoras[i] && LosItinerarios[k].HoraInicio < LasHoras[i + 1])
+                            if (DateTime.Parse(LosItinerarios[k].HoraInicio) >= LasHoras[i] && DateTime.Parse(LosItinerarios[k].HoraInicio) < LasHoras[i + 1])
                             {
                                 for (int l = 0; l < LosItinerarios[k].lstEspecialistas.Count; l++)
                                 {
@@ -202,7 +202,7 @@ namespace Ejemplo.Web
                         int filas = 0;
                         for (int k = i; k < LasHoras.Count; k++)
                         {
-                            if (celdas[i][j].HoraFin > LasHoras[k])
+                            if (DateTime.Parse(celdas[i][j].HoraFin) > LasHoras[k])
                                 filas++;
                         }
                         Itinerarios += string.Format("<td style='background-color:ffffff; color:#ffd800' rowspan={0} onserverclick='AccionOkay(" + celdas[i][j].Codigo + ")' >" +
