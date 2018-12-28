@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vTareas.aspx.cs" Inherits="Ejemplo.Web.vTareasEspecialistas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vTareas.aspx.cs" Inherits="Ejemplo.Web.vTareas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -41,11 +41,15 @@
                 </td>
                 <td>
                     <asp:Label ID="Label3" runat="server" Text="Informes pendientes:"></asp:Label>
-                    <asp:GridView ID="grdInformesPendientes" runat="server"></asp:GridView>
+                    <asp:GridView ID="grdInformesPendientes" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdInformesPendientes_RowCreated" OnSelectedIndexChanging="grdInformesPendientes_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
                 </td>
                 <td>
                     <asp:Label ID="Label4" runat="server" Text="Informes en proceso:"></asp:Label>
-                    <asp:GridView ID="grdInformesEnProceso" runat="server"></asp:GridView>
+                    <asp:GridView ID="grdInformesEnProceso" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdInformesEnProceso_RowCreated" OnSelectedIndexChanging="grdInformesEnProceso_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
+                </td>
+                <td>
+                    <asp:Label ID="Label9" runat="server" Text="Informes terminados:"></asp:Label>
+                    <asp:GridView ID="grdInformesTerminados" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdInformesTerminados_RowCreated" OnSelectedIndexChanging="grdInformesTerminados_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
                 </td>
             </tr>
         </table>

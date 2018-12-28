@@ -263,16 +263,40 @@ namespace Ejemplo.Web
                 }
                 informe.lstSecciones.Add(seccion);
                 #endregion
+
+
                 #region Encuadre
                 seccion = new cSeccion();
                 seccion.Nombre = cUtilidades.NombreSeccion.Encuadre;
                 seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
                 //CUANDO SE TENGA EL ITINERARIO EL CONTENIDO DE ESTA SECCION SE REALIZARÁ AQUI
+                for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
+                {
+                    cUsuarioSeccion us = new cUsuarioSeccion();
+                    us.Usuario = new cUsuario();
+                    us.Usuario = lstEspecialistasAgregados[i];
+                    us.Estado = cUtilidades.EstadoInforme.Terminado;
+                    seccion.lstUsuariosSeccion.Add(us);
+                }
                 informe.lstSecciones.Add(seccion);
                 #endregion
                 #region Diagnostico
                 seccion = new cSeccion();
                 seccion.Nombre = cUtilidades.NombreSeccion.Diagnóstico;
+                seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
+                {
+                    cUsuarioSeccion us = new cUsuarioSeccion();
+                    us.Usuario = new cUsuario();
+                    us.Usuario = lstEspecialistasAgregados[i];
+                    us.Estado = 0;
+                    seccion.lstUsuariosSeccion.Add(us);
+                }
+                informe.lstSecciones.Add(seccion);
+                #endregion
+                #region Presentacion
+                seccion = new cSeccion();
+                seccion.Nombre = cUtilidades.NombreSeccion.Presentación;
                 seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
                 for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
                 {

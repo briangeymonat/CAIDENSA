@@ -392,6 +392,7 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ListarInformes.cs" />
     <Compile Include="vInicio.aspx.cs">
       <DependentUpon>vInicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

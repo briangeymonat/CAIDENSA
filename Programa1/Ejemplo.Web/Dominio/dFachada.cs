@@ -106,6 +106,12 @@ namespace Dominio
             return dUsuario.TraerTodosPorItinerario(parItinerario);
         }
 
+        public static List<cUsuarioSeccion> UsuarioSeccionTraerTodosPorSeccion(cSeccion parSeccion)
+        {
+            return dUsuario.TraerTodosPorSeccion(parSeccion);
+        }
+
+
         #endregion
 
         #region Especialidad
@@ -224,9 +230,41 @@ namespace Dominio
         {
             return dInforme.Agregar(parInforme);
         }
+        public static bool InformeRedactar(cInforme parInforme)
+        {
+            return dInforme.Redactar(parInforme);
+        }
+        public static bool InformeFinalizar(cInforme parInforme)
+        {
+            return dInforme.Finalizar(parInforme);
+        }
+        public static bool InformeFinalizarSecciones(cInforme parInforme, cUsuario parUsuario)
+        {
+            return dInforme.FinalizarSecciones(parInforme, parUsuario);
+        }
         public static int InformeUltimoIngresado()
         {
             return dInforme.UltimoIngresado();
+        }
+        public static List<cInforme> InformeTraerTodosPendientesPorEspecialista(cUsuario parUsuario)
+        {
+            return dInforme.TraerTodosPendientesPorEspecialista(parUsuario);
+        }
+        public static List<cInforme> InformeTraerTodosEnProcesoPorEspecialista(cUsuario parUsuario)
+        {
+            return dInforme.TraerTodosEnProcesoPorEspecialista(parUsuario);
+        }
+        public static List<cInforme> InformeTraerTodosTerminadosPorEspecialista(cUsuario parUsuario)
+        {
+            return dInforme.TraerTodosTerminadosPorEspecialista(parUsuario);
+        }
+        public static cInforme InformeTraerEspecifico(cInforme parInforme)
+        {
+            return dInforme.TraerEspecifico(parInforme);
+        }
+        public static int InformeVerificarSeccionesTerminadas(cInforme parInforme, cUsuario parUsuario)
+        {
+            return dInforme.VerificarSeccionesTerminadas(parInforme, parUsuario);
         }
 
         #endregion
@@ -294,6 +332,7 @@ namespace Dominio
         }
         #endregion
 
+<<<<<<< HEAD
         #region Sesion
 
         public static bool SesionAgregar(cSesion parSesion)
@@ -383,6 +422,28 @@ namespace Dominio
             
         }
 
+=======
+        #region Seccion
+
+        public static List<cSeccion> SeccionTraerTodasPorInforme(cInforme parInforme)
+        {
+            return dSeccion.TraerTodasPorInforme(parInforme);
+        }
+
+
+        #endregion
+
+        #region Diagnostico
+
+        public static List<string> DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            return dDiagnostico.TraerUltimosDiagnosticosPorBeneficiario(parBeneficiario);
+        }
+        public static List<cDiagnostico> DiagnosticoTraerTodos()
+        {
+            return dDiagnostico.TraerTodos();
+        }
+>>>>>>> 7424f04f0d85e6a95dd2dbed437d8ca1fe69df6c
         #endregion
     }
 }
