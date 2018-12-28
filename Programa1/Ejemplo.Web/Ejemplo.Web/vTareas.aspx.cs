@@ -179,12 +179,14 @@ namespace Ejemplo.Web
         #region TAREAS ESPECIALISTAS
 
         protected void CargarGrillasEspecialistas()
-        {
+        {//son 5 ahora 28/12
             CargarGrillaInformesPendientes();
             CargarGrillaInformesEnProceso();
             CargarGrillaInformesTerminados();
             CargarGrillaSesionesDelDia();
+            CargarGrillasSesionesObservaciones();
         }
+
         protected void CargarGrillaInformesPendientes()
         {
             List<cInforme> ListaInformes = dFachada.InformeTraerTodosPendientesPorEspecialista(vMiPerfil.U);
@@ -269,8 +271,13 @@ namespace Ejemplo.Web
         protected void CargarGrillaSesionesDelDia()
         {
             List<cSesion> sesiones = new List<cSesion>();
-            grdSesionesDelDia.DataSource = sesiones;
+            grdSesionesDelDia.DataSource = dFachada.SesionTraerProximasDelDiaPorEspecialista(vMiPerfil.U);
             grdSesionesDelDia.DataBind();
+        }
+        protected void CargarGrillasSesionesObservaciones()
+        {
+            grdObservacionesDeSesiones.DataSource = dFachada.SesionTraerPasaronDelDiaPorEspecialista(vMiPerfil.U);
+            grdObservacionesDeSesiones.DataBind();
         }
 
         protected void grdInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
@@ -316,6 +323,16 @@ namespace Ejemplo.Web
         }
 
         protected void grdSesionesPasadasDelDia_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+
+        }
+
+        protected void grdObservacionesDeSesiones_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+
+        }
+
+        protected void grdSesionesDelDia_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
         }

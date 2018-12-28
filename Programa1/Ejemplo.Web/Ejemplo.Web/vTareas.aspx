@@ -33,11 +33,11 @@
             <tr>
                 <td>
                     <asp:Label ID="Label1" runat="server" Text="Sesiones del día:"></asp:Label>
-                    <asp:GridView ID="grdSesionesDelDia" runat="server"></asp:GridView>
+                    <asp:GridView ID="grdSesionesDelDia" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesDelDia_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
                 </td>
                 <td>
                     <asp:Label ID="Label2" runat="server" Text="Observaciones de sesiones:"></asp:Label>
-                    <asp:GridView ID="grdObservacionesDeSesiones" runat="server"></asp:GridView>
+                    <asp:GridView ID="grdObservacionesDeSesiones" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdObservacionesDeSesiones_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
                 </td>
                 <td>
                     <asp:Label ID="Label3" runat="server" Text="Informes pendientes:"></asp:Label>

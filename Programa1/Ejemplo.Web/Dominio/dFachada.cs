@@ -426,6 +426,14 @@ namespace Dominio
         {
             return dSesion.TraerPasaronDelDia();
         }
+        public static List<cSesion> SesionTraerProximasDelDiaPorEspecialista(cUsuario parUsuario)
+        {
+            return dSesion.TraerProximasDelDiaPorEspecialista(parUsuario);
+        }
+        public static List<cSesion> SesionTraerPasaronDelDiaPorEspecialista(cUsuario parUsuario)
+        {
+            return dSesion.TraerPasaronDelDiaPorEspecialista(parUsuario);
+        }
 
 
         #endregion

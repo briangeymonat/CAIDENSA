@@ -18,5 +18,15 @@ namespace Dominio.Clases
         {
             return pSesion.TraerPasaronDelDia();
         }
+        public static List<cSesion> TraerProximasDelDiaPorEspecialista(cUsuario parUsuario)
+        {
+            return pSesion.TraerProximasDelDiaPorEspecialista(parUsuario);
+        }
+        public static List<cSesion> TraerPasaronDelDiaPorEspecialista(cUsuario parUsuario)
+        {
+            return pSesion.TraerPasaronDelDiaPorEspecialista(parUsuario);
+        }
+
+        
     }
 }
