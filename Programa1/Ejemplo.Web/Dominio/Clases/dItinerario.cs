@@ -30,9 +30,5 @@ namespace Dominio.Clases
         {
             return pItinerario.ModificarEstadoDelDia(parDia);
         }
-        public static string TraerEncuadrePorBeneficiario(cBeneficiario parBeneficiario)
-        {
-            return pItinerario.TraerEncuadrePorBeneficiario(parBeneficiario);
-        }
     }
 }

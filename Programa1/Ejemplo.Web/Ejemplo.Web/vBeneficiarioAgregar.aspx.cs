@@ -128,7 +128,6 @@ namespace Ejemplo.Web
                 unBeneficiario.Escolaridad = txtEscolaridad.Text;
                 unBeneficiario.Derivador = txtDerivador.Text;
                 unBeneficiario.Email = txtEmail.Text;
-                unBeneficiario.Estado = true;
 
                 unBeneficiario.lstPlanes = LosPlanes;
                 if (dFachada.BeneficiarioTraerEspecificoCI(unBeneficiario) != null)
@@ -207,6 +206,5 @@ namespace Ejemplo.Web
                 txtAtributario.Text = string.Empty;
             }
         }
-        
     }
 }

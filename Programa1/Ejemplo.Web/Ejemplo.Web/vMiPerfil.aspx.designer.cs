@@ -247,13 +247,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblBeneficiariosQueAtiende;
         
         /// <summary>
-        /// Control grdBeneficiariosQueAtiende.
+        /// Control GridView1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdBeneficiariosQueAtiende;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
         /// Control lblInformesRealizados.
@@ -265,13 +265,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblInformesRealizados;
         
         /// <summary>
-        /// Control grdInformesRealizados.
+        /// Control GridView2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdInformesRealizados;
+        protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
         /// Control lblInformesPendientes.
@@ -283,13 +283,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblInformesPendientes;
         
         /// <summary>
-        /// Control grdInformesPendientes.
+        /// Control GridView3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdInformesPendientes;
+        protected global::System.Web.UI.WebControls.GridView GridView3;
         
         /// <summary>
         /// Control ListView1.

@@ -24,22 +24,6 @@ namespace Ejemplo.Web
                 CargarGrillasAdministrativas();
                 CargarGrillasEspecialistas();
                 enproceso = false;
-                if((vMiPerfil.U.Tipo==cUtilidades.TipoDeUsuario.Administrador || vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrativo) && vMiPerfil.U.Especialidad.Nombre =="Sin especialidad")
-                {
-                    PanelTaerasAdministrativas.Visible = true;
-                    PanelTaerasEspecialistas.Visible = false;
-                }
-                else if(vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Usuario && vMiPerfil.U.Especialidad.Nombre != "Sin especialidad")
-                {
-                    PanelTaerasAdministrativas.Visible = false;
-                    PanelTaerasEspecialistas.Visible = true;
-                }
-                else if(vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Usuario && vMiPerfil.U.Especialidad.Nombre == "Sin especialidad")
-                {
-                    PanelTaerasAdministrativas.Visible = false;
-                    PanelTaerasEspecialistas.Visible = false;
-                }
-
             }
         }
 

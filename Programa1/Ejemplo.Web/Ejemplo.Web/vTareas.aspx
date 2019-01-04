@@ -6,7 +6,6 @@
     <h3>Tareas
     </h3>
     <asp:Panel ID="PanelTaerasAdministrativas" runat="server">
-        <h4>Tareas administrativas</h4>
         <table>
             <tr>
                 <td>
@@ -30,7 +29,6 @@
         </table>
     </asp:Panel>
     <asp:Panel ID="PanelTaerasEspecialistas" runat="server">
-        <h4>Tareas de especialistas</h4>
         <table>
             <tr>
                 <td>

@@ -1,6 +1,4 @@
-﻿using Common.Clases;
-using Dominio;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,71 +12,57 @@ namespace Ejemplo.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
-            { 
-                CargarGrilla();
+            {
+                this.btnCancelar.Visible = false;
+                this.btnEliminar.Visible = false;
+                this.btnModificar.Visible = false;
+                this.btnAgregar.Visible = true;
             }
-        }      
-        
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.btnCancelar.Visible = false;
+            this.btnEliminar.Visible = false;
+            this.btnModificar.Visible = false;
+            this.btnAgregar.Visible = true;
+            this.lblMensaje.Text = string.Empty;
+        }
+
+        protected void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            this.btnCancelar.Visible = true;
+            this.btnEliminar.Visible = true;
+            this.btnModificar.Visible = true;
+            this.btnAgregar.Visible = false;
+            this.lblMensaje.Text = string.Empty;
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            this.btnCancelar.Visible = false;
+            this.btnEliminar.Visible = false;
+            this.btnModificar.Visible = false;
+            this.btnAgregar.Visible = true;
+            this.lblMensaje.Text = "Modificado correctamente";
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            this.btnCancelar.Visible = false;
+            this.btnEliminar.Visible = false;
+            this.btnModificar.Visible = false;
+            this.btnAgregar.Visible = true;
+            this.lblMensaje.Text = "Eliminar correctamente";
+        }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            if(txtDiagnostico.Text != "")
-            {
-                cDiagnostico diag = new cDiagnostico();
-                diag.Tipo = txtDiagnostico.Text;
-                if(!dFachada.DiagnosticoExiste(diag))
-                {
-                    bool resultado = dFachada.DiagnosticoAgregar(diag);
-                    if(resultado)
-                    {
-                        this.btnAgregar.Visible = true;
-                        this.lblMensaje.Text = "Agregado correctamente";
-                        this.txtDiagnostico.Text = string.Empty;
-                        CargarGrilla();
-                    }
-                }
-                else
-                {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Ya existe ese diagnóstico')", true);
-                }
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan datos')", true);
-            }   
-            
-        }
-
-        protected void CargarGrilla()
-        {
-            this.grdDiagnosticos.DataSource = dFachada.DiagnosticoTraerTodos();
-            this.grdDiagnosticos.DataBind();
-        }
-
-        protected void grdDiagnosticos_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            TableCell celdaCodigo = grdDiagnosticos.Rows[e.RowIndex].Cells[1];
-            cDiagnostico diag = new cDiagnostico();
-            diag.Codigo = int.Parse(celdaCodigo.Text);
-
-            bool resultado = dFachada.DiagnosticoExisteDiagnosticoBeneficiario(diag);
-            if(!resultado)
-            {
-                bool res = dFachada.DiagnosticoEliminar(diag);
-                if(res)
-                {
-                    lblMensaje.Text = "Eliminado correctamente";
-                    CargarGrilla();
-                }
-                else
-                {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puede eliminar.')", true);
-                }
-            }
-            else
-            {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puede eliminar un diagnóstico que tenga al menos un beneficiario.')", true);
-            }
+            this.btnCancelar.Visible = false;
+            this.btnEliminar.Visible = false;
+            this.btnModificar.Visible = false;
+            this.btnAgregar.Visible = true;
+            this.lblMensaje.Text = "Agregado correctamente";
         }
     }
 }
