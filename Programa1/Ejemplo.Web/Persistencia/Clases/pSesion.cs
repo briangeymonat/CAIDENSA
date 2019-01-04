@@ -55,6 +55,7 @@ namespace Persistencia.Clases
                         cmd2.CommandType = CommandType.StoredProcedure;
                         cmd2.Parameters.Add(new SqlParameter("@BeneficiarioId", parSesion.lstBeneficiarios[i].Beneficiario.Codigo));
                         cmd2.Parameters.Add(new SqlParameter("@SesionId", parSesion.Codigo));
+                        cmd2.Parameters.Add(new SqlParameter("@Estado", parSesion.lstBeneficiarios[i].Estado));
 
                         //ARREGLAR CUANDO SE PONGA EN PRESENTACION PARA ELEGIR EL PLAN
                         cmd2.Parameters.Add(new SqlParameter("@PlanId", parSesion.lstBeneficiarios[i].Plan.Codigo));

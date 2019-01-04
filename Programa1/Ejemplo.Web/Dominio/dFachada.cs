@@ -391,6 +391,7 @@ namespace Dominio
                         unaSesion.lstBeneficiarios.Add(new cBeneficiarioSesion());
                         unaSesion.lstBeneficiarios[i].Beneficiario = unItinerario.lstBeneficiarios[i].Beneficiario;
                         unaSesion.lstBeneficiarios[i].Plan = unItinerario.lstBeneficiarios[i].Plan;
+                        unaSesion.lstBeneficiarios[i].Estado = cUtilidades.EstadoSesion.SinEstado;
                     }
                     unaSesion.lstUsuarios = unItinerario.lstEspecialistas;
                     unaSesion.TipoSesion = unItinerario.TipoSesion;
