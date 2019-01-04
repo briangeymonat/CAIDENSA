@@ -9,6 +9,6 @@ namespace Common.Clases
     public class cDiagnosticoBeneficiario
     {
         public cDiagnostico Diagnostico { get; set; }
-        public DateTime Fecha { get; set; }
+        public string Fecha { get; set; }
     }
 }

@@ -229,8 +229,6 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
-
-
         public static bool ModificarEstadoDelDia(char parDia)
         {
             bool retorno = true;
@@ -260,6 +258,95 @@ namespace Persistencia.Clases
                 throw ex;
             }
 
+            return retorno;
+        }
+        public static string TraerEncuadrePorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            List<string> especialidades = new List<string>();
+            string retorno = "";
+            string s = "";
+            int i = 0;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerEncuadrePorBeneficiario", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idBeneficiario", parBeneficiario.Codigo));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        s = "";
+                        i += int.Parse(oReader["cantidad"].ToString());
+                        s = oReader["EspecialidadNombre"].ToString();
+                        especialidades.Add(s);
+                    }
+                }
+                if(i==0)
+                {
+                    retorno = "No tiene abordaje";
+                }
+                else
+                {
+
+                retorno = "Abordaje ";
+                for(int j = 0; j<especialidades.Count; j++)
+                {
+                    if(j==0)
+                    {
+                        if (especialidades[j] == "Psicologia")
+                            retorno = retorno + "psicológico";
+                        if (especialidades[j] == "Pedadogia")
+                            retorno = retorno + "pedagógico";
+                        if (especialidades[j] == "Fisioterapia")
+                            retorno = retorno + "fisioterapéutico";
+                        if (especialidades[j] == "Fonoaudiologia")
+                            retorno = retorno + "fonoaudiológico";
+                        if (especialidades[j] == "Psicomotricidad")
+                            retorno = retorno + "psicomotriz";
+                    }
+                    else if((especialidades.Count-j)==1)
+                    {
+                        if (especialidades[j] == "Psicologia")
+                            retorno = retorno + " y psicológico";
+                        if (especialidades[j] == "Pedadogia")
+                            retorno = retorno + " y pedagógico";
+                        if (especialidades[j] == "Fisioterapia")
+                            retorno = retorno + " y fisioterapéutico";
+                        if (especialidades[j] == "Fonoaudiologia")
+                            retorno = retorno + " y fonoaudiológico";
+                        if (especialidades[j] == "Psicomotricidad")
+                            retorno = retorno + " y psicomotriz";
+                    }    
+                    else
+                    {
+                        if (especialidades[j] == "Psicologia")
+                            retorno = retorno + ", psicológico";
+                        if (especialidades[j] == "Pedadogia")
+                            retorno = retorno + ", pedagógico";
+                        if (especialidades[j] == "Fisioterapia")
+                            retorno = retorno + ", fisioterapéutico";
+                        if (especialidades[j] == "Fonoaudiologia")
+                            retorno = retorno + ", fonoaudiológico";
+                        if (especialidades[j] == "Psicomotricidad")
+                            retorno = retorno + ", psicomotriz";
+                    }
+                }
+                retorno = retorno + " " + i + " veces semanales.";
+
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return retorno;
         }
     }

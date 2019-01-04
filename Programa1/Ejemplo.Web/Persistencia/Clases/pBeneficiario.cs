@@ -36,7 +36,7 @@ namespace Persistencia.Clases
                 cmd.Parameters.Add(new SqlParameter("@BeneficiarioMotivoConsulta", elBeneficiario.MotivoConsulta));
                 cmd.Parameters.Add(new SqlParameter("@BeneficiarioEscolaridad", elBeneficiario.Escolaridad));
                 cmd.Parameters.Add(new SqlParameter("@BeneficiarioDerivador", elBeneficiario.Derivador));
-                cmd.Parameters.Add(new SqlParameter("@BeneficiarioEstado", true));
+                cmd.Parameters.Add(new SqlParameter("@BeneficiarioEstado", elBeneficiario.Estado));
 
                 int rtn = cmd.ExecuteNonQuery();
 
@@ -465,6 +465,57 @@ namespace Persistencia.Clases
                 }
             }
             catch(Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+
+
+        public static List<cBeneficiario> TraerTodosPorEspecialista(cUsuario parUsuario)
+        {
+            List<cBeneficiario> retorno = new List<cBeneficiario>();
+            cBeneficiario Beneficiario;
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Beneficiarios_TraerPorEspecialista", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@idEspecialista", parUsuario.Codigo));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        Beneficiario = new cBeneficiario();
+                        Beneficiario.Codigo = int.Parse(oReader["BeneficiarioId"].ToString());
+                        Beneficiario.Nombres = oReader["BeneficiarioNombres"].ToString();
+                        Beneficiario.Apellidos = oReader["BeneficiarioApellidos"].ToString();
+                        Beneficiario.CI = int.Parse(oReader["BeneficiarioCI"].ToString());
+                        Beneficiario.Sexo = oReader["BeneficiarioSexo"].ToString();
+                        Beneficiario.Telefono1 = oReader["BeneficiarioTelefono1"].ToString();
+                        Beneficiario.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
+                        Beneficiario.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
+                        Beneficiario.Email = oReader["BeneficiarioEmail"].ToString();
+                        Beneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString()).ToShortDateString();
+                        Beneficiario.Atributario = oReader["BeneficiarioAtributario"].ToString();
+                        Beneficiario.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
+                        Beneficiario.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
+                        Beneficiario.Derivador = oReader["BeneficiarioDerivador"].ToString();
+                        Beneficiario.Estado = bool.Parse(oReader["BeneficiarioEstado"].ToString());
+                        retorno.Add(Beneficiario);
+                    }
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

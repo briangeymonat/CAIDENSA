@@ -13,6 +13,7 @@ namespace Ejemplo.Web
     {
         public static cUsuario U;
         public static int i = 0;
+        public static int ii = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,6 +25,9 @@ namespace Ejemplo.Web
                 }
                 CargarCombos();
                 cargarDatos();
+                CargarGrillaBeneficiariosQueAtiende();
+                CargarGrillaInformesPendientes();
+                CargarGrillaInformesRealizados();
                 ModoEdicion(false);
             }
         }
@@ -52,7 +56,7 @@ namespace Ejemplo.Web
                 throw ex;
             }
         }
-    
+
         private void cargarDatos()
         {
             txtNickName.Text = U.NickName;
@@ -97,6 +101,66 @@ namespace Ejemplo.Web
             ddlEspecialidad.DataBind();
         }
 
+        private void CargarGrillaBeneficiariosQueAtiende()
+        {
+            grdBeneficiariosQueAtiende.DataSource = dFachada.BeneficiarioTraerTodosPorEspecialista(U);
+            grdBeneficiariosQueAtiende.DataBind();
+        }
+        private void CargarGrillaInformesRealizados()
+        {
+            List<cInforme> ListaInformes = dFachada.InformeTraerTodosTerminadosPorEspecialista(U);
+            cInforme informe;
+
+            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
+            ListarInformes informeAListar;
+
+            for (int i = 0; i < ListaInformes.Count; i++)
+            {
+                informe = new cInforme();
+                informe = ListaInformes[i];
+                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
+                informeAListar = new ListarInformes();
+                informeAListar.Codigo = informe.Codigo;
+                informeAListar.Fecha = informe.Fecha;
+                informeAListar.Estado = informe.Estado;
+                informeAListar.Tipo = informe.Tipo;
+                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
+                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
+                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                ListaInformesParaListar.Add(informeAListar);
+            }
+
+            grdInformesRealizados.DataSource = ListaInformesParaListar;
+            grdInformesRealizados.DataBind();
+        }
+        protected void CargarGrillaInformesPendientes()
+        {
+            List<cInforme> ListaInformes = dFachada.InformeTraerTodosPendientesPorEspecialista(vMiPerfil.U);
+            cInforme informe;
+
+            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
+            ListarInformes informeAListar;
+
+            for (int i = 0; i < ListaInformes.Count; i++)
+            {
+                informe = new cInforme();
+                informe = ListaInformes[i];
+                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
+                informeAListar = new ListarInformes();
+                informeAListar.Codigo = informe.Codigo;
+                informeAListar.Fecha = informe.Fecha;
+                informeAListar.Estado = informe.Estado;
+                informeAListar.Tipo = informe.Tipo;
+                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
+                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
+                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                ListaInformesParaListar.Add(informeAListar);
+            }
+
+            grdInformesPendientes.DataSource = ListaInformesParaListar;
+            grdInformesPendientes.DataBind();
+        }
+
         private void ModoEdicion(bool pVisible)
         {
             txtNickName.Enabled = pVisible;
@@ -122,7 +186,7 @@ namespace Ejemplo.Web
         private bool FaltanDatosObligatorios()
         {
             if (this.txtNickName.Text == string.Empty || this.txtNombres.Text == string.Empty || this.txtApellidos.Text == string.Empty || this.txtCi.Text == string.Empty ||
-                (this.rbTipoDeEmpleado.SelectedIndex !=0 && this.rbTipoDeEmpleado.SelectedIndex != 1 && this.rbTipoDeEmpleado.SelectedIndex != 2))
+                (this.rbTipoDeEmpleado.SelectedIndex != 0 && this.rbTipoDeEmpleado.SelectedIndex != 1 && this.rbTipoDeEmpleado.SelectedIndex != 2))
             {
                 return true;
             }
@@ -216,6 +280,47 @@ namespace Ejemplo.Web
         {
             ModoEdicion(true);
         }
-        
+
+        protected void grdBeneficiariosQueAtiende_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[5].Visible = false; //sexo
+            e.Row.Cells[7].Visible = false; //tel2
+            e.Row.Cells[8].Visible = false;//email
+            e.Row.Cells[9].Visible = false;//domicilio
+            e.Row.Cells[10].Visible = false;//fecha de nacimiento
+            e.Row.Cells[11].Visible = false;//atributario
+            e.Row.Cells[12].Visible = false;//motivo consulta
+            e.Row.Cells[13].Visible = false;//escolaridad
+            e.Row.Cells[14].Visible = false;//derivador
+            e.Row.Cells[15].Visible = false;//estado
+        }
+
+        protected void grdInformesRealizados_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false; //codigo
+            e.Row.Cells[4].Visible = false; //codBeneficiario
+        }
+
+        protected void grdInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[5].Visible = false; //codBeneficiario
+        }
+
+        protected void grdBeneficiariosQueAtiende_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            ii = 1;
+            TableCell celdaCodigo = grdBeneficiariosQueAtiende.Rows[e.NewSelectedIndex].Cells[1];
+            int codigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + codigo.ToString());
+        }
+
+        protected void grdInformesPendientes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            TableCell celdaCodigo = grdInformesPendientes.Rows[e.NewSelectedIndex].Cells[1];
+            int codigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vInformeRedactar.aspx?InformeId=" + codigo.ToString());
+        }
     }
 }

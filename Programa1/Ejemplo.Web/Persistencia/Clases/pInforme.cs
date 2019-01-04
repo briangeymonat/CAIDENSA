@@ -240,12 +240,7 @@ namespace Persistencia.Clases
                         }
                     }
                     #endregion
-
-
-
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -481,19 +476,6 @@ namespace Persistencia.Clases
                             {
                                 retorno = false;
                             }
-                            /*for (int g = 0; g < parInforme.lstSecciones[i].lstUsuariosSeccion.Count; g++)
-                            {
-                                SqlCommand cmd7 = new SqlCommand("UsuariosSecciones_Finalizadas", conn);
-                                cmd7.CommandType = CommandType.StoredProcedure;
-                                cmd7.Parameters.Add(new SqlParameter("@idSeccion", parInforme.lstSecciones[i].Codigo));
-                                cmd7.Parameters.Add(new SqlParameter("@idUsuario", parInforme.lstSecciones[i].lstUsuariosSeccion[g].Usuario.Codigo));
-                                int rtn2 = cmd7.ExecuteNonQuery();
-                                if (rtn2 <= 0)
-                                {
-                                    retorno = false;
-                                }
-                            }*/
-
                         }
                     }
                 }
@@ -566,9 +548,6 @@ namespace Persistencia.Clases
                         }
                     }
                     #endregion
-
-
-
                 }
                 if (conn.State == ConnectionState.Open)
                 {

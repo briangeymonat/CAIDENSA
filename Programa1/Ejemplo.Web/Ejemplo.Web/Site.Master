@@ -48,6 +48,7 @@
                     <asp:MenuItem Text="Beneficiarios" Value="Beneficiarios">
                         <asp:MenuItem Text="Agregar nuevo" Value="Agregar nuevo" NavigateUrl="~/vBeneficiarioAgregar.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Mostrar todos" Value="Mostrar todos" NavigateUrl="~/vBeneficiarioMostrar.aspx"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/vBeneficiarioAgregarPasivo.aspx" Text="Agregar pasivo" Value="Agregar pasivo"></asp:MenuItem>
                     </asp:MenuItem>
                     <asp:MenuItem Text="Itinerario" Value="Itinerario">
                         <asp:MenuItem Text="Nuevo itinerario" Value="Nuevo itinerario" NavigateUrl="~/vItinerarioNuevaSesion.aspx"></asp:MenuItem>

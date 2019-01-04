@@ -80,7 +80,7 @@ namespace Ejemplo.Web
             this.lblEdad.Text = edadAños + " años y " + edadMeses + " meses";
             lblMotivoConsulta.Text = beneficiario.MotivoConsulta.ToString();
             lblEscolaridad.Text = beneficiario.Escolaridad.ToString();
-            //lblEncuadre.Text = cuando se haga el itinerario
+            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(beneficiario);
             //falta ocultar algunas columnas de la grilla y los botones agregar y quitar, al igual que realizar informe.
 
 
@@ -268,6 +268,7 @@ namespace Ejemplo.Web
                 #region Encuadre
                 seccion = new cSeccion();
                 seccion.Nombre = cUtilidades.NombreSeccion.Encuadre;
+                //  seccion.Contenido = dFachada.ItinerarioTraerEncuadrePorBeneficiario(beneficiario); 
                 seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
                 //CUANDO SE TENGA EL ITINERARIO EL CONTENIDO DE ESTA SECCION SE REALIZARÁ AQUI
                 for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
@@ -423,5 +424,6 @@ namespace Ejemplo.Web
             }
 
         }
+
     }
 }
