@@ -111,7 +111,21 @@ namespace Ejemplo.Web
             lblEdad.Text = edadAños + " años y " + edadMeses + " meses";
             lblMotivoConsulta.Text = Informe.Beneficiario.MotivoConsulta.ToString();
             lblEscolaridad.Text = Informe.Beneficiario.Escolaridad.ToString();
-            lblEncuadre.Text = ""; //Cuando se haga el itinerario
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(Informe.Beneficiario);
             #region TraerUltimos diagnosticos
             List<string> diagnosticos = dFachada.DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(Informe.Beneficiario);
             string diag = "";
@@ -276,7 +290,7 @@ namespace Ejemplo.Web
             lblEdad.Text = edadAños + " años y " + edadMeses + " meses";
             lblMotivoConsulta.Text = Informe.Beneficiario.MotivoConsulta.ToString();
             lblEscolaridad.Text = Informe.Beneficiario.Escolaridad.ToString();
-            lblEncuadre.Text = ""; //Cuando se haga el itinerario
+            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(Informe.Beneficiario);
             List<string> diagnosticos = dFachada.DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(Informe.Beneficiario);
             string diag = "";
             if (diagnosticos.Count > 0)
@@ -399,6 +413,10 @@ namespace Ejemplo.Web
                     {
                         Informe.lstSecciones[i].Contenido = txtTitulo.Text;
 
+                    }
+                    else if(Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Encuadre)
+                    {
+                        Informe.lstSecciones[i].Contenido = lblEncuadre.Text;
                     }
                     else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Diagnóstico)
                     {
@@ -593,6 +611,10 @@ namespace Ejemplo.Web
                         Informe.lstSecciones[i].Contenido = txtTitulo.Text;
 
                     }
+                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Encuadre)
+                    {
+                        Informe.lstSecciones[i].Contenido = lblEncuadre.Text;
+                    }
                     else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Diagnóstico)
                     {
                         string diag = "";
@@ -732,7 +754,16 @@ namespace Ejemplo.Web
                         bool resultado = dFachada.InformeFinalizar(Informe);
                         if (resultado)
                         {
-                            bool res = dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(Informe.Beneficiario, lstDiagnosticosAgregados);
+                            Informe.Beneficiario.lstDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                            cDiagnosticoBeneficiario db;
+                            for(int j=0;j<lstDiagnosticosAgregados.Count;j++)
+                            {
+                                db = new cDiagnosticoBeneficiario();
+                                db.Diagnostico = lstDiagnosticosAgregados[j];
+                                db.Fecha = string.Format(DateTime.Today.ToShortDateString());
+                                Informe.Beneficiario.lstDiagnosticos.Add(db);
+                            }
+                            bool res = dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(Informe.Beneficiario);
                             if(res)
                             {
                                 Response.Redirect("vTareas.aspx");

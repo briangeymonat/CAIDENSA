@@ -23,7 +23,6 @@ namespace Persistencia.Clases
                 SqlCommand cmd = new SqlCommand("Secciones_TraerTodasPorInforme", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@idInforme", parInforme.Codigo));
-                cmd.Parameters.Add(new SqlParameter("@menos",1));
 
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())

@@ -43,6 +43,23 @@ namespace Ejemplo.Web
                     btnHabilitar.Visible = true;
                     btnInhabilitar.Visible = false;
                 }
+                if(vMiPerfil.ii==1)
+                {
+                    vMiPerfil.ii = 0;
+                    btnAgregarInforme.Visible = false;
+                    btnModificar.Visible = false;
+                    btnCancelar.Visible = false;
+                    btnHabilitar.Visible = false;
+                    btnInhabilitar.Visible = false;
+                    btnConfirmar.Visible = false;
+                    btnNuevoPlan.Visible = false;
+                    btnOcultar.Visible = false;
+                    lblPlanesActivos.Visible = false;
+                    lblHistorialPlanes.Visible = false;
+                    grdPlanesActivos.Visible = false;
+                    grdPlanesInactivos.Visible = false;
+
+                }
             }
         }
         private void ActualizarTodo()

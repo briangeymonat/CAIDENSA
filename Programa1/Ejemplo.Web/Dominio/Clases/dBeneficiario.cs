@@ -50,5 +50,9 @@ namespace Dominio.Clases
         {
             return pBeneficiario.TraerTodosPorItinerario(parItinerario);
         }
+        public static List<cBeneficiario> TraerTodosPorEspecialista(cUsuario parUsuario)
+        {
+            return pBeneficiario.TraerTodosPorEspecialista(parUsuario);
+        }
     }
 }

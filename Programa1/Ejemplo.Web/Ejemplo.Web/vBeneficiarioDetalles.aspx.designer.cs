@@ -382,13 +382,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdHistorialDiagnosticos;
         
         /// <summary>
-        /// Control Label18.
+        /// Control lblPlanesActivos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label18;
+        protected global::System.Web.UI.WebControls.Label lblPlanesActivos;
         
         /// <summary>
         /// Control grdPlanesActivos.
@@ -400,13 +400,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdPlanesActivos;
         
         /// <summary>
-        /// Control Labelq.
+        /// Control lblHistorialPlanes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Labelq;
+        protected global::System.Web.UI.WebControls.Label lblHistorialPlanes;
         
         /// <summary>
         /// Control grdPlanesInactivos.

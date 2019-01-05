@@ -235,7 +235,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                            <asp:GridView ID="grdBeneficiariosQueAtiende" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdBeneficiariosQueAtiende_RowCreated" OnSelectedIndexChanging="grdBeneficiariosQueAtiende_SelectedIndexChanging"></asp:GridView>
                         </td>
                     </tr>
                     <tr>
@@ -245,7 +245,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:GridView ID="GridView2" runat="server"></asp:GridView>
+                            <asp:GridView ID="grdInformesRealizados" runat="server" OnRowCreated="grdInformesRealizados_RowCreated" ShowHeaderWhenEmpty="True"></asp:GridView>
                         </td>
                     </tr>
                     <tr>
@@ -255,7 +255,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:GridView ID="GridView3" runat="server"></asp:GridView>
+                            <asp:GridView ID="grdInformesPendientes" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdInformesPendientes_RowCreated" OnSelectedIndexChanging="grdInformesPendientes_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
                         </td>
                     </tr>
                 </table>

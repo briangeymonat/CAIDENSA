@@ -188,7 +188,10 @@ namespace Dominio
         {
             return dBeneficiario.TraerTodosPorItinerario(parItinerario);
         }
-
+        public static List<cBeneficiario> BeneficiarioTraerTodosPorEspecialista(cUsuario parUsuario)
+        {
+            return dBeneficiario.TraerTodosPorEspecialista(parUsuario);
+        }
 
 
         #endregion
@@ -301,6 +304,10 @@ namespace Dominio
         public static bool ItinerarioModificarEstadoDelDia(char parDia)
         {
             return dItinerario.ModificarEstadoDelDia(parDia);
+        }
+        public static string ItinerarioTraerEncuadrePorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            return dItinerario.TraerEncuadrePorBeneficiario(parBeneficiario);
         }
         #endregion
 
@@ -459,10 +466,27 @@ namespace Dominio
         {
             return dDiagnostico.TraerTodos();
         }
-        public static bool DiagnosticoAgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario, List<cDiagnostico> parLstDiagnosticos)
+        public static bool DiagnosticoAgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario)
         {
-            return dDiagnostico.AgregarDiagnosticoBeneficiario(parBeneficiario, parLstDiagnosticos);
+            return dDiagnostico.AgregarDiagnosticoBeneficiario(parBeneficiario);
         }
+        public static bool DiagnosticoAgregar(cDiagnostico parDiagnostico)
+        {
+            return dDiagnostico.Agregar(parDiagnostico);
+        }
+        public static bool DiagnosticoExiste(cDiagnostico parDiagnostico)
+        {
+            return dDiagnostico.Existe(parDiagnostico);
+        }
+        public static bool DiagnosticoExisteDiagnosticoBeneficiario(cDiagnostico parDiagnostico)
+        {
+            return dDiagnostico.ExisteDiagnosticoBeneficiario(parDiagnostico);
+        }
+        public static bool DiagnosticoEliminar(cDiagnostico parDiagnostico)
+        {
+            return dDiagnostico.Eliminar(parDiagnostico);
+        }
+
         #endregion
     }
 }

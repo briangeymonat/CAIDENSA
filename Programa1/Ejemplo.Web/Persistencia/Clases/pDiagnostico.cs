@@ -76,7 +76,7 @@ namespace Persistencia.Clases
             return retorno;
         }
 
-        public static bool AgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario, List<cDiagnostico> parLstDiagnosticos)
+        public static bool AgregarDiagnosticoBeneficiario(cBeneficiario parBeneficiario)
         {
             bool retorno = true;
             try
@@ -84,12 +84,13 @@ namespace Persistencia.Clases
                 var conn = new SqlConnection(CadenaDeConexion);
                 conn.Open();
 
-                for(int i=0; i<parLstDiagnosticos.Count; i++)
+                for(int i=0; i<parBeneficiario.lstDiagnosticos.Count; i++)
                 {
                     SqlCommand cmd = new SqlCommand("DiagnosticosBeneficiarios_Agregar", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@idBeneficiario", parBeneficiario.Codigo));
-                    cmd.Parameters.Add(new SqlParameter("@idDiagnostico", parLstDiagnosticos[i].Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@idDiagnostico", parBeneficiario.lstDiagnosticos[i].Diagnostico.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@fecha", parBeneficiario.lstDiagnosticos[i].Fecha));
                     int rtn = cmd.ExecuteNonQuery();
                     if(rtn<=0)
                     {
@@ -108,6 +109,137 @@ namespace Persistencia.Clases
             }
             return retorno;
 
+        }
+
+        public static bool Agregar(cDiagnostico parDiagnostico)
+        {
+            bool retorno = true;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Diagnostico_Agregar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@tipo", parDiagnostico.Tipo));
+
+                int rtn = cmd.ExecuteNonQuery();
+                if(rtn<=0)
+                {
+                    retorno = false;
+                }
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return retorno;
+        }
+
+        public static bool Existe(cDiagnostico parDiagnostico)
+        {
+            bool retorno = true;
+            int i = -1;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Diagnostico_VerificarSiExiste", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@tipo", parDiagnostico.Tipo));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        i = new int();
+                        i = int.Parse(oReader["existe"].ToString());
+                    }
+                }
+                if(i==0)
+                {
+                    retorno = false;
+                }
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+
+        public static bool ExisteDiagnosticoBeneficiario(cDiagnostico parDiagnostico)
+        {
+            bool retorno = true;
+            int i = -1;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("DiagnosticosBeneficiarios_Existe", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@id", parDiagnostico.Codigo));
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        i = new int();
+                        i = int.Parse(oReader["existe"].ToString());
+                    }
+                }
+                if(i==0)
+                {
+                    retorno = false;
+                }
+                if(conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+        public static bool Eliminar(cDiagnostico parDiagnostico)
+        {
+            bool retorno = true;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Diagnostico_Eliminar", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@id", parDiagnostico.Codigo));
+                int rtn = cmd.ExecuteNonQuery();
+                if(rtn<=0)
+                {
+                    retorno = false;
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return retorno;
         }
     }
 }

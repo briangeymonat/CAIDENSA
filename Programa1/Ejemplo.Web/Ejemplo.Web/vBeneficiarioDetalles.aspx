@@ -215,7 +215,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="Label18" runat="server" Text="Planes activos"></asp:Label>
+                            <asp:Label ID="lblPlanesActivos" runat="server" Text="Planes activos"></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -241,7 +241,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="Labelq" runat="server" Text="Historial de planes"></asp:Label>
+                            <asp:Label ID="lblHistorialPlanes" runat="server" Text="Historial de planes"></asp:Label>
                         </td>
                     </tr>
                     <tr>
