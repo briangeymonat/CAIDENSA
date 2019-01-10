@@ -50,15 +50,26 @@ namespace Ejemplo.Web
         }
         private bool VerificarCantidadAgregados()
         {
-            string tipoSesion = ddlTipoSesion.SelectedValue.ToString();
-            if ((tipoSesion == "Individual" && BeneficiariosAgregados.Count > 1) ||
-                (tipoSesion == "Grupo 2" && BeneficiariosAgregados.Count > 2) ||
-                (tipoSesion == "Grupo 3" && BeneficiariosAgregados.Count > 3) ||
-                (tipoSesion == "Taller" && BeneficiariosAgregados.Count > 5) ||
-                (tipoSesion == "PROES" && BeneficiariosAgregados.Count > 8))
-                return false;
-            else
-                return true;
+            switch (ddlTipoSesion.SelectedValue.ToString())
+            {
+                case "Individual":
+                    if (BeneficiariosAgregados.Count == 1) return true;
+                    else return false;
+                case "Grupo 2":
+                    if (BeneficiariosAgregados.Count == 2) return true;
+                    else return false;
+                case "Grupo 3":
+                    if (BeneficiariosAgregados.Count == 3) return true;
+                    else return false;
+                case "Taller":
+                    if (BeneficiariosAgregados.Count >= 4 && BeneficiariosAgregados.Count <= 5) return true;
+                    else return false;
+                case "PROES":
+                    if (BeneficiariosAgregados.Count <= 8) return true;
+                    else return false;
+                default:
+                    return false;
+            }
         }
         private void CargarDdlDias()
         {
@@ -96,6 +107,295 @@ namespace Ejemplo.Web
             }
             grdBeneficiariosAgregados.DataSource = BeneficiariosAgregados;
             grdBeneficiariosAgregados.DataBind();
+
+            #region Mostrar/Ocultar DdlPlanes
+            List<List<string>> losPlanes = new List<List<string>>();
+            for (int i = 0; i < BeneficiariosAgregados.Count; i++)
+            {
+                losPlanes.Add(new List<string>());
+                foreach (cPlan unPlan in BeneficiariosAgregados[i].lstPlanes)
+                {
+                    losPlanes[i].Add(unPlan.Tipo);
+                }
+            }
+
+            switch (BeneficiariosAgregados.Count)
+            {
+                case 1:
+                    ddlPlan1.Visible = true;
+                    ddlPlan2.Visible = false;
+                    ddlPlan3.Visible = false;
+                    ddlPlan4.Visible = false;
+                    ddlPlan5.Visible = false;
+                    ddlPlan6.Visible = false;
+                    ddlPlan7.Visible = false;
+                    ddlPlan8.Visible = false;
+                    lblNombre1.Visible = true;
+                    lblNombre2.Visible = false;
+                    lblNombre3.Visible = false;
+                    lblNombre4.Visible = false;
+                    lblNombre5.Visible = false;
+                    lblNombre6.Visible = false;
+                    lblNombre7.Visible = false;
+                    lblNombre8.Visible = false;
+                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan1.DataBind();
+                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    break;
+                case 2:
+                    ddlPlan1.Visible = true;
+                    ddlPlan2.Visible = true;
+                    ddlPlan3.Visible = false;
+                    ddlPlan4.Visible = false;
+                    ddlPlan5.Visible = false;
+                    ddlPlan6.Visible = false;
+                    ddlPlan7.Visible = false;
+                    ddlPlan8.Visible = false;
+                    lblNombre1.Visible = true;
+                    lblNombre2.Visible = true;
+                    lblNombre3.Visible = false;
+                    lblNombre4.Visible = false;
+                    lblNombre5.Visible = false;
+                    lblNombre6.Visible = false;
+                    lblNombre7.Visible = false;
+                    lblNombre8.Visible = false;
+                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan1.DataBind();
+                    ddlPlan2.DataSource = losPlanes[1];
+                    ddlPlan2.DataBind();
+                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
+                    break;
+                case 3:
+                    ddlPlan1.Visible = true;
+                    ddlPlan2.Visible = true;
+                    ddlPlan3.Visible = true;
+                    ddlPlan4.Visible = false;
+                    ddlPlan5.Visible = false;
+                    ddlPlan6.Visible = false;
+                    ddlPlan7.Visible = false;
+                    ddlPlan8.Visible = false;
+                    lblNombre1.Visible = true;
+                    lblNombre2.Visible = true;
+                    lblNombre3.Visible = true;
+                    lblNombre4.Visible = false;
+                    lblNombre5.Visible = false;
+                    lblNombre6.Visible = false;
+                    lblNombre7.Visible = false;
+                    lblNombre8.Visible = false;
+                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan2.DataSource = losPlanes[1];
+                    ddlPlan3.DataSource = losPlanes[2];
+                    ddlPlan1.DataBind();
+                    ddlPlan2.DataBind();
+                    ddlPlan3.DataBind();
+                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
+                    break;
+                case 4:
+                    ddlPlan1.Visible = true;
+                    ddlPlan2.Visible = true;
+                    ddlPlan3.Visible = true;
+                    ddlPlan4.Visible = true;
+                    ddlPlan5.Visible = false;
+                    ddlPlan6.Visible = false;
+                    ddlPlan7.Visible = false;
+                    ddlPlan8.Visible = false;
+                    lblNombre1.Visible = true;
+                    lblNombre2.Visible = true;
+                    lblNombre3.Visible = true;
+                    lblNombre4.Visible = true;
+                    lblNombre5.Visible = false;
+                    lblNombre6.Visible = false;
+                    lblNombre7.Visible = false;
+                    lblNombre8.Visible = false;
+                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan2.DataSource = losPlanes[1];
+                    ddlPlan3.DataSource = losPlanes[2];
+                    ddlPlan4.DataSource = losPlanes[3];
+                    ddlPlan1.DataBind();
+                    ddlPlan2.DataBind();
+                    ddlPlan3.DataBind();
+                    ddlPlan4.DataBind();
+                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
+                    break;
+                case 5:
+                    ddlPlan1.Visible = true;
+                    ddlPlan2.Visible = true;
+                    ddlPlan3.Visible = true;
+                    ddlPlan4.Visible = true;
+                    ddlPlan5.Visible = true;
+                    ddlPlan6.Visible = false;
+                    ddlPlan7.Visible = false;
+                    ddlPlan8.Visible = false;
+                    lblNombre1.Visible = true;
+                    lblNombre2.Visible = true;
+                    lblNombre3.Visible = true;
+                    lblNombre4.Visible = true;
+                    lblNombre5.Visible = true;
+                    lblNombre6.Visible = false;
+                    lblNombre7.Visible = false;
+                    lblNombre8.Visible = false;
+                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan2.DataSource = losPlanes[1];
+                    ddlPlan3.DataSource = losPlanes[2];
+                    ddlPlan4.DataSource = losPlanes[3];
+                    ddlPlan5.DataSource = losPlanes[4];
+                    ddlPlan1.DataBind();
+                    ddlPlan2.DataBind();
+                    ddlPlan3.DataBind();
+                    ddlPlan4.DataBind();
+                    ddlPlan5.DataBind();
+                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
+                    lblNombre5.Text = BeneficiariosAgregados[4].Nombres + " " + BeneficiariosAgregados[4].Apellidos;
+                    break;
+                case 6:
+                    ddlPlan1.Visible = true;
+                    ddlPlan2.Visible = true;
+                    ddlPlan3.Visible = true;
+                    ddlPlan4.Visible = true;
+                    ddlPlan5.Visible = true;
+                    ddlPlan6.Visible = true;
+                    ddlPlan7.Visible = false;
+                    ddlPlan8.Visible = false;
+                    lblNombre1.Visible = true;
+                    lblNombre2.Visible = true;
+                    lblNombre3.Visible = true;
+                    lblNombre4.Visible = true;
+                    lblNombre5.Visible = true;
+                    lblNombre6.Visible = true;
+                    lblNombre7.Visible = false;
+                    lblNombre8.Visible = false;
+                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan2.DataSource = losPlanes[1];
+                    ddlPlan3.DataSource = losPlanes[2];
+                    ddlPlan4.DataSource = losPlanes[3];
+                    ddlPlan5.DataSource = losPlanes[4];
+                    ddlPlan6.DataSource = losPlanes[5];
+                    ddlPlan1.DataBind();
+                    ddlPlan2.DataBind();
+                    ddlPlan3.DataBind();
+                    ddlPlan4.DataBind();
+                    ddlPlan5.DataBind();
+                    ddlPlan6.DataBind();
+                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
+                    lblNombre5.Text = BeneficiariosAgregados[4].Nombres + " " + BeneficiariosAgregados[4].Apellidos;
+                    lblNombre6.Text = BeneficiariosAgregados[5].Nombres + " " + BeneficiariosAgregados[5].Apellidos;
+                    break;
+                case 7:
+                    ddlPlan1.Visible = true;
+                    ddlPlan2.Visible = true;
+                    ddlPlan3.Visible = true;
+                    ddlPlan4.Visible = true;
+                    ddlPlan5.Visible = true;
+                    ddlPlan6.Visible = true;
+                    ddlPlan7.Visible = true;
+                    ddlPlan8.Visible = false;
+                    lblNombre1.Visible = true;
+                    lblNombre2.Visible = true;
+                    lblNombre3.Visible = true;
+                    lblNombre4.Visible = true;
+                    lblNombre5.Visible = true;
+                    lblNombre6.Visible = true;
+                    lblNombre7.Visible = true;
+                    lblNombre8.Visible = false;
+                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan2.DataSource = losPlanes[1];
+                    ddlPlan3.DataSource = losPlanes[2];
+                    ddlPlan4.DataSource = losPlanes[3];
+                    ddlPlan5.DataSource = losPlanes[4];
+                    ddlPlan6.DataSource = losPlanes[5];
+                    ddlPlan7.DataSource = losPlanes[6];
+                    ddlPlan1.DataBind();
+                    ddlPlan2.DataBind();
+                    ddlPlan3.DataBind();
+                    ddlPlan4.DataBind();
+                    ddlPlan5.DataBind();
+                    ddlPlan6.DataBind();
+                    ddlPlan7.DataBind();
+                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
+                    lblNombre5.Text = BeneficiariosAgregados[4].Nombres + " " + BeneficiariosAgregados[4].Apellidos;
+                    lblNombre6.Text = BeneficiariosAgregados[5].Nombres + " " + BeneficiariosAgregados[5].Apellidos;
+                    lblNombre7.Text = BeneficiariosAgregados[6].Nombres + " " + BeneficiariosAgregados[6].Apellidos;
+                    break;
+                case 8:
+                    ddlPlan1.Visible = true;
+                    ddlPlan2.Visible = true;
+                    ddlPlan3.Visible = true;
+                    ddlPlan4.Visible = true;
+                    ddlPlan5.Visible = true;
+                    ddlPlan6.Visible = true;
+                    ddlPlan7.Visible = true;
+                    ddlPlan8.Visible = true;
+                    lblNombre1.Visible = true;
+                    lblNombre2.Visible = true;
+                    lblNombre3.Visible = true;
+                    lblNombre4.Visible = true;
+                    lblNombre5.Visible = true;
+                    lblNombre6.Visible = true;
+                    lblNombre7.Visible = true;
+                    lblNombre8.Visible = true;
+
+                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan2.DataSource = losPlanes[1];
+                    ddlPlan3.DataSource = losPlanes[2];
+                    ddlPlan4.DataSource = losPlanes[3];
+                    ddlPlan5.DataSource = losPlanes[4];
+                    ddlPlan6.DataSource = losPlanes[5];
+                    ddlPlan7.DataSource = losPlanes[6];
+                    ddlPlan8.DataSource = losPlanes[7];
+                    ddlPlan1.DataBind();
+                    ddlPlan2.DataBind();
+                    ddlPlan3.DataBind();
+                    ddlPlan4.DataBind();
+                    ddlPlan5.DataBind();
+                    ddlPlan6.DataBind();
+                    ddlPlan7.DataBind();
+                    ddlPlan8.DataBind();
+                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
+                    lblNombre5.Text = BeneficiariosAgregados[4].Nombres + " " + BeneficiariosAgregados[4].Apellidos;
+                    lblNombre6.Text = BeneficiariosAgregados[5].Nombres + " " + BeneficiariosAgregados[5].Apellidos;
+                    lblNombre7.Text = BeneficiariosAgregados[6].Nombres + " " + BeneficiariosAgregados[6].Apellidos;
+                    lblNombre8.Text = BeneficiariosAgregados[7].Nombres + " " + BeneficiariosAgregados[7].Apellidos;
+                    break;
+                default:
+                    ddlPlan1.Visible = false;
+                    ddlPlan2.Visible = false;
+                    ddlPlan3.Visible = false;
+                    ddlPlan4.Visible = false;
+                    ddlPlan5.Visible = false;
+                    ddlPlan6.Visible = false;
+                    ddlPlan7.Visible = false;
+                    ddlPlan8.Visible = false;
+                    lblNombre1.Visible = false;
+                    lblNombre2.Visible = false;
+                    lblNombre3.Visible = false;
+                    lblNombre4.Visible = false;
+                    lblNombre5.Visible = false;
+                    lblNombre6.Visible = false;
+                    lblNombre7.Visible = false;
+                    lblNombre8.Visible = false;
+                    break;
+
+            }
+
+            #endregion
         }
         private void CargarEspecialistas()
         {
@@ -135,6 +435,14 @@ namespace Ejemplo.Web
             BeneficiariosAgregados.RemoveAt(e.RowIndex);
             CargarBeneficiariosAgregados();
             CargarBeneficiarios();
+            for (int i = 0; i < grdBeneficiariosAgregados.Rows.Count; i++)
+            {
+                List<string> planes = new List<string>();
+                foreach (cPlan unPlan in BeneficiariosAgregados[i].lstPlanes)
+                {
+                    planes.Add(unPlan.Tipo);
+                }
+            }
 
         }
 
@@ -238,7 +546,36 @@ namespace Ejemplo.Web
                         {
                             unBen = new cBeneficiarioItinerario();
                             unBen.Beneficiario = BeneficiariosAgregados[i];
-                            unBen.Plan = BeneficiariosAgregados[i].lstPlanes[0];
+                            switch (i)
+                            {
+                                case 0:
+                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan1.SelectedIndex];
+                                    break;
+                                case 1:
+                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan2.SelectedIndex];
+                                    break;
+                                case 2:
+                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan3.SelectedIndex];
+                                    break;
+                                case 3:
+                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan4.SelectedIndex];
+                                    break;
+                                case 4:
+                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan5.SelectedIndex];
+                                    break;
+                                case 5:
+                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan6.SelectedIndex];
+                                    break;
+                                case 6:
+                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan7.SelectedIndex];
+                                    break;
+                                case 7:
+                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan8.SelectedIndex];
+                                    break;
+                                default:
+                                    break;
+                            }
+
                             unItinerario.lstBeneficiarios.Add(unBen);
                         }
                         unItinerario.lstEspecialistas = EspecialistasAgregados;

@@ -1,6 +1,6 @@
-﻿using System;
-using Common.Clases;
+﻿using Common.Clases;
 using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Ejemplo.Web
 {
-    public partial class vSesionNueva : System.Web.UI.Page
+    public partial class vSesionReprogramar : System.Web.UI.Page
     {
         private static List<string> TiposDeSesion = new List<string>() { "Individual", "Grupo 2", "Grupo 3", "Taller", "PROES" };
         private static List<string> Dias = new List<string>() { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
@@ -40,14 +40,13 @@ namespace Ejemplo.Web
                     unUsu.Codigo = int.Parse(Request.QueryString["Usuario" + (i + 1).ToString()]);
                     EspecialistasAgregados.Add(dFachada.UsuarioTraerEspecifico(unUsu));
                 }
-                CargarDdlTiposDeSesion();
-                CargarDdlEspecialidades();
-                CargarBeneficiarios();
-                CargarBeneficiariosAgregados();
-                CargarEspecialistas();
-                CargarEspecialistasAgregados();
             }
-            
+            CargarDdlTiposDeSesion();
+            CargarDdlEspecialidades();
+            CargarBeneficiarios();
+            CargarBeneficiariosAgregados();
+            CargarEspecialistas();
+            CargarEspecialistasAgregados();
 
 
         }
@@ -420,7 +419,7 @@ namespace Ejemplo.Web
         private void CargarEspecialistas()
         {
             cEspecialidad unaEspecialidad = new cEspecialidad();
-            unaEspecialidad.Nombre = ddlEspecialidades.SelectedValue;//.ToString();
+            unaEspecialidad.Nombre = ddlEspecialidades.SelectedValue.ToString();
             unaEspecialidad = dFachada.EspecialidadTraerEspecificaPorNombre(unaEspecialidad);
 
 
@@ -626,7 +625,6 @@ namespace Ejemplo.Web
                                 default:
                                     break;
                             }
-                            unBen.Estado = cUtilidades.EstadoSesion.SinEstado;
                             unaSesion.lstBeneficiarios.Add(unBen);
                         }
 
@@ -704,7 +702,13 @@ namespace Ejemplo.Web
                         }
                         else
                         {
-                            if (dFachada.SesionAgregar(unaSesion)) { CargarTodo(); dFachada.SesionAgregarSesionesDelDia(); }
+                            if (dFachada.SesionAgregar(unaSesion))
+                            {
+                                CargarTodo();
+                                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se agregó la sesión correctamente.')", true);
+                                string script = "window.opener.location.reload(); window.close();";
+                                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
+                            }
                             else
                             {
                                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo agregar la sesión.')", true);

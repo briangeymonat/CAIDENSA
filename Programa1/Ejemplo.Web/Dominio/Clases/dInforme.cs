@@ -53,7 +53,10 @@ namespace Dominio.Clases
         {
             return pInforme.VerificarSeccionesTerminadas(parInforme, parUsuario);
         }
-
+        public static List<cInforme> TraerTodosConFiltros(string parConsulta)
+        {
+            return pInforme.TraerTodosConFiltros(parConsulta);
+        }
 
     }
 }

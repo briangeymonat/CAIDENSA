@@ -103,6 +103,36 @@
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                         </td>
+                        <td>
+                            <table>
+                                <tr><td>Seleccionar plan</td></tr>
+                                <tr><td>
+                                    <asp:Label ID="lblNombre1" runat="server" Text="Label"></asp:Label></td><td>
+                                    <asp:DropDownList ID="ddlPlan1" runat="server"></asp:DropDownList></td></tr>
+                                <tr><td>
+                                    <asp:Label ID="lblNombre2" runat="server" Text="Label"></asp:Label></td><td>
+                                    <asp:DropDownList ID="ddlPlan2" runat="server"></asp:DropDownList></td></tr>
+                                <tr><td>
+                                    <asp:Label ID="lblNombre3" runat="server" Text="Label"></asp:Label></td><td>
+                                    <asp:DropDownList ID="ddlPlan3" runat="server"></asp:DropDownList></td></tr>
+                                <tr><td>
+                                    <asp:Label ID="lblNombre4" runat="server" Text="Label"></asp:Label></td><td>
+                                    <asp:DropDownList ID="ddlPlan4" runat="server"></asp:DropDownList></td></tr>
+                                <tr><td>
+                                    <asp:Label ID="lblNombre5" runat="server" Text="Label"></asp:Label></td><td>
+                                    <asp:DropDownList ID="ddlPlan5" runat="server"></asp:DropDownList></td></tr>
+                                <tr><td>
+                                    <asp:Label ID="lblNombre6" runat="server" Text="Label"></asp:Label></td><td>
+                                    <asp:DropDownList ID="ddlPlan6" runat="server"></asp:DropDownList></td></tr>
+                                <tr><td>
+                                    <asp:Label ID="lblNombre7" runat="server" Text="Label"></asp:Label></td><td>
+                                    <asp:DropDownList ID="ddlPlan7" runat="server"></asp:DropDownList></td></tr>
+                                <tr><td>
+                                    <asp:Label ID="lblNombre8" runat="server" Text="Label"></asp:Label></td><td>
+                                    <asp:DropDownList ID="ddlPlan8" runat="server"></asp:DropDownList></td></tr>
+                            </table>
+                            
+                        </td>
                     </tr>
 
                 </table>

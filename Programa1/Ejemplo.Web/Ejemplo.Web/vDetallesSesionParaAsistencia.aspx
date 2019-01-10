@@ -12,14 +12,15 @@
             <table>
                 <tr>
                     <td>
-                        <asp:Label ID="Label5" runat="server" Text="Fecha:"></asp:Label>
+                        <asp:Label ID="Label5" runat="server" Text="Fecha y horario:"></asp:Label>
                         <asp:Label ID="lblFecha" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label2" runat="server" Text="Especialistas"></asp:Label>
-                        <asp:ListView ID="ListView2" runat="server"></asp:ListView>
+                        <asp:Label ID="Label2" runat="server" Text="Especialistas:"></asp:Label>
+                        <asp:Label ID="lblEspecialistas" runat="server"></asp:Label>
+                        
                     </td>
                     <td>
                         <asp:Label ID="Label3" runat="server" Text="Comentario"></asp:Label>
@@ -36,8 +37,8 @@
                         <asp:Label ID="lblNombreBeneficiario1" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:RadioButtonList ID="rbl1" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Asistió"></asp:ListItem>
+                        <asp:RadioButtonList ID="rblBeneficiario1" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Asistió" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="No asistió"></asp:ListItem>
                             <asp:ListItem Text="Reprogramada"></asp:ListItem>
                         </asp:RadioButtonList>
@@ -48,8 +49,8 @@
                         <asp:Label ID="lblNombreBeneficiario2" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:RadioButtonList ID="rbl2" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Asistió"></asp:ListItem>
+                        <asp:RadioButtonList ID="rblBeneficiario2" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Asistió" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="No asistió"></asp:ListItem>
                             <asp:ListItem Text="Reprogramada"></asp:ListItem>
                         </asp:RadioButtonList>
@@ -60,8 +61,8 @@
                         <asp:Label ID="lblNombreBeneficiario3" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:RadioButtonList ID="rbl3" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Asistió"></asp:ListItem>
+                        <asp:RadioButtonList ID="rblBeneficiario3" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Asistió" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="No asistió"></asp:ListItem>
                             <asp:ListItem Text="Reprogramada"></asp:ListItem>
                         </asp:RadioButtonList>
@@ -72,8 +73,8 @@
                         <asp:Label ID="lblNombreBeneficiario4" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:RadioButtonList ID="rbl4" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Asistió"></asp:ListItem>
+                        <asp:RadioButtonList ID="rblBeneficiario4" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Asistió" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="No asistió"></asp:ListItem>
                             <asp:ListItem Text="Reprogramada"></asp:ListItem>
                         </asp:RadioButtonList>
@@ -84,8 +85,8 @@
                         <asp:Label ID="lblNombreBeneficiario5" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:RadioButtonList ID="rbl5" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Asistió"></asp:ListItem>
+                        <asp:RadioButtonList ID="rblBeneficiario5" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Asistió" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="No asistió"></asp:ListItem>
                             <asp:ListItem Text="Reprogramada"></asp:ListItem>
                         </asp:RadioButtonList>
@@ -96,8 +97,8 @@
                         <asp:Label ID="lblNombreBeneficiario6" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:RadioButtonList ID="rbl6" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Asistió"></asp:ListItem>
+                        <asp:RadioButtonList ID="rblBeneficiario6" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Asistió" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="No asistió"></asp:ListItem>
                             <asp:ListItem Text="Reprogramada"></asp:ListItem>
                         </asp:RadioButtonList>
@@ -108,8 +109,8 @@
                         <asp:Label ID="lblNombreBeneficiario7" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:RadioButtonList ID="rbl7" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Asistió"></asp:ListItem>
+                        <asp:RadioButtonList ID="rblBeneficiario7" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Asistió" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="No asistió"></asp:ListItem>
                             <asp:ListItem Text="Reprogramada"></asp:ListItem>
                         </asp:RadioButtonList>
@@ -120,8 +121,8 @@
                         <asp:Label ID="lblNombreBeneficiario8" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:RadioButtonList ID="rbl8" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Text="Asistió"></asp:ListItem>
+                        <asp:RadioButtonList ID="rblBeneficiario8" runat="server" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Asistió" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="No asistió"></asp:ListItem>
                             <asp:ListItem Text="Reprogramada"></asp:ListItem>
                         </asp:RadioButtonList>
@@ -133,7 +134,8 @@
                         <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
                     </td>
                     <td colspan="2">
-                        <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" />
+                        <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
+                        <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
                     </td>
                 </tr>
             </table>

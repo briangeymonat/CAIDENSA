@@ -86,7 +86,7 @@
                                 <asp:ListItem Text="ASSE"></asp:ListItem>
                                 <asp:ListItem Text="AYEX"></asp:ListItem>
                                 <asp:ListItem Text="CAMEC"></asp:ListItem>
-                                <asp:ListItem Text="Círulo Católico"></asp:ListItem>
+                                <asp:ListItem Text="Círculo Católico"></asp:ListItem>
                                 <asp:ListItem Text="MIDES"></asp:ListItem>
                                 <asp:ListItem Text="Particular"></asp:ListItem>
                                 <asp:ListItem Text="Policial"></asp:ListItem>
@@ -118,11 +118,11 @@
                     <tr>
                         <td>
                             <asp:CheckBoxList ID="cblEspecialidad" runat="server">
-                                <asp:ListItem Text="Fisioterapeuta"></asp:ListItem>
-                                <asp:ListItem Text="Fonoaudiólogo"></asp:ListItem>
-                                <asp:ListItem Text="Pedagogo"></asp:ListItem>
-                                <asp:ListItem Text="Psicólogo"></asp:ListItem>
-                                <asp:ListItem Text="Psicomotricista"></asp:ListItem>
+                                <asp:ListItem Text="Fisioterapia"></asp:ListItem>
+                                <asp:ListItem Text="Fonoaudiologia"></asp:ListItem>
+                                <asp:ListItem Text="Pedadogia"></asp:ListItem>
+                                <asp:ListItem Text="Psicologia"></asp:ListItem>
+                                <asp:ListItem Text="Psicomotricidad"></asp:ListItem>
                             </asp:CheckBoxList>
                         </td>
                     </tr>

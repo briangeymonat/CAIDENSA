@@ -53,7 +53,7 @@
                             <asp:Label ID="Label4" runat="server" Text="Desde:"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtDesde" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDesde" runat="server" TextMode="Number"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -61,7 +61,7 @@
                             <asp:Label ID="Label5" runat="server" Text="Hasta:"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtHasta" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtHasta" runat="server" TextMode="Number"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -90,7 +90,7 @@
 
                         </td>
                         <td>
-                            <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" />
+                            <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" OnClick="btnAplicarFiltros_Click" />
                         </td>
                     </tr>
                 </table>

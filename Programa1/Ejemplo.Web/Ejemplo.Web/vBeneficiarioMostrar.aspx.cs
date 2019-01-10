@@ -22,10 +22,21 @@ namespace Ejemplo.Web
 
         private void ActualizarTodo()
         {
+            CargarDiagnosticos();
             ActualizarTodosLosBeneficiarios();
             ActualizarGrdBeneficiarios();
         }
-
+        private void CargarDiagnosticos()
+        {
+            List<cDiagnostico> LosDiagnosticos = dFachada.DiagnosticoTraerTodos();
+            List<string> combo = new List<string>() { "Ninguno" };
+            foreach (cDiagnostico unDiagnostico in LosDiagnosticos)
+            {
+                combo.Add(unDiagnostico.Tipo);
+            }
+            ddlDiagnosticos.DataSource = combo;
+            ddlDiagnosticos.DataBind();
+        }
         private void ActualizarGrdBeneficiarios()
         {
             grdBeneficiarios.DataSource = TodosLosBeneficiarios;
@@ -35,7 +46,13 @@ namespace Ejemplo.Web
         private void ActualizarTodosLosBeneficiarios()
         {
 
-            string Consulta = "SELECT DISTINCT B.* FROM Beneficiarios B LEFT JOIN Planes P ON B.BeneficiarioId = P.BeneficiarioId";
+            string Consulta = "SELECT DISTINCT B.* FROM Beneficiarios B" +
+                " JOIN Planes P ON B.BeneficiarioId = P.BeneficiarioId" +
+                " JOIN BeneficiariosSesiones BS ON B.BeneficiarioId = BS.BeneficiarioId" +
+                " JOIN Sesiones S ON BS.SesionId = S.SesionId" +
+                " JOIN UsuariosSesiones US ON S.SesionId = US.SesionId" +
+                " JOIN Usuarios U ON US.UsuarioId = U.UsuarioId" +
+                " JOIN Especialidades E ON U.EspecialidadId = E.EspecialidadId";
             List<string> condiciones = new List<string>();
             condiciones.Add(" WHERE");
 
@@ -52,22 +69,31 @@ namespace Ejemplo.Web
 
 
             //LOCALIDAD
-            /*
-            if (cbJuanLacaze.Checked) { if (condiciones.Count > 1) condiciones.Add("WHERE Centro=1"); else; condiciones.Add("BeneficiarioEstado=1"); }                 //Juan Lacaze
-            if (cbNuevaHelvecia.Checked) { Localidades.Add("Nueva Helvecia"); }     //Nueva Helvecia
-            */
+            if (cbJuanLacaze.Checked)                       //Juan Lacaze
+            {
+                if (condiciones.Count > 1) condiciones.Add(" and S.SesionCentro=0"); else condiciones.Add(" S.SesionCentro=0");
+            }
+
+            if (cbNuevaHelvecia.Checked)                    //Nueva Helvecia
+            {
+                if (condiciones.Count > 1) condiciones.Add(" and S.SesionCentro=1"); else condiciones.Add(" S.SesionCentro=1");
+            }
+
+
             //SEXO
             if (cblSexo.Items[0].Selected != cblSexo.Items[1].Selected)
             {
                 if (cblSexo.Items[0].Selected)
                 {
-                    if (condiciones.Count > 1) condiciones.Add(" and BeneficiarioSexo='M'"); else; condiciones.Add(" BeneficiarioSexo='M'");
+                    if (condiciones.Count > 1) condiciones.Add(" and BeneficiarioSexo='M'"); else condiciones.Add(" BeneficiarioSexo='M'");
                 }
                 else
                 {
-                    if (condiciones.Count > 1) condiciones.Add(" and BeneficiarioSexo='F'"); else; condiciones.Add(" BeneficiarioSexo='F'");
+                    if (condiciones.Count > 1) condiciones.Add(" and BeneficiarioSexo='F'"); else condiciones.Add(" BeneficiarioSexo='F'");
                 }
             }
+
+
             //Plan
             for (int i = 0; i < cblPlan.Items.Count; i++)
             {
@@ -96,20 +122,29 @@ namespace Ejemplo.Web
                     txtDesde.Text, txtHasta.Text));
             }
             //ESPECIALIDAD
-            /*
-            List<string> Especialidades = new List<string>();
+
             for (int i = 0; i < cblEspecialidad.Items.Count; i++)
             {
                 if (cblEspecialidad.Items[i].Selected)
                 {
-                    Especialidades.Add(cblEspecialidad.Items[i].Text);
+                    if (condiciones.Count > 1)
+                        if (or) condiciones.Add(string.Format(" or E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
+                        else condiciones.Add(string.Format(" and E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
+                    else
+                        condiciones.Add(string.Format(" E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
+                    or = true;
                 }
             }
-            */
+
             //DIAGNOSTICO
-            /*
-            string diagnostico = ddlDiagnosticos.SelectedItem.Text;
-            */
+
+            if (ddlDiagnosticos.SelectedIndex != 0)
+            {
+                if (condiciones.Count > 1)
+                    condiciones.Add(string.Format(" and B.BeneficiarioId in(SELECT DB.BeneficiarioId FROM DiagnosticosBeneficiarios DB  JOIN Diagnostico D ON DB.DiagnosticoId = D.DiagnosticoId WHERE D.DiagnosticoTipo = '{0}')", ddlDiagnosticos.SelectedValue));
+                else
+                    condiciones.Add(string.Format(" B.BeneficiarioId in(SELECT DB.BeneficiarioId FROM DiagnosticosBeneficiarios DB  JOIN Diagnostico D ON DB.DiagnosticoId = D.DiagnosticoId WHERE DB.DiagnosticosBeneficiariosFecha=(Select MAX(db1.DiagnosticosBeneficiariosFecha) from DiagnosticosBeneficiarios db1 where db1.BeneficiarioId=db.BeneficiarioId) and D.DiagnosticoTipo = '{0}')", ddlDiagnosticos.SelectedValue));
+            }
 
 
 
@@ -150,5 +185,6 @@ namespace Ejemplo.Web
         {
             Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + TodosLosBeneficiarios[e.NewSelectedIndex].Codigo.ToString());
         }
+
     }
 }

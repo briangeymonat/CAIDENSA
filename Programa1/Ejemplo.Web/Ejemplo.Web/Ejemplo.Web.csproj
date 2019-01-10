@@ -199,6 +199,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="vAgregarObservacionSesion.aspx" />
     <Content Include="vInicio.aspx" />
     <Content Include="vBeneficiarioAgregarPasivo.aspx" />
     <Content Include="vBeneficiarioMostrar.aspx" />
@@ -221,6 +222,7 @@
     <Content Include="vMiPerfil.aspx" />
     <Content Include="vNuevaContraseña.aspx" />
     <Content Include="vSesionNueva.aspx" />
+    <Content Include="vSesionReprogramar.aspx" />
     <Content Include="vTareas.aspx" />
     <Content Include="vUsuarioAgregar.aspx" />
     <Content Include="Contact.aspx" />
@@ -393,6 +395,13 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListarInformes.cs" />
+    <Compile Include="vAgregarObservacionSesion.aspx.cs">
+      <DependentUpon>vAgregarObservacionSesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vAgregarObservacionSesion.aspx.designer.cs">
+      <DependentUpon>vAgregarObservacionSesion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="vInicio.aspx.cs">
       <DependentUpon>vInicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -546,6 +555,13 @@
     </Compile>
     <Compile Include="vSesionNueva.aspx.designer.cs">
       <DependentUpon>vSesionNueva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vSesionReprogramar.aspx.cs">
+      <DependentUpon>vSesionReprogramar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vSesionReprogramar.aspx.designer.cs">
+      <DependentUpon>vSesionReprogramar.aspx</DependentUpon>
     </Compile>
     <Compile Include="vTareas.aspx.cs">
       <DependentUpon>vTareas.aspx</DependentUpon>

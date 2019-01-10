@@ -760,7 +760,7 @@ namespace Ejemplo.Web
                             {
                                 db = new cDiagnosticoBeneficiario();
                                 db.Diagnostico = lstDiagnosticosAgregados[j];
-                                db.Fecha = string.Format(DateTime.Today.ToShortDateString());
+                                db.Fecha = DateTime.Today.ToString("yyyy-MM-dd");
                                 Informe.Beneficiario.lstDiagnosticos.Add(db);
                             }
                             bool res = dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(Informe.Beneficiario);

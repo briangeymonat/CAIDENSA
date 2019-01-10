@@ -13,7 +13,11 @@ namespace Ejemplo.Web
     {        
         List<cBeneficiario> BeneficiariosConPlanesPorVencerse;
         List<cBeneficiario> BeneficiariosConPlanesSinFechaDeVencimiento;
+        private static List<cSesion> SesionesPasaronDelDia;
         public static bool enproceso;
+        public static bool ventanaObservacion= true;
+        public static bool ventanaReprogramar = true;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,6 +53,9 @@ namespace Ejemplo.Web
             string vtn = "window.open('vDetallesSesionParaAsistencia.aspx','Detalles de sesion','scrollbars=yes,resizable=yes','height=300', 'width=300')";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
         }
+
+
+
         protected void CargarGrillasAdministrativas()
         {
             CargarGrillaEspecialistasConInformesPendientes();
@@ -134,7 +141,8 @@ namespace Ejemplo.Web
         }
         protected void CargarGrillaSesionesPasaronDelDia()
         {
-            grdSesionesPasadasDelDia.DataSource = dFachada.SesionTraerPasaronDelDia();
+            SesionesPasaronDelDia = dFachada.SesionTraerPasaronDelDia();
+            grdSesionesPasadasDelDia.DataSource = SesionesPasaronDelDia;
             grdSesionesPasadasDelDia.DataBind();
         }
        
@@ -296,6 +304,9 @@ namespace Ejemplo.Web
             grdObservacionesDeSesiones.DataBind();
         }
 
+
+
+
         protected void grdInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
         {
             //e.Row.Cells[1].Visible = false; //codigo
@@ -340,12 +351,42 @@ namespace Ejemplo.Web
 
         protected void grdSesionesPasadasDelDia_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-
+            if(ventanaReprogramar)
+            {
+                ventanaReprogramar = false;
+                TableCell celdaId = grdSesionesPasadasDelDia.Rows[e.NewSelectedIndex].Cells[1];
+                int idSesion = int.Parse(celdaId.Text);
+                string vtn = "window.open('vDetallesSesionParaAsistencia.aspx?Id=" + SesionesPasaronDelDia[e.NewSelectedIndex].Codigo + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
+            }
+            else
+            {
+                CargarGrillaSesionesPasaronDelDia();
+                ventanaReprogramar = true;
+            }
+            
+            //?id=<%# Eval('Id').ToString) %>
+            //  + SesionesPasaronDelDia[e.NewSelectedIndex].Codigo
         }
 
         protected void grdObservacionesDeSesiones_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-
+            if(ventanaObservacion)
+            {
+                ventanaObservacion = false;
+                TableCell celdaId = grdObservacionesDeSesiones.Rows[e.NewSelectedIndex].Cells[1];
+                int idSesion = int.Parse(celdaId.Text);
+                //Response.Redirect("vAgregarObservacionSesion.aspx?SesionId=" + idSesion);
+                string vtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + idSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
+            }
+            else
+            {
+                CargarGrillasEspecialistas();
+                CargarGrillasAdministrativas();
+                ventanaObservacion = true;
+            }
+            
         }
 
         protected void grdSesionesDelDia_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)

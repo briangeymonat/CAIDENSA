@@ -59,6 +59,7 @@
                     </asp:MenuItem>
                     <asp:MenuItem NavigateUrl="~/vDiagnosticoAgregar.aspx" Text="Diagnóstico" Value="Diagnóstico"></asp:MenuItem>
                     <asp:MenuItem Text="Asistencias" Value="Asistencias" NavigateUrl="~/vAsistencias.aspx"></asp:MenuItem>
+                    <asp:MenuItem NavigateUrl="~/vSesionNueva.aspx?CantidadBeneficiarios=0&amp;CantidadEspecialistas=0" Text="Nueva Sesión" Value="Nueva Sesión"></asp:MenuItem>
                     <asp:MenuItem Text="Estadísticas" Value="Estadísticas">
                         <asp:MenuItem NavigateUrl="~/vEstadisticasDiagnosticos.aspx" Text="Diagnóstico" Value="Diagnóstico"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/vEstadisticasBeneficiariosPorEdad.aspx" Text="Beneficiarios por edad" Value="Beneficiarios por edad"></asp:MenuItem>

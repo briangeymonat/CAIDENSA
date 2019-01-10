@@ -269,6 +269,10 @@ namespace Dominio
         {
             return dInforme.VerificarSeccionesTerminadas(parInforme, parUsuario);
         }
+        public static List<cInforme> InformeTraerTodosConFiltros(string parConsulta)
+        {
+            return dInforme.TraerTodosConFiltros(parConsulta);
+        }
 
         #endregion
 
@@ -441,6 +445,26 @@ namespace Dominio
         public static List<cSesion> SesionTraerPasaronDelDiaPorEspecialista(cUsuario parUsuario)
         {
             return dSesion.TraerPasaronDelDiaPorEspecialista(parUsuario);
+        }
+        public static cSesion SesionTraerEspecifico(cSesion parSesion)
+        {
+            return dSesion.TraerEspecifico(parSesion);
+        }
+        public static bool SesionMarcarAsitencias(cSesion parSesion)
+        {
+            return dSesion.MarcarAsitencias(parSesion);
+        }
+        public static List<cUsuario> SesionVerificarFechaYHorarioUsuario(cSesion parSesion)
+        {
+            return dSesion.VerificarFechaYHorarioUsuario(parSesion);
+        }
+        public static List<cBeneficiario> SesionVerificarFechaYHorarioBeneficiario(cSesion parSesion)
+        {
+            return dSesion.VerificarFechaYHorarioBeneficiario(parSesion);
+        }
+        public static bool SesionAgregarObservacion(cUsuario parUsuario, cSesion parSesion, string parObservacion)
+        {
+            return dSesion.AgregarObservacion(parUsuario, parSesion, parObservacion);
         }
 
 
