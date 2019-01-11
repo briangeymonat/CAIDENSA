@@ -42,9 +42,17 @@ namespace Dominio.Clases
         {
             return pSesion.VerificarFechaYHorarioBeneficiario(parSesion);
         }
-        public static bool AgregarObservacion(cUsuario parUsuario, cSesion parSesion, string parObservacion)
+        public static bool AgregarObservacion(cUsuarioSesion parUS)
         {
-            return pSesion.AgregarObservacion(parUsuario, parSesion, parObservacion);
+            return pSesion.AgregarObservacion(parUS);
+        }
+        public static List<cSesion> TraerTodasPorEspecialistaConFiltros(string parConsulta)
+        {
+            return pSesion.TraerTodasPorEspecialistaConFiltros(parConsulta);
+        }
+        public static cUsuarioSesion TraerObservacionPorUsuarioYSesion(cUsuarioSesion parUsuarioSesion)
+        {
+            return pSesion.TraerObservacionPorUsuarioYSesion(parUsuarioSesion);
         }
     }
 }

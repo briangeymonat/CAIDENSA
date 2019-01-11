@@ -462,12 +462,18 @@ namespace Dominio
         {
             return dSesion.VerificarFechaYHorarioBeneficiario(parSesion);
         }
-        public static bool SesionAgregarObservacion(cUsuario parUsuario, cSesion parSesion, string parObservacion)
+        public static bool SesionAgregarObservacion(cUsuarioSesion parUS)
         {
-            return dSesion.AgregarObservacion(parUsuario, parSesion, parObservacion);
+            return dSesion.AgregarObservacion(parUS);
         }
-
-
+        public static List<cSesion> SesionTraerTodasPorEspecialistaConFiltros(string parConsulta)
+        {
+            return dSesion.TraerTodasPorEspecialistaConFiltros(parConsulta);
+        }
+        public static cUsuarioSesion SesionTraerObservacionPorUsuarioYSesion(cUsuarioSesion parUsuarioSesion)
+        {
+            return dSesion.TraerObservacionPorUsuarioYSesion(parUsuarioSesion);
+        }
         #endregion
 
         #region Seccion

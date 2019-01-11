@@ -11,7 +11,7 @@
     </script>
     <title></title>
 </head>
-<body onload="setTimeout('cerrar()', 3000)">
+<body onload="setTimeout('cerrar()', 420000)">
     <form id="form1" runat="server">
         <div>
             <table>
@@ -92,7 +92,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label8" runat="server" Text="Agregar observación sobre la sesión dada:"></asp:Label>
+                        <asp:Label ID="lblAgregarObservacion" runat="server" Text="Agregar observación sobre la sesión dada:"></asp:Label>
                     </td>
                     <td colspan="2">
                         <asp:TextBox ID="txtObservacionSesion" runat="server" TextMode="MultiLine" Width="329px"></asp:TextBox>
@@ -105,6 +105,7 @@
                 </tr>
                 <tr>
                     <td>
+                        <asp:Button ID="btnCerrar" runat="server" Text="Cerrar" OnClick="btnCerrar_Click" />
                         <asp:Button ID="btnDescartar" runat="server" Text="Descartar sin realizar la observación" OnClick="btnDescartar_Click" />
                     </td>
                     <td>                        

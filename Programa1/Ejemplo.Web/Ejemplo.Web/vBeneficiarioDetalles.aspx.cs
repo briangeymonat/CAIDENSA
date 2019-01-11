@@ -27,6 +27,7 @@ namespace Ejemplo.Web
                 ElBeneficiario = new cBeneficiario();
                 ElBeneficiario.Codigo = int.Parse(Request.QueryString["BeneficiarioId"]);
                 habilitarCampos(false);
+                txtAtributario.Enabled = false;
                 this.PanelAgregarPlan.Visible = false;
                 this.btnOcultar.Visible = false;
                 this.btnCancelar.Visible = false;
@@ -42,8 +43,11 @@ namespace Ejemplo.Web
                 {
                     btnHabilitar.Visible = true;
                     btnInhabilitar.Visible = false;
+                    btnNuevoPlan.Visible = false;
+                    btnAgregarInforme.Visible = false;
+                    btnModificar.Visible = false;
                 }
-                if(vMiPerfil.ii==1)
+                if (vMiPerfil.ii == 1) //NO SE QUE ES - bri
                 {
                     vMiPerfil.ii = 0;
                     btnAgregarInforme.Visible = false;
@@ -117,6 +121,7 @@ namespace Ejemplo.Web
                 cbPensionista.Checked = false;
                 cbPensionista_CheckedChanged(new object(), new EventArgs());
                 txtAtributario.Text = ElBeneficiario.Atributario;
+                txtAtributario.Enabled = false;
             }
 
             txtEscolaridad.Text = ElBeneficiario.Escolaridad;
@@ -147,6 +152,7 @@ namespace Ejemplo.Web
             this.btnCancelar.Visible = true;
             this.btnConfirmar.Visible = true;
             this.btnModificar.Visible = false;
+            this.btnInhabilitar.Visible = false;
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -154,9 +160,12 @@ namespace Ejemplo.Web
             ActualizarCampos();
             habilitarCampos(false);
             cbPensionista_CheckedChanged(new object(), new EventArgs());
+            txtAtributario.Enabled = false;
             this.btnCancelar.Visible = false;
             this.btnConfirmar.Visible = false;
             this.btnModificar.Visible = true;
+            this.btnHabilitar.Visible = false;
+            this.btnInhabilitar.Visible = true;
         }
 
         private bool FaltanDatosBeneficiario()
@@ -216,10 +225,11 @@ namespace Ejemplo.Web
                         lblMensaje.Text = "Beneficiario modificado correctamente.";
                         ActualizarTodo();
                         habilitarCampos(false);
+                        txtAtributario.Enabled = false;
                         this.btnCancelar.Visible = false;
                         this.btnConfirmar.Visible = false;
                         this.btnInhabilitar.Visible = true;
-                        this.btnHabilitar.Visible = true;
+                        this.btnHabilitar.Visible = false;
                         this.btnModificar.Visible = true;
                     }
                     else
@@ -341,6 +351,9 @@ namespace Ejemplo.Web
             {
                 btnHabilitar.Visible = false;
                 btnInhabilitar.Visible = true;
+                btnModificar.Visible = true;
+                btnNuevoPlan.Visible = true;
+                btnAgregarInforme.Visible = true;
                 ActualizarTodo();
             }
             else
@@ -352,22 +365,34 @@ namespace Ejemplo.Web
 
         protected void btnInhabilitar_Click(object sender, EventArgs e)
         {
-            if (dFachada.BeneficiarioInhabilitar(ElBeneficiario))
+            if (lstPlanesActivos.Count > 0)
             {
-                btnHabilitar.Visible = true;
-                btnInhabilitar.Visible = false;
-                ActualizarTodo();
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar el beneficiario porque hay planes activos.')", true);
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar el beneficiario.')", true);
+                if (dFachada.BeneficiarioInhabilitar(ElBeneficiario))
+                {
+                    btnHabilitar.Visible = true;
+                    btnInhabilitar.Visible = false;
+                    btnModificar.Visible = false;
+                    btnNuevoPlan.Visible = false;
+                    btnAgregarInforme.Visible = false;
+                    ActualizarTodo();
+                }
+                else
+                {
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar el beneficiario.')", true);
+                }
             }
+
+
 
         }
 
         protected void grdPlanesActivos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            if(lstPlanesActivos[e.NewSelectedIndex].FechaFin==null)
+            if (lstPlanesActivos[e.NewSelectedIndex].FechaFin == null)
             {
                 PlanAModificar = lstPlanesActivos[e.NewSelectedIndex];
                 PanelModificarPlan.Visible = true;
@@ -404,14 +429,14 @@ namespace Ejemplo.Web
 
         protected void btnModificarPlan_Click(object sender, EventArgs e)
         {
-            if(txtFechaFinModificar.Text == string.Empty)
+            if (txtFechaFinModificar.Text == string.Empty)
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Para modificar debe ingresar la fecha de vencimiento del plan.')", true);
             }
             else
             {
                 PlanAModificar.FechaFin = txtFechaFinModificar.Text;
-                if(dFachada.PlanModificarFechaVencimiento(PlanAModificar))
+                if (dFachada.PlanModificarFechaVencimiento(PlanAModificar))
                 {
                     lblMensaje.Text = "La fecha del plan se ha modificado correctamente";
                     PanelModificarPlan.Visible = false;
@@ -431,7 +456,7 @@ namespace Ejemplo.Web
                     ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Hubo un error al modificar la fecha de vencimiento del plan.')", true);
                 }
             }
-            
+
         }
 
     }

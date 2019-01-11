@@ -53,6 +53,7 @@
     <Compile Include="Clases\cSeccion.cs" />
     <Compile Include="Clases\cUsuario.cs" />
     <Compile Include="Clases\cUsuarioSeccion.cs" />
+    <Compile Include="Clases\cUsuarioSesion.cs" />
     <Compile Include="Clases\cUtilidades.cs" />
     <Compile Include="Clases\cSesion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

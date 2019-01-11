@@ -12,10 +12,9 @@
                 <td>
                     <asp:Label ID="Label6" runat="server" Text="Sesiones que pasaron del día:"></asp:Label>
                     <asp:GridView ID="grdSesionesPasadasDelDia" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesPasadasDelDia_SelectedIndexChanging"></asp:GridView>
-                    <asp:Button ID="btnDetallesSesion" runat="server" Text="Ver detalles de la sesion" OnClick="btnDetallesSesion_Click" />
                 </td>
                 <td>
-                    <asp:Label ID="Label5" runat="server" Text="Beneficiarios que tienen planes cercanos al vencimiento:" ></asp:Label>
+                    <asp:Label ID="Label5" runat="server" Text="Beneficiarios que tienen planes cercanos al vencimiento:"></asp:Label>
                     <asp:GridView ID="grdPlanesPorVencerse" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnRowCreated="grdPlanesPorVencerse_RowCreated" OnSelectedIndexChanging="grdPlanesPorVencerse_SelectedIndexChanging"></asp:GridView>
                 </td>
                 <td colspan="2">
@@ -52,6 +51,63 @@
                 <td>
                     <asp:Label ID="Label9" runat="server" Text="Informes terminados:"></asp:Label>
                     <asp:GridView ID="grdInformesTerminados" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdInformesTerminados_RowCreated" OnSelectedIndexChanging="grdInformesTerminados_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="Label10" runat="server" Text="Sesiones con observaciones realizadas:"></asp:Label>
+                    <asp:GridView ID="grdSesionesObservacionesRealizadas" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesObservacionesRealizadas_SelectedIndexChanging"></asp:GridView>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label11" runat="server" Text="Filtros:"></asp:Label>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label12" runat="server" Text="Beneficiario:"></asp:Label>
+
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlBeneficiario" runat="server"></asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label13" runat="server" Text="Rango de fechas:"></asp:Label>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label14" runat="server" Text="Desde:"></asp:Label>
+
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtDesde" runat="server" TextMode="Date"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label15" runat="server" Text="Hasta:"></asp:Label>
+
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtHasta" runat="server" TextMode="Date"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Button ID="btnAplicar" runat="server" Text="Aplicar" OnClick="btnAplicar_Click" />
+                            </td>
+                            <td>
+                                <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" OnClick="btnLimpiar_Click" />
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </table>

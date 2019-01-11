@@ -14,7 +14,7 @@ namespace Ejemplo.Web
         static cSesion unaSesion;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
                 int idSesion = int.Parse(Request.QueryString["SesionId"]);
                 unaSesion = new cSesion();
@@ -22,27 +22,65 @@ namespace Ejemplo.Web
                 unaSesion = dFachada.SesionTraerEspecifico(unaSesion);
                 CargarDatos();
             }
-            
+
         }
 
         private void CargarDatos()
         {
-            lblFecha.Text = unaSesion.Fecha.ToString();
-            lblHoraInicio.Text = unaSesion.HoraInicio.ToString();
-            lblHoraFin.Text = unaSesion.HoraFin.ToString();
-            lblLocalidad.Text = unaSesion.Centro.ToString();
-            List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
-            for (int i = 0; i < unaSesion.lstBeneficiarios.Count; i++)
+            if (vTareas.ventanaObservacionVerDetalles)
             {
-                lstBeneficiarios.Add(unaSesion.lstBeneficiarios[i].Beneficiario);
+                lblFecha.Text = unaSesion.Fecha.ToString();
+                lblHoraInicio.Text = unaSesion.HoraInicio.ToString();
+                lblHoraFin.Text = unaSesion.HoraFin.ToString();
+                lblLocalidad.Text = unaSesion.Centro.ToString();
+                List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
+                for (int i = 0; i < unaSesion.lstBeneficiarios.Count; i++)
+                {
+                    lstBeneficiarios.Add(unaSesion.lstBeneficiarios[i].Beneficiario);
+                }
+
+
+                grdBeneficiarios.DataSource = lstBeneficiarios;
+                grdBeneficiarios.DataBind();
+                grdESpecialistas.DataSource = unaSesion.lstUsuarios;
+                grdESpecialistas.DataBind();
+                lblComentario.Text = unaSesion.Comentario.ToString();
+                cUsuarioSesion us = new cUsuarioSesion();
+                us.Sesion = unaSesion;
+                us.Usuario = vMiPerfil.U;
+                us = dFachada.SesionTraerObservacionPorUsuarioYSesion(us);
+                txtObservacionSesion.Text = us.Observacion.ToString();
+                txtObservacionSesion.Enabled = false;
+                btnDescartar.Visible = false;
+                btnRealizar.Visible = false;
+                btnCerrar.Visible = true;
+                lblAgregarObservacion.Text = "Observación realizada:";
+            }
+            else
+            {
+                lblFecha.Text = unaSesion.Fecha.ToString();
+                lblHoraInicio.Text = unaSesion.HoraInicio.ToString();
+                lblHoraFin.Text = unaSesion.HoraFin.ToString();
+                lblLocalidad.Text = unaSesion.Centro.ToString();
+                List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
+                for (int i = 0; i < unaSesion.lstBeneficiarios.Count; i++)
+                {
+                    lstBeneficiarios.Add(unaSesion.lstBeneficiarios[i].Beneficiario);
+                }
+
+
+                grdBeneficiarios.DataSource = lstBeneficiarios;
+                grdBeneficiarios.DataBind();
+                grdESpecialistas.DataSource = unaSesion.lstUsuarios;
+                grdESpecialistas.DataBind();
+                lblComentario.Text = unaSesion.Comentario.ToString();
+                txtObservacionSesion.Enabled = true;
+                btnDescartar.Visible = true;
+                btnRealizar.Visible = true;
+                btnCerrar.Visible = false;
+                lblAgregarObservacion.Text = "Agregar observación sobre la sesión dada:";
             }
 
-
-            grdBeneficiarios.DataSource = lstBeneficiarios;
-            grdBeneficiarios.DataBind();
-            grdESpecialistas.DataSource = unaSesion.lstUsuarios;
-            grdESpecialistas.DataBind();
-            lblComentario.Text = unaSesion.Comentario.ToString();
         }
 
         protected void grdBeneficiarios_RowCreated(object sender, GridViewRowEventArgs e)
@@ -75,7 +113,11 @@ namespace Ejemplo.Web
         protected void btnDescartar_Click(object sender, EventArgs e)
         {
             string observacion = string.Empty;
-            bool resultado = dFachada.SesionAgregarObservacion(vMiPerfil.U, unaSesion, observacion);
+            cUsuarioSesion unUS = new cUsuarioSesion();
+            unUS.Usuario = vMiPerfil.U;
+            unUS.Sesion = unaSesion;
+            unUS.Observacion = observacion;
+            bool resultado = dFachada.SesionAgregarObservacion(unUS);
             if (resultado)
             {
                 //vTareas.ventanaObservacion = false;
@@ -99,7 +141,11 @@ namespace Ejemplo.Web
             else
             {
                 string observacion = txtObservacionSesion.Text;
-                bool resultado = dFachada.SesionAgregarObservacion(vMiPerfil.U, unaSesion, observacion);
+                cUsuarioSesion unUS = new cUsuarioSesion();
+                unUS.Usuario = vMiPerfil.U;
+                unUS.Sesion = unaSesion;
+                unUS.Observacion = observacion;
+                bool resultado = dFachada.SesionAgregarObservacion(unUS);
                 if (resultado)
                 {
                     //vTareas.ventanaObservacion = false;
@@ -113,6 +159,12 @@ namespace Ejemplo.Web
                 }
             }
 
+        }
+
+        protected void btnCerrar_Click(object sender, EventArgs e)
+        {
+            string script = "window.close();";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
         }
     }
 }
