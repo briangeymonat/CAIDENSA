@@ -89,6 +89,7 @@ namespace Ejemplo.Web
             }
             else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Usuario)
             {
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Nueva Sesión"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Estadísticas"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Usuarios"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Beneficiarios"));
