@@ -101,23 +101,26 @@ namespace Ejemplo.Web
                 {
                     if (condiciones.Count > 1)
                         if (or) condiciones.Add(string.Format(" or P.PlanTipo='{0}'", cblPlan.Items[i].Text));
-                        else condiciones.Add(string.Format(" and P.PlanTipo='{0}'", cblPlan.Items[i].Text));
-                    else condiciones.Add(string.Format(" P.PlanTipo='{0}'", cblPlan.Items[i].Text));
+                        else condiciones.Add(string.Format(" and (P.PlanTipo='{0}'", cblPlan.Items[i].Text));
+                    else condiciones.Add(string.Format(" (P.PlanTipo='{0}'", cblPlan.Items[i].Text));
                     or = true;
                 }
             }
+            if(or) condiciones.Add(")");
+
 
             or = false;
+            
 
             //RANGO DE EDAD
             if (txtDesde.Text != string.Empty && txtHasta.Text != string.Empty)
             {
                 if (condiciones.Count > 1) condiciones.Add(string.Format(" and (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int)" +
-                    " -cast(convert(varchar(8), BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios)" +
+                    " -cast(convert(varchar(8), B1.BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios B1 WHERE B1.BeneficiarioId = B.BeneficiarioId)" +
                     " BETWEEN {0} and {1}",
                     txtDesde.Text, txtHasta.Text));
                 else condiciones.Add(string.Format(" (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int)" +
-                    " -cast(convert(varchar(8), BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios)" +
+                    " -cast(convert(varchar(8), B1.BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios B1 WHERE B1.BeneficiarioId = B.BeneficiarioId)" +
                     " BETWEEN {0} and {1}",
                     txtDesde.Text, txtHasta.Text));
             }
@@ -129,12 +132,13 @@ namespace Ejemplo.Web
                 {
                     if (condiciones.Count > 1)
                         if (or) condiciones.Add(string.Format(" or E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
-                        else condiciones.Add(string.Format(" and E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
+                        else condiciones.Add(string.Format(" and (E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
                     else
-                        condiciones.Add(string.Format(" E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
+                        condiciones.Add(string.Format(" (E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
                     or = true;
                 }
             }
+            if (or) condiciones.Add(")");
 
             //DIAGNOSTICO
 

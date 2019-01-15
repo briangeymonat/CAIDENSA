@@ -14,12 +14,16 @@
                             <asp:Label ID="Label6" runat="server" Text="Beneficiarios"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtBuscarBeneficiarios" runat="server" PlaceHolder="Buscar por CI, Nombre o Apellido"></asp:TextBox>
+                            <asp:TextBox ID="txtBuscarBeneficiarios" runat="server" PlaceHolder="Buscar por CI, Nombre o Apellido" OnTextChanged="txtBuscarBeneficiarios_TextChanged"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                            <asp:Panel ID="Panel1" runat="server">
+                            </asp:Panel>
+                            <asp:GridView ID="grdAsistencias" runat="server" ShowHeaderWhenEmpty="true">
+                            </asp:GridView>
+                            <br />
                         </td>
                     </tr>
                 </table>
@@ -27,8 +31,11 @@
             <td>
                 <table>
                     <tr>
-                        <td>
-                            <asp:TextBox ID="txtMes" runat="server" TextMode="Month" OnTextChanged="txtMes_TextChanged" AutoPostBack="True"></asp:TextBox>
+                        <td>Año: 
+                            <asp:DropDownList ID="ddlAños" runat="server" OnSelectedIndexChanged="ddlAños_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                        </td>
+                        <td>Mes: 
+                            <asp:DropDownList ID="ddlMeses" runat="server" OnSelectedIndexChanged="ddlMeses_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                         </td>
                     </tr>
                     <tr>
@@ -117,12 +124,12 @@
                         <td>
                             <asp:CheckBox ID="cbFisioterapeuta" runat="server" Text="Fisioterapeuta" />
                         </td>
-                        </tr>
+                    </tr>
                     <tr>
                         <td>
                             <asp:CheckBox ID="cbFonoaudiologo" runat="server" Text="Fonoaudiólogo" />
                         </td>
-                        </tr>
+                    </tr>
                     <tr>
                         <td>
                             <asp:CheckBox ID="cbPedagogo" runat="server" Text="Pedagogo" />
@@ -132,7 +139,7 @@
                         <td>
                             <asp:CheckBox ID="cbPsicologo" runat="server" Text="Psicólogo" />
                         </td>
-                        </tr>
+                    </tr>
                     <tr>
                         <td>
                             <asp:CheckBox ID="cbPsicomotricista" runat="server" Text="Psicomotricista" />
@@ -140,7 +147,8 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" />
+                            <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" OnClick="btnAplicarFiltros_Click" />
+                            <asp:Button ID="btnLimpiarFiltros" runat="server" Text="Limpiar Filtros" OnClick="btnLimpiarFiltros_Click" />
                         </td>
                     </tr>
                 </table>

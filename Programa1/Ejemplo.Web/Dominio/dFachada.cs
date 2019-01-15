@@ -474,6 +474,14 @@ namespace Dominio
         {
             return dSesion.TraerObservacionPorUsuarioYSesion(parUsuarioSesion);
         }
+        public static List<DateTime> SesionTraerMaximaFechaYMinimaFecha()
+        {
+            return dSesion.TraerMaximaFechaYMinimaFecha();
+        }
+        public static List<string> SesionTraerAsistenciasDeBeneficiarioPorMes(cBeneficiario parBeneficiario, string parAno, string parMes)
+        {
+            return dSesion.TraerAsistenciasDeBeneficiarioPorMes(parBeneficiario, parAno, parMes);
+        }
         #endregion
 
         #region Seccion

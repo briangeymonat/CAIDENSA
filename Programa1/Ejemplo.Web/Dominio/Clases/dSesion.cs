@@ -54,5 +54,13 @@ namespace Dominio.Clases
         {
             return pSesion.TraerObservacionPorUsuarioYSesion(parUsuarioSesion);
         }
+        public static List<DateTime> TraerMaximaFechaYMinimaFecha()
+        {
+            return pSesion.TraerMaximaFechaYMinimaFecha();
+        }
+        public static List<string> TraerAsistenciasDeBeneficiarioPorMes(cBeneficiario parBeneficiario, string parAno, string parMes)
+        {
+            return pSesion.TraerAsistenciasDeBeneficiarioPorMes(parBeneficiario, parAno, parMes);
+        }
     }
 }
