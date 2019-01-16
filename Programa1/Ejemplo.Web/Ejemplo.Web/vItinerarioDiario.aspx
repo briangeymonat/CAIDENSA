@@ -56,7 +56,7 @@
             <td>
                 
                 <formview ID="frmItinerario" runat="server"></formview>
-                <asp:GridView ID="grdItinerario" runat="server"></asp:GridView>
+                <asp:GridView ID="grdItinerario" runat="server" OnRowDataBound="grdItinerario_RowDataBound"></asp:GridView>
                 <asp:DataGrid ID="dtGrdItinerario" runat="server"></asp:DataGrid>
     <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar un dato de la grilla y se muestran en una ventana flotante los detalles de la consulta" Height="51px" OnClick="btnSeleccionar_Click" Width="593px" />
                 <asp:Button ID="btnMostrarDetallesSesion" runat="server" Text="Mostar detalles de la sesión en esta misma ventana" Height="51px" Width="593px" OnClick="btnMostrarDetallesSesion_Click" />

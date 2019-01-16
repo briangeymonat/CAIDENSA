@@ -31,7 +31,7 @@ namespace Ejemplo.Web
                 {
                     hora = hora.AddMinutes(15);
                     LasHoras.Add(hora);
-                } while (hora != DateTime.Parse("20:00"));
+                } while (hora != DateTime.Parse("23:00"));
                 this.PanelDetallesSesion.Visible = false;
                 CargarDdlDias();
                 CargarItinerarios();
@@ -221,7 +221,7 @@ namespace Ejemplo.Web
             foreach (cUsuario elEspecialista in LosEspecialistas)
             {
 
-                DataColumn nombre = dt.Columns.Add(elEspecialista.Nombres + " " + elEspecialista.Apellidos, typeof(Button));
+                dt.Columns.Add(elEspecialista.Nombres + " " + elEspecialista.Apellidos, typeof(string));
             }
             DataRow row;
             //typeof(string)
@@ -247,12 +247,11 @@ namespace Ejemplo.Web
                         button.Text = celdas[i][j].TipoSesion.ToString() + " " + nombres;
                         button.Visible = true;
                         button.OnClientClick = "MostrarSesion(0)";
-                        row[LosEspecialistas[j].Nombres + " " + LosEspecialistas[j].Apellidos] = button;
+                        row[LosEspecialistas[j].Nombres + " " + LosEspecialistas[j].Apellidos] = nombres;
                     }
 
                 }
                 dt.Rows.Add(row);
-
             }
 
 
@@ -261,7 +260,7 @@ namespace Ejemplo.Web
             dtGrdItinerario.DataBind();
 
             #endregion
-            MostrarItinerarios(Itinerarios);
+            //MostrarItinerarios(Itinerarios);
 
 
             // LosItinerarios = dFachada.ItinerarioTraerTodosPorDia(ddlDias.Text);
@@ -298,6 +297,26 @@ namespace Ejemplo.Web
         protected void rdblCentro_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarItinerarios();
+        }
+
+        protected void grdItinerario_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                for(int i=0; i<e.Row.Cells.Count;i++)
+                {
+                    if(e.Row.Cells[i]!=null)
+                    {
+                        for(int j=0; j< celdas[e.Row.DataItemIndex][i].lstBeneficiarios.Count; j++)
+                        {
+                            if(celdas[e.Row.DataItemIndex][i].lstBeneficiarios[j].Plan.Tipo=="ASSE")
+                            {
+                                e.Row.Cells[i].BackColor = System.Drawing.Color.Aquamarine;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
