@@ -126,8 +126,8 @@ namespace Ejemplo.Web
                         informeAListar.Estado = informe.Estado;
                         informeAListar.Tipo = informe.Tipo;
                         informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                        informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
-                        informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                        informeAListar.Nombres = informe.Beneficiario.Nombres;
+                        informeAListar.Apellidos = informe.Beneficiario.Apellidos;
                         ListaInformesParaListar.Add(informeAListar);
                     }
                     grdInformes.DataSource = ListaInformesParaListar;
@@ -142,6 +142,17 @@ namespace Ejemplo.Web
         protected void btnAplicarFiltros_Click(object sender, EventArgs e)
         {
             CargarInformes();
+        }
+
+        protected void grdInformes_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo informe
+            e.Row.Cells[5].Visible = false;//codigo beneficiario
+        }
+
+        protected void grdInformes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            //PODRIA APARECER UNA VENTANITA PARA EXPORTAR A PDF EL INFORME
         }
     }
 }

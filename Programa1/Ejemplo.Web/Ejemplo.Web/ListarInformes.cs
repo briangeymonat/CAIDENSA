@@ -13,8 +13,8 @@ namespace Ejemplo.Web
         public cUtilidades.TipoInforme Tipo { get; set; }
         public cUtilidades.EstadoInforme Estado { get; set; }
         public int CodigoBeneficiario { get; set; }
-        public string NombresBeneficiario { get; set; }
-        public string ApellidosBeneficiario { get; set; }
+        public string Nombres { get; set; }
+        public string Apellidos { get; set; }
 
     }
 }

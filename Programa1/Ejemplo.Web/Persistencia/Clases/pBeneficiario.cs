@@ -521,6 +521,193 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+
+        public static List<cBeneficiario> TraerActivosPorEdad(int parDesde, int parHasta)
+        {
+            List<cBeneficiario> retorno = new List<cBeneficiario>();
+            cBeneficiario Beneficiario;
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Beneficiarios_TraerActivosPorEdad", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@Desde", parDesde));
+                cmd.Parameters.Add(new SqlParameter("@Hasta", parHasta));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        Beneficiario = new cBeneficiario();
+                        Beneficiario.Codigo = int.Parse(oReader["BeneficiarioId"].ToString());
+                        Beneficiario.Nombres = oReader["BeneficiarioNombres"].ToString();
+                        Beneficiario.Apellidos = oReader["BeneficiarioApellidos"].ToString();
+                        Beneficiario.CI = int.Parse(oReader["BeneficiarioCI"].ToString());
+                        Beneficiario.Sexo = oReader["BeneficiarioSexo"].ToString();
+                        Beneficiario.Telefono1 = oReader["BeneficiarioTelefono1"].ToString();
+                        Beneficiario.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
+                        Beneficiario.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
+                        Beneficiario.Email = oReader["BeneficiarioEmail"].ToString();
+                        Beneficiario.FechaNacimiento = DateTime.Parse(oReader["BeneficiarioFechaNacimiento"].ToString()).ToShortDateString();
+                        Beneficiario.Atributario = oReader["BeneficiarioAtributario"].ToString();
+                        Beneficiario.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
+                        Beneficiario.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
+                        Beneficiario.Derivador = oReader["BeneficiarioDerivador"].ToString();
+                        Beneficiario.Estado = bool.Parse(oReader["BeneficiarioEstado"].ToString());
+                        retorno.Add(Beneficiario);
+                    }
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+
+        public static List<cBeneficiario> TraerTodosPorDiagnostico(cDiagnostico parDiagnostico)
+        {
+            List<cBeneficiario> retorno = new List<cBeneficiario>();
+            cBeneficiario unBeneficiario;
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Beneficiarios_TraerTodosPorDiagnostico", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@idDiagnostico", parDiagnostico.Codigo));
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        unBeneficiario = new cBeneficiario();
+
+                        unBeneficiario.Codigo = int.Parse(oReader["BeneficiarioId"].ToString());
+                        unBeneficiario.Nombres = oReader["BeneficiarioNombres"].ToString();
+                        unBeneficiario.Apellidos = oReader["BeneficiarioApellidos"].ToString();
+                        unBeneficiario.CI = int.Parse(oReader["BeneficiarioCI"].ToString());
+                        unBeneficiario.Sexo = oReader["BeneficiarioSexo"].ToString();
+                        unBeneficiario.Telefono1 = oReader["BeneficiarioTelefono1"].ToString();
+                        unBeneficiario.Telefono2 = oReader["BeneficiarioTelefono2"].ToString();
+                        unBeneficiario.Domicilio = oReader["BeneficiarioDomicilio"].ToString();
+                        unBeneficiario.Email = oReader["BeneficiarioEmail"].ToString();
+                        unBeneficiario.FechaNacimiento = oReader["BeneficiarioFechaNacimiento"].ToString();
+                        string[] ss = unBeneficiario.FechaNacimiento.Split(' ');
+                        unBeneficiario.FechaNacimiento = ss[0];
+                        unBeneficiario.Atributario = oReader["BeneficiarioAtributario"].ToString();
+                        unBeneficiario.MotivoConsulta = oReader["BeneficiarioMotivoConsulta"].ToString();
+                        unBeneficiario.Escolaridad = oReader["BeneficiarioEscolaridad"].ToString();
+                        unBeneficiario.Derivador = oReader["BeneficiarioDerivador"].ToString();
+                        unBeneficiario.Estado = bool.Parse(oReader["BeneficiarioEstado"].ToString());
+
+                        List<cDiagnosticoBeneficiario> lstDB = new List<cDiagnosticoBeneficiario>();
+                        cDiagnosticoBeneficiario unDB;
+
+                        SqlCommand cmd1 = new SqlCommand("DiagnosticosBeneficiarios_TraerTodosDiagnosticosPorBeneficiario", conn);
+                        cmd1.CommandType = CommandType.StoredProcedure;
+                        cmd1.Parameters.Add(new SqlParameter("@idBeneficiario", unBeneficiario.Codigo));
+                        using (SqlDataReader oReader1 = cmd1.ExecuteReader())
+                        {
+                            while(oReader1.Read())
+                            {
+                                unDB = new cDiagnosticoBeneficiario();
+                                unDB.Diagnostico = new cDiagnostico();
+                                unDB.Diagnostico.Codigo = int.Parse(oReader1["DiagnosticoId"].ToString());
+                                unDB.Diagnostico.Tipo = oReader1["DiagnosticoTipo"].ToString();
+                                unDB.Fecha = DateTime.Parse(oReader1["DiagnosticosBeneficiariosFecha"].ToString()).ToShortDateString();
+                                lstDB.Add(unDB);
+                            }
+                        }
+                        unBeneficiario.lstDiagnosticos = lstDB;
+                        retorno.Add(unBeneficiario);
+                    }
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+            
+        }
+
+        public static Tuple<List<string>, List<int>> TraerCantidadParaCadaAñoPorDiagnostico(cDiagnostico parDiagnostico)
+        {
+            List<string> años = new List<string>();
+            List<int> cantidad = new List<int>();
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("EstadisticasTraerCantidadBeneficiarioParaCadaAñoPorDiagnostico", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idDiagnostico", parDiagnostico.Codigo));
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        años.Add(oReader["año"].ToString());
+                        cantidad.Add(int.Parse(oReader["cantidad"].ToString()));
+                    }                    
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Tuple.Create(años, cantidad);
+        }
+
+        public static Tuple<List<cDiagnostico>, List<int>> TraerCantidadParaCadaDiagnosticoPorAño(int parAño)
+        {
+            List<cDiagnostico> diagnosticos = new List<cDiagnostico>();
+            cDiagnostico diagnostico;
+            List<int> cantidad = new List<int>();
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("EstadisticasTraerCantidadBeneficiarioParaCadaDiagnosticoPorAño", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@fecha", parAño));
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        diagnostico = new cDiagnostico();
+                        diagnostico.Codigo = int.Parse(oReader["DiagnosticoId"].ToString());
+                        diagnostico.Tipo = oReader["DiagnosticoTipo"].ToString();
+                        diagnosticos.Add(diagnostico);
+                        cantidad.Add(int.Parse(oReader["cantidad"].ToString()));
+                    }
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Tuple.Create(diagnosticos, cantidad);
+        }
+
+
+
+
     }
 
 

@@ -136,15 +136,5 @@
                 </table>
             </td>
         </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label10" runat="server" Text="Comentario:"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:TextBox ID="txtComentario" runat="server" TextMode="MultiLine" Width="100%" Height="130px"></asp:TextBox>
-            </td>
-        </tr>
     </table>
 </asp:Content>

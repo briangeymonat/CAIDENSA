@@ -192,7 +192,10 @@ namespace Dominio
         {
             return dBeneficiario.TraerTodosPorEspecialista(parUsuario);
         }
-
+        public static List<cBeneficiario> BeneficiarioTraerTodosPorDiagnostico(cDiagnostico parDiagnostico)
+        {
+            return dBeneficiario.TraerTodosPorDiagnostico(parDiagnostico);
+        }
 
         #endregion
 
@@ -524,7 +527,30 @@ namespace Dominio
         {
             return dDiagnostico.Eliminar(parDiagnostico);
         }
+        public static List<string> DiagnosticoTraerTodosAñosQueHayDiagnosticos()
+        {
+            return dDiagnostico.TraerTodosAñosQueHayDiagnosticos();
+        }
 
+        #endregion
+
+        #region ESTADISTICAS
+        public static List<List<string>> EstadisticaTraerCantidadSesionPorTipoSesion(string parConsulta)
+        {
+            return dUsuario.TraerCantidadSesionPorTipoSesion(parConsulta);
+        }
+        public static List<cBeneficiario> EstadisticaBeneficiarioTraerActivosPorEdad(int parDesde, int parHasta)
+        {
+            return dBeneficiario.TraerActivosPorEdad(parDesde, parHasta);
+        }
+        public static Tuple<List<string>, List<int>> EstadisticaTraerCantidadParaCadaAñoPorDiagnostico(cDiagnostico parDiagnostico)
+        {
+            return dBeneficiario.TraerCantidadParaCadaAñoPorDiagnostico(parDiagnostico);
+        }
+        public static Tuple<List<cDiagnostico>, List<int>> EstadisticaTraerCantidadParaCadaDiagnosticoPorAño(int parAño)
+        {
+            return dBeneficiario.TraerCantidadParaCadaDiagnosticoPorAño(parAño);
+        }
         #endregion
     }
 }

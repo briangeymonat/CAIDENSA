@@ -274,13 +274,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblBeneficiariosQueAtiende;
         
         /// <summary>
-        /// Control GridView1.
+        /// Control grdBeneficiariosQueAtiende.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView grdBeneficiariosQueAtiende;
         
         /// <summary>
         /// Control lblInformesRealizados.
@@ -292,13 +292,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblInformesRealizados;
         
         /// <summary>
-        /// Control GridView2.
+        /// Control grdInformesRealizados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView grdInformesRealizados;
         
         /// <summary>
         /// Control lblInformesPendientes.
@@ -310,13 +310,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblInformesPendientes;
         
         /// <summary>
-        /// Control GridView3.
+        /// Control grdInformesPendientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView3;
+        protected global::System.Web.UI.WebControls.GridView grdInformesPendientes;
         
         /// <summary>
         /// Control ListView1.

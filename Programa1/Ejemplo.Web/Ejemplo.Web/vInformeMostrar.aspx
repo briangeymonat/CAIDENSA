@@ -15,7 +15,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:GridView ID="grdInformes" runat="server"></asp:GridView>
+                            <asp:GridView ID="grdInformes" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdInformes_RowCreated" OnSelectedIndexChanging="grdInformes_SelectedIndexChanging"></asp:GridView>
                         </td>
                     </tr>
                 </table>

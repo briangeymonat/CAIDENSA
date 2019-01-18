@@ -13,7 +13,7 @@ namespace Ejemplo.Web
     {
         private static List<string> TiposDeSesion = new List<string>() { "Individual", "Grupo 2", "Grupo 3", "Taller", "PROES" };
         private static List<string> Dias = new List<string>() { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
-        private static List<string> Especialidades = new List<string>() { "Fonoaudiologia", "Fisioterapia", "Pedadogia", "Psicologia", "Psicomotricidad" };
+        private static List<string> Especialidades = new List<string>() { "Psicologia", "Pedadogia", "Fisioterapia", "Fonoaudiologia", "Psicomotricidad" };
         private static List<cBeneficiario> TodosLosBenefiicarios;
         private static List<cBeneficiario> BeneficiariosAgregados;
         private static List<cUsuario> LosEspecialistas;
@@ -40,13 +40,14 @@ namespace Ejemplo.Web
                     unUsu.Codigo = int.Parse(Request.QueryString["Usuario" + (i + 1).ToString()]);
                     EspecialistasAgregados.Add(dFachada.UsuarioTraerEspecifico(unUsu));
                 }
+                CargarDdlTiposDeSesion();
+                CargarDdlEspecialidades();
+                CargarBeneficiarios();
+                CargarBeneficiariosAgregados();
+                CargarEspecialistas();
+                CargarEspecialistasAgregados();
             }
-            CargarDdlTiposDeSesion();
-            CargarDdlEspecialidades();
-            CargarBeneficiarios();
-            CargarBeneficiariosAgregados();
-            CargarEspecialistas();
-            CargarEspecialistasAgregados();
+           
 
 
         }
@@ -82,10 +83,10 @@ namespace Ejemplo.Web
                     if (BeneficiariosAgregados.Count == 3) return true;
                     else return false;
                 case "Taller":
-                    if (BeneficiariosAgregados.Count >= 4 && BeneficiariosAgregados.Count <= 5) return true;
+                    if (BeneficiariosAgregados.Count == 4) return true;
                     else return false;
                 case "PROES":
-                    if (BeneficiariosAgregados.Count <= 8) return true;
+                    if (BeneficiariosAgregados.Count <= 8 && BeneficiariosAgregados.Count>=5 && EspecialistasAgregados.Count==2) return true;
                     else return false;
                 default:
                     return false;
@@ -629,7 +630,6 @@ namespace Ejemplo.Web
                         }
 
                         unaSesion.lstUsuarios = EspecialistasAgregados;
-                        unaSesion.Comentario = txtComentario.Text;
                         List<cUsuario> EspecialistasNoDisponibles = dFachada.SesionVerificarFechaYHorarioUsuario(unaSesion);
                         List<cBeneficiario> BeneficiariosNoDisponibles = dFachada.SesionVerificarFechaYHorarioBeneficiario(unaSesion);
                         string especialistas = "";

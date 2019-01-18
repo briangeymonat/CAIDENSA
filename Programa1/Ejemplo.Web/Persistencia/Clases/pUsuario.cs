@@ -1474,6 +1474,45 @@ namespace Persistencia.Clases
         }
         #endregion
 
+        #region 
+
+        public static List<List<string>> TraerCantidadSesionPorTipoSesion(string parConsulta)
+        {
+            List<List<string>> retorno = new List<List<string>>();
+            List<string> lst;
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(parConsulta, conn);
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        lst = new List<string>();
+                        lst.Add(oReader["UsuarioNombres"].ToString());
+                        lst.Add(oReader["UsuarioApellidos"].ToString());
+                        lst.Add(oReader["Individual"].ToString());
+                        lst.Add(oReader["Grupo2"].ToString());
+                        lst.Add(oReader["Grupo3"].ToString());
+                        lst.Add(oReader["Taller"].ToString());
+                        lst.Add(oReader["PROES"].ToString());
+                        retorno.Add(lst);
+                    }
+                    conn.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+
+        #endregion
 
 
     }

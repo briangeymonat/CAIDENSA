@@ -125,8 +125,8 @@ namespace Ejemplo.Web
                 informeAListar.Estado = informe.Estado;
                 informeAListar.Tipo = informe.Tipo;
                 informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
-                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                informeAListar.Nombres = informe.Beneficiario.Nombres;
+                informeAListar.Apellidos = informe.Beneficiario.Apellidos;
                 ListaInformesParaListar.Add(informeAListar);
             }
 
@@ -152,8 +152,8 @@ namespace Ejemplo.Web
                 informeAListar.Estado = informe.Estado;
                 informeAListar.Tipo = informe.Tipo;
                 informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
-                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                informeAListar.Nombres = informe.Beneficiario.Nombres;
+                informeAListar.Apellidos = informe.Beneficiario.Apellidos;
                 ListaInformesParaListar.Add(informeAListar);
             }
 
@@ -280,6 +280,7 @@ namespace Ejemplo.Web
         {
             ModoEdicion(true);
         }
+
 
         protected void grdBeneficiariosQueAtiende_RowCreated(object sender, GridViewRowEventArgs e)
         {

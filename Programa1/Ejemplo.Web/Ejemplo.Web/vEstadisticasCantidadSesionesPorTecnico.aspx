@@ -8,12 +8,26 @@
     <table>
         <tr>
             <td>
-                <asp:TextBox ID="txtBuscarEspecialista" runat="server" PlaceHolder="Buscar técnico"></asp:TextBox>
+                
+            </td>
+            <td>
+                <asp:Label ID="Label1" runat="server" Text="Mes: "></asp:Label>
+                <asp:DropDownList ID="ddlMeses" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlMeses_SelectedIndexChanged"></asp:DropDownList>
+            </td>
+            <td>
+                <asp:Label ID="Label2" runat="server" Text="Año: "></asp:Label>
+                <asp:DropDownList ID="ddlAños" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAños_SelectedIndexChanged"></asp:DropDownList>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <asp:TextBox ID="txtBuscarEspecialista" runat="server" PlaceHolder="Buscar técnico" OnTextChanged="txtBuscarEspecialista_TextChanged"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:GridView ID="grdTecnicosCantidadSesion" runat="server"></asp:GridView>
+                <asp:GridView ID="grdTecnicosCantidadSesion" runat="server" ShowHeaderWhenEmpty="true"></asp:GridView>
             </td>
         </tr>
     </table>

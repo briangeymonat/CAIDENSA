@@ -190,5 +190,18 @@ namespace Ejemplo.Web
             Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + TodosLosBeneficiarios[e.NewSelectedIndex].Codigo.ToString());
         }
 
+        protected void grdBeneficiarios_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false;//codigo
+            e.Row.Cells[5].Visible = false;//sexo
+            e.Row.Cells[6].Visible = false;//tel1
+            e.Row.Cells[7].Visible = false;//tel2
+            e.Row.Cells[8].Visible = false;//email
+            e.Row.Cells[9].Visible = false;//domicilio
+            e.Row.Cells[12].Visible = false;//Motivo consulta
+            e.Row.Cells[13].Visible = false;//escolaridad
+            e.Row.Cells[14].Visible = false;//derivador
+            e.Row.Cells[15].Visible = false;//estado
+        }
     }
 }

@@ -80,5 +80,11 @@ namespace Ejemplo.Web
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puede eliminar un diagnóstico que tenga al menos un beneficiario.')", true);
             }
         }
+
+        protected void grdDiagnosticos_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+
+            e.Row.Cells[1].Visible = false;//codigo beneficiario
+        }
     }
 }

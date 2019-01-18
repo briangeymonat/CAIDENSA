@@ -9,11 +9,12 @@
             <td>
                 <table>
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <asp:Label ID="Label2" runat="server" Text="Cantidad de beneficiarios que su edad esta dentro del rango definido: "></asp:Label>
+                            <asp:Label ID="lblCantidadBeneficiarios" runat="server"></asp:Label>
                         </td>
                         <td>
-                            <asp:Label ID="lblCantidadBeneficiarios" runat="server"></asp:Label>
+                            
                         </td>
                     </tr>
                     <tr>
@@ -23,7 +24,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:GridView ID="grdBeneficiarios" runat="server"></asp:GridView>
+                            <asp:GridView ID="grdBeneficiarios" runat="server" OnRowCreated="grdBeneficiarios_RowCreated"></asp:GridView>
                         </td>
                     </tr>
                 </table>
@@ -40,7 +41,7 @@
                             <asp:Label ID="Label4" runat="server" Text="Desde:"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtDesde" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtDesde" runat="server" TextMode="Number" OnTextChanged="txtDesde_TextChanged"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -48,15 +49,15 @@
                             <asp:Label ID="Label5" runat="server" Text="Hasta:"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtHasta" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtHasta" runat="server" TextMode="Number" OnTextChanged="txtHasta_TextChanged"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                           
+                        </td>                           
                         <td>
-                             <asp:Button ID="btnAplicar" runat="server" Text="Aplicar" />
-                        </td>
+                             <asp:Button ID="btnAplicar" runat="server" Text="Aplicar" OnClick="btnAplicar_Click" />
+                             <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" OnClick="btnLimpiar_Click" />
                         </td>
                     </tr>
                 </table>

@@ -107,5 +107,13 @@ namespace Dominio.Clases
         {
             return pUsuario.TraerTodosPorSeccion(parSeccion);
         }
+        
+        #region Estadistica cantidad de sesion por tipo de sesion
+        public static List<List<string>> TraerCantidadSesionPorTipoSesion(string parConsulta)
+        {
+            return pUsuario.TraerCantidadSesionPorTipoSesion(parConsulta);
+        }
+        #endregion
+
     }
 }

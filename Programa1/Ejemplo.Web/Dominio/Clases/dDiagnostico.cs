@@ -38,5 +38,9 @@ namespace Dominio.Clases
         {
             return pDiagnostico.Eliminar(parDiagnostico);
         }
+        public static List<string> TraerTodosAñosQueHayDiagnosticos()
+        {
+            return pDiagnostico.TraerTodosAñosQueHayDiagnosticos();
+        }
     }
 }

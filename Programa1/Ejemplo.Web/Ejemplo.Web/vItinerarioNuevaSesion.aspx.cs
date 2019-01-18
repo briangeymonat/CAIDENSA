@@ -37,6 +37,7 @@ namespace Ejemplo.Web
             CargarBeneficiariosAgregados();
             CargarEspecialistas();
             CargarEspecialistasAgregados();
+            txtComentario.Text = string.Empty; //agregado nuevo
 
         }
         private void CargarDdlTiposDeSesion()

@@ -241,5 +241,31 @@ namespace Persistencia.Clases
 
             return retorno;
         }
+
+        public static List<string> TraerTodosAñosQueHayDiagnosticos()
+        {
+            List<string> años = new List<string>();
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("DignosticosBeneficiarios_TraerTodosLosAños", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        años.Add(oReader["año"].ToString());
+                    }
+                }
+                conn.Close();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return años;
+        }
     }
 }

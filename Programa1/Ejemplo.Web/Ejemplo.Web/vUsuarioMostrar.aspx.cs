@@ -1157,7 +1157,7 @@ namespace Ejemplo.Web
                     && !cbPsicomotricista.Checked && !cbSinEspecialidad.Checked && !cbAdministrador.Checked &&
                     !cbAdministrativo.Checked && !cbEspecialista.Checked)
             {
-                if(FiltroPorBusqueda)
+                if (FiltroPorBusqueda)
                 {
                     ListarActivos = lstUsuariosBActivos;
                     ListarInactivos = lstUsuariosBInactivos;
@@ -1171,7 +1171,7 @@ namespace Ejemplo.Web
                     ListarInactivos = lstUsuariosCBInactivos;
                     FiltroPorCheckBox = false;
                 }
-                
+
             }
             else
             {
@@ -1208,7 +1208,7 @@ namespace Ejemplo.Web
                                         lstUsuariosCBActivos.Add(lstUsuariosActivos[i]);
                                     }
                                 }
-                                if(!cbEspecialista.Checked && !cbAdministrador.Checked && !cbAdministrativo.Checked)
+                                if (!cbEspecialista.Checked && !cbAdministrador.Checked && !cbAdministrativo.Checked)
                                 {
                                     lstUsuariosCBActivos.Add(lstUsuariosActivos[i]);
                                 }
@@ -1589,16 +1589,16 @@ namespace Ejemplo.Web
                 {
                     if (this.cbAdministrador.Checked)
                     {
-                        for(int i=0; i<lstUsuariosActivos.Count;i++)
+                        for (int i = 0; i < lstUsuariosActivos.Count; i++)
                         {
-                            if(lstUsuariosActivos[i].Tipo == cUtilidades.TipoDeUsuario.Administrador)
+                            if (lstUsuariosActivos[i].Tipo == cUtilidades.TipoDeUsuario.Administrador)
                             {
                                 lstUsuariosCBActivos.Add(lstUsuariosActivos[i]);
                             }
                         }
-                        for(int j=0; j<lstUsuariosInactivos.Count; j++)
+                        for (int j = 0; j < lstUsuariosInactivos.Count; j++)
                         {
-                            if(lstUsuariosInactivos[j].Tipo == cUtilidades.TipoDeUsuario.Administrador)
+                            if (lstUsuariosInactivos[j].Tipo == cUtilidades.TipoDeUsuario.Administrador)
                             {
                                 lstUsuariosCBInactivos.Add(lstUsuariosInactivos[j]);
                             }
@@ -1646,11 +1646,11 @@ namespace Ejemplo.Web
 
                 if (FiltroPorBusqueda)
                 {
-                    for(int a=0; a< lstUsuariosBActivos.Count; a++)
+                    for (int a = 0; a < lstUsuariosBActivos.Count; a++)
                     {
-                        for(int b=0; b<lstUsuariosCBActivos.Count; b++)
+                        for (int b = 0; b < lstUsuariosCBActivos.Count; b++)
                         {
-                            if(lstUsuariosBActivos[a].NickName==lstUsuariosCBActivos[b].NickName)
+                            if (lstUsuariosBActivos[a].NickName == lstUsuariosCBActivos[b].NickName)
                             {
                                 activos.Add(lstUsuariosBActivos[a]);
                             }
@@ -1724,7 +1724,7 @@ namespace Ejemplo.Web
         }
 
         protected void txtBuscarBeneficiario_TextChanged(object sender, EventArgs e)
-        {            
+        {
             string texto = txtBuscarBeneficiario.Text;
             lstUsuariosActivos = dFachada.UsuarioTraerTodosActivos();
             lstUsuariosInactivos = dFachada.UsuarioTraerTodosInactivos();
@@ -1736,7 +1736,7 @@ namespace Ejemplo.Web
                 lstUsuariosBActivos = lstUsuariosActivos;
                 lstUsuariosBInactivos = lstUsuariosInactivos;
                 FiltroPorBusqueda = false;
-                if(FiltroPorCheckBox)
+                if (FiltroPorCheckBox)
                 {
                     ListarActivos = lstUsuariosCBActivos;
                     ListarInactivos = lstUsuariosCBInactivos;
@@ -1839,7 +1839,7 @@ namespace Ejemplo.Web
         {
             #region
             FiltroPorCheckBox = false;
-            if(FiltroPorBusqueda)
+            if (FiltroPorBusqueda)
             {
                 ListarActivos = lstUsuariosBActivos;
                 ListarInactivos = lstUsuariosBInactivos;
@@ -1849,7 +1849,7 @@ namespace Ejemplo.Web
                 ListarActivos = lstUsuariosActivos;
                 ListarInactivos = lstUsuariosInactivos;
             }
-        
+
 
             //ListarActivos = lstUsuariosActivos;
             //ListarInactivos = lstUsuariosInactivos;
@@ -1895,24 +1895,24 @@ namespace Ejemplo.Web
 
         protected void grdUsuariosActivos_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            int i = grdUsuariosActivos.PageCount;
-            if (i > 0)
-            {
-                e.Row.Cells[1].Visible = false; //codigo
-                e.Row.Cells[3].Visible = false; //contraseña
-                e.Row.Cells[12].Visible = false;//estado
-            }
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[3].Visible = false; //contraseña
+            e.Row.Cells[8].Visible = false; //domicilio
+            e.Row.Cells[10].Visible = false; //tel
+            e.Row.Cells[11].Visible = false; //email
+            e.Row.Cells[12].Visible = false;//estadp
+            e.Row.Cells[13].Visible = false; //tipo contrato
         }
 
         protected void grdUsuariosInactivos_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            int i = grdUsuariosInactivos.PageCount;
-            if (i > 0)
-            {
-                e.Row.Cells[1].Visible = false; //codigo
-                e.Row.Cells[3].Visible = false; //contraseña
-                e.Row.Cells[12].Visible = false;//estado
-            }
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[3].Visible = false; //contraseña
+            e.Row.Cells[8].Visible = false; //domicilio
+            e.Row.Cells[10].Visible = false; //tel
+            e.Row.Cells[11].Visible = false; //email
+            e.Row.Cells[12].Visible = false;//estadp
+            e.Row.Cells[13].Visible = false; //tipo contrato
 
         }
 

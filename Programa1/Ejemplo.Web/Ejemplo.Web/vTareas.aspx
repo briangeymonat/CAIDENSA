@@ -10,8 +10,8 @@
         <table>
             <tr>
                 <td>
-                    <asp:Label ID="Label6" runat="server" Text="Sesiones que pasaron del día:"></asp:Label>
-                    <asp:GridView ID="grdSesionesPasadasDelDia" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesPasadasDelDia_SelectedIndexChanging"></asp:GridView>
+                    <asp:Label ID="Label6" runat="server" Text="Sesiones sin marcar asistencia:"></asp:Label>
+                    <asp:GridView ID="grdSesionesPasadasDelDia" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesPasadasDelDia_SelectedIndexChanging" OnRowCreated="grdSesionesPasadasDelDia_RowCreated"></asp:GridView>
                 </td>
                 <td>
                     <asp:Label ID="Label5" runat="server" Text="Beneficiarios que tienen planes cercanos al vencimiento:"></asp:Label>
@@ -34,11 +34,11 @@
             <tr>
                 <td>
                     <asp:Label ID="Label1" runat="server" Text="Sesiones del día:"></asp:Label>
-                    <asp:GridView ID="grdSesionesDelDia" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesDelDia_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
+                    <asp:GridView ID="grdSesionesDelDia" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesDelDia_SelectedIndexChanging" ShowHeaderWhenEmpty="True" OnRowCreated="grdSesionesDelDia_RowCreated"></asp:GridView>
                 </td>
                 <td>
-                    <asp:Label ID="Label2" runat="server" Text="Observaciones de sesiones:"></asp:Label>
-                    <asp:GridView ID="grdObservacionesDeSesiones" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdObservacionesDeSesiones_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
+                    <asp:Label ID="Label2" runat="server" Text="Sesiones para realizar observaciones:"></asp:Label>
+                    <asp:GridView ID="grdObservacionesDeSesiones" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdObservacionesDeSesiones_SelectedIndexChanging" ShowHeaderWhenEmpty="True" OnRowCreated="grdObservacionesDeSesiones_RowCreated"></asp:GridView>
                 </td>
                 <td>
                     <asp:Label ID="Label3" runat="server" Text="Informes pendientes:"></asp:Label>
@@ -48,15 +48,11 @@
                     <asp:Label ID="Label4" runat="server" Text="Informes en proceso:"></asp:Label>
                     <asp:GridView ID="grdInformesEnProceso" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdInformesEnProceso_RowCreated" OnSelectedIndexChanging="grdInformesEnProceso_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
                 </td>
-                <td>
-                    <asp:Label ID="Label9" runat="server" Text="Informes terminados:"></asp:Label>
-                    <asp:GridView ID="grdInformesTerminados" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdInformesTerminados_RowCreated" OnSelectedIndexChanging="grdInformesTerminados_SelectedIndexChanging" ShowHeaderWhenEmpty="True"></asp:GridView>
-                </td>
             </tr>
             <tr>
                 <td>
                     <asp:Label ID="Label10" runat="server" Text="Sesiones con observaciones realizadas:"></asp:Label>
-                    <asp:GridView ID="grdSesionesObservacionesRealizadas" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesObservacionesRealizadas_SelectedIndexChanging"></asp:GridView>
+                    <asp:GridView ID="grdSesionesObservacionesRealizadas" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesObservacionesRealizadas_SelectedIndexChanging" OnRowCreated="grdSesionesObservacionesRealizadas_RowCreated"></asp:GridView>
                 </td>
                 <td>
                     <table>

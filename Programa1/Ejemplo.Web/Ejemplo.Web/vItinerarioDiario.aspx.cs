@@ -215,6 +215,8 @@ namespace Ejemplo.Web
             }
             Itinerarios += "</table>";
 
+
+            //EMPIEZA ACA LA CREACION DE LA TABLA QUE SE MUESTRA
             DataTable dt = new DataTable();
             DataColumn Horas = dt.Columns.Add("Horas", typeof(string));
 

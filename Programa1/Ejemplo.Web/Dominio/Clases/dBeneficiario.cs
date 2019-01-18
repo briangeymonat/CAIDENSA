@@ -54,5 +54,26 @@ namespace Dominio.Clases
         {
             return pBeneficiario.TraerTodosPorEspecialista(parUsuario);
         }
-    }
+        public static List<cBeneficiario> TraerTodosPorDiagnostico(cDiagnostico parDiagnostico)
+        {
+            return pBeneficiario.TraerTodosPorDiagnostico(parDiagnostico);
+        }
+
+        #region ESTADISTICA Beneficiarios activos por rango de edad
+        public static List<cBeneficiario> TraerActivosPorEdad(int parDesde, int parHasta)
+        {
+            return pBeneficiario.TraerActivosPorEdad(parDesde, parHasta);
+        }
+        public static Tuple<List<string>, List<int>> TraerCantidadParaCadaAñoPorDiagnostico(cDiagnostico parDiagnostico)
+        {
+            return pBeneficiario.TraerCantidadParaCadaAñoPorDiagnostico(parDiagnostico);
+        }
+        public static Tuple<List<cDiagnostico>, List<int>> TraerCantidadParaCadaDiagnosticoPorAño(int parAño)
+        {
+            return pBeneficiario.TraerCantidadParaCadaDiagnosticoPorAño(parAño);
+        }
+
+
+            #endregion
+        }
 }

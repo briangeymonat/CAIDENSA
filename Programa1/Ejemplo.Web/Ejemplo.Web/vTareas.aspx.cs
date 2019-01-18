@@ -203,7 +203,7 @@ namespace Ejemplo.Web
         {//son 5 ahora 28/12
             CargarGrillaInformesPendientes();
             CargarGrillaInformesEnProceso();
-            CargarGrillaInformesTerminados();
+            //CargarGrillaInformesTerminados();
             CargarGrillaSesionesDelDia();
             CargarGrillasSesionesObservaciones();
             CargarGrillaSesionesConObservacionesRealizadas();
@@ -228,8 +228,8 @@ namespace Ejemplo.Web
                 informeAListar.Estado = informe.Estado;
                 informeAListar.Tipo = informe.Tipo;
                 informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
-                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                informeAListar.Nombres = informe.Beneficiario.Nombres;
+                informeAListar.Apellidos = informe.Beneficiario.Apellidos;
                 ListaInformesParaListar.Add(informeAListar);
             }
 
@@ -255,15 +255,15 @@ namespace Ejemplo.Web
                 informeAListar.Estado = informe.Estado;
                 informeAListar.Tipo = informe.Tipo;
                 informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
-                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
+                informeAListar.Nombres = informe.Beneficiario.Nombres;
+                informeAListar.Apellidos = informe.Beneficiario.Apellidos;
                 ListaInformesParaListar.Add(informeAListar);
             }
 
             grdInformesEnProceso.DataSource = ListaInformesParaListar;
             grdInformesEnProceso.DataBind();
         }
-        protected void CargarGrillaInformesTerminados()
+        /*protected void CargarGrillaInformesTerminados()
         {
             List<cInforme> ListaInformes = dFachada.InformeTraerTodosTerminadosPorEspecialista(vMiPerfil.U);
             cInforme informe;
@@ -289,7 +289,7 @@ namespace Ejemplo.Web
 
             grdInformesTerminados.DataSource = ListaInformesParaListar;
             grdInformesTerminados.DataBind();
-        }
+        }*/
         protected void CargarGrillaSesionesDelDia()
         {
             List<cSesion> sesiones = new List<cSesion>();
@@ -331,18 +331,18 @@ namespace Ejemplo.Web
                 List<string> condiciones = new List<string>() { " WHERE" };
                 condiciones.Add(string.Format(" us.UsuarioId={0} and us.UsuariosSesionesObservacion  is not NULL and us.UsuariosSesionesObservacion <> ''", vMiPerfil.U.Codigo));
                 //Beneficiario
-                if(ddlBeneficiario.SelectedIndex !=0)
+                if (ddlBeneficiario.SelectedIndex != 0)
                 {
                     cBeneficiario beneficiario = lstBeneficiarios[ddlBeneficiario.SelectedIndex - 1];
                     int codigo = beneficiario.Codigo;
                     condiciones.Add(string.Format(" and bs.BeneficiarioId={0}", codigo));
                 }
                 //Fecha
-                if(txtDesde.Text != string.Empty && txtHasta.Text !=string.Empty)
+                if (txtDesde.Text != string.Empty && txtHasta.Text != string.Empty)
                 {
                     condiciones.Add(string.Format(" and s.SesionFecha between '{0}' and '{1}'", txtDesde.Text, txtHasta.Text));
                 }
-                for(int i=0; i<condiciones.Count;i++)
+                for (int i = 0; i < condiciones.Count; i++)
                 {
                     Consulta += condiciones[i];
                 }
@@ -352,7 +352,7 @@ namespace Ejemplo.Web
         }
         protected void grdInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            //e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[1].Visible = false; //codigo
             e.Row.Cells[2].Visible = false; //fecha
             e.Row.Cells[4].Visible = false; //estado
             e.Row.Cells[5].Visible = false; //codigo beneficiario
@@ -372,21 +372,13 @@ namespace Ejemplo.Web
         }
         protected void grdInformesEnProceso_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            //e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[1].Visible = false; //codigo
             e.Row.Cells[2].Visible = false; //fecha
             e.Row.Cells[4].Visible = false; //estado
             e.Row.Cells[5].Visible = false; //codigo beneficiario
         }
         #endregion
-
-        protected void grdInformesTerminados_RowCreated(object sender, GridViewRowEventArgs e)
-        {
-
-        }
-        protected void grdInformesTerminados_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-
-        }
+        
         protected void grdSesionesPasadasDelDia_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             if (ventanaReprogramar)
@@ -444,7 +436,7 @@ namespace Ejemplo.Web
         }
         protected void grdSesionesObservacionesRealizadas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            if(ventanaObservacion)
+            if (ventanaObservacion)
             {
                 ventanaObservacionVerDetalles = true;
                 ventanaObservacion = false;
@@ -460,6 +452,30 @@ namespace Ejemplo.Web
                 CargarGrillasAdministrativas();
                 ventanaObservacion = true;
             }
+        }
+
+        protected void grdSesionesPasadasDelDia_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[2].Visible = false; //comentario
+        }
+
+        protected void grdObservacionesDeSesiones_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[2].Visible = false;//comentario
+        }
+
+        protected void grdSesionesDelDia_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[2].Visible = false;//comentario
+        }
+
+        protected void grdSesionesObservacionesRealizadas_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[2].Visible = false;//comentario
         }
     }
 }

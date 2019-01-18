@@ -13,7 +13,7 @@ namespace Ejemplo.Web
     {
         private static List<string> TiposDeSesion = new List<string>() { "Individual", "Grupo 2", "Grupo 3", "Taller", "PROES" };
         private static List<string> Dias = new List<string>() { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
-        private static List<string> Especialidades = new List<string>() { "Fonoaudiologia", "Fisioterapia", "Pedadogia", "Psicologia", "Psicomotricidad" };
+        private static List<string> Especialidades = new List<string>() { "Psicologia", "Pedadogia", "Fisioterapia", "Fonoaudiologia", "Psicomotricidad" };
         private static List<cBeneficiario> TodosLosBenefiicarios;
         private static List<cBeneficiario> BeneficiariosAgregados;
         private static List<cUsuario> LosEspecialistas;
@@ -631,7 +631,6 @@ namespace Ejemplo.Web
                         }
 
                         unaSesion.lstUsuarios = EspecialistasAgregados;
-                        unaSesion.Comentario = txtComentario.Text;
                         List<cUsuario> EspecialistasNoDisponibles = dFachada.SesionVerificarFechaYHorarioUsuario(unaSesion);
                         List<cBeneficiario> BeneficiariosNoDisponibles = dFachada.SesionVerificarFechaYHorarioBeneficiario(unaSesion);
                         string especialistas = "";
