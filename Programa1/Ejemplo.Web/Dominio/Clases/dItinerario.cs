@@ -22,6 +22,14 @@ namespace Dominio.Clases
         {
             return pItinerario.VerificarHorarioBeneficiarios(parItinerario);
         }
+        public static List<cUsuario> VerificarHorarioUsuarioModificar(cItinerario parItinerario)
+        {
+            return pItinerario.VerificarHorarioUsuarioModificar(parItinerario);
+        }
+        public static List<cBeneficiario> VerificarHorarioBeneficiariosModificar(cItinerario parItinerario)
+        {
+            return pItinerario.VerificarHorarioBeneficiariosModificar(parItinerario);
+        }
         public static List<cItinerario> TraerTodosPorDia(char parDia, int parCentro)
         {
             return pItinerario.TraerTodosPorDia(parDia, parCentro);
@@ -33,6 +41,18 @@ namespace Dominio.Clases
         public static string TraerEncuadrePorBeneficiario(cBeneficiario parBeneficiario)
         {
             return pItinerario.TraerEncuadrePorBeneficiario(parBeneficiario);
+        }
+        public static cItinerario TraerEspecifico(cItinerario parItinerario)
+        {
+            return pItinerario.TraerEspecifico(parItinerario);
+        }
+        public static bool Modificar(cItinerario parItinerario)
+        {
+            return pItinerario.Modificar(parItinerario);
+        }
+        public static bool Eliminar(cItinerario parItinerario)
+        {
+            return pItinerario.Eliminar(parItinerario);
         }
     }
 }

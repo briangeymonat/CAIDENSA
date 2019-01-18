@@ -35,6 +35,8 @@ namespace Ejemplo.Web
                 this.PanelDetallesSesion.Visible = false;
                 CargarDdlDias();
                 CargarItinerarios();
+                CargarDdlEspecialistas();
+                CargarGrdItinerariosPorEspecialista();
             }
         }
         private void CargarDdlDias()
@@ -93,10 +95,10 @@ namespace Ejemplo.Web
                 }
 
             }
-            string Itinerarios = @"<table onscroll='screenTop'><tr ><td style='color:#000000; background-color:antiquewhite'>Hora</td>";
+            string Itinerarios = @"<table onscroll='screenTop'><tr ><td style='color:#000000; background-color:#80B7D8'>Hora</td>";
             for (int i = 0; i < LosEspecialistas.Count; i++)
             {
-                Itinerarios += "<td style='color:#000000; background-color:antiquewhite'>" + LosEspecialistas[i].Nombres + " " + LosEspecialistas[i].Apellidos + "</td>";
+                Itinerarios += "<td style='color:#000000; background-color:#80B7D8'>" + LosEspecialistas[i].Nombres + " " + LosEspecialistas[i].Apellidos + "</td>";
             }
             Itinerarios += "</tr>";
 
@@ -185,30 +187,39 @@ namespace Ejemplo.Web
 
             for (int i = 0; i < LasHoras.Count; i++)
             {
-                Itinerarios += "<tr><td style='color:#000000; background-color:antiquewhite'>" + LasHoras[i].ToShortTimeString() + "</td>";
+                Itinerarios += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + LasHoras[i].ToShortTimeString() + "</td>";
                 for (int j = 0; j < LosEspecialistas.Count; j++)
                 {
-                    if (celdas[i][j].lstBeneficiarios == null)
+                    if (celdas[i][j].Comentario == null)
                     {
-                        Itinerarios += "<td style='background-color:#303cbf; color:#ffd800' rowspan={0}></td>";
+                        Itinerarios += "<td style='background-color:#5186A6; color:#5186A6' rowspan={0}></td>";
                     }
                     else
                     {
-                        string nombres = "";
-                        foreach (cBeneficiarioItinerario unBeneficiario in celdas[i][j].lstBeneficiarios)
+                        if (celdas[i][j].Comentario != "NO_LISTAR")
                         {
-                            nombres += " " + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos;
+                            string nombres = "";
+                            foreach (cBeneficiarioItinerario unBeneficiario in celdas[i][j].lstBeneficiarios)
+                            {
+                                nombres += "<br>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos;
+                            }
+                            int filas = 0;
+                            for (int k = i; k < LasHoras.Count; k++)
+                            {
+                                if (DateTime.Parse(celdas[i][j].HoraFin) > LasHoras[k])
+                                {
+                                    filas++;
+                                    //celdas[k][j] = new cItinerario();
+                                    celdas[k][j].Comentario = "NO_LISTAR";
+                                }
+
+                            }
+                            Itinerarios += string.Format("<td style='background-color:#68D66C; color:#000000' rowspan={0}'>" +
+                                /*"<button style='width:100%; height:{1}px; background-color:#68D66C' " +*/
+                                /*"'OnClick='alert('dsafjdsnfdsafsa'""btnMostrarSesion("+celdas[i][j].Codigo+")'>"+*/"<b>" +
+                                    celdas[i][j].TipoSesion + "</b> " + nombres /*+ "</button></td>"*/, filas, ((filas*25)+filas));
                         }
-                        int filas = 0;
-                        for (int k = i; k < LasHoras.Count; k++)
-                        {
-                            if (DateTime.Parse(celdas[i][j].HoraFin) > LasHoras[k])
-                                filas++;
-                        }
-                        Itinerarios += string.Format("<td style='background-color:ffffff; color:#ffd800' rowspan={0} onserverclick='AccionOkay(" + celdas[i][j].Codigo + ")' >" +
-                            "<button style='margin-top:0px; margin-left:0px; margin-right:0px; margin-bottom:0px;' " +
-                            "class='btnMostrarSesion' id='" + celdas[i][j].Codigo + "'onclick='btnMostrarSesion()'>" +
-                                celdas[i][j].TipoSesion + " " + nombres + "</button></td>", filas);
+
                     }
                 }
                 Itinerarios += "</tr>";
@@ -217,11 +228,11 @@ namespace Ejemplo.Web
 
             DataTable dt = new DataTable();
             DataColumn Horas = dt.Columns.Add("Horas", typeof(string));
-
+            List<DataColumn> ColumnasEspecialistas = new List<DataColumn>();
             foreach (cUsuario elEspecialista in LosEspecialistas)
             {
 
-                dt.Columns.Add(elEspecialista.Nombres + " " + elEspecialista.Apellidos, typeof(string));
+                ColumnasEspecialistas.Add(dt.Columns.Add(elEspecialista.Nombres + " " + elEspecialista.Apellidos, typeof(TemplateField)));
             }
             DataRow row;
             //typeof(string)
@@ -234,7 +245,7 @@ namespace Ejemplo.Web
                     Button button;
                     if (celdas[i][j].lstBeneficiarios == null)
                     {
-                        row[LosEspecialistas[j].Nombres + " " + LosEspecialistas[j].Apellidos] = null;
+                        row[ColumnasEspecialistas[j]] = null;
                     }
                     else
                     {
@@ -247,7 +258,7 @@ namespace Ejemplo.Web
                         button.Text = celdas[i][j].TipoSesion.ToString() + " " + nombres;
                         button.Visible = true;
                         button.OnClientClick = "MostrarSesion(0)";
-                        row[LosEspecialistas[j].Nombres + " " + LosEspecialistas[j].Apellidos] = nombres;
+                        row[ColumnasEspecialistas[j]] = button.TemplateControl;
                     }
 
                 }
@@ -256,22 +267,76 @@ namespace Ejemplo.Web
 
 
             //dt.AcceptChanges();
+            /*
             dtGrdItinerario.DataSource = dt;
             dtGrdItinerario.DataBind();
-
+            */
             #endregion
-            //MostrarItinerarios(Itinerarios);
+            MostrarItinerarios(Itinerarios);
 
 
             // LosItinerarios = dFachada.ItinerarioTraerTodosPorDia(ddlDias.Text);
         }
+        private void CargarDdlEspecialistas()
+        {
+            List<string> datos = new List<string>();
+            foreach(cUsuario unUsuario in LosEspecialistas)
+            {
+                datos.Add(unUsuario.Nombres + " " + unUsuario.Apellidos);
+            }
+            ddlEspecialistas.DataSource = datos;
+            ddlEspecialistas.DataBind();
+        }
+        private void CargarGrdItinerariosPorEspecialista()
+        {
+            DataTable dt = new DataTable();
+            DataColumn TipoSesion = dt.Columns.Add("Tipo de Sesión", typeof(string));
+            DataColumn HoraInicio = dt.Columns.Add("Hora de inicio", typeof(string));
+            DataColumn HoraFin = dt.Columns.Add("Hora de fin", typeof(string));
+            DataRow row;
+            foreach (cItinerario unItinerario in LosItinerarios)
+            {
+                row = dt.NewRow();
+                bool SeAgrega = false;
+                foreach(cUsuario unUsuario in unItinerario.lstEspecialistas)
+                {
+                    if(unUsuario.Codigo == LosEspecialistas[ddlEspecialistas.SelectedIndex].Codigo)
+                    {
+                        SeAgrega = true;
+                        switch(unItinerario.TipoSesion)
+                        {
+                            case cUtilidades.TipoSesion.Individual:
+                                row[TipoSesion] = "Individual";
+                                break;
+                            case cUtilidades.TipoSesion.Grupo2:
+                                row[TipoSesion] = "Grupo de 2";
+                                break;
+                            case cUtilidades.TipoSesion.Grupo3:
+                                row[TipoSesion] = "Grupo de 3";
+                                break;
+                            case cUtilidades.TipoSesion.Taller:
+                                row[TipoSesion] = "Taller";
+                                break;
+                            default:
+                                row[TipoSesion] = "PROES";
+                                break;
+                        }
+                        row[HoraInicio] = unItinerario.HoraInicio;
+                        row[HoraFin] = unItinerario.HoraFin;
+                        
+                    }
+                }
+                if(SeAgrega)
+                {
+                    dt.Rows.Add(row);
+                }
+            }
+            grdItinerarioPorEspecialista.DataSource = dt;
+            grdItinerarioPorEspecialista.DataBind();
+        }
         private void MostrarItinerarios(string parHtml)
         {
             frmItinerario.InnerHtml = parHtml;
-        }
-        protected void btnAplicarFiltros_Click(object sender, EventArgs e)
-        {
-
         }
         [WebMethod]
         public void MostrarSesion(int parCodigo)
@@ -292,24 +357,28 @@ namespace Ejemplo.Web
         protected void ddlDias_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarItinerarios();
+            CargarDdlEspecialistas();
+            CargarGrdItinerariosPorEspecialista();
         }
 
         protected void rdblCentro_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarItinerarios();
+            CargarDdlEspecialistas();
+            CargarGrdItinerariosPorEspecialista();
         }
 
         protected void grdItinerario_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                for(int i=0; i<e.Row.Cells.Count;i++)
+                for (int i = 0; i < e.Row.Cells.Count; i++)
                 {
-                    if(e.Row.Cells[i]!=null)
+                    if (e.Row.Cells[i] != null)
                     {
-                        for(int j=0; j< celdas[e.Row.DataItemIndex][i].lstBeneficiarios.Count; j++)
+                        for (int j = 0; j < celdas[e.Row.DataItemIndex][i].lstBeneficiarios.Count; j++)
                         {
-                            if(celdas[e.Row.DataItemIndex][i].lstBeneficiarios[j].Plan.Tipo=="ASSE")
+                            if (celdas[e.Row.DataItemIndex][i].lstBeneficiarios[j].Plan.Tipo == "ASSE")
                             {
                                 e.Row.Cells[i].BackColor = System.Drawing.Color.Aquamarine;
                             }
@@ -317,6 +386,27 @@ namespace Ejemplo.Web
                     }
                 }
             }
+        }
+
+        protected void ddlEspecialistas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarGrdItinerariosPorEspecialista();
+        }
+
+        protected void grdItinerarioPorEspecialista_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            List<cItinerario> lstItinerarios = new List<cItinerario>();
+            foreach (cItinerario unItinerario in LosItinerarios)
+            {
+                foreach (cUsuario unUsuario in unItinerario.lstEspecialistas)
+                {
+                    if (unUsuario.Codigo == LosEspecialistas[ddlEspecialistas.SelectedIndex].Codigo)
+                    {
+                        lstItinerarios.Add(unItinerario);
+                    }
+                }
+            }
+            Response.Redirect("vItinerarioModificarSesion.aspx?ItinerarioId=" + lstItinerarios[e.NewSelectedIndex].Codigo.ToString());
         }
     }
 }

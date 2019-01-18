@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-            $(function btnMostrarSesion(id) {
+            function btnMostrarSesion(id) {
                     $.ajax({
                             type: "POST",
                     url: "vItinerarioDiario.aspx/MostrarSesion",
@@ -12,8 +12,7 @@
                     success: resultado,
                     error: errores
                 });
-            });
-        });
+            };
         function resultado(msg) {
             //msg.d tiene el resultado devuelto por el método
             $('#num3').val(msg.d);
@@ -54,13 +53,16 @@
         </tr>
         <tr>
             <td>
-                
                 <formview ID="frmItinerario" runat="server"></formview>
                 <asp:GridView ID="grdItinerario" runat="server" OnRowDataBound="grdItinerario_RowDataBound"></asp:GridView>
                 <asp:DataGrid ID="dtGrdItinerario" runat="server"></asp:DataGrid>
     <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar un dato de la grilla y se muestran en una ventana flotante los detalles de la consulta" Height="51px" OnClick="btnSeleccionar_Click" Width="593px" />
                 <asp:Button ID="btnMostrarDetallesSesion" runat="server" Text="Mostar detalles de la sesión en esta misma ventana" Height="51px" Width="593px" OnClick="btnMostrarDetallesSesion_Click" />
             
+            </td>
+            <td>
+                <asp:DropDownList ID="ddlEspecialistas" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialistas_SelectedIndexChanged"></asp:DropDownList>
+                <asp:GridView ID="grdItinerarioPorEspecialista" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdItinerarioPorEspecialista_SelectedIndexChanging"></asp:GridView>
             </td>
             <td>
                 <asp:Panel ID="PanelDetallesSesion" runat="server">

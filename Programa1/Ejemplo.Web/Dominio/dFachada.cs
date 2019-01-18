@@ -182,7 +182,12 @@ namespace Dominio
         }
         public static List<cBeneficiario> BeneficiarioTraerTodosConFiltros(string parConsulta)
         {
-            return dBeneficiario.TraerTodosConFiltros(parConsulta);
+            List<cBeneficiario> lstBeneficiarios = dBeneficiario.TraerTodosConFiltros(parConsulta);
+            foreach(cBeneficiario unBen in lstBeneficiarios)
+            {
+                unBen.lstPlanes = PlanTraerActivosPorBeneficiario(unBen);
+            }
+            return lstBeneficiarios;
         }
         public static List<cBeneficiarioItinerario> BeneficiarioTraerTodosPorItinerario(cItinerario parItinerario)
         {
@@ -290,6 +295,14 @@ namespace Dominio
         {
             return dItinerario.VerificarHorarioBeneficiarios(parItinerario);
         }
+        public static List<cUsuario> ItinerarioVerificarHorarioUsuarioModificar(cItinerario parItinerario)
+        {
+            return dItinerario.VerificarHorarioUsuarioModificar(parItinerario);
+        }
+        public static List<cBeneficiario> ItinerarioVerificarHorarioBeneficiariosModificar(cItinerario parItinerario)
+        {
+            return dItinerario.VerificarHorarioBeneficiariosModificar(parItinerario);
+        }
 
         public static List<cItinerario> ItinerarioTraerTodosPorDia(char parDia, int parCentro)
         {
@@ -304,6 +317,13 @@ namespace Dominio
             }
             return LosItinerarios;
         }
+        public static cItinerario ItinerarioTraerEspecifico(cItinerario parItinerario)
+        {
+            cItinerario ElItinerario = dItinerario.TraerEspecifico(parItinerario);
+            ElItinerario.lstEspecialistas = UsuarioTraerTodosPorItinerario(ElItinerario);
+            ElItinerario.lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(ElItinerario);
+            return ElItinerario;
+        }
 
         public static bool ItinerarioModificarEstadoDelDia(char parDia)
         {
@@ -312,6 +332,15 @@ namespace Dominio
         public static string ItinerarioTraerEncuadrePorBeneficiario(cBeneficiario parBeneficiario)
         {
             return dItinerario.TraerEncuadrePorBeneficiario(parBeneficiario);
+        }
+
+        public static bool ItinerarioModificar(cItinerario parItinerario)
+        {
+            return dItinerario.Modificar(parItinerario);
+        }
+        public static bool ItinerarioEliminar(cItinerario parItinerario)
+        {
+            return dItinerario.Eliminar(parItinerario);
         }
         #endregion
 

@@ -14,7 +14,7 @@
                             <asp:Label ID="Label1" runat="server" Text="Tipo de sesión:"></asp:Label>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlTipoSesion" runat="server" OnSelectedIndexChanged="ddlTipoSesion_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlTipoSesion" runat="server"></asp:DropDownList>
                         </td>
                         <td>
                             <asp:Label ID="Label2" runat="server" Text="Día:"></asp:Label>
@@ -96,7 +96,6 @@
                                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                                 <SortedAscendingCellStyle BackColor="#E9E7E2" />
                                 <SortedAscendingHeaderStyle BackColor="#506C8C" />
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
