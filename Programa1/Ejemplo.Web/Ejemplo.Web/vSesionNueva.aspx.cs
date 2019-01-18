@@ -46,6 +46,7 @@ namespace Ejemplo.Web
                 CargarBeneficiariosAgregados();
                 CargarEspecialistas();
                 CargarEspecialistasAgregados();
+                CargarDdlHoras();
             }
             
 
@@ -62,6 +63,7 @@ namespace Ejemplo.Web
             CargarBeneficiariosAgregados();
             CargarEspecialistas();
             CargarEspecialistasAgregados();
+            CargarDdlHoras();
 
         }
         private void CargarDdlTiposDeSesion()
@@ -97,6 +99,32 @@ namespace Ejemplo.Web
             ddlEspecialidades.DataSource = Especialidades;
             ddlEspecialidades.DataBind();
         }
+
+        private void CargarDdlHoras()
+        {
+            DateTime hora1 = DateTime.Parse("08:00");
+            List<string> LasHorasDesde = new List<string>();
+            LasHorasDesde.Add(hora1.ToShortTimeString());
+            do
+            {
+                hora1 = hora1.AddMinutes(15);
+                LasHorasDesde.Add(hora1.ToShortTimeString());
+            } while (hora1 != DateTime.Parse("19:45"));
+            ddlDesde.DataSource = LasHorasDesde;
+            ddlDesde.DataBind();
+
+            List<string> LasHorasHasta = new List<string>();
+            DateTime hora2 = DateTime.Parse("08:15");
+            LasHorasHasta.Add(hora2.ToShortTimeString());
+            do
+            {
+                hora2 = hora2.AddMinutes(15);
+                LasHorasHasta.Add(hora2.ToShortTimeString());
+            } while (hora2 != DateTime.Parse("20:00"));
+            ddlHasta.DataSource = LasHorasHasta;
+            ddlHasta.DataBind();
+        }
+
         private void CargarBeneficiarios()
         {
             string Consulta = "SELECT DISTINCT B.* FROM Beneficiarios B JOIN Planes P ON B.BeneficiarioId = P.BeneficiarioId WHERE B.BeneficiarioEstado = 1 AND P.PlanActivo = 1";
@@ -486,9 +514,7 @@ namespace Ejemplo.Web
 
         private bool FaltanDatos()
         {
-            if (txtDesde.Text == string.Empty ||
-                txtHasta.Text == string.Empty ||
-                txtFecha.Text == string.Empty ||
+            if (txtFecha.Text == string.Empty ||
                 BeneficiariosAgregados.Count <= 0 ||
                 EspecialistasAgregados.Count <= 0)
                 return true;
@@ -584,14 +610,14 @@ namespace Ejemplo.Web
                     if (RadioButtonList1.SelectedIndex == 0) unaSesion.Centro = cUtilidades.Centro.JuanLacaze;
                     else unaSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
 
-                    if (DateTime.Parse(txtDesde.Text) >= DateTime.Parse(txtHasta.Text))
+                    if (DateTime.Parse(ddlDesde.SelectedValue) >= DateTime.Parse(ddlHasta.SelectedValue))
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La hora de fin de la sesión debe ser mayor a la de inicio.')", true);
                     }
                     else
                     {
-                        unaSesion.HoraInicio = txtDesde.Text;
-                        unaSesion.HoraFin = txtHasta.Text;
+                        unaSesion.HoraInicio = ddlDesde.SelectedValue;
+                        unaSesion.HoraFin = DateTime.Parse(ddlHasta.SelectedValue).AddMinutes(-1).ToShortTimeString();
                         unaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
                         cBeneficiarioSesion unBen;
                         for (int i = 0; i < BeneficiariosAgregados.Count; i++)

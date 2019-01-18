@@ -82,6 +82,7 @@ namespace Persistencia.Clases
 
             return retorno;
         }
+
         public static bool Modificar(cItinerario parItinerario)
         {
             bool retorno = true;
@@ -180,6 +181,7 @@ namespace Persistencia.Clases
 
             return retorno;
         }
+
         public static List<cUsuario> VerificarHorarioUsuario(cItinerario parItinerario) //Devuelve lista de usuarios que están disponibles
         {
             List<cUsuario> retorno = new List<cUsuario>();
@@ -255,6 +257,7 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+
         public static List<cUsuario> VerificarHorarioUsuarioModificar(cItinerario parItinerario) //Devuelve lista de usuarios que están disponibles
         {
             List<cUsuario> retorno = new List<cUsuario>();
@@ -332,6 +335,7 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+
         public static List<cItinerario> TraerTodosPorDia(char parDia, int parCentro)
         {
             List<cItinerario> retorno = new List<cItinerario>();
@@ -522,6 +526,7 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+
         public static cItinerario TraerEspecifico(cItinerario parItinerario)
         {
             cItinerario retorno = null;

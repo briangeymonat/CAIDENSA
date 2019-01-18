@@ -37,13 +37,13 @@
                             <asp:Label ID="Label4" runat="server" Text="Desde:"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtDesde" runat="server" TextMode="Time"></asp:TextBox>
+                            <asp:DropDownList ID="ddlDesde" runat="server"></asp:DropDownList>
                         </td>
                         <td>
                             <asp:Label ID="Label5" runat="server" Text="Hasta:"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtHasta" runat="server" TextMode="Time"></asp:TextBox>
+                            <asp:DropDownList ID="ddlHasta" runat="server"></asp:DropDownList>
                         </td>
                     </tr>
                     <tr>

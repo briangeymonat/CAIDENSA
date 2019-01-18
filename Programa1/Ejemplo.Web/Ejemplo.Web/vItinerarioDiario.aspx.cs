@@ -15,7 +15,7 @@ namespace Ejemplo.Web
     public partial class vItinerarioDiario : System.Web.UI.Page
     {
         private static List<string> LosDias = new List<string>() { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
-        private static List<DateTime> LasHoras = new List<DateTime>();
+        private static List<DateTime> LasHoras; 
         private static List<cItinerario> LosItinerarios;
         private static List<cUsuario> LosEspecialistas;
         private static List<List<cItinerario>> celdas;
@@ -26,12 +26,13 @@ namespace Ejemplo.Web
             if (!Page.IsPostBack)
             {
                 DateTime hora = DateTime.Parse("08:00");
+                LasHoras = new List<DateTime>();
                 LasHoras.Add(hora);
                 do
                 {
                     hora = hora.AddMinutes(15);
                     LasHoras.Add(hora);
-                } while (hora != DateTime.Parse("23:00"));
+                } while (hora != DateTime.Parse("20:00"));
                 this.PanelDetallesSesion.Visible = false;
                 CargarDdlDias();
                 CargarItinerarios();

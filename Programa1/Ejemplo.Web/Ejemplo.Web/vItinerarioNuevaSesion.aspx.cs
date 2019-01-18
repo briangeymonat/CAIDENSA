@@ -13,7 +13,7 @@ namespace Ejemplo.Web
     {
         private static List<string> TiposDeSesion = new List<string>() { "Individual", "Grupo 2", "Grupo 3", "Taller", "PROES" };
         private static List<string> Dias = new List<string>() { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
-        private static List<string> Especialidades = new List<string>() { "Fonoaudiologia", "Fisioterapia", "Pedadogia", "Psicologia", "Psicomotricidad" };
+        private static List<string> Especialidades = new List<string>() { "Psicologia", "Pedadogia", "Fisioterapia", "Fonoaudiologia", "Psicomotricidad" };
         private static List<cBeneficiario> TodosLosBenefiicarios;
         private static List<cBeneficiario> BeneficiariosAgregados;
         private static List<cUsuario> LosEspecialistas;
@@ -33,6 +33,7 @@ namespace Ejemplo.Web
             CargarDdlTiposDeSesion();
             CargarDdlDias();
             CargarDdlEspecialidades();
+            CargarDdlHoras();
             CargarBeneficiarios();
             CargarBeneficiariosAgregados();
             CargarEspecialistas();
@@ -77,6 +78,31 @@ namespace Ejemplo.Web
         {
             ddlEspecialidades.DataSource = Especialidades;
             ddlEspecialidades.DataBind();
+        }
+
+        private void CargarDdlHoras()
+        {
+            DateTime hora1 = DateTime.Parse("08:00");
+            List<string> LasHorasDesde = new List<string>();
+            LasHorasDesde.Add(hora1.ToShortTimeString());
+            do
+            {
+                hora1 = hora1.AddMinutes(15);
+                LasHorasDesde.Add(hora1.ToShortTimeString());
+            } while (hora1 != DateTime.Parse("19:45"));
+            ddlDesde.DataSource = LasHorasDesde;
+            ddlDesde.DataBind();
+
+            List<string> LasHorasHasta = new List<string>();
+            DateTime hora2 = DateTime.Parse("08:15");
+            LasHorasHasta.Add(hora2.ToShortTimeString());
+            do
+            {
+                hora2 = hora2.AddMinutes(15);
+                LasHorasHasta.Add(hora2.ToShortTimeString());
+            } while (hora2 != DateTime.Parse("20:00"));
+            ddlHasta.DataSource = LasHorasHasta;
+            ddlHasta.DataBind();
         }
         private void CargarBeneficiarios()
         {
@@ -470,9 +496,7 @@ namespace Ejemplo.Web
 
         private bool FaltanDatos()
         {
-            if (txtDesde.Text == string.Empty ||
-                txtHasta.Text == string.Empty ||
-                BeneficiariosAgregados.Count <= 0 ||
+            if (BeneficiariosAgregados.Count <= 0 ||
                 EspecialistasAgregados.Count <= 0)
                 return true;
             return false;
@@ -529,14 +553,16 @@ namespace Ejemplo.Web
                     }
                     if (RadioButtonList1.SelectedIndex == 0) unItinerario.Centro = cUtilidades.Centro.JuanLacaze;
                     else unItinerario.Centro = cUtilidades.Centro.NuevaHelvecia;
-                    if (DateTime.Parse(txtDesde.Text) >= DateTime.Parse(txtHasta.Text))
+                    if (DateTime.Parse(ddlDesde.SelectedValue) >= DateTime.Parse(ddlHasta.SelectedValue))
                     {
-                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La fecha de fin de la sesión debe ser mayor a la de inicio.')", true);
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La hora de fin de la sesión debe ser mayor a la de inicio.')", true);
                     }
                     else
                     {
-                        unItinerario.HoraInicio = txtDesde.Text;
-                        unItinerario.HoraFin = txtHasta.Text;
+                        unItinerario.HoraInicio = ddlDesde.SelectedValue;
+                        DateTime hasta = DateTime.Parse(ddlHasta.SelectedValue);
+                        hasta = hasta.AddMinutes(-1);
+                        unItinerario.HoraFin = hasta.ToShortTimeString();
                         unItinerario.lstBeneficiarios = new List<cBeneficiarioItinerario>();
                         cBeneficiarioItinerario unBen;
                         for (int i = 0; i < BeneficiariosAgregados.Count; i++)

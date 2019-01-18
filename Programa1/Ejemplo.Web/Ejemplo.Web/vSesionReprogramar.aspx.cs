@@ -18,6 +18,8 @@ namespace Ejemplo.Web
         private static List<cBeneficiario> BeneficiariosAgregados;
         private static List<cUsuario> LosEspecialistas;
         private static List<cUsuario> EspecialistasAgregados;
+        List<string> LasHorasDesde;
+        List<string> LasHorasHasta;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -46,6 +48,7 @@ namespace Ejemplo.Web
                 CargarBeneficiariosAgregados();
                 CargarEspecialistas();
                 CargarEspecialistasAgregados();
+                CargarDdlHoras();
             }
            
 
@@ -58,10 +61,12 @@ namespace Ejemplo.Web
             EspecialistasAgregados = new List<cUsuario>();
             CargarDdlTiposDeSesion();
             CargarDdlEspecialidades();
+            CargarDdlHoras();
             CargarBeneficiarios();
             CargarBeneficiariosAgregados();
             CargarEspecialistas();
             CargarEspecialistasAgregados();
+
 
         }
         private void CargarDdlTiposDeSesion()
@@ -96,6 +101,32 @@ namespace Ejemplo.Web
         {
             ddlEspecialidades.DataSource = Especialidades;
             ddlEspecialidades.DataBind();
+        }
+        private void CargarDdlHoras()
+        {
+            DateTime hora1 = DateTime.Parse("08:00");
+            LasHorasDesde = new List<string>();
+            LasHorasDesde.Add(hora1.ToShortTimeString());
+            do
+            {
+                hora1 = hora1.AddMinutes(15);
+                LasHorasDesde.Add(hora1.ToShortTimeString());
+            } while (hora1 != DateTime.Parse("19:45"));
+            ddlDesde.DataSource = LasHorasDesde;
+            ddlDesde.DataBind();
+
+            LasHorasHasta = new List<string>();
+            DateTime hora2 = DateTime.Parse("08:15");
+            LasHorasHasta.Add(hora2.ToShortTimeString());
+            do
+            {
+                hora2 = hora2.AddMinutes(15);
+                LasHorasHasta.Add(hora2.ToShortTimeString());
+            } while (hora2 != DateTime.Parse("20:00"));
+            ddlHasta.DataSource = LasHorasHasta;
+            ddlHasta.DataBind();
+
+
         }
         private void CargarBeneficiarios()
         {
@@ -486,9 +517,7 @@ namespace Ejemplo.Web
 
         private bool FaltanDatos()
         {
-            if (txtDesde.Text == string.Empty ||
-                txtHasta.Text == string.Empty ||
-                txtFecha.Text == string.Empty ||
+            if (txtFecha.Text == string.Empty ||
                 BeneficiariosAgregados.Count <= 0 ||
                 EspecialistasAgregados.Count <= 0)
                 return true;
@@ -584,14 +613,14 @@ namespace Ejemplo.Web
                     if (RadioButtonList1.SelectedIndex == 0) unaSesion.Centro = cUtilidades.Centro.JuanLacaze;
                     else unaSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
 
-                    if (DateTime.Parse(txtDesde.Text) >= DateTime.Parse(txtHasta.Text))
+                    if (DateTime.Parse(ddlDesde.SelectedValue) >= DateTime.Parse(ddlHasta.SelectedValue))
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La hora de fin de la sesión debe ser mayor a la de inicio.')", true);
                     }
                     else
                     {
-                        unaSesion.HoraInicio = txtDesde.Text;
-                        unaSesion.HoraFin = txtHasta.Text;
+                        unaSesion.HoraInicio = ddlDesde.SelectedValue;
+                        unaSesion.HoraFin = DateTime.Parse(ddlHasta.SelectedValue).AddMinutes(-1).ToShortTimeString();
                         unaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
                         cBeneficiarioSesion unBen;
                         for (int i = 0; i < BeneficiariosAgregados.Count; i++)
@@ -626,6 +655,7 @@ namespace Ejemplo.Web
                                 default:
                                     break;
                             }
+                            unBen.Estado = cUtilidades.EstadoSesion.SinEstado;
                             unaSesion.lstBeneficiarios.Add(unBen);
                         }
 
