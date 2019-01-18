@@ -45,10 +45,6 @@ namespace Ejemplo.Web
             ddlTipoSesion.DataSource = TiposDeSesion;
             ddlTipoSesion.DataBind();
         }
-        protected void ddlTipoSesion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            VerificarCantidadAgregados();
-        }
         private bool VerificarCantidadAgregados()
         {
             switch (ddlTipoSesion.SelectedValue.ToString())
@@ -729,5 +725,6 @@ namespace Ejemplo.Web
             e.Row.Cells[14].Visible = false;//derivador
             e.Row.Cells[15].Visible = false;//estado
         }
+        
     }
 }
