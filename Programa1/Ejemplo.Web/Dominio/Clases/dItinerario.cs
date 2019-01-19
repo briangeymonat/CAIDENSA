@@ -34,6 +34,11 @@ namespace Dominio.Clases
         {
             return pItinerario.TraerTodosPorDia(parDia, parCentro);
         }
+
+        public static List<cItinerario> TraerTodosPorEspecialista(cUsuario parUsuario)
+        {
+            return pItinerario.TraerTodosPorEspecialista(parUsuario);
+        }
         public static bool ModificarEstadoDelDia(char parDia)
         {
             return pItinerario.ModificarEstadoDelDia(parDia);

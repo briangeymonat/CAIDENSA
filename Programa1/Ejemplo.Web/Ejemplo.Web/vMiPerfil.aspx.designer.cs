@@ -292,12 +292,21 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdInformesPendientes;
         
         /// <summary>
-        /// Control ListView1.
+        /// Control pnlItinerario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListView1;
+        protected global::System.Web.UI.WebControls.Panel pnlItinerario;
+        
+        /// <summary>
+        /// Control frmItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmItinerario;
     }
 }

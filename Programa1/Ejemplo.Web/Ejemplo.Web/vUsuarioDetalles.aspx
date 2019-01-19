@@ -271,16 +271,11 @@
         </tr>
     </table>
     <div>
-        <h4>
-            Itinerario semanal
-        </h4>
-        <table>
-            <tr>
-                <td>
-                    <asp:ListView ID="ListView1" runat="server"></asp:ListView>
-                </td>
-            </tr>
-        </table>
+        <asp:Panel ID="pnlItinerario" runat="server" Visible="false">
+            <h4>Itinerario semanal
+            </h4>
+            <formview ID="frmItinerario" runat="server"></formview>
+        </asp:Panel>
     </div>
         
     

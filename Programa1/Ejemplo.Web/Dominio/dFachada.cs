@@ -320,6 +320,19 @@ namespace Dominio
             }
             return LosItinerarios;
         }
+        public static List<cItinerario> ItinerarioTraerTodosPorEspecialista(cUsuario parUsuario)
+        {
+            List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorEspecialista(parUsuario);
+            for (int i = 0; i < LosItinerarios.Count; i++)
+            {
+                LosItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(LosItinerarios[i]);
+            }
+            for (int i = 0; i < LosItinerarios.Count; i++)
+            {
+                LosItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(LosItinerarios[i]);
+            }
+            return LosItinerarios;
+        }
         public static cItinerario ItinerarioTraerEspecifico(cItinerario parItinerario)
         {
             cItinerario ElItinerario = dItinerario.TraerEspecifico(parItinerario);
