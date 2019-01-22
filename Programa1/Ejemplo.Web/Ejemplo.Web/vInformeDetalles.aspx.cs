@@ -1,7 +1,10 @@
 ﻿using Common.Clases;
 using Dominio;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +14,7 @@ namespace Ejemplo.Web
 {
     public partial class vInformeDetalles : System.Web.UI.Page
     {
-        cInforme Informe;
+        static cInforme Informe;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -33,6 +36,7 @@ namespace Ejemplo.Web
             }
         }
 
+        
         private void CargarDatos()
         {
             OcultarSecciones(false);
@@ -179,7 +183,13 @@ namespace Ejemplo.Web
 
         protected void btnExportarPDF_Click(object sender, EventArgs e)
         {
+            //Response.Redirect("vReportePDF.aspx?InformeId=" +Informe.Codigo);
+            string open = "window.open('vReportePDF.aspx?InformeId=" + Informe.Codigo+"', '_newtab');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), open, true);
 
+
+
+            
         }
     }
 }

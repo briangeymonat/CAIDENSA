@@ -408,3 +408,5 @@ C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\Persistencia.p
 C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.csprojResolveAssemblyReference.cache
 C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.dll
 C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\obj\Debug\Ejemplo.Web.pdb
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\itextsharp.dll
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Ejemplo.Web\bin\itextsharp.xml

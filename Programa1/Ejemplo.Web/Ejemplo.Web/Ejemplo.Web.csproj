@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -199,6 +203,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Img\logo.jpg" />
     <Content Include="vAgregarObservacionSesion.aspx" />
     <Content Include="vInformeDetalles.aspx" />
     <Content Include="vInicio.aspx" />
@@ -222,6 +227,7 @@
     <Content Include="vLogin.aspx" />
     <Content Include="vMiPerfil.aspx" />
     <Content Include="vNuevaContraseña.aspx" />
+    <Content Include="vReportePDF.aspx" />
     <Content Include="vSesionNueva.aspx" />
     <Content Include="vSesionReprogramar.aspx" />
     <Content Include="vTareas.aspx" />
@@ -556,6 +562,13 @@
     </Compile>
     <Compile Include="vNuevaContraseña.aspx.designer.cs">
       <DependentUpon>vNuevaContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vReportePDF.aspx.cs">
+      <DependentUpon>vReportePDF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vReportePDF.aspx.designer.cs">
+      <DependentUpon>vReportePDF.aspx</DependentUpon>
     </Compile>
     <Compile Include="vSesionNueva.aspx.cs">
       <DependentUpon>vSesionNueva.aspx</DependentUpon>

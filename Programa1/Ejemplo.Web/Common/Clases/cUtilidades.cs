@@ -14,6 +14,19 @@ namespace Common.Clases
         public enum TipoSesion { Individual, Grupo2, Grupo3, Taller, PROES}
         public enum Centro { JuanLacaze, NuevaHelvecia}
         public enum EstadoSesion { Asistio, NoAsistio, Reprogramada, SinEstado}
-        public enum NombreSeccion { Título, Encuadre, Diagnóstico, Antecedentes_patológicos, Desarrollo, Presentación, Abordaje_Psicomotriz, Abordaje_Pedagógico, Abordaje_Psicológico, Abordaje_Fonoaudiológico, Abordaje_Fisioterapéutico, En_Suma, Sugerencias}
+        public enum NombreSeccion {
+            Título,
+            Encuadre,
+            Diagnóstico,
+            Antecedentes_patológicos,
+            Desarrollo,
+            Presentación,
+            Abordaje_Psicomotriz,
+            Abordaje_Pedagógico,
+            Abordaje_Psicológico,
+            Abordaje_Fonoaudiológico,
+            Abordaje_Fisioterapéutico,
+            En_Suma,
+            Sugerencias }
     }
 }
