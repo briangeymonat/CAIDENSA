@@ -32,7 +32,40 @@ namespace Ejemplo.Web
                 lblFecha.Text = unaSesion.Fecha.ToString();
                 lblHoraInicio.Text = unaSesion.HoraInicio.ToString();
                 lblHoraFin.Text = unaSesion.HoraFin.ToString();
-                lblLocalidad.Text = unaSesion.Centro.ToString();
+
+                switch (unaSesion.Centro)
+                {
+                    case cUtilidades.Centro.JuanLacaze:
+                        lblLocalidad.Text = "Juan Lacaze";
+                        break;
+                    case cUtilidades.Centro.NuevaHelvecia:
+                        lblLocalidad.Text = "Nueva Helvecia";
+                        break;
+                    default:
+                        lblLocalidad.Text = "";
+                        break;
+                }
+                switch (unaSesion.TipoSesion)
+                {
+                    case cUtilidades.TipoSesion.Individual:
+                        lblTipoSesion.Text = "Individual";
+                        break;
+                    case cUtilidades.TipoSesion.Grupo2:
+                        lblTipoSesion.Text = "Grupo de 2";
+                        break;
+                    case cUtilidades.TipoSesion.Grupo3:
+                        lblTipoSesion.Text = "Grupo de 3";
+                        break;
+                    case cUtilidades.TipoSesion.Taller:
+                        lblTipoSesion.Text = "Taller";
+                        break;
+                    case cUtilidades.TipoSesion.PROES:
+                        lblTipoSesion.Text = "PROES";
+                        break;
+                    default:
+                        lblTipoSesion.Text = "";
+                        break;
+                }
                 List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
                 for (int i = 0; i < unaSesion.lstBeneficiarios.Count; i++)
                 {
@@ -61,7 +94,39 @@ namespace Ejemplo.Web
                 lblFecha.Text = unaSesion.Fecha.ToString();
                 lblHoraInicio.Text = unaSesion.HoraInicio.ToString();
                 lblHoraFin.Text = unaSesion.HoraFin.ToString();
-                lblLocalidad.Text = unaSesion.Centro.ToString();
+                switch (unaSesion.Centro)
+                {
+                    case cUtilidades.Centro.JuanLacaze:
+                        lblLocalidad.Text = "Juan Lacaze";
+                        break;
+                    case cUtilidades.Centro.NuevaHelvecia:
+                        lblLocalidad.Text = "Nueva Helvecia";
+                        break;
+                    default:
+                        lblLocalidad.Text = "";
+                        break;
+                }
+                switch (unaSesion.TipoSesion)
+                {
+                    case cUtilidades.TipoSesion.Individual:
+                        lblTipoSesion.Text = "Individual";
+                        break;
+                    case cUtilidades.TipoSesion.Grupo2:
+                        lblTipoSesion.Text = "Grupo de 2";
+                        break;
+                    case cUtilidades.TipoSesion.Grupo3:
+                        lblTipoSesion.Text = "Grupo de 3";
+                        break;
+                    case cUtilidades.TipoSesion.Taller:
+                        lblTipoSesion.Text = "Taller";
+                        break;
+                    case cUtilidades.TipoSesion.PROES:
+                        lblTipoSesion.Text = "PROES";
+                        break;
+                    default:
+                        lblTipoSesion.Text = "";
+                        break;
+                }
                 List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
                 for (int i = 0; i < unaSesion.lstBeneficiarios.Count; i++)
                 {

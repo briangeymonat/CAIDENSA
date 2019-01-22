@@ -55,49 +55,13 @@
             <td>
                 <formview ID="frmItinerario" runat="server"></formview>
                 <asp:GridView ID="grdItinerario" runat="server" OnRowDataBound="grdItinerario_RowDataBound"></asp:GridView>
-                <asp:DataGrid ID="dtGrdItinerario" runat="server"></asp:DataGrid>
-    <asp:Button ID="btnSeleccionar" runat="server" Text="Seleccionar un dato de la grilla y se muestran en una ventana flotante los detalles de la consulta" Height="51px" OnClick="btnSeleccionar_Click" Width="593px" />
-                <asp:Button ID="btnMostrarDetallesSesion" runat="server" Text="Mostar detalles de la sesión en esta misma ventana" Height="51px" Width="593px" OnClick="btnMostrarDetallesSesion_Click" />
+                <asp:DataGrid ID="dtGrdItinerario" runat="server"></asp:DataGrid>                
             
             </td>
             <td>
                 <asp:DropDownList ID="ddlEspecialistas" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialistas_SelectedIndexChanged"></asp:DropDownList>
                 <asp:GridView ID="grdItinerarioPorEspecialista" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdItinerarioPorEspecialista_SelectedIndexChanging"></asp:GridView>
-            </td>
-            <td>
-                <asp:Panel ID="PanelDetallesSesion" runat="server">
-                    <h4>
-                        Detalles de la sesión
-                    </h4>
-                     <table>
-            <tr>
-                <td>
-                    <asp:Label ID="Label3" runat="server" Text="Beneficiarios"></asp:Label>
-                    <asp:ListView ID="ListView1" runat="server"></asp:ListView>
-                </td>
-                <td>
-                    <asp:Label ID="Label4" runat="server" Text="Especialistas"></asp:Label>
-                    <asp:ListView ID="ListView2" runat="server"></asp:ListView>
-                </td>
-                <td>
-                    <asp:Label ID="Label5" runat="server" Text="Comentario"></asp:Label>
-                    <asp:TextBox ID="txtComentario" runat="server" TextMode="MultiLine"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="Label6" runat="server" Text="Localidad:"></asp:Label>
-                    <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
-                </td>
-                <td colspan="2">
-                    <asp:Button ID="btnComentar" runat="server" Text="Comentar" />
-                    <asp:Button ID="btnModificar" runat="server" Text="Modificar" />
-                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" />
-                </td>
-            </tr>
-        </table>
-                </asp:Panel>
-            </td>
+            </td>            
         </tr>
     </table>
     

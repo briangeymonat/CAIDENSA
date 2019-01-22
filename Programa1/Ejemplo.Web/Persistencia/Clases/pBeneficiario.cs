@@ -705,7 +705,38 @@ namespace Persistencia.Clases
             return Tuple.Create(diagnosticos, cantidad);
         }
 
+        public static string CentroPreferencia(cBeneficiario parBeneficiario)
+        {
+            string retorno = "";
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
 
+                SqlCommand cmd = new SqlCommand("Beneficiarios_CentroPreferencia", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idBeneficiario", parBeneficiario.Codigo));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while(oReader.Read())
+                    {
+                        int i = int.Parse(oReader["Juan Lacaze"].ToString());
+                        int j = int.Parse(oReader["Nueva Helvecia"].ToString());
+                        if (i >= j)
+                            retorno = "Juan Lacaze";
+                        else
+                            retorno = "Nueva Helvecia";
+                    }
+                }
+                conn.Close();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
 
 
     }

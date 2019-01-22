@@ -28,7 +28,31 @@ namespace Ejemplo.Web
         }
         private void CargarTodo()
         {
-            lblFecha.Text = LaSesion.Fecha + " desde " + LaSesion.HoraInicio + " hasta " + LaSesion.HoraFin;
+            lblFecha.Text = LaSesion.Fecha;
+            lblHoraInicio.Text = LaSesion.HoraInicio;
+            lblHoraFin.Text = LaSesion.HoraFin;
+            switch (LaSesion.TipoSesion)
+            {
+                case cUtilidades.TipoSesion.Individual:
+                    lblTipoSesion.Text = "Individual";
+                    break;
+                case cUtilidades.TipoSesion.Grupo2:
+                    lblTipoSesion.Text = "Grupo de 2";
+                    break;
+                case cUtilidades.TipoSesion.Grupo3:
+                    lblTipoSesion.Text = "Grupo de 3";
+                    break;
+                case cUtilidades.TipoSesion.Taller:
+                    lblTipoSesion.Text = "Taller";
+                    break;
+                case cUtilidades.TipoSesion.PROES:
+                    lblTipoSesion.Text = "PROES";
+                    break;
+                default:
+                    lblTipoSesion.Text = "";
+                    break;
+            }
+
             switch (LaSesion.Centro)
             {
                 case cUtilidades.Centro.JuanLacaze:

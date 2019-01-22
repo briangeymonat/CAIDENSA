@@ -22,8 +22,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="grdBeneficiarios" runat="server"
-                                EmptyDataText="No se encuentran beneficiarios ingresados" ShowHeaderWhenEmpty="true"
+                            <asp:GridView ID="grdBeneficiarios" runat="server" ShowHeaderWhenEmpty="true"
                                 AutoGenerateSelectButton="true" OnSelectedIndexChanging="grdBeneficiarios_SelectedIndexChanging" OnRowCreated="grdBeneficiarios_RowCreated">
                             </asp:GridView>
                         </td>

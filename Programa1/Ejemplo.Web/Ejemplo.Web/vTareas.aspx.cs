@@ -421,6 +421,10 @@ namespace Ejemplo.Web
         }
         protected void grdSesionesDelDia_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
+            TableCell celdaId = grdSesionesDelDia.Rows[e.NewSelectedIndex].Cells[1];
+            int idSesion = int.Parse(celdaId.Text);
+            string vtn = "window.open('vDetallesSesion.aspx?Id=" + idSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=100', 'width=700')";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
 
         }
         protected void btnAplicar_Click(object sender, EventArgs e)

@@ -326,6 +326,7 @@ namespace Ejemplo.Web
         protected void grdInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[2].Visible = false; //fecha
             e.Row.Cells[5].Visible = false; //codBeneficiario
         }
 

@@ -32,8 +32,8 @@ namespace Ejemplo.Web
                 {
                     hora = hora.AddMinutes(15);
                     LasHoras.Add(hora);
-                } while (hora != DateTime.Parse("20:00"));
-                this.PanelDetallesSesion.Visible = false;
+                }
+                while (hora != DateTime.Parse("20:00"));
                 CargarDdlDias();
                 CargarItinerarios();
                 CargarDdlEspecialistas();
@@ -351,12 +351,7 @@ namespace Ejemplo.Web
             string vtn = "window.open('vDetallesSesion.aspx','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
         }
-
-        protected void btnMostrarDetallesSesion_Click(object sender, EventArgs e)
-        {
-            this.PanelDetallesSesion.Visible = true;
-        }
-
+       
         protected void ddlDias_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarItinerarios();

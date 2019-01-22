@@ -23,6 +23,7 @@
                                     <asp:Label ID="Label5" runat="server" Text="Fecha: "></asp:Label>
                                     <asp:Label ID="lblFecha" runat="server"></asp:Label>
                                 </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <asp:Label ID="Label7" runat="server" Text="    Hora de inicio: "></asp:Label>
@@ -47,8 +48,6 @@
                                     <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
                                 </td>
                                 </tr>
-                                
-                            </tr>
                         </table>
                     </td>
                 </tr>

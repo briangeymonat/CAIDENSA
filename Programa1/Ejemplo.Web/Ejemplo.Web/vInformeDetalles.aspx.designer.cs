@@ -10,25 +10,16 @@
 namespace Ejemplo.Web {
     
     
-    public partial class vDetallesSesionParaAsistencia {
+    public partial class vInformeDetalles {
         
         /// <summary>
-        /// Control form1.
+        /// Control lblCentro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// Control Label5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lblCentro;
         
         /// <summary>
         /// Control lblFecha.
@@ -40,76 +31,22 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblFecha;
         
         /// <summary>
-        /// Control Label7.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control lblHoraInicio.
+        /// Control lblTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHoraInicio;
-        
-        /// <summary>
-        /// Control Label9.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
-        
-        /// <summary>
-        /// Control lblHoraFin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHoraFin;
-        
-        /// <summary>
-        /// Control Label6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
-        /// Control lblTipoSesion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoSesion;
-        
-        /// <summary>
-        /// Control Label8.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
-        
-        /// <summary>
-        /// Control lblLocalidad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLocalidad;
+        protected global::System.Web.UI.WebControls.Label lblTipo;
         
         /// <summary>
         /// Control Label2.
@@ -121,13 +58,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Control lblEspecialistas.
+        /// Control lblTitulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEspecialistas;
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
         
         /// <summary>
         /// Control Label3.
@@ -139,183 +76,309 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Control txtComentario.
+        /// Control lblNombreApellido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtComentario;
+        protected global::System.Web.UI.WebControls.Label lblNombreApellido;
         
         /// <summary>
-        /// Control Label1.
+        /// Control Label4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// Control lblNombreBeneficiario1.
+        /// Control lblCI.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreBeneficiario1;
+        protected global::System.Web.UI.WebControls.Label lblCI;
         
         /// <summary>
-        /// Control rblBeneficiario1.
+        /// Control Label5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblBeneficiario1;
+        protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// Control lblNombreBeneficiario2.
+        /// Control lblFechaNacimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreBeneficiario2;
+        protected global::System.Web.UI.WebControls.Label lblFechaNacimiento;
         
         /// <summary>
-        /// Control rblBeneficiario2.
+        /// Control Label6.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblBeneficiario2;
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control lblNombreBeneficiario3.
+        /// Control lblEdadCronologica.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreBeneficiario3;
+        protected global::System.Web.UI.WebControls.Label lblEdadCronologica;
         
         /// <summary>
-        /// Control rblBeneficiario3.
+        /// Control Label7.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblBeneficiario3;
+        protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// Control lblNombreBeneficiario4.
+        /// Control lblMotivoConsulta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreBeneficiario4;
+        protected global::System.Web.UI.WebControls.Label lblMotivoConsulta;
         
         /// <summary>
-        /// Control rblBeneficiario4.
+        /// Control Label8.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblBeneficiario4;
+        protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// Control lblNombreBeneficiario5.
+        /// Control lblEscolaridad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreBeneficiario5;
+        protected global::System.Web.UI.WebControls.Label lblEscolaridad;
         
         /// <summary>
-        /// Control rblBeneficiario5.
+        /// Control Label10.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblBeneficiario5;
+        protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// Control lblNombreBeneficiario6.
+        /// Control lblEncuadre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreBeneficiario6;
+        protected global::System.Web.UI.WebControls.Label lblEncuadre;
         
         /// <summary>
-        /// Control rblBeneficiario6.
+        /// Control lblSubtituloAntecedentesPatologicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblBeneficiario6;
+        protected global::System.Web.UI.WebControls.Label lblSubtituloAntecedentesPatologicos;
         
         /// <summary>
-        /// Control lblNombreBeneficiario7.
+        /// Control lblAntecedentesPatologicos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreBeneficiario7;
+        protected global::System.Web.UI.WebControls.Label lblAntecedentesPatologicos;
         
         /// <summary>
-        /// Control rblBeneficiario7.
+        /// Control lblSubtituloDesarrollo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblBeneficiario7;
+        protected global::System.Web.UI.WebControls.Label lblSubtituloDesarrollo;
         
         /// <summary>
-        /// Control lblNombreBeneficiario8.
+        /// Control lblDesarrollo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreBeneficiario8;
+        protected global::System.Web.UI.WebControls.Label lblDesarrollo;
         
         /// <summary>
-        /// Control rblBeneficiario8.
+        /// Control Label11.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblBeneficiario8;
+        protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// Control btnCancelar.
+        /// Control lblPresentacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.Label lblPresentacion;
         
         /// <summary>
-        /// Control btnConfirmar.
+        /// Control lblSubtituloAbPsicomotriz.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmar;
+        protected global::System.Web.UI.WebControls.Label lblSubtituloAbPsicomotriz;
+        
+        /// <summary>
+        /// Control lblAbordajePsicomotriz.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAbordajePsicomotriz;
+        
+        /// <summary>
+        /// Control lblSubtituloAbPedagogico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtituloAbPedagogico;
+        
+        /// <summary>
+        /// Control lblAbordajePedagogico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAbordajePedagogico;
+        
+        /// <summary>
+        /// Control lblSubtituloAbPsicologico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtituloAbPsicologico;
+        
+        /// <summary>
+        /// Control lblAbordajePsicologico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAbordajePsicologico;
+        
+        /// <summary>
+        /// Control lblSubtituloAbFonoaudiologico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtituloAbFonoaudiologico;
+        
+        /// <summary>
+        /// Control lblAbordajeFonoaudiologico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAbordajeFonoaudiologico;
+        
+        /// <summary>
+        /// Control lblSubtituloAbFisioterapeutico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtituloAbFisioterapeutico;
+        
+        /// <summary>
+        /// Control lblAbordajeFisioterapeutico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAbordajeFisioterapeutico;
+        
+        /// <summary>
+        /// Control Label15.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label15;
+        
+        /// <summary>
+        /// Control lblEnSuma.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEnSuma;
+        
+        /// <summary>
+        /// Control lblSubtituloSugerencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtituloSugerencia;
+        
+        /// <summary>
+        /// Control lblSugerencias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSugerencias;
+        
+        /// <summary>
+        /// Control btnExportarPDF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExportarPDF;
     }
 }

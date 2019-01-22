@@ -12,13 +12,38 @@
             <table>
                 <tr>
                     <td>
-                        <asp:Label ID="Label5" runat="server" Text="Fecha y horario:"></asp:Label>
+                        <asp:Label ID="Label5" runat="server" Text="Fecha::"></asp:Label>
                         <asp:Label ID="lblFecha" runat="server"></asp:Label>
                     </td>
+
                 </tr>
                 <tr>
+                                    <td>
+                                        <asp:Label ID="Label7" runat="server" Text="    Hora de inicio: "></asp:Label>
+                                    <asp:Label ID="lblHoraInicio" runat="server"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                       <asp:Label ID="Label9" runat="server" Text="    Hora de fin: "></asp:Label>
+                                    <asp:Label ID="lblHoraFin" runat="server"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                <td>
+                                    <asp:Label ID="Label6" runat="server" Text="   Tipo de sesión: "></asp:Label>
+                                    <asp:Label ID="lblTipoSesion" runat="server"></asp:Label>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <asp:Label ID="Label8" runat="server" Text="Localidad: "></asp:Label>
+                                    <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
+                                </td>
+                                </tr>
+                <tr>
                     <td>
-                        <asp:Label ID="Label2" runat="server" Text="Especialistas:"></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text="Especialistas: "></asp:Label>
                         <asp:Label ID="lblEspecialistas" runat="server"></asp:Label>
                         
                     </td>
@@ -130,10 +155,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label4" runat="server" Text="Localidad:"></asp:Label>
-                        <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
+
                     </td>
-                    <td colspan="2">
+                    <td colspan="4">
                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
                         <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
                     </td>

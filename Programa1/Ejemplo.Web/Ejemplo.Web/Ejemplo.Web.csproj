@@ -200,6 +200,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="vAgregarObservacionSesion.aspx" />
+    <Content Include="vInformeDetalles.aspx" />
     <Content Include="vInicio.aspx" />
     <Content Include="vBeneficiarioAgregarPasivo.aspx" />
     <Content Include="vBeneficiarioMostrar.aspx" />
@@ -401,6 +402,13 @@
     </Compile>
     <Compile Include="vAgregarObservacionSesion.aspx.designer.cs">
       <DependentUpon>vAgregarObservacionSesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vInformeDetalles.aspx.cs">
+      <DependentUpon>vInformeDetalles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vInformeDetalles.aspx.designer.cs">
+      <DependentUpon>vInformeDetalles.aspx</DependentUpon>
     </Compile>
     <Compile Include="vInicio.aspx.cs">
       <DependentUpon>vInicio.aspx</DependentUpon>

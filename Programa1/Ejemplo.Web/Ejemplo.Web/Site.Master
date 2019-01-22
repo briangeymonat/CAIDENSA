@@ -54,8 +54,7 @@
                         <asp:MenuItem Text="Nuevo itinerario" Value="Nuevo itinerario" NavigateUrl="~/vItinerarioNuevaSesion.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Ver itinerario diario" Value="Ver itinerario diario" NavigateUrl="~/vItinerarioDiario.aspx"></asp:MenuItem>
                     </asp:MenuItem>
-                    <asp:MenuItem Text="Informes" Value="Informes">
-                        <asp:MenuItem NavigateUrl="~/vInformeMostrar.aspx" Text="Mostrar todos" Value="Mostrar todos"></asp:MenuItem>
+                    <asp:MenuItem Text="Informes" Value="Informes" NavigateUrl="~/vInformeMostrar.aspx">
                     </asp:MenuItem>
                     <asp:MenuItem NavigateUrl="~/vDiagnosticoAgregar.aspx" Text="Diagnóstico" Value="Diagnóstico"></asp:MenuItem>
                     <asp:MenuItem Text="Asistencias" Value="Asistencias" NavigateUrl="~/vAsistencias.aspx"></asp:MenuItem>

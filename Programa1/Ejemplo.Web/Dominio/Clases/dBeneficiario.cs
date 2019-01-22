@@ -58,6 +58,11 @@ namespace Dominio.Clases
         {
             return pBeneficiario.TraerTodosPorDiagnostico(parDiagnostico);
         }
+        public static string CentroPreferencia(cBeneficiario parBeneficiario)
+        {
+            return pBeneficiario.CentroPreferencia(parBeneficiario);
+        }
+
 
         #region ESTADISTICA Beneficiarios activos por rango de edad
         public static List<cBeneficiario> TraerActivosPorEdad(int parDesde, int parHasta)

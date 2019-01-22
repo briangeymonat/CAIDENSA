@@ -201,6 +201,10 @@ namespace Dominio
         {
             return dBeneficiario.TraerTodosPorDiagnostico(parDiagnostico);
         }
+        public static string BeneficiarioCentroPreferencia(cBeneficiario parBeneficiario)
+        {
+            return dBeneficiario.CentroPreferencia(parBeneficiario);
+        }
 
         #endregion
 

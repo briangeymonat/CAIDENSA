@@ -47,12 +47,12 @@ namespace Ejemplo.Web
         {
 
             string Consulta = "SELECT DISTINCT B.* FROM Beneficiarios B" +
-                " JOIN Planes P ON B.BeneficiarioId = P.BeneficiarioId" +
-                " JOIN BeneficiariosSesiones BS ON B.BeneficiarioId = BS.BeneficiarioId" +
-                " JOIN Sesiones S ON BS.SesionId = S.SesionId" +
-                " JOIN UsuariosSesiones US ON S.SesionId = US.SesionId" +
-                " JOIN Usuarios U ON US.UsuarioId = U.UsuarioId" +
-                " JOIN Especialidades E ON U.EspecialidadId = E.EspecialidadId";
+                " LEFT JOIN Planes P ON B.BeneficiarioId = P.BeneficiarioId" +
+                " LEFT JOIN BeneficiariosSesiones BS ON B.BeneficiarioId = BS.BeneficiarioId" +
+                " LEFT JOIN Sesiones S ON BS.SesionId = S.SesionId" +
+                " LEFT JOIN UsuariosSesiones US ON S.SesionId = US.SesionId" +
+                " LEFT JOIN Usuarios U ON US.UsuarioId = U.UsuarioId" +
+                " LEFT JOIN Especialidades E ON U.EspecialidadId = E.EspecialidadId";
             List<string> condiciones = new List<string>();
             condiciones.Add(" WHERE");
 
@@ -106,11 +106,11 @@ namespace Ejemplo.Web
                     or = true;
                 }
             }
-            if(or) condiciones.Add(")");
+            if (or) condiciones.Add(")");
 
 
             or = false;
-            
+
 
             //RANGO DE EDAD
             if (txtDesde.Text != string.Empty && txtHasta.Text != string.Empty)
@@ -192,16 +192,17 @@ namespace Ejemplo.Web
 
         protected void grdBeneficiarios_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            e.Row.Cells[1].Visible = false;//codigo
-            e.Row.Cells[5].Visible = false;//sexo
-            e.Row.Cells[6].Visible = false;//tel1
-            e.Row.Cells[7].Visible = false;//tel2
-            e.Row.Cells[8].Visible = false;//email
-            e.Row.Cells[9].Visible = false;//domicilio
-            e.Row.Cells[12].Visible = false;//Motivo consulta
-            e.Row.Cells[13].Visible = false;//escolaridad
-            e.Row.Cells[14].Visible = false;//derivador
-            e.Row.Cells[15].Visible = false;//estado
+            
+                e.Row.Cells[1].Visible = false;//codigo
+                e.Row.Cells[5].Visible = false;//sexo
+                e.Row.Cells[6].Visible = false;//tel1
+                e.Row.Cells[7].Visible = false;//tel2
+                e.Row.Cells[8].Visible = false;//email
+                e.Row.Cells[9].Visible = false;//domicilio
+                e.Row.Cells[12].Visible = false;//Motivo consulta
+                e.Row.Cells[13].Visible = false;//escolaridad
+                e.Row.Cells[14].Visible = false;//derivador
+            
         }
     }
 }
