@@ -14,9 +14,9 @@ namespace Ejemplo.Web
         public static cUsuario U;
         public static int i = 0;
         public static int ii = 0;
-        private static List<cItinerario> LosItinerarios;
-        private static List<string> LosDias = new List<string>() { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
-        private static List<DateTime> LasHoras;
+        private static List<cItinerario> lstItinerarios;
+        private static List<string> lstDias = new List<string>() { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
+        private static List<DateTime> lstHoras;
         private static List<List<cItinerario>> celdas;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -37,12 +37,12 @@ namespace Ejemplo.Web
 
                 // CARGA DE HORAS
                 DateTime hora = DateTime.Parse("08:00");
-                LasHoras = new List<DateTime>();
-                LasHoras.Add(hora);
+                lstHoras = new List<DateTime>();
+                lstHoras.Add(hora);
                 do
                 {
                     hora = hora.AddMinutes(15);
-                    LasHoras.Add(hora);
+                    lstHoras.Add(hora);
                 } while (hora != DateTime.Parse("20:00"));
                 if (U.Especialidad.Codigo != 6)
                 {
@@ -54,13 +54,13 @@ namespace Ejemplo.Web
         private void cargarUsuarioLogeado()
         {
             string nickname = Request.QueryString["nick"];
-            cUsuario usuario = new cUsuario();
-            usuario.NickName = nickname;
+            cUsuario unUsuario = new cUsuario();
+            unUsuario.NickName = nickname;
             try
             {
-                usuario = dFachada.UsuarioTraerEspecificoXNickName(usuario);
-                U = usuario;
-                if (usuario == null)
+                unUsuario = dFachada.UsuarioTraerEspecificoXNickName(unUsuario);
+                U = unUsuario;
+                if (unUsuario == null)
                 {
                     ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo iniciar sesion.')", true);
                     Response.Redirect("vLogin.aspx");
@@ -68,7 +68,7 @@ namespace Ejemplo.Web
                 else
                 {
                     i = 1;
-                    Response.Redirect("vInicio.aspx?nick=" + usuario.NickName);
+                    Response.Redirect("vInicio.aspx?nick=" + unUsuario.NickName);
                 }
             }
             catch (Exception ex)
@@ -128,56 +128,56 @@ namespace Ejemplo.Web
         }
         private void CargarGrillaInformesRealizados()
         {
-            List<cInforme> ListaInformes = dFachada.InformeTraerTodosTerminadosPorEspecialista(U);
-            cInforme informe;
+            List<cInforme> lstInformes = dFachada.InformeTraerTodosTerminadosPorEspecialista(U);
+            cInforme unInforme;
 
-            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
+            List<ListarInformes> lstInformesParaListar = new List<ListarInformes>();
             ListarInformes informeAListar;
 
-            for (int i = 0; i < ListaInformes.Count; i++)
+            for (int i = 0; i < lstInformes.Count; i++)
             {
-                informe = new cInforme();
-                informe = ListaInformes[i];
-                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
+                unInforme = new cInforme();
+                unInforme = lstInformes[i];
+                unInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(unInforme.Beneficiario);
                 informeAListar = new ListarInformes();
-                informeAListar.Codigo = informe.Codigo;
-                informeAListar.Fecha = informe.Fecha;
-                informeAListar.Estado = informe.Estado;
-                informeAListar.Tipo = informe.Tipo;
-                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.Nombres = informe.Beneficiario.Nombres;
-                informeAListar.Apellidos = informe.Beneficiario.Apellidos;
-                ListaInformesParaListar.Add(informeAListar);
+                informeAListar.Codigo = unInforme.Codigo;
+                informeAListar.Fecha = unInforme.Fecha;
+                informeAListar.Estado = unInforme.Estado;
+                informeAListar.Tipo = unInforme.Tipo;
+                informeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
+                informeAListar.Nombres = unInforme.Beneficiario.Nombres;
+                informeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
+                lstInformesParaListar.Add(informeAListar);
             }
 
-            grdInformesRealizados.DataSource = ListaInformesParaListar;
+            grdInformesRealizados.DataSource = lstInformesParaListar;
             grdInformesRealizados.DataBind();
         }
         protected void CargarGrillaInformesPendientes()
         {
-            List<cInforme> ListaInformes = dFachada.InformeTraerTodosPendientesPorEspecialista(vMiPerfil.U);
-            cInforme informe;
+            List<cInforme> lstInformes = dFachada.InformeTraerTodosPendientesPorEspecialista(vMiPerfil.U);
+            cInforme unInforme;
 
-            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
+            List<ListarInformes> lstInformesParaListar = new List<ListarInformes>();
             ListarInformes informeAListar;
 
-            for (int i = 0; i < ListaInformes.Count; i++)
+            for (int i = 0; i < lstInformes.Count; i++)
             {
-                informe = new cInforme();
-                informe = ListaInformes[i];
-                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
+                unInforme = new cInforme();
+                unInforme = lstInformes[i];
+                unInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(unInforme.Beneficiario);
                 informeAListar = new ListarInformes();
-                informeAListar.Codigo = informe.Codigo;
-                informeAListar.Fecha = informe.Fecha;
-                informeAListar.Estado = informe.Estado;
-                informeAListar.Tipo = informe.Tipo;
-                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.Nombres = informe.Beneficiario.Nombres;
-                informeAListar.Apellidos = informe.Beneficiario.Apellidos;
-                ListaInformesParaListar.Add(informeAListar);
+                informeAListar.Codigo = unInforme.Codigo;
+                informeAListar.Fecha = unInforme.Fecha;
+                informeAListar.Estado = unInforme.Estado;
+                informeAListar.Tipo = unInforme.Tipo;
+                informeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
+                informeAListar.Nombres = unInforme.Beneficiario.Nombres;
+                informeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
+                lstInformesParaListar.Add(informeAListar);
             }
 
-            grdInformesPendientes.DataSource = ListaInformesParaListar;
+            grdInformesPendientes.DataSource = lstInformesParaListar;
             grdInformesPendientes.DataBind();
         }
 
@@ -191,7 +191,6 @@ namespace Ejemplo.Web
             txtDomicilio.Enabled = pVisible;
             txtTelefono.Enabled = pVisible;
             txtEmail.Enabled = pVisible;
-            //ddlTipoUsuario.Enabled = pVisible;
             ddlEspecialidad.Enabled = pVisible;
             rbTipoDeEmpleado.Enabled = pVisible;
 
@@ -201,6 +200,10 @@ namespace Ejemplo.Web
             btnConfirmar.Visible = pVisible;
             btnCancelar.Visible = pVisible;
 
+            lblObligatorio1.Visible = pVisible;
+            lblObligatorio2.Visible = pVisible;
+            lblObligatorio3.Visible = pVisible;
+            lblObligatorio4.Visible = pVisible;
 
         }
         private bool FaltanDatosObligatorios()
@@ -218,18 +221,18 @@ namespace Ejemplo.Web
             if (!FaltanDatosObligatorios())
             {
                 ModoEdicion(false);
-                cUsuario usuario = new cUsuario();
-                usuario.Codigo = U.Codigo;
-                usuario.NickName = txtNickName.Text;
-                usuario.Nombres = txtNombres.Text;
-                usuario.Apellidos = txtApellidos.Text;
-                usuario.CI = int.Parse(txtCi.Text);
-                usuario.FechaNacimiento = txtFechaNac.Text;
-                usuario.Domicilio = txtDomicilio.Text;
-                usuario.Telefono = txtTelefono.Text;
-                usuario.Email = txtEmail.Text;
+                cUsuario unUsuario = new cUsuario();
+                unUsuario.Codigo = U.Codigo;
+                unUsuario.NickName = txtNickName.Text;
+                unUsuario.Nombres = txtNombres.Text;
+                unUsuario.Apellidos = txtApellidos.Text;
+                unUsuario.CI = int.Parse(txtCi.Text);
+                unUsuario.FechaNacimiento = txtFechaNac.Text;
+                unUsuario.Domicilio = txtDomicilio.Text;
+                unUsuario.Telefono = txtTelefono.Text;
+                unUsuario.Email = txtEmail.Text;
 
-                int i = dFachada.UsuarioVerificarNickNameYCi(usuario);
+                int i = dFachada.UsuarioVerificarNickNameYCi(unUsuario);
                 if (i > 0)
                 {
                     ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: El NickName o Cédula de identidad ya existe')", true);
@@ -238,39 +241,39 @@ namespace Ejemplo.Web
                 {
                     if (this.ddlTipoUsuario.SelectedValue == "Administrativo")
                     {
-                        usuario.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
+                        unUsuario.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
                     }
                     if (this.ddlTipoUsuario.SelectedValue == "Administrador")
                     {
-                        usuario.Tipo = cUtilidades.TipoDeUsuario.Administrador;
+                        unUsuario.Tipo = cUtilidades.TipoDeUsuario.Administrador;
                     }
                     if (this.ddlTipoUsuario.SelectedValue == "Usuario")
                     {
-                        usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
+                        unUsuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                     }
                     string seleccionado = rbTipoDeEmpleado.SelectedValue;
                     if (seleccionado == "Socio")
                     {
-                        usuario.TipoContrato = "S";
+                        unUsuario.TipoContrato = "S";
                     }
                     if (seleccionado == "Empleado")
                     {
-                        usuario.TipoContrato = "E";
+                        unUsuario.TipoContrato = "E";
                     }
                     if (seleccionado == "Contratado")
                     {
-                        usuario.TipoContrato = "C";
+                        unUsuario.TipoContrato = "C";
                     }
-                    usuario.Especialidad = new cEspecialidad();
-                    usuario.Especialidad.Codigo = int.Parse(this.ddlEspecialidad.SelectedValue);
+                    unUsuario.Especialidad = new cEspecialidad();
+                    unUsuario.Especialidad.Codigo = int.Parse(this.ddlEspecialidad.SelectedValue);
 
                     try
                     {
-                        bool resultado = dFachada.UsuarioModificar(usuario);
+                        bool resultado = dFachada.UsuarioModificar(unUsuario);
                         if (resultado)
                         {
                             lblMensaje.Text = "Modificado correctamente";
-                            U = usuario;
+                            U = unUsuario;
                         }
                         else
                         {
@@ -349,15 +352,15 @@ namespace Ejemplo.Web
         {
             pnlItinerario.Visible = true;
 
-            LosItinerarios = dFachada.ItinerarioTraerTodosPorEspecialista(U);
+            lstItinerarios = dFachada.ItinerarioTraerTodosPorEspecialista(U);
 
 
             // ↓↓↓↓ ARMADO DEL HEADER ↓↓↓↓
 
             string Itinerarios = @"<table onscroll='screenTop'><tr ><td style='color:#000000; background-color:#80B7D8'>Hora</td>";
-            for (int i = 0; i < LosDias.Count; i++)
+            for (int i = 0; i < lstDias.Count; i++)
             {
-                Itinerarios += "<td style='color:#000000; background-color:#80B7D8'>" + LosDias[i] + "</td>";
+                Itinerarios += "<td style='color:#000000; background-color:#80B7D8'>" + lstDias[i] + "</td>";
             }
             Itinerarios += "</tr>";
 
@@ -367,23 +370,23 @@ namespace Ejemplo.Web
 
             celdas = new List<List<cItinerario>>();
 
-            for (int i = 0; i < LasHoras.Count; i++)
+            for (int i = 0; i < lstHoras.Count; i++)
             {
                 celdas.Add(new List<cItinerario>());
 
-                for(int j=0;j<LosDias.Count;j++)
+                for(int j=0;j<lstDias.Count;j++)
                 {
                     bool HayAlgunaSesion = false;
-                    for(int k=0; k<LosItinerarios.Count;k++)
+                    for(int k=0; k<lstItinerarios.Count;k++)
                     {
                         if(!HayAlgunaSesion)
                         {
-                            if (DateTime.Parse(LosItinerarios[k].HoraInicio) >= LasHoras[i] && DateTime.Parse(LosItinerarios[k].HoraInicio) < LasHoras[i + 1])
+                            if (DateTime.Parse(lstItinerarios[k].HoraInicio) >= lstHoras[i] && DateTime.Parse(lstItinerarios[k].HoraInicio) < lstHoras[i + 1])
                             {
-                                if(QueDiaEs(LosItinerarios[k])==LosDias[j])
+                                if(QueDiaEs(lstItinerarios[k])==lstDias[j])
                                 {
                                     HayAlgunaSesion = true;
-                                    celdas[i].Add(LosItinerarios[k]);
+                                    celdas[i].Add(lstItinerarios[k]);
                                 }
                             }
                         }
@@ -392,10 +395,10 @@ namespace Ejemplo.Web
                 }
             }
 
-            for(int i=0; i<LasHoras.Count;i++)
+            for(int i=0; i<lstHoras.Count;i++)
             {
-                Itinerarios += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + LasHoras[i].ToShortTimeString() + "</td>";
-                for(int j=0; j<LosDias.Count;j++)
+                Itinerarios += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + lstHoras[i].ToShortTimeString() + "</td>";
+                for(int j=0; j<lstDias.Count;j++)
                 {
                     if(celdas[i][j].Comentario==null)
                     {
@@ -411,9 +414,9 @@ namespace Ejemplo.Web
                                 nombres += "<br>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos;
                             }
                             int filas = 0;
-                            for(int k=i; k<LasHoras.Count;k++)
+                            for(int k=i; k<lstHoras.Count;k++)
                             {
-                                if(DateTime.Parse(celdas[i][j].HoraFin)>LasHoras[k])
+                                if(DateTime.Parse(celdas[i][j].HoraFin)>lstHoras[k])
                                 {
                                     filas++;
                                     celdas[k][j].Comentario = "NO_LISTAR";

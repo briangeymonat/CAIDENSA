@@ -8,19 +8,17 @@
     <br />
     <table>
         <tr>
-            <td>
-                <table class="table">
-                    <tr>
+            <td class="alinearArriba">
+                <table class="alinearArriba">
+                    <tr class="alinearArriba">
                         <td>
                             <asp:Label ID="lblNickname" runat="server" Text="Nickname:"></asp:Label>
                         </td>
                         <td>
                             <asp:TextBox ID="txtNickName" runat="server"></asp:TextBox>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            <asp:Label  ID="lblObligatorio1" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label></td>
                     </tr>
                     <tr>
                         <td>
@@ -29,10 +27,9 @@
                         <td>
                             <asp:TextBox ID="txtNombres" runat="server"></asp:TextBox>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            <asp:Label ID="lblObligatorio2" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -41,10 +38,7 @@
                         <td>
                             <asp:TextBox ID="txtApellidos" runat="server"></asp:TextBox>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><asp:Label ID="lblObligatorio3" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label></td>
                     </tr>
                     <tr>
                         <td>
@@ -53,10 +47,7 @@
                         <td>
                             <asp:TextBox ID="txtCi" runat="server"></asp:TextBox>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><asp:Label ID="lblObligatorio4" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label></td>
                     </tr>
                     <tr>
                         <td>
@@ -65,9 +56,6 @@
                         <td>
                             <asp:TextBox ID="txtFechaNac" runat="server" TextMode="Date"></asp:TextBox>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -78,9 +66,6 @@
                             <asp:TextBox ID="txtDomicilio" runat="server"></asp:TextBox>
                         </td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td>
@@ -89,9 +74,6 @@
                         <td>
                             <asp:TextBox ID="txtTelefono" runat="server" TextMode="Phone"></asp:TextBox>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -102,9 +84,6 @@
                             <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
                         </td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td>
@@ -113,9 +92,6 @@
                         <td>
                             <asp:DropDownList ID="ddlTipoUsuario" runat="server" Enabled="False"></asp:DropDownList>
                         </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -160,19 +136,18 @@
                     <tr>
                         <td>
                             <asp:GridView ID="grdBeneficiariosQueAtiende" runat="server" AutoGenerateSelectButton="True"
-                                 ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
-                                 OnRowCreated="grdBeneficiariosQueAtiende_RowCreated" OnSelectedIndexChanging="grdBeneficiariosQueAtiende_SelectedIndexChanging">
+                                ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
+                                OnRowCreated="grdBeneficiariosQueAtiende_RowCreated" OnSelectedIndexChanging="grdBeneficiariosQueAtiende_SelectedIndexChanging">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                    <EditRowStyle BackColor="#999999" />
-                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                         </td>
                     </tr>
@@ -184,19 +159,18 @@
                     <tr>
                         <td>
                             <asp:GridView ID="grdInformesRealizados" runat="server"
-                                 ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
-                                 OnRowCreated="grdInformesRealizados_RowCreated" ShowHeaderWhenEmpty="True">
+                                ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
+                                OnRowCreated="grdInformesRealizados_RowCreated" ShowHeaderWhenEmpty="True">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                    <EditRowStyle BackColor="#999999" />
-                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                         </td>
                     </tr>
@@ -207,20 +181,19 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:GridView ID="grdInformesPendientes" runat="server" AutoGenerateSelectButton="True" 
-                                 ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
+                            <asp:GridView ID="grdInformesPendientes" runat="server" AutoGenerateSelectButton="True"
+                                ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                 OnRowCreated="grdInformesPendientes_RowCreated" OnSelectedIndexChanging="grdInformesPendientes_SelectedIndexChanging" ShowHeaderWhenEmpty="True">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                    <EditRowStyle BackColor="#999999" />
-                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                         </td>
                     </tr>
@@ -232,7 +205,7 @@
         <asp:Panel ID="pnlItinerario" runat="server" Visible="false">
             <h4>Itinerario semanal
             </h4>
-            <formview ID="frmItinerario" runat="server"></formview>
+            <formview id="frmItinerario" runat="server"></formview>
         </asp:Panel>
     </div>
 </asp:Content>

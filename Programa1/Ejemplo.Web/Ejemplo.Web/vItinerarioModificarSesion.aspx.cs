@@ -305,10 +305,10 @@ namespace Ejemplo.Web
                     if (ElItinerario.lstBeneficiarios.Count == 3) return true;
                     else return false;
                 case "Taller":
-                    if (ElItinerario.lstBeneficiarios.Count >= 4 && ElItinerario.lstBeneficiarios.Count <= 5) return true;
+                    if (ElItinerario.lstBeneficiarios.Count == 4) return true;
                     else return false;
                 case "PROES":
-                    if (ElItinerario.lstBeneficiarios.Count <= 8) return true;
+                    if (ElItinerario.lstBeneficiarios.Count <= 8 && ElItinerario.lstBeneficiarios.Count >= 5 && ElItinerario.lstEspecialistas.Count==2) return true;
                     else return false;
                 default:
                     return false;
@@ -917,6 +917,10 @@ namespace Ejemplo.Web
                         }
                     }
                 }
+            }
+            else
+            {
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan datos.')", true);
             }
         }
 

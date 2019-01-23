@@ -31,6 +31,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtNickName;
         
         /// <summary>
+        /// Control lblObligatorio1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio1;
+        
+        /// <summary>
         /// Control lblNombres.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombres;
+        
+        /// <summary>
+        /// Control lblObligatorio2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio2;
         
         /// <summary>
         /// Control lblApellidos.
@@ -67,6 +85,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtApellidos;
         
         /// <summary>
+        /// Control lblObligatorio3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio3;
+        
+        /// <summary>
         /// Control lblCi.
         /// </summary>
         /// <remarks>
@@ -83,6 +110,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCi;
+        
+        /// <summary>
+        /// Control lblObligatorio4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio4;
         
         /// <summary>
         /// Control lblFechaNac.

@@ -43,13 +43,14 @@ namespace Ejemplo.Web
                     vTareas.enproceso = false;
                     //CargarDatos();
                     CargarDatosEnProceso(); // carga los datos con el contenido de las secciones
-                    cbAntecedentesPatologicos.Enabled = false;
+                    /*cbAntecedentesPatologicos.Enabled = false;
                     cbDesarrollo.Enabled = false;
-                    cbSugerencia.Enabled = false;
+                    cbSugerencia.Enabled = false;*/
                 }
                 else
                 {
-                    CargarDatos(); //carga los datos solo del beneficiario
+                    CargarDatosEnProceso();
+                    //CargarDatos(); //carga los datos solo del beneficiario
                 }
                 CargarGrillasDiagnostico();
 
@@ -111,20 +112,6 @@ namespace Ejemplo.Web
             lblEdad.Text = edadAños + " años y " + edadMeses + " meses";
             lblMotivoConsulta.Text = Informe.Beneficiario.MotivoConsulta.ToString();
             lblEscolaridad.Text = Informe.Beneficiario.Escolaridad.ToString();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(Informe.Beneficiario);
             #region TraerUltimos diagnosticos
             List<string> diagnosticos = dFachada.DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(Informe.Beneficiario);

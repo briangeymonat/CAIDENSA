@@ -20,15 +20,15 @@
             <td></td>
             <td></td>
             <td>
-                <asp:Label ID="lblCentro" runat="server"></asp:Label>
+                <asp:Label ID="lblCentro" runat="server" Font-Bold="True"></asp:Label>
             </td>
             <td>
-                <asp:Label ID="lblFecha" runat="server"></asp:Label>
+                <asp:Label ID="lblFecha" runat="server" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label1" runat="server" Text="Tipo:"></asp:Label>
+                <asp:Label ID="Label1" runat="server" Text="Tipo:" Font-Bold="True"></asp:Label>
             </td>
             <td colspan="3">
                 <asp:Label ID="lblTipo" runat="server"></asp:Label>
@@ -36,23 +36,23 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label2" runat="server" Text="Título:"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Título:" Font-Bold="True"></asp:Label>
             </td>
             <td colspan="3">
                 <asp:Label ID="lblTitulo" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td>
-                <asp:Label ID="Label3" runat="server" Text="Nombre:"></asp:Label>
+            <td class="auto-style2">
+                <asp:Label ID="Label3" runat="server" Text="Nombre:" Font-Bold="True"></asp:Label>
             </td>
-            <td colspan="3">
+            <td colspan="3" class="auto-style2">
                 <asp:Label ID="lblNombreApellido" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label4" runat="server" Text="Cédula de identidad:"></asp:Label>
+                <asp:Label ID="Label4" runat="server" Text="Cédula de identidad:" Font-Bold="True"></asp:Label>
             </td>
             <td>
                 <asp:Label ID="lblCI" runat="server"></asp:Label>
@@ -60,13 +60,13 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label5" runat="server" Text="Fecha de nacimiento:"></asp:Label>
+                <asp:Label ID="Label5" runat="server" Text="Fecha de nacimiento:" Font-Bold="True"></asp:Label>
             </td>
             <td>
                 <asp:Label ID="lblFechaNacimiento" runat="server"></asp:Label>
             </td>
             <td>
-                <asp:Label ID="Label6" runat="server" Text="Edad cronológica:"></asp:Label>
+                <asp:Label ID="Label6" runat="server" Text="Edad cronológica:" Font-Bold="True"></asp:Label>
             </td>
             <td>
                 <asp:Label ID="lblEdadCronologica" runat="server"></asp:Label>
@@ -74,7 +74,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label7" runat="server" Text="Motivo de consulta:"></asp:Label>
+                <asp:Label ID="Label7" runat="server" Text="Motivo de consulta:" Font-Bold="True"></asp:Label>
             </td>
             <td colspan="3">
                 <asp:Label ID="lblMotivoConsulta" runat="server"></asp:Label>
@@ -82,7 +82,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label8" runat="server" Text="Escolaridad:"></asp:Label>
+                <asp:Label ID="Label8" runat="server" Text="Escolaridad:" Font-Bold="True"></asp:Label>
             </td>
             <td colspan="3">
                 <asp:Label ID="lblEscolaridad" runat="server"></asp:Label>
@@ -90,7 +90,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label10" runat="server" Text="Encuadre:"></asp:Label>
+                <asp:Label ID="Label10" runat="server" Text="Encuadre:" Font-Bold="True"></asp:Label>
             </td>
             <td colspan="3">
                 <asp:Label ID="lblEncuadre" runat="server"></asp:Label>
@@ -98,15 +98,17 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblSubtituloAntecedentesPatologicos" runat="server" Text="Antecedentes patológicos:"></asp:Label>
+                <asp:Label ID="lblSubtituloAntecedentesPatologicos" runat="server" Text="Antecedentes patológicos:" Font-Bold="True"></asp:Label>
             </td>
+            </tr>
+        <tr>
             <td colspan="3">
-                <asp:Label ID="lblAntecedentesPatologicos" runat="server"></asp:Label>
+                <asp:Label ID="lblAntecedentesPatologicos" runat="server" Width="530px"></asp:Label>
             </td>
         </tr>
         <tr>
             <td class="auto-style2">
-                <asp:Label ID="lblSubtituloDesarrollo" runat="server" Text="Desarrollo:"></asp:Label>
+                <asp:Label ID="lblSubtituloDesarrollo" runat="server" Text="Desarrollo:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -116,7 +118,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label11" runat="server" Text="Presentación:"></asp:Label>
+                <asp:Label ID="Label11" runat="server" Text="Presentación:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -126,7 +128,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="lblSubtituloAbPsicomotriz" runat="server" Text="Abordaje Psicomotriz:"></asp:Label>
+                <asp:Label ID="lblSubtituloAbPsicomotriz" runat="server" Text="Abordaje Psicomotriz:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -137,7 +139,7 @@
 
         <tr>
             <td>
-                <asp:Label ID="lblSubtituloAbPedagogico" runat="server" Text="Abordaje Pedagógico:"></asp:Label>
+                <asp:Label ID="lblSubtituloAbPedagogico" runat="server" Text="Abordaje Pedagógico:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -148,7 +150,7 @@
 
         <tr>
             <td>
-                <asp:Label ID="lblSubtituloAbPsicologico" runat="server" Text="Abordaje Psicológico:"></asp:Label>
+                <asp:Label ID="lblSubtituloAbPsicologico" runat="server" Text="Abordaje Psicológico:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -159,7 +161,7 @@
 
         <tr>
             <td>
-                <asp:Label ID="lblSubtituloAbFonoaudiologico" runat="server" Text="Abordaje Fonoaudiológico:"></asp:Label>
+                <asp:Label ID="lblSubtituloAbFonoaudiologico" runat="server" Text="Abordaje Fonoaudiológico:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -170,7 +172,7 @@
 
         <tr>
             <td>
-                <asp:Label ID="lblSubtituloAbFisioterapeutico" runat="server" Text="Abordaje Fisioterapeútico:"></asp:Label>
+                <asp:Label ID="lblSubtituloAbFisioterapeutico" runat="server" Text="Abordaje Fisioterapeútico:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -180,7 +182,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label15" runat="server" Text="En suma:"></asp:Label>
+                <asp:Label ID="Label15" runat="server" Text="En suma:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -190,7 +192,7 @@
         </tr>
         <tr>
             <td class="auto-style1">
-                <asp:Label ID="lblSubtituloSugerencia" runat="server" Text="Sugerencias:"></asp:Label>
+                <asp:Label ID="lblSubtituloSugerencia" runat="server" Text="Sugerencias:" Font-Bold="True"></asp:Label>
             </td>
         </tr>
         <tr>

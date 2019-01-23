@@ -16,6 +16,7 @@ namespace Ejemplo.Web
         {
             if (!Page.IsPostBack)
             {
+                Page.Title = "Informe";
                 Informe = new cInforme();
                 Informe.Codigo = int.Parse(Request.QueryString["InformeId"]);
                 Informe = dFachada.InformeTraerEspecifico(Informe);
@@ -31,7 +32,7 @@ namespace Ejemplo.Web
                 }
 
                 MemoryStream ms = new MemoryStream();
-                Document documento = new Document(iTextSharp.text.PageSize.A4, 60f, 60f, 60f, 60f);
+                Document documento = new Document(iTextSharp.text.PageSize.A4, 72f, 72f, 72f, 72f);
                 PdfWriter pw = PdfWriter.GetInstance(documento, ms);
                 documento.Open();
 
@@ -50,12 +51,15 @@ namespace Ejemplo.Web
 
                 Font fontFecha = FontFactory.GetFont("Arial", 11);
                 fontFecha.SetColor(000, 000, 000);
+
+                Font fontCursiva = FontFactory.GetFont("Times New Roman", 12, Font.ITALIC);
+                fontCursiva.SetColor(000, 000, 000);
                 #endregion
 
                 //LOGO y HEADER
                 string imageUrl = Server.MapPath("/Img") + "/logo.jpg";
                 Image img = Image.GetInstance(imageUrl);
-                img.ScalePercent(50);
+                img.ScalePercent(38);
                 documento.Add(img);
 
                 Paragraph parrafo = new Paragraph();
@@ -368,6 +372,110 @@ namespace Ejemplo.Web
                         documento.Add(parrafo);
                     }
                 }
+                parrafo = new Paragraph("\n");
+                documento.Add(parrafo);
+                parrafo = new Paragraph("Saluda atte: por CAIDEN,", fontParrafo);
+                parrafo.Alignment = Element.ALIGN_LEFT;
+                documento.Add(parrafo);
+                parrafo = new Paragraph("\n \n \n \n");
+                documento.Add(parrafo);
+
+
+
+                Chunk nom = new Chunk();
+                parrafo = new Paragraph();
+                parrafo.Alignment = Element.ALIGN_CENTER;
+                for (int i = 0; i < Informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                {
+                    if (i > 0)
+                    {
+                        nom = new Chunk("               " + Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Nombres + " " + Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Apellidos, fontTitulo2);
+                    }
+                    else
+                    {
+                        nom = new Chunk(Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Nombres + " " + Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Apellidos, fontTitulo2);
+                    }
+                    parrafo.Add(nom);
+                }
+                documento.Add(parrafo);
+
+                Chunk especialidad = new Chunk();
+                parrafo = new Paragraph();
+                parrafo.Alignment = Element.ALIGN_CENTER;
+                bool existe = false;
+                for (int i = 0; i < Informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                {
+                    if (i > 0)
+                    {
+                        if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Psicologia")
+                        {
+                            especialidad = new Chunk("               Lic. en Psicología", fontParrafo);
+                            existe = true;
+                        }
+                        else if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Pedadogia")
+                        {
+                            especialidad = new Chunk("               Mtra. Pedagoga", fontParrafo);
+                        }
+                        else if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Fisioterapia")
+                        {
+                            especialidad = new Chunk("               Lic. en Fisioterapia", fontParrafo);
+                            existe = true;
+                        }
+                        else if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Fonoaudiologia")
+                        {
+                            especialidad = new Chunk("               Lic. en Fonoaudiología", fontParrafo);
+                            existe = true;
+                        }
+                        else if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Psicomotricidad")
+                        {
+                            especialidad = new Chunk("               Lic. en Psicomotricidad", fontParrafo);
+                            existe = true;
+                        }
+                    }
+                    else
+                    {
+                        if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Psicologia")
+                        {
+                            especialidad = new Chunk("Lic. en Psicología", fontParrafo);
+                            existe = true;
+                        }
+
+                        else if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Pedadogia")
+                        {
+                            especialidad = new Chunk("Mtra. Pedagoga", fontParrafo);
+                        }
+                        else if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Fisioterapia")
+                        {
+                            especialidad = new Chunk("Lic. en Fisioterapia", fontParrafo);
+                            existe = true;
+                        }
+                        else if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Fonoaudiologia")
+                        {
+                            especialidad = new Chunk("Lic. en Fonoaudiología", fontParrafo);
+                            existe = true;
+                        }
+                        else if (Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario.Especialidad.Nombre == "Psicomotricidad")
+                        {
+                            especialidad = new Chunk("Lic. en Psicomotricidad", fontParrafo);
+                            existe = true;
+                        }
+
+                    }
+                    parrafo.Add(especialidad);
+
+                }
+                documento.Add(parrafo);
+
+                parrafo = new Paragraph("\n");
+                documento.Add(parrafo);
+                if (existe)
+                {
+                    parrafo = new Paragraph("*Timbre profesional en poder de la empresa", fontCursiva);
+                    parrafo.Alignment = Element.ALIGN_RIGHT;
+                    documento.Add(parrafo);
+                }
+
+
 
                 documento.Close();
 
@@ -379,7 +487,7 @@ namespace Ejemplo.Web
                 //ms = new MemoryStream();
                 //ms.Write(bytesStream, 0, bytesStream.Length);
                 //ms.Position = 0;
-                Response.AddHeader("content-disposition", "attachemnt;filename=invoice.pdf");
+                Response.AddHeader("content-disposition", "attachemnt;filename=Informe.pdf");
                 Response.Buffer = true;
                 ms.WriteTo(Response.OutputStream);
                 Response.End();
@@ -387,5 +495,5 @@ namespace Ejemplo.Web
 
             }
         }
-    } 
+    }
 }

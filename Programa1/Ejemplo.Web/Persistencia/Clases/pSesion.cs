@@ -1110,6 +1110,7 @@ namespace Persistencia.Clases
                                         }
                                         break;
                                     default:
+                                        if(estado != "X" && estado != "R")
                                         retorno[dia] = (int.Parse(retorno[dia]) + int.Parse(estado)).ToString();
                                         break;
                                 }

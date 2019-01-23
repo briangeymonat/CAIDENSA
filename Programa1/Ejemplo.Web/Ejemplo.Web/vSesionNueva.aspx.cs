@@ -85,10 +85,10 @@ namespace Ejemplo.Web
                     if (BeneficiariosAgregados.Count == 3) return true;
                     else return false;
                 case "Taller":
-                    if (BeneficiariosAgregados.Count >= 4 && BeneficiariosAgregados.Count <= 5) return true;
+                    if (BeneficiariosAgregados.Count == 4) return true;
                     else return false;
                 case "PROES":
-                    if (BeneficiariosAgregados.Count <= 8) return true;
+                    if (BeneficiariosAgregados.Count <= 8 && BeneficiariosAgregados.Count >= 5 && EspecialistasAgregados.Count == 2) return true;
                     else return false;
                 default:
                     return false;
