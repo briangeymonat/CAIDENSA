@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vMiPerfil.aspx.cs" Inherits="Ejemplo.Web.vMiPerfil" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+       <script type="text/javascript">
+        function disableBackButton()
+        {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()", 0);
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center><h1>Mi perfil
@@ -10,6 +17,11 @@
         <asp:TableRow VerticalAlign="Top" HorizontalAlign="Center">
             <asp:TableCell Width="25%" >
                 <asp:Table runat="server">
+                    <asp:TableRow>
+                        <asp:TableCell HorizontalAlign="Center" ColumnSpan="2">
+                            <asp:Label id="Label1" runat="server" Text="Datos personales" Font-Bold="true" Font-Size="10"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
                             <asp:Label ID="lblNickname" runat="server" Text="Nickname:"></asp:Label>

@@ -58,7 +58,38 @@ namespace Ejemplo.Web
                 this.rblLocalidadPS.SelectedIndex = 0;
                 this.rblLocalidadUS.SelectedIndex = 0;
 
+                CargarDdlHoras();
+
             }
+        }
+
+        private void CargarDdlHoras()
+        {
+            DateTime hora1 = DateTime.Parse("08:00");
+            List<string> LasHorasDesde = new List<string>();
+            LasHorasDesde.Add(hora1.ToShortTimeString());
+            do
+            {
+                hora1 = hora1.AddMinutes(15);
+                LasHorasDesde.Add(hora1.ToShortTimeString());
+            } while (hora1 != DateTime.Parse("19:45"));
+            ddlDesdePS.DataSource = LasHorasDesde;
+            ddlDesdePS.DataBind();
+            ddlDesdeUS.DataSource = LasHorasDesde;
+            ddlDesdeUS.DataBind();
+
+            List<string> LasHorasHasta = new List<string>();
+            DateTime hora2 = DateTime.Parse("08:15");
+            LasHorasHasta.Add(hora2.ToShortTimeString());
+            do
+            {
+                hora2 = hora2.AddMinutes(15);
+                LasHorasHasta.Add(hora2.ToShortTimeString());
+            } while (hora2 != DateTime.Parse("20:00"));
+            ddlHastaPS.DataSource = LasHorasHasta;
+            ddlHastaPS.DataBind();
+            ddlHastaUS.DataSource = LasHorasHasta;
+            ddlHastaUS.DataBind();
         }
 
         protected void cbPensionista_CheckedChanged(object sender, EventArgs e)
@@ -86,9 +117,9 @@ namespace Ejemplo.Web
                         {
                             if (!FaltanDatosAgregarDiagnostico())
                             {
-                                if (int.Parse(txtDesdePS.Text) <= int.Parse(txtHastaPS.Text)                                    )
+                                if (DateTime.Parse(ddlDesdePS.SelectedValue) < DateTime.Parse(ddlHastaPS.SelectedValue)                                    )
                                 {
-                                    if (int.Parse(txtDesdeUS.Text) <= int.Parse(txtHastaUS.Text))
+                                    if (DateTime.Parse(ddlDesdeUS.SelectedValue) < DateTime.Parse(ddlHastaUS.SelectedValue))
                                     {
                                         if (DateTime.Parse(txtFechaPS.Text) <= DateTime.Parse(txtFechaUS.Text))
                                         {
@@ -161,8 +192,9 @@ namespace Ejemplo.Web
                                                         primeraSesion.Centro = cUtilidades.Centro.JuanLacaze;
                                                     else
                                                         primeraSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
-                                                    primeraSesion.HoraInicio = txtDesdePS.Text;
-                                                    primeraSesion.HoraFin = txtHastaPS.Text;
+
+                                                    primeraSesion.HoraInicio = ddlDesdePS.SelectedValue;
+                                                    primeraSesion.HoraFin = ddlHastaPS.SelectedValue;
                                                     cBeneficiarioSesion bs = new cBeneficiarioSesion();
                                                     bs.Beneficiario = unBeneficiario;
                                                     bs.Plan = unBeneficiario.lstPlanes[0];
@@ -191,8 +223,8 @@ namespace Ejemplo.Web
                                                         ultimaSesion.Centro = cUtilidades.Centro.JuanLacaze;
                                                     else
                                                         ultimaSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
-                                                    ultimaSesion.HoraInicio = txtDesdeUS.Text;
-                                                    ultimaSesion.HoraFin = txtHastaUS.Text;
+                                                    ultimaSesion.HoraInicio = ddlDesdeUS.SelectedValue;
+                                                    ultimaSesion.HoraFin = ddlHastaUS.SelectedValue;
                                                     cBeneficiarioSesion bs1 = new cBeneficiarioSesion();
                                                     bs1.Beneficiario = unBeneficiario;
                                                     bs1.Plan = unBeneficiario.lstPlanes[0];
@@ -324,8 +356,8 @@ namespace Ejemplo.Web
 
             ddlTipoSesionPS.SelectedIndex = 0;
             txtFechaPS.Text = string.Empty;
-            txtDesdePS.Text = string.Empty;
-            txtHastaPS.Text = string.Empty;
+            ddlDesdePS.SelectedIndex = 0;
+            ddlHastaPS.SelectedIndex = 0;
             rblLocalidadPS.SelectedIndex = 0;
             ddlEspecialidadesPS.SelectedIndex = 0;
             txtComentarioPS.Text = string.Empty;
@@ -333,8 +365,8 @@ namespace Ejemplo.Web
 
             ddlTipoSesionUS.SelectedIndex = 0;
             txtFechaUS.Text = string.Empty;
-            txtDesdeUS.Text = string.Empty;
-            txtHastaUS.Text = string.Empty;
+            ddlDesdeUS.SelectedIndex = 0;
+            ddlHastaUS.SelectedIndex = 0;
             rblLocalidadUS.SelectedIndex = 0;
             ddlEspecialidadesUS.SelectedIndex = 0;
             txtComentarioUS.Text = string.Empty;
@@ -360,7 +392,7 @@ namespace Ejemplo.Web
         }
         private bool FaltanDatosPrimeraSesion()
         {
-            if (txtFechaPS.Text == string.Empty || txtDesdePS.Text == string.Empty || txtHastaPS.Text == string.Empty ||
+            if (txtFechaPS.Text == string.Empty  ||
                 lstEspecialistasAgregadosPS.Count <= 0)
             {
                 return true;
@@ -372,7 +404,7 @@ namespace Ejemplo.Web
         }
         private bool FaltanDatosUltimaSesion()
         {
-            if (txtFechaUS.Text == string.Empty || txtDesdeUS.Text == string.Empty || txtHastaUS.Text == string.Empty ||
+            if (txtFechaUS.Text == string.Empty ||
                 lstEspecialistasAgregadosUS.Count <= 0)
             {
                 return true;

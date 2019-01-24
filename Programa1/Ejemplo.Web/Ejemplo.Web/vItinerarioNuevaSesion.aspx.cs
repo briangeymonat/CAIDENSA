@@ -23,6 +23,10 @@ namespace Ejemplo.Web
             if (!Page.IsPostBack)
             {
                 CargarTodo();
+                if (BeneficiariosAgregados.Count <= 0)
+                    lblSeleccionarPlan.Visible = false;
+                else
+                    lblSeleccionarPlan.Visible = true;
             }
 
         }
@@ -451,7 +455,10 @@ namespace Ejemplo.Web
             BeneficiariosAgregados.Add(TodosLosBenefiicarios[e.NewSelectedIndex]);
             CargarBeneficiarios();
             CargarBeneficiariosAgregados();
-
+            if (BeneficiariosAgregados.Count <= 0)
+                lblSeleccionarPlan.Visible = false;
+            else
+                lblSeleccionarPlan.Visible = true;
         }
         protected void grdBeneficiariosAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -466,6 +473,10 @@ namespace Ejemplo.Web
                     planes.Add(unPlan.Tipo);
                 }
             }
+            if (BeneficiariosAgregados.Count <= 0)
+                lblSeleccionarPlan.Visible = false;
+            else
+                lblSeleccionarPlan.Visible = true;
 
         }
 

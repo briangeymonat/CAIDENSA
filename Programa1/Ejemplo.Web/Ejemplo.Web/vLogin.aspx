@@ -5,6 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+       <script type="text/javascript">
+        function disableBackButton()
+        {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()", 0);
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">

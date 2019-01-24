@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vBeneficiarioAgregarPasivo.aspx.cs" Inherits="Ejemplo.Web.vBeneficiarioAgregarPasivo1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+       <script type="text/javascript">
+        function disableBackButton()
+        {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()", 0);
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 style="padding-left: 50px">Agregar beneficiario pasivo
@@ -98,6 +105,7 @@
                         </asp:TableCell>
                         <asp:TableCell>
                             <asp:TextBox ID="txtAtributario" runat="server" Width="160px"></asp:TextBox>
+                            <asp:Label ID="Label25" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell>
                             <asp:CheckBox ID="cbPensionista" runat="server" Text="Pensionista" AutoPostBack="True" OnCheckedChanged="cbPensionista_CheckedChanged" />
@@ -110,6 +118,7 @@
                         </asp:TableCell>
                         <asp:TableCell>
                             <asp:TextBox ID="txtMotivoConsulta" runat="server" Width="160px"></asp:TextBox>
+                            <asp:Label ID="Label26" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
                         </asp:TableCell>
                     </asp:TableRow>
                     <%-- ESCOLARIDAD --%>
@@ -168,13 +177,13 @@
                                     <asp:Table runat="server">
                                         <asp:TableRow>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label1" runat="server" Text="Tipo de sesión:"></asp:Label>
+                                                <asp:Label ID="Label1" runat="server" Text="Tipo de sesión:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
                                                 <asp:DropDownList ID="ddlTipoSesionPS" runat="server" Enabled="False"></asp:DropDownList>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label3" runat="server" Text="Fecha:"></asp:Label>
+                                                <asp:Label ID="Label3" runat="server" Text="Fecha:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell ColumnSpan="4">
                                                 <asp:TextBox ID="txtFechaPS" runat="server" TextMode="Date"></asp:TextBox>
@@ -182,7 +191,7 @@
                                         </asp:TableRow>
                                         <asp:TableRow>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label4" runat="server" Text="Localidad:"></asp:Label>
+                                                <asp:Label ID="Label4" runat="server" Text="Localidad:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
                                                 <asp:RadioButtonList ID="rblLocalidadPS" runat="server" RepeatDirection="Horizontal">
@@ -191,16 +200,16 @@
                                                 </asp:RadioButtonList>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label5" runat="server" Text="Desde:"></asp:Label>
+                                                <asp:Label ID="Label5" runat="server" Text="Desde:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:TextBox ID="txtDesdePS" runat="server" TextMode="Time"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlDesdePS" runat="server"></asp:DropDownList>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label6" runat="server" Text="Hasta:"></asp:Label>
+                                                <asp:Label ID="Label6" runat="server" Text="Hasta:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:TextBox ID="txtHastaPS" runat="server" TextMode="Time"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlHastaPS" runat="server"></asp:DropDownList>
                                             </asp:TableCell>
                                         </asp:TableRow>
                                     </asp:Table>
@@ -212,7 +221,7 @@
                                     <asp:Table runat="server">
                                         <asp:TableRow>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label8" runat="server" Text="Especialidad:"></asp:Label>
+                                                <asp:Label ID="Label8" runat="server" Text="Especialidad:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
                                                 <asp:DropDownList ID="ddlEspecialidadesPS" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidadesPS_SelectedIndexChanged"></asp:DropDownList>
@@ -226,7 +235,7 @@
                                     <asp:Table runat="server" Width="100%">
                                         <asp:TableRow VerticalAlign="Top">
                                             <asp:TableCell Width="50%">
-                                                <asp:Label ID="Label9" runat="server" Text="Especialistas"></asp:Label>
+                                                <asp:Label ID="Label9" runat="server" Text="Especialistas" Font-Bold="true"></asp:Label>
                                                 <asp:GridView ID="grdTodosEspecialistasPS" runat="server"
                                                     AutoGenerateSelectButton="True" OnRowCreated="grdTodosEspecialistasPS_RowCreated"
                                                     OnSelectedIndexChanging="grdTodosEspecialistasPS_SelectedIndexChanging"
@@ -246,7 +255,7 @@
                                                 </asp:GridView>
                                             </asp:TableCell>
                                             <asp:TableCell Width="50%">
-                                                <asp:Label ID="Label10" runat="server" Text="Especialistas agregados"></asp:Label>
+                                                <asp:Label ID="Label10" runat="server" Text="Especialistas agregados" Font-Bold="true"></asp:Label>
                                                 <asp:GridView ID="grdEspecialistasAgregadosPS" runat="server"
                                                     AutoGenerateDeleteButton="True" OnRowCreated="grdEspecialistasAgregadosPS_RowCreated"
                                                     OnRowDeleting="grdEspecialistasAgregadosPS_RowDeleting"
@@ -271,7 +280,7 @@
                             </asp:TableRow>
                             <asp:TableRow>
                                 <asp:TableCell>
-                                    <asp:Label ID="Label11" runat="server" Text="Comentario:"></asp:Label>
+                                    <asp:Label ID="Label11" runat="server" Text="Comentario:" Font-Bold="true"></asp:Label>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow>
@@ -296,13 +305,13 @@
                                     <asp:Table runat="server">
                                         <asp:TableRow>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label12" runat="server" Text="Tipo de sesión:"></asp:Label>
+                                                <asp:Label ID="Label12" runat="server" Text="Tipo de sesión:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
                                                 <asp:DropDownList ID="ddlTipoSesionUS" runat="server" Enabled="False"></asp:DropDownList>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label13" runat="server" Text="Fecha:"></asp:Label>
+                                                <asp:Label ID="Label13" runat="server" Text="Fecha:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell ColumnSpan="3">
                                                 <asp:TextBox ID="txtFechaUS" runat="server" TextMode="Date"></asp:TextBox>
@@ -310,7 +319,7 @@
                                         </asp:TableRow>
                                         <asp:TableRow>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label14" runat="server" Text="Localidad:"></asp:Label>
+                                                <asp:Label ID="Label14" runat="server" Text="Localidad:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
                                                 <asp:RadioButtonList ID="rblLocalidadUS" runat="server" RepeatDirection="Horizontal">
@@ -319,16 +328,16 @@
                                                 </asp:RadioButtonList>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label15" runat="server" Text="Desde:"></asp:Label>
+                                                <asp:Label ID="Label15" runat="server" Text="Desde:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:TextBox ID="txtDesdeUS" runat="server" TextMode="Time"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlDesdeUS" runat="server"></asp:DropDownList>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label16" runat="server" Text="Hasta:"></asp:Label>
+                                                <asp:Label ID="Label16" runat="server" Text="Hasta:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
-                                                <asp:TextBox ID="txtHastaUS" runat="server" TextMode="Time"></asp:TextBox>
+                                                <asp:DropDownList ID="ddlHastaUS" runat="server"></asp:DropDownList>
                                             </asp:TableCell>
                                         </asp:TableRow>
                                     </asp:Table>
@@ -340,7 +349,7 @@
                                     <asp:Table runat="server">
                                         <asp:TableRow>
                                             <asp:TableCell>
-                                                <asp:Label ID="Label18" runat="server" Text="Especialidad:"></asp:Label>
+                                                <asp:Label ID="Label18" runat="server" Text="Especialidad:" Font-Bold="true"></asp:Label>
                                             </asp:TableCell>
                                             <asp:TableCell>
                                                 <asp:DropDownList ID="ddlEspecialidadesUS" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidadesUS_SelectedIndexChanged"></asp:DropDownList>
@@ -354,7 +363,7 @@
                                     <asp:Table runat="server" Width="100%">
                                         <asp:TableRow VerticalAlign="Top">
                                             <asp:TableCell Width="50%">
-                                                <asp:Label ID="Label19" runat="server" Text="Especialistas"></asp:Label>
+                                                <asp:Label ID="Label19" runat="server" Text="Especialistas" Font-Bold="true"></asp:Label>
                                                 <asp:GridView ID="grdTodosEspecialistasUS" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdTodosEspecialistasUS_RowCreated" OnSelectedIndexChanging="grdTodosEspecialistasUS_SelectedIndexChanging"
                                                     ViewStateMode="Enabled" CellPadding="4"
                                                     ForeColor="#333333" GridLines="None"
@@ -373,7 +382,7 @@
                                             </asp:TableCell>
 
                                             <asp:TableCell Width="50%">
-                                                <asp:Label ID="Label20" runat="server" Text="Especialistas agregados"></asp:Label>
+                                                <asp:Label ID="Label20" runat="server" Text="Especialistas agregados" Font-Bold="true"></asp:Label>
                                                 <asp:GridView ID="grdEspecialistasAgregadosUS" runat="server" AutoGenerateDeleteButton="True" OnRowCreated="grdEspecialistasAgregadosUS_RowCreated" OnRowDeleting="grdEspecialistasAgregadosUS_RowDeleting"
                                                     ViewStateMode="Enabled" CellPadding="4"
                                                     ForeColor="#333333" GridLines="None"
@@ -396,7 +405,7 @@
                             </asp:TableRow>
                             <asp:TableRow>
                                 <asp:TableCell>
-                                    <asp:Label ID="Label21" runat="server" Text="Comentario:"></asp:Label>
+                                    <asp:Label ID="Label21" runat="server" Text="Comentario:" Font-Bold="true"></asp:Label>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow>
@@ -418,7 +427,7 @@
                             <asp:TableRow>
                                 <asp:TableCell>
                                     <br />
-                                    <asp:Label ID="lblTipo" runat="server" Text="Tipo:"></asp:Label>
+                                    <asp:Label ID="lblTipo" runat="server" Text="Tipo:" Font-Bold="true"></asp:Label>
                                 </asp:TableCell>
                                 <asp:TableCell ColumnSpan="3">
                                     <br />
@@ -437,13 +446,13 @@
                             </asp:TableRow>
                             <asp:TableRow>
                                 <asp:TableCell>
-                                    <asp:Label ID="lblDesde" runat="server" Text="Desde:"></asp:Label>
+                                    <asp:Label ID="lblDesde" runat="server" Text="Desde:" Font-Bold="true"></asp:Label>
                                 </asp:TableCell>
                                 <asp:TableCell>
                                     <asp:TextBox ID="txtDesde" runat="server" TextMode="Date"></asp:TextBox>
                                 </asp:TableCell>
                                 <asp:TableCell>
-                                    <asp:Label ID="lblHasta" runat="server" Text="Hasta:"></asp:Label>
+                                    <asp:Label ID="lblHasta" runat="server" Text="Hasta:" Font-Bold="true"></asp:Label>
                                 </asp:TableCell>
                                 <asp:TableCell>
                                     <asp:TextBox ID="txtHasta" runat="server" TextMode="Date"></asp:TextBox>
@@ -466,7 +475,7 @@
                                 <asp:Table runat="server" Width="100%">
                                     <asp:TableRow VerticalAlign="Top">
                                         <asp:TableCell Width="50%">
-                                            <asp:Label ID="Label22" runat="server" Text="Todos los diagnósticos:"></asp:Label>
+                                            <asp:Label ID="Label22" runat="server" Text="Todos los diagnósticos:" Font-Bold="true"></asp:Label>
                                             <asp:GridView ID="grdTodosDiagnosticos" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdTodosDiagnosticos_RowCreated" OnSelectedIndexChanging="grdTodosDiagnosticos_SelectedIndexChanging" ShowHeaderWhenEmpty="True">
                                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                                 <EditRowStyle BackColor="#999999" />
@@ -481,7 +490,7 @@
                                             </asp:GridView>
                                         </asp:TableCell>
                                         <asp:TableCell Width="50%">
-                                            <asp:Label ID="Label23" runat="server" Text="Diagnósticos agregados:"></asp:Label>
+                                            <asp:Label ID="Label23" runat="server" Text="Diagnósticos agregados:" Font-Bold="true"></asp:Label>
                                             <asp:GridView ID="grdDiagnosticosAgregados" runat="server" AutoGenerateDeleteButton="True"
                                                 OnRowCreated="grdDiagnosticosAgregados_RowCreated" OnRowDeleting="grdDiagnosticosAgregados_RowDeleting"
                                                 ShowHeaderWhenEmpty="True">

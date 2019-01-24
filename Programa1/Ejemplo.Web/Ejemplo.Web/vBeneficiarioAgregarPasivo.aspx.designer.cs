@@ -211,6 +211,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtAtributario;
         
         /// <summary>
+        /// Control Label25.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label25;
+        
+        /// <summary>
         /// Control cbPensionista.
         /// </summary>
         /// <remarks>
@@ -236,6 +245,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMotivoConsulta;
+        
+        /// <summary>
+        /// Control Label26.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label26;
         
         /// <summary>
         /// Control lblEscolaridad.
@@ -400,13 +418,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// Control txtDesdePS.
+        /// Control ddlDesdePS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesdePS;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDesdePS;
         
         /// <summary>
         /// Control Label6.
@@ -418,13 +436,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control txtHastaPS.
+        /// Control ddlHastaPS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHastaPS;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHastaPS;
         
         /// <summary>
         /// Control Label8.
@@ -589,13 +607,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// Control txtDesdeUS.
+        /// Control ddlDesdeUS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesdeUS;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDesdeUS;
         
         /// <summary>
         /// Control Label16.
@@ -607,13 +625,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
-        /// Control txtHastaUS.
+        /// Control ddlHastaUS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHastaUS;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHastaUS;
         
         /// <summary>
         /// Control Label18.

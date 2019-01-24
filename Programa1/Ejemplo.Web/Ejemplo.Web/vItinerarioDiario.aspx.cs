@@ -38,6 +38,18 @@ namespace Ejemplo.Web
                 CargarItinerarios();
                 CargarDdlEspecialistas();
                 CargarGrdItinerariosPorEspecialista();
+                if (LosItinerarios.Count <= 0)
+                {
+                    frmItinerario.Visible = false;
+                    lblItinerariosXEspecialista.Visible = false;
+                    ddlEspecialistas.Visible = false;
+                }
+                else
+                {
+                    frmItinerario.Visible = true;
+                    lblItinerariosXEspecialista.Visible = true;
+                    ddlEspecialistas.Visible = true;
+                }
             }
         }
         private void CargarDdlDias()
@@ -385,6 +397,18 @@ namespace Ejemplo.Web
             CargarItinerarios();
             CargarDdlEspecialistas();
             CargarGrdItinerariosPorEspecialista();
+            if (LosItinerarios.Count <= 0)
+            {
+                frmItinerario.Visible = false;
+                lblItinerariosXEspecialista.Visible = false;
+                ddlEspecialistas.Visible = false;
+            }
+            else
+            {
+                frmItinerario.Visible = true;
+                lblItinerariosXEspecialista.Visible = true;
+                ddlEspecialistas.Visible = true;
+            }
         }
 
         protected void rdblCentro_SelectedIndexChanged(object sender, EventArgs e)
@@ -392,6 +416,18 @@ namespace Ejemplo.Web
             CargarItinerarios();
             CargarDdlEspecialistas();
             CargarGrdItinerariosPorEspecialista();
+            if (LosItinerarios.Count <= 0)
+            {
+                frmItinerario.Visible = false;
+                lblItinerariosXEspecialista.Visible = false;
+                ddlEspecialistas.Visible = false;
+            }
+            else
+            {
+                frmItinerario.Visible = true;
+                lblItinerariosXEspecialista.Visible = true;
+                ddlEspecialistas.Visible = true;
+            }
         }
 
         protected void grdItinerario_RowDataBound(object sender, GridViewRowEventArgs e)

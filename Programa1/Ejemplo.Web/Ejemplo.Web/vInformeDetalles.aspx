@@ -10,6 +10,13 @@
             height: 21px;
         }
     </style>
+       <script type="text/javascript">
+        function disableBackButton()
+        {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()", 0);
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3>Detalles del informe

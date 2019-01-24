@@ -1,6 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vInformeMostrar.aspx.cs" Inherits="Ejemplo.Web.vInformeMostrar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+       <script type="text/javascript">
+        function disableBackButton()
+        {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()", 0);
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2 style="padding-left: 50px">Todos los informes
@@ -9,14 +16,12 @@
         <asp:TableRow>
             <asp:TableCell Style="width: 300px; padding-left: 50px;" runat="server">
                 <br />
-                <asp:TextBox ID="txtBuscarInforme" runat="server" PlaceHolder="Buscar por Nombre, Apellido o CI de beneficiario">
+                <asp:TextBox ID="txtBuscarInforme" runat="server" PlaceHolder="Buscar por Nombre, Apellido o CI de beneficiario" Width="100%">
                 </asp:TextBox>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow VerticalAlign="Top">
             <asp:TableCell Style="padding-left: 50px;">
-                <asp:TableRow>
-                    <asp:TableCell>
                         <br />
                         <asp:GridView ID="grdInformes" runat="server" AutoGenerateSelectButton="True"
                             OnRowCreated="grdInformes_RowCreated" OnSelectedIndexChanging="grdInformes_SelectedIndexChanging"
@@ -33,8 +38,6 @@
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
                     </asp:TableCell>
-                </asp:TableRow>
-            </asp:TableCell>
             <asp:TableCell>
                 <asp:Table runat="server" Style="width: 250px;">
                     <asp:TableRow>
@@ -45,22 +48,27 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
+                            <br />
                             <asp:Label ID="Label1" runat="server" Text="Tipos:" Style="margin-left: 50px" Font-Bold="true"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell ColumnSpan="3">
-                            <asp:DropDownList ID="ddlTipos" runat="server"></asp:DropDownList>
+                            <br />
+                            <asp:DropDownList ID="ddlTipos" runat="server" Width="100%"></asp:DropDownList>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Label ID="Label2" runat="server" Text="Diagnósticos:" Style="margin-left: 50px" Font-Bold="true"></asp:Label>
+                        <br />
+                            <asp:Label ID="Label2" runat="server" Text="Diagnósticos: " Style="margin-left: 50px" Font-Bold="true"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell ColumnSpan="3">
-                            <asp:DropDownList ID="ddlDiagnosticos" runat="server"></asp:DropDownList>
+                        <br />
+                            <asp:DropDownList ID="ddlDiagnosticos" runat="server" Width="100%"></asp:DropDownList>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell ColumnSpan="4">
+                        <br />
                             <asp:Label ID="Label3" runat="server" Text="Rango de edad:" Style="margin-left: 50px" Font-Bold="true"></asp:Label>
                         </asp:TableCell>
                     </asp:TableRow>
@@ -69,17 +77,18 @@
                             <asp:Label ID="Label4" runat="server" Text="Desde:" Style="margin-left: 50px"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell>
-                            <asp:TextBox ID="txtDesde" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtDesde" runat="server" TextMode="Number" Width="50px"></asp:TextBox>
                         </asp:TableCell>
                         <asp:TableCell>
                             <asp:Label ID="Label5" runat="server" Text="Hasta:"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell>
-                            <asp:TextBox ID="txtHasta" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txtHasta" runat="server" TextMode="Number" Width="50px"></asp:TextBox>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell ColumnSpan="4">
+                        <br />
                             <asp:Label ID="Label6" runat="server" Text="Rango de fechas:" Style="margin-left: 50px" Font-Bold="true"></asp:Label>
                         </asp:TableCell>
                     </asp:TableRow>
@@ -98,7 +107,8 @@
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
-                        <asp:TableCell ColumnSpan="2">
+                        <asp:TableCell ColumnSpan="2" >
+                        <br />
                             <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" OnClick="btnAplicarFiltros_Click" Style="margin-left: 50px" />
                         </asp:TableCell>
                     </asp:TableRow>
