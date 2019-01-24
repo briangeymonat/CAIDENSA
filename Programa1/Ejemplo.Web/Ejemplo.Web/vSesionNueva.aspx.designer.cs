@@ -103,15 +103,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlHasta;
         
         /// <summary>
-        /// Control Label6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
         /// Control txtBuscarBeneficiarios.
         /// </summary>
         /// <remarks>
@@ -148,13 +139,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdBeneficiarios;
         
         /// <summary>
-        /// Control Label12.
+        /// Control lblBeneficiarioAgregados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
+        protected global::System.Web.UI.WebControls.Label lblBeneficiarioAgregados;
         
         /// <summary>
         /// Control grdBeneficiariosCargados.
@@ -164,6 +155,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdBeneficiariosCargados;
+        
+        /// <summary>
+        /// Control lblSeleccionarPlan.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSeleccionarPlan;
         
         /// <summary>
         /// Control lblNombre1.
@@ -346,13 +346,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdTodosEspecialistas;
         
         /// <summary>
-        /// Control Label9.
+        /// Control lblEspecialistasAgregados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Label lblEspecialistasAgregados;
         
         /// <summary>
         /// Control grdEspecialistasAgregados.

@@ -84,7 +84,7 @@ namespace Ejemplo.Web
             int promedio = 0;
             DataTable dt = new DataTable();
             dt.Columns.Add("Diagnosticos", typeof(string));
-            dt.Columns.Add("Duración promedio del tratamiento", typeof(string));
+            dt.Columns.Add("Duración promedio del tratamiento (días)", typeof(string));
             DataRow row;
             for (int t = 0; t < lstDiagnosticos.Count; t++)
             {
@@ -99,7 +99,7 @@ namespace Ejemplo.Web
 
                     row = dt.NewRow();
                     row["Diagnosticos"] = lstDiagnosticos[t].Tipo;
-                    row["Duración promedio del tratamiento"] = promedio.ToString();
+                    row["Duración promedio del tratamiento (días)"] = promedio.ToString();
                     dt.Rows.Add(row);
                 }
 

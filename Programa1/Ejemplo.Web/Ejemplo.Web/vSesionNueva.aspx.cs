@@ -47,8 +47,18 @@ namespace Ejemplo.Web
                 CargarEspecialistas();
                 CargarEspecialistasAgregados();
                 CargarDdlHoras();
+
+                if(BeneficiariosAgregados.Count<=0)
+                {
+                    lblBeneficiarioAgregados.Visible = false;
+                    lblSeleccionarPlan.Visible = false;
+                }
+                if (EspecialistasAgregados.Count <= 0)
+                    lblEspecialistasAgregados.Visible = false;
+
+
             }
-            
+
 
 
         }
@@ -476,6 +486,8 @@ namespace Ejemplo.Web
             BeneficiariosAgregados.Add(TodosLosBenefiicarios[e.NewSelectedIndex]);
             CargarBeneficiarios();
             CargarBeneficiariosAgregados();
+            lblBeneficiarioAgregados.Visible = true;
+            lblSeleccionarPlan.Visible = true;
 
         }
 
@@ -484,6 +496,11 @@ namespace Ejemplo.Web
             BeneficiariosAgregados.RemoveAt(e.RowIndex);
             CargarBeneficiariosAgregados();
             CargarBeneficiarios();
+            if (BeneficiariosAgregados.Count <= 0)
+            {
+                lblBeneficiarioAgregados.Visible = false;
+                lblSeleccionarPlan.Visible = false;
+            }
         }
 
         protected void txtBuscarBeneficiarios_TextChanged(object sender, EventArgs e)
@@ -501,6 +518,7 @@ namespace Ejemplo.Web
             EspecialistasAgregados.Add(LosEspecialistas[e.NewSelectedIndex]);
             CargarEspecialistasAgregados();
             CargarEspecialistas();
+            lblEspecialistasAgregados.Visible = true;
         }
 
         protected void grdEspecialistasAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -508,6 +526,8 @@ namespace Ejemplo.Web
             EspecialistasAgregados.RemoveAt(e.RowIndex);
             CargarEspecialistasAgregados();
             CargarEspecialistas();
+            if (EspecialistasAgregados.Count <= 0)
+                lblEspecialistasAgregados.Visible = false;
         }
 
 

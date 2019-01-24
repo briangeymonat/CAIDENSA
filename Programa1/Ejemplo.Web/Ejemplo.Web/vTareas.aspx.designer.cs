@@ -31,15 +31,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control grdSesionesPasadasDelDia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdSesionesPasadasDelDia;
-        
-        /// <summary>
         /// Control Label5.
         /// </summary>
         /// <remarks>
@@ -47,15 +38,6 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
-        /// Control grdPlanesPorVencerse.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdPlanesPorVencerse;
         
         /// <summary>
         /// Control Label7.
@@ -67,15 +49,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// Control grdEspecialistasConInformesPendientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdEspecialistasConInformesPendientes;
-        
-        /// <summary>
         /// Control Label8.
         /// </summary>
         /// <remarks>
@@ -83,6 +56,33 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label8;
+        
+        /// <summary>
+        /// Control grdSesionesPasadasDelDia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdSesionesPasadasDelDia;
+        
+        /// <summary>
+        /// Control grdPlanesPorVencerse.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdPlanesPorVencerse;
+        
+        /// <summary>
+        /// Control grdEspecialistasConInformesPendientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdEspecialistasConInformesPendientes;
         
         /// <summary>
         /// Control grdBeneficiariosConPlanSinFechaVencimiento.
@@ -112,15 +112,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control grdSesionesDelDia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdSesionesDelDia;
-        
-        /// <summary>
         /// Control Label2.
         /// </summary>
         /// <remarks>
@@ -128,15 +119,6 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// Control grdObservacionesDeSesiones.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdObservacionesDeSesiones;
         
         /// <summary>
         /// Control Label3.
@@ -148,15 +130,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Control grdInformesPendientes.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdInformesPendientes;
-        
-        /// <summary>
         /// Control Label4.
         /// </summary>
         /// <remarks>
@@ -164,6 +137,33 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label4;
+        
+        /// <summary>
+        /// Control grdSesionesDelDia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdSesionesDelDia;
+        
+        /// <summary>
+        /// Control grdObservacionesDeSesiones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdObservacionesDeSesiones;
+        
+        /// <summary>
+        /// Control grdInformesPendientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdInformesPendientes;
         
         /// <summary>
         /// Control grdInformesEnProceso.
