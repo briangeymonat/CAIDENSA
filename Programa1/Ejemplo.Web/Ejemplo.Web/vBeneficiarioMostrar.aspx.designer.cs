@@ -13,15 +13,6 @@ namespace Ejemplo.Web {
     public partial class vBeneficiarioMostrar {
         
         /// <summary>
-        /// Control Label6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
         /// Control txtBuscarBeneficiarios.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdBeneficiarios;
+        
+        /// <summary>
+        /// Control lblFiltros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFiltros;
         
         /// <summary>
         /// Control cbActivos.
@@ -58,13 +58,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.CheckBox cbPasivos;
         
         /// <summary>
-        /// Control Label2.
+        /// Control lblLocalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lblLocalidad;
         
         /// <summary>
         /// Control cbJuanLacaze.
@@ -85,13 +85,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.CheckBox cbNuevaHelvecia;
         
         /// <summary>
-        /// Control Label9.
+        /// Control lblSexo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Label lblSexo;
         
         /// <summary>
         /// Control cblSexo.
@@ -103,13 +103,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.CheckBoxList cblSexo;
         
         /// <summary>
-        /// Control Label10.
+        /// Control lblPlan.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label lblPlan;
         
         /// <summary>
         /// Control cblPlan.
@@ -121,13 +121,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.CheckBoxList cblPlan;
         
         /// <summary>
-        /// Control Label4.
+        /// Control lblRangoDeEdad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label lblRangoDeEdad;
         
         /// <summary>
         /// Control Label5.
@@ -166,13 +166,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtHasta;
         
         /// <summary>
-        /// Control Label8.
+        /// Control lblEspecialidades.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label lblEspecialidades;
         
         /// <summary>
         /// Control cblEspecialidad.
@@ -184,13 +184,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.CheckBoxList cblEspecialidad;
         
         /// <summary>
-        /// Control Label1.
+        /// Control lblDiagnostico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblDiagnostico;
         
         /// <summary>
         /// Control ddlDiagnosticos.
