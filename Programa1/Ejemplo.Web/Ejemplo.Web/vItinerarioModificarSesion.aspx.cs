@@ -697,6 +697,11 @@ namespace Ejemplo.Web
             LosPlanes.Add(TodosLosBenefiicarios[e.NewSelectedIndex].lstPlanes[0]);
             CargarBeneficiariosAgregados();
             CargarBeneficiarios();
+
+            if (ElItinerario.lstBeneficiarios.Count <= 0)
+                lblSeleccionarPlan.Visible = false;
+            else
+                lblSeleccionarPlan.Visible = true;
         }
 
         protected void grdBeneficiariosAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -704,6 +709,10 @@ namespace Ejemplo.Web
             ElItinerario.lstBeneficiarios.RemoveAt(e.RowIndex);
             CargarBeneficiariosAgregados();
             CargarBeneficiarios();
+            if (ElItinerario.lstBeneficiarios.Count <= 0)
+                lblSeleccionarPlan.Visible = false;
+            else
+                lblSeleccionarPlan.Visible = true;
         }
 
         protected void grdTodosEspecialistas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
@@ -935,6 +944,16 @@ namespace Ejemplo.Web
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo eliminar la sesión del Itinerario.')", true);
             }
                 
+        }
+
+        protected void txtBuscarBeneficiarios_TextChanged(object sender, EventArgs e)
+        {
+            CargarBeneficiarios();
+        }
+
+        protected void ddlEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarEspecialistas();
         }
     }
 }

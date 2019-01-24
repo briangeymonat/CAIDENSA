@@ -101,7 +101,7 @@
                         <asp:TableCell Width="30%">
                             <asp:Table runat="server">
                                 <asp:TableRow>
-                                    <asp:TableCell>
+                                    <asp:TableCell ColumnSpan="2">
                                         <asp:Label ID="lblSeleccionarPlan" runat="server" Text="Seleccionar plan" Font-Bold="true"></asp:Label>
                                     </asp:TableCell>
                                 </asp:TableRow>
@@ -193,7 +193,6 @@
         <asp:TableRow>
             <asp:TableCell Style="padding-left: 50px;">
                 <asp:Table runat="server" Width="100%">
-
                     <asp:TableRow VerticalAlign="Top">
                         <asp:TableCell Width="35%">
                             <br>

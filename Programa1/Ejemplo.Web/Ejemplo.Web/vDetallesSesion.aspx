@@ -22,40 +22,40 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:Label ID="Label5" runat="server" Text="Fecha: "></asp:Label>
+                                    <asp:Label ID="Label5" runat="server" Text="Fecha: " Font-Bold="true"></asp:Label>
                                     <asp:Label ID="lblFecha" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label ID="Label7" runat="server" Text="    Hora de inicio: "></asp:Label>
+                                    <asp:Label ID="Label7" runat="server" Text="    Hora de inicio: " Font-Bold="true"></asp:Label>
                                     <asp:Label ID="lblHoraInicio" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label ID="Label9" runat="server" Text="    Hora de fin: "></asp:Label>
+                                    <asp:Label ID="Label9" runat="server" Text="    Hora de fin: " Font-Bold="true"></asp:Label>
                                     <asp:Label ID="lblHoraFin" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label ID="Label6" runat="server" Text="   Tipo de sesión: "></asp:Label>
+                                    <asp:Label ID="Label6" runat="server" Text="   Tipo de sesión: " Font-Bold="true"></asp:Label>
                                     <asp:Label ID="lblTipoSesion" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Label ID="Label8" runat="server" Text="Localidad: "></asp:Label>
+                                    <asp:Label ID="Label8" runat="server" Text="Localidad: " Font-Bold="true"></asp:Label>
                                     <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <asp:Label ID="Label1" runat="server" Text="Beneficiarios"></asp:Label>
+                <tr style="vertical-align:top">
+                    <td style="vertical-align:top">
+                        <asp:Label ID="Label1" runat="server" Text="Beneficiarios" Font-Bold="true"></asp:Label>
                         <asp:GridView ID="grdBeneficiarios" runat="server" OnRowCreated="grdBeneficiarios_RowCreated">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <EditRowStyle BackColor="#999999" />
@@ -70,8 +70,8 @@
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
                     </td>
-                    <td>
-                        <asp:Label ID="Label2" runat="server" Text="Especialistas"></asp:Label>
+                    <td style="vertical-align:top">
+                        <asp:Label ID="Label2" runat="server" Text="Especialistas" Font-Bold="true"></asp:Label>
                         <asp:GridView ID="grdEspecialistas" runat="server" OnRowCreated="grdEspecialistas_RowCreated">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
@@ -86,8 +86,10 @@
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
                     </td>
-                    <td>
-                        <asp:Label ID="Label3" runat="server" Text="Comentario: "></asp:Label>
+                </tr>
+                <tr>
+                    <td style="vertical-align:top">
+                        <asp:Label ID="Label3" runat="server" Text="Comentario: " Font-Bold="true"></asp:Label>
                         <asp:Label ID="lblComentario" runat="server"></asp:Label>
                     </td>
                 </tr>
