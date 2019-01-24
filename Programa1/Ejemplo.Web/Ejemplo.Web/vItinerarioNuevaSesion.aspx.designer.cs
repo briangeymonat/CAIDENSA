@@ -103,13 +103,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlHasta;
         
         /// <summary>
-        /// Control Label6.
+        /// Control btnConfirmar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Button btnConfirmar;
         
         /// <summary>
         /// Control txtBuscarBeneficiarios.
@@ -121,15 +121,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtBuscarBeneficiarios;
         
         /// <summary>
-        /// Control btnConfirmar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirmar;
-        
-        /// <summary>
         /// Control Label11.
         /// </summary>
         /// <remarks>
@@ -137,15 +128,6 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label11;
-        
-        /// <summary>
-        /// Control Label12.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
         /// Control grdBeneficiarios.
@@ -157,6 +139,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdBeneficiarios;
         
         /// <summary>
+        /// Control Label12.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
+        
+        /// <summary>
         /// Control grdBeneficiariosAgregados.
         /// </summary>
         /// <remarks>
@@ -164,6 +155,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdBeneficiariosAgregados;
+        
+        /// <summary>
+        /// Control Label6.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
         /// Control lblNombre1.

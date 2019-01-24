@@ -193,7 +193,7 @@ namespace Ejemplo.Web
                 {
                     if (celdas[i][j].Comentario == null)
                     {
-                        Itinerarios += "<td style='background-color:#5186A6; color:#5186A6' rowspan={0}></td>";
+                        Itinerarios += "<td style='background-color:#FF8e8e; color:#5186A6' rowspan={0}></td>";
                     }
                     else
                     {
@@ -202,7 +202,35 @@ namespace Ejemplo.Web
                             string nombres = "";
                             foreach (cBeneficiarioItinerario unBeneficiario in celdas[i][j].lstBeneficiarios)
                             {
-                                nombres += "<br>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos;
+                                string color = "";
+                                switch (unBeneficiario.Plan.Tipo)
+                                {
+                                    case "ASSE":
+                                        color = "#58FAF4";
+                                        break;
+                                    case "AYEX":
+                                        color = "#8afa38";
+                                        break;
+                                    case "CAMEC":
+                                        color = "#58FAF4";
+                                        break;
+                                    case "Círculo Católico":
+                                        color = "#58FAF4";
+                                        break;
+                                    case "MIDES":
+                                        color = "#F3F781";
+                                        break;
+                                    case "Particular":
+                                        color = "#FE9A2E";
+                                        break;
+                                    case "Policial":
+                                        color = "#58FAF4";
+                                        break;
+                                    default:
+                                        color = "#ffffff";
+                                        break;
+                                }
+                                nombres += "<p style='background-color:" + color + ";padding:5px 0px; margin:0px;'>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos + "</p>";
                             }
                             int filas = 0;
                             for (int k = i; k < LasHoras.Count; k++)
@@ -215,10 +243,10 @@ namespace Ejemplo.Web
                                 }
 
                             }
-                            Itinerarios += string.Format("<td style='background-color:#68D66C; color:#000000' rowspan={0}'>" +
-                                /*"<button style='width:100%; height:{1}px; background-color:#68D66C' " +*/
-                                /*"'OnClick='alert('dsafjdsnfdsafsa'""btnMostrarSesion("+celdas[i][j].Codigo+")'>"+*/"<b>" +
-                                    celdas[i][j].TipoSesion + "</b> " + nombres /*+ "</button></td>"*/, filas, ((filas*25)+filas));
+                            string elCentro = "";
+                            if (celdas[i][j].Centro == cUtilidades.Centro.JuanLacaze) elCentro = " - JL"; else elCentro = " - NH";
+                            Itinerarios += string.Format("<td style='background-color:#f5b041; color:#000000' rowspan={0}'>" +
+                                    "<p style='padding:5px 0px; margin:0px;width:100px;'>" + celdas[i][j].TipoSesion + elCentro + "</p> " + nombres, filas, ((filas * 25) + filas));
                         }
 
                     }
