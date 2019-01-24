@@ -102,6 +102,9 @@ namespace Ejemplo.Web
                     //BUSCADOR
                     condiciones.Add(string.Format(" and (B.BeneficiarioNombres LIKE '%{0}%' or B.BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, B.BeneficiarioCI) LIKE '%{0}%' )", txtBuscarInforme.Text));
 
+                    //ORDENAR POR FECHA
+                    condiciones.Add(" ORDER BY I.InformeFecha desc");
+
                     if (condiciones.Count > 1)
                     {
                         for (int i = 0; i < condiciones.Count; i++)
@@ -109,6 +112,7 @@ namespace Ejemplo.Web
                             Consulta += condiciones[i];
                         }
                     }
+
                     List<cInforme> lstInformes = dFachada.InformeTraerTodosConFiltros(Consulta);
                     cInforme informe;
 

@@ -13,15 +13,6 @@ namespace Ejemplo.Web {
     public partial class vInformeDetalles {
         
         /// <summary>
-        /// Control lblCentro.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCentro;
-        
-        /// <summary>
         /// Control lblFecha.
         /// </summary>
         /// <remarks>

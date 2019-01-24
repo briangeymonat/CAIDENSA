@@ -35,6 +35,7 @@ namespace Ejemplo.Web
             beneficiario = dFachada.BeneficiarioTraerEspecifico(beneficiario);
             this.lblNombres.Text = beneficiario.Nombres.ToString();
             this.lblApellidos.Text = beneficiario.Apellidos.ToString();
+            this.lblCI.Text = beneficiario.CI.ToString();
             
             string[] parts = beneficiario.FechaNacimiento.Split(' ');
 

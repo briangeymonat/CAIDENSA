@@ -74,7 +74,7 @@ namespace Ejemplo.Web
             lblNombres.Text = Informe.Beneficiario.Nombres.ToString();
             lblApellidos.Text = Informe.Beneficiario.Apellidos.ToString();
             lblFechaNac.Text = Informe.Beneficiario.FechaNacimiento.ToString();
-
+            lblCI.Text = Informe.Beneficiario.CI.ToString();
             #region Hallar la edad cronologica
             string[] partes = Informe.Beneficiario.FechaNacimiento.ToString().Split('/');
             int año = int.Parse(partes[2]);
@@ -239,6 +239,7 @@ namespace Ejemplo.Web
             lblNombres.Text = Informe.Beneficiario.Nombres.ToString();
             lblApellidos.Text = Informe.Beneficiario.Apellidos.ToString();
             lblFechaNac.Text = Informe.Beneficiario.FechaNacimiento.ToString();
+            lblCI.Text = Informe.Beneficiario.CI.ToString();
 
             #region Hallar la edad cronologica
             string[] partes = Informe.Beneficiario.FechaNacimiento.ToString().Split('/');

@@ -9,95 +9,107 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>
+    <h2 style="padding-left:50px" >
         Nuevo informe
-    </h3>
-    <table>
-        <tr>
-            <td>
-                <asp:Label ID="Label1" runat="server" Text="Tipo:"></asp:Label>
-            </td>
-            <td>
+    </h2>
+    <asp:Table runat="server">
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <asp:Label ID="Label1" runat="server" Text="Tipo:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
                 <asp:DropDownList ID="ddlTipo" runat="server"></asp:DropDownList>
-            </td>
-        </tr>
+            </asp:TableCell>
+        </asp:TableRow>
         
-        <tr>
-            <td>
-                <h4>
-                    Beneficiario:
-                </h4>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label3" runat="server" Text="Nombres:"></asp:Label>
-            </td>
-            <td>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">  
+                <br />              
+                <asp:Label ID="Label12" runat="server" Text="Beneficiario:" Font-Bold="true" Font-Size="12"></asp:Label>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <br />
+                <asp:Label ID="Label3" runat="server" Text="Nombres:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <br />
                 <asp:Label ID="lblNombres" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label4" runat="server" Text="Apellidos:"></asp:Label>
-            </td>
-            <td>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <asp:Label ID="Label4" runat="server" Text="Apellidos:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
                 <asp:Label ID="lblApellidos" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label5" runat="server" Text="Fecha de nacimiento:"></asp:Label>
-            </td>
-            <td>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell Style="padding-left: 50px">
+                <asp:Label ID="Label13" runat="server" Text="Cédula de identidad:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="lblCI" runat="server"></asp:Label>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <asp:Label ID="Label5" runat="server" Text="Fecha de nacimiento:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
                 <asp:Label ID="lblFechaNac" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label6" runat="server" Text="Edad cronológica:"></asp:Label>
-            </td>
-            <td>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <asp:Label ID="Label6" runat="server" Text="Edad cronológica:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
                 <asp:Label ID="lblEdad" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label7" runat="server" Text="Motivo de consulta:"></asp:Label>
-            </td>
-            <td>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <asp:Label ID="Label7" runat="server" Text="Motivo de consulta:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
                 <asp:Label ID="lblMotivoConsulta" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label8" runat="server" Text="Escolaridad:"></asp:Label>
-            </td>
-            <td>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <asp:Label ID="Label8" runat="server" Text="Escolaridad:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
                 <asp:Label ID="lblEscolaridad" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label9" runat="server" Text="Encuadre:"></asp:Label>
-            </td>
-            <td>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <asp:Label ID="Label9" runat="server" Text="Encuadre:" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
                 <asp:Label ID="lblEncuadre" runat="server"></asp:Label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label10" runat="server" Text="Especialidad"></asp:Label>
-            </td>
-            <td>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px">
+                <br />
+                <asp:Label ID="Label10" runat="server" Text="Especialidad" Font-Bold="true"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <br />
                 <asp:DropDownList ID="ddlEspecialidad" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged"></asp:DropDownList>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td class="table">
-                <asp:Label ID="Label2" runat="server" Text="Todos los especialistas:"></asp:Label>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+    <asp:Table runat="server">
+        <asp:TableRow VerticalAlign="Top">
+            <asp:TableCell style="padding-left:50px">
+                <br />
+                <asp:Label ID="Label2" runat="server" Text="Todos los especialistas:" Font-Bold="true"></asp:Label>
                 <asp:GridView ID="grdTodosEspecialistas" runat="server" OnRowCreated="grdTodosEspecialistas_RowCreated" AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdTodosEspecialistas_SelectedIndexChanging" ShowHeaderWhenEmpty="True" Width="379px">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
@@ -105,17 +117,15 @@
                     <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                     <SortedAscendingCellStyle BackColor="#E9E7E2" />
                     <SortedAscendingHeaderStyle BackColor="#506C8C" />
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-            </td>
-            <td>
-            </td>
-            <td class="table">
-                <asp:Label ID="Label11" runat="server" Text="Especialistas agregados:"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell style="padding-left:50px" >
+                <br />
+                <asp:Label ID="Label11" runat="server" Text="Especialistas agregados:" Font-Bold="true"></asp:Label>
                 <asp:GridView ID="grdEspecialistasAgregados" runat="server" AutoGenerateDeleteButton="True" OnRowCreated="grdEspecialistasAgregados_RowCreated" OnRowDeleting="grdEspecialistasAgregados_RowDeleting" ShowHeaderWhenEmpty="True" Width="379px">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <EditRowStyle BackColor="#999999" />
@@ -123,18 +133,18 @@
                     <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                     <SortedAscendingCellStyle BackColor="#E9E7E2" />
                     <SortedAscendingHeaderStyle BackColor="#506C8C" />
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell style="padding-left:50px" ColumnSpan="3">
+                <br />
                 <asp:Button ID="btnRealizarInforme" runat="server" Text="Realizar Informe" OnClick="btnRealizarInforme_Click" />
-            </td>
-        </tr>
-    </table>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
 </asp:Content>
