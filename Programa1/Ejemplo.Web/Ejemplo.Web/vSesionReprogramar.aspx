@@ -15,167 +15,167 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <h3>Nueva sesión
-        </h3>
-        <table>
-            <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>
+        <h2 style="padding-left:60px">Nueva sesión
+        </h2>
+        <asp:Table runat="server">
+            <asp:TableRow VerticalAlign="Top">
+                <asp:TableCell style="padding-left:50px">
+                    <asp:Table runat="server">
+                        <asp:TableRow>
+                            <asp:TableCell>
                                 <asp:Label ID="Label1" runat="server" Text="Tipo de sesión:"></asp:Label>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:DropDownList ID="ddlTipoSesion" runat="server"></asp:DropDownList>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Label ID="Label2" runat="server" Text="Fecha:"></asp:Label>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:TextBox ID="txtFecha" runat="server" TextMode="Date"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow>
+                            <asp:TableCell>
                                 <asp:Label ID="Label3" runat="server" Text="Localidad:"></asp:Label>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal">
                                     <asp:ListItem Text="Juan Lacaze" Selected="True"></asp:ListItem>
                                     <asp:ListItem Text="Nueva Helvecia"></asp:ListItem>
                                 </asp:RadioButtonList>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Label ID="Label4" runat="server" Text="Desde:"></asp:Label>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:DropDownList ID="ddlDesde" runat="server"></asp:DropDownList>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Label ID="Label5" runat="server" Text="Hasta:"></asp:Label>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:DropDownList ID="ddlHasta" runat="server"></asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow>
+                            <asp:TableCell>
                                 <asp:Label ID="Label6" runat="server" Text="Beneficiarios"></asp:Label>
-                            </td>
-                            <td colspan="3">
+                            </asp:TableCell>
+                            <asp:TableCell ColumnSpan="3">
                                 <asp:TextBox ID="txtBuscarBeneficiarios" runat="server" Width="100%" PlaceHolder="Buscar por CI, Nombre o Apellido" OnTextChanged="txtBuscarBeneficiarios_TextChanged" AutoPostBack="True"></asp:TextBox>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </asp:TableCell>
+                <asp:TableCell>
                     <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Table runat="server">
+                        <asp:TableRow>
+                            <asp:TableCell>
                                 <asp:Label ID="Label11" runat="server" Text="Beneficiarios"></asp:Label>
                                 <asp:GridView ID="grdBeneficiarios" runat="server" OnRowCreated="grdBeneficiarios_RowCreated" OnSelectedIndexChanging="grdBeneficiarios_SelectedIndexChanging" AutoGenerateSelectButton="True"></asp:GridView>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Label ID="Label12" runat="server" Text="Beneficiarios agregados"></asp:Label>
                                 <asp:GridView ID="grdBeneficiariosCargados" runat="server" OnRowCreated="grdBeneficiariosCargados_RowCreated" OnRowDeleting="grdBeneficiariosCargados_RowDeleting" AutoGenerateDeleteButton="True"></asp:GridView>
-                            </td>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td>Seleccionar plan</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label ID="lblNombre1" runat="server" Text="Label"></asp:Label></td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlPlan1" runat="server"></asp:DropDownList></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label ID="lblNombre2" runat="server" Text="Label"></asp:Label></td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlPlan2" runat="server"></asp:DropDownList></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label ID="lblNombre3" runat="server" Text="Label"></asp:Label></td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlPlan3" runat="server"></asp:DropDownList></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label ID="lblNombre4" runat="server" Text="Label"></asp:Label></td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlPlan4" runat="server"></asp:DropDownList></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label ID="lblNombre5" runat="server" Text="Label"></asp:Label></td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlPlan5" runat="server"></asp:DropDownList></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label ID="lblNombre6" runat="server" Text="Label"></asp:Label></td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlPlan6" runat="server"></asp:DropDownList></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label ID="lblNombre7" runat="server" Text="Label"></asp:Label></td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlPlan7" runat="server"></asp:DropDownList></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label ID="lblNombre8" runat="server" Text="Label"></asp:Label></td>
-                                        <td>
-                                            <asp:DropDownList ID="ddlPlan8" runat="server"></asp:DropDownList></td>
-                                    </tr>
-                                </table>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:Table runat="server">
+                                    <asp:TableRow>
+                                        <asp:TableCell>Seleccionar plan</asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblNombre1" runat="server" Text="Label"></asp:Label></asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:DropDownList ID="ddlPlan1" runat="server"></asp:DropDownList></asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblNombre2" runat="server" Text="Label"></asp:Label></asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:DropDownList ID="ddlPlan2" runat="server"></asp:DropDownList></asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblNombre3" runat="server" Text="Label"></asp:Label></asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:DropDownList ID="ddlPlan3" runat="server"></asp:DropDownList></asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblNombre4" runat="server" Text="Label"></asp:Label></asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:DropDownList ID="ddlPlan4" runat="server"></asp:DropDownList></asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblNombre5" runat="server" Text="Label"></asp:Label></asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:DropDownList ID="ddlPlan5" runat="server"></asp:DropDownList></asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblNombre6" runat="server" Text="Label"></asp:Label></asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:DropDownList ID="ddlPlan6" runat="server"></asp:DropDownList></asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblNombre7" runat="server" Text="Label"></asp:Label></asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:DropDownList ID="ddlPlan7" runat="server"></asp:DropDownList></asp:TableCell>
+                                    </asp:TableRow>
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:Label ID="lblNombre8" runat="server" Text="Label"></asp:Label></asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:DropDownList ID="ddlPlan8" runat="server"></asp:DropDownList></asp:TableCell>
+                                    </asp:TableRow>
+                                </asp:Table>
 
-                            </td>
-                        </tr>
-                    </table>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Table runat="server">
+                        <asp:TableRow>
+                            <asp:TableCell>
                                 <asp:Label ID="Label7" runat="server" Text="Especialidad:"></asp:Label>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:DropDownList ID="ddlEspecialidades" runat="server" OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <table>
-                        <tr>
-                            <td>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Table runat="server">
+                        <asp:TableRow>
+                            <asp:TableCell>
                                 <asp:Label ID="Label8" runat="server" Text="Especialistas"></asp:Label>
                                 <asp:GridView ID="grdTodosEspecialistas" runat="server" OnRowCreated="grdTodosEspecialistas_RowCreated" OnSelectedIndexChanging="grdTodosEspecialistas_SelectedIndexChanging" AutoGenerateSelectButton="True"></asp:GridView>
-                            </td>
-                            <td>
+                            </asp:TableCell>
+                            <asp:TableCell>
                                 <asp:Label ID="Label9" runat="server" Text="Especialistas agregados"></asp:Label>
                                 <asp:GridView ID="grdEspecialistasAgregados" runat="server" OnRowCreated="grdEspecialistasAgregados_RowCreated" OnRowDeleting="grdEspecialistasAgregados_RowDeleting" AutoGenerateDeleteButton="True"></asp:GridView>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
 
     </form>
 </body>

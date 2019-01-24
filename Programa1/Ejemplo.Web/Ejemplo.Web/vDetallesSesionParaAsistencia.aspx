@@ -5,9 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Detalles de la sesión</title>
-       <script type="text/javascript">
-        function disableBackButton()
-        {
+    <script type="text/javascript">
+        function disableBackButton() {
             window.history.forward();
         }
         setTimeout("disableBackButton()", 0);
@@ -19,49 +18,48 @@
             <table>
                 <tr>
                     <td>
-                        <asp:Label ID="Label5" runat="server" Text="Fecha::"></asp:Label>
+                        <asp:Label ID="Label5" runat="server" Text="Fecha::" Font-Bold="true"></asp:Label>
                         <asp:Label ID="lblFecha" runat="server"></asp:Label>
                     </td>
-
                 </tr>
                 <tr>
-                                    <td>
-                                        <asp:Label ID="Label7" runat="server" Text="    Hora de inicio: "></asp:Label>
-                                    <asp:Label ID="lblHoraInicio" runat="server"></asp:Label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                       <asp:Label ID="Label9" runat="server" Text="    Hora de fin: "></asp:Label>
-                                    <asp:Label ID="lblHoraFin" runat="server"></asp:Label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                <td>
-                                    <asp:Label ID="Label6" runat="server" Text="   Tipo de sesión: "></asp:Label>
-                                    <asp:Label ID="lblTipoSesion" runat="server"></asp:Label>
-                                </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    <asp:Label ID="Label8" runat="server" Text="Localidad: "></asp:Label>
-                                    <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
-                                </td>
-                                </tr>
+                    <td>
+                        <asp:Label ID="Label7" runat="server" Text="    Hora de inicio: " Font-Bold="true"></asp:Label>
+                        <asp:Label ID="lblHoraInicio" runat="server"></asp:Label>
+                    </td>
+                </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label2" runat="server" Text="Especialistas: "></asp:Label>
-                        <asp:Label ID="lblEspecialistas" runat="server"></asp:Label>
-                        
+                        <asp:Label ID="Label9" runat="server" Text="    Hora de fin: " Font-Bold="true"></asp:Label>
+                        <asp:Label ID="lblHoraFin" runat="server"></asp:Label>
                     </td>
+                </tr>
+                <tr>
                     <td>
-                        <asp:Label ID="Label3" runat="server" Text="Comentario"></asp:Label>
+                        <asp:Label ID="Label6" runat="server" Text="   Tipo de sesión: " Font-Bold="true"></asp:Label>
+                        <asp:Label ID="lblTipoSesion" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label8" runat="server" Text="Localidad: " Font-Bold="true"></asp:Label>
+                        <asp:Label ID="lblLocalidad" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr style="vertical-align:top;">
+                    <td style="vertical-align:top;">
+                        <asp:Label ID="Label2" runat="server" Text="Especialistas: " Font-Bold="true"></asp:Label>
+                        <asp:Label ID="lblEspecialistas" runat="server"></asp:Label>
+
+                    </td>
+                    <td style="vertical-align:top;">
+                        <asp:Label ID="Label3" runat="server" Text="Comentario" Font-Bold="true"></asp:Label>
                         <asp:TextBox ID="txtComentario" runat="server" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label1" runat="server" Text="Beneficiarios:"></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text="Beneficiarios:" Font-Bold="true"></asp:Label>
                     </td>
                 </tr>
                 <tr>
@@ -161,9 +159,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-
-                    </td>
+                    <td></td>
                     <td colspan="4">
                         <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
                         <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" OnClick="btnConfirmar_Click" />
