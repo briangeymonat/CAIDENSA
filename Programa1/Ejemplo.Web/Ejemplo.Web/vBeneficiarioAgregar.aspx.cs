@@ -207,6 +207,17 @@ namespace Ejemplo.Web
                 txtAtributario.Text = string.Empty;
             }
         }
-        
+
+        protected void grdPlanes_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[7].Visible = false; //activo
+        }
+
+        protected void grdPlanes_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            LosPlanes.RemoveAt(e.RowIndex);
+            ActualizarGrdPlanes();
+        }
     }
 }

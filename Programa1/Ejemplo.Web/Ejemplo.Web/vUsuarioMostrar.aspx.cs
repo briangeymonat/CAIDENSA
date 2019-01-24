@@ -1253,7 +1253,7 @@ namespace Ejemplo.Web
                     {
                         for (int i = 0; i < lstUsuariosActivos.Count; i++)
                         {
-                            if (lstUsuariosActivos[i].Especialidad.Nombre == "Fonoudiologia")
+                            if (lstUsuariosActivos[i].Especialidad.Nombre == "Fonoaudiologia")
                             {
                                 if (this.cbAdministrador.Checked)
                                 {

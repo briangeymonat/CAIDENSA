@@ -31,6 +31,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtNickName;
         
         /// <summary>
+        /// Control lblObligatorio1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio1;
+        
+        /// <summary>
         /// Control lblNombres.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombres;
+        
+        /// <summary>
+        /// Control lblObligatorio2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio2;
         
         /// <summary>
         /// Control lblApellidos.
@@ -67,6 +85,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtApellidos;
         
         /// <summary>
+        /// Control lblObligatorio3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio3;
+        
+        /// <summary>
         /// Control lblCi.
         /// </summary>
         /// <remarks>
@@ -83,6 +110,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCi;
+        
+        /// <summary>
+        /// Control lblObligatorio4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio4;
         
         /// <summary>
         /// Control lblFechaNac.
@@ -193,6 +229,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
         
         /// <summary>
+        /// Control lblVinculo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVinculo;
+        
+        /// <summary>
         /// Control rbTipoDeEmpleado.
         /// </summary>
         /// <remarks>
@@ -265,6 +310,33 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnRestablecerContrasena;
         
         /// <summary>
+        /// Control pnlItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlItinerario;
+        
+        /// <summary>
+        /// Control lblItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblItinerario;
+        
+        /// <summary>
+        /// Control frmItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmItinerario;
+        
+        /// <summary>
         /// Control lblBeneficiariosQueAtiende.
         /// </summary>
         /// <remarks>
@@ -281,24 +353,6 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdBeneficiariosQueAtiende;
-        
-        /// <summary>
-        /// Control lblInformesRealizados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInformesRealizados;
-        
-        /// <summary>
-        /// Control grdInformesRealizados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdInformesRealizados;
         
         /// <summary>
         /// Control lblInformesPendientes.
@@ -319,21 +373,21 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdInformesPendientes;
         
         /// <summary>
-        /// Control pnlItinerario.
+        /// Control lblInformesRealizados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlItinerario;
+        protected global::System.Web.UI.WebControls.Label lblInformesRealizados;
         
         /// <summary>
-        /// Control frmItinerario.
+        /// Control grdInformesRealizados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmItinerario;
+        protected global::System.Web.UI.WebControls.GridView grdInformesRealizados;
     }
 }

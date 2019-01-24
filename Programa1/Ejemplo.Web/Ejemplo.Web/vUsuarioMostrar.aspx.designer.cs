@@ -22,15 +22,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.TextBox txtBuscarBeneficiario;
         
         /// <summary>
-        /// Control lblFiltros.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFiltros;
-        
-        /// <summary>
         /// Control lblUsuariosActivos.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdUsuariosInactivos;
+        
+        /// <summary>
+        /// Control lblFiltros.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFiltros;
         
         /// <summary>
         /// Control lblEspecialidades.

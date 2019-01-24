@@ -229,6 +229,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlEspecialidad;
         
         /// <summary>
+        /// Control lblVinculo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVinculo;
+        
+        /// <summary>
         /// Control rbTipoDeEmpleado.
         /// </summary>
         /// <remarks>
@@ -274,6 +283,33 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnConfirmar;
         
         /// <summary>
+        /// Control pnlItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlItinerario;
+        
+        /// <summary>
+        /// Control lblItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblItinerario;
+        
+        /// <summary>
+        /// Control frmItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmItinerario;
+        
+        /// <summary>
         /// Control lblBeneficiariosQueAtiende.
         /// </summary>
         /// <remarks>
@@ -290,24 +326,6 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdBeneficiariosQueAtiende;
-        
-        /// <summary>
-        /// Control lblInformesRealizados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInformesRealizados;
-        
-        /// <summary>
-        /// Control grdInformesRealizados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdInformesRealizados;
         
         /// <summary>
         /// Control lblInformesPendientes.
@@ -328,21 +346,21 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.GridView grdInformesPendientes;
         
         /// <summary>
-        /// Control pnlItinerario.
+        /// Control lblInformesRealizados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlItinerario;
+        protected global::System.Web.UI.WebControls.Label lblInformesRealizados;
         
         /// <summary>
-        /// Control frmItinerario.
+        /// Control grdInformesRealizados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmItinerario;
+        protected global::System.Web.UI.WebControls.GridView grdInformesRealizados;
     }
 }

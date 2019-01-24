@@ -48,7 +48,36 @@ namespace Ejemplo.Web
                 {
                     CargarItinerarios();
                 }
-                
+                else
+                {
+                    lblBeneficiariosQueAtiende.Visible = false;
+                    lblInformesPendientes.Visible = false;
+                    lblInformesRealizados.Visible = false;
+                    grdBeneficiariosQueAtiende.Visible = false;
+                    grdInformesPendientes.Visible = false;
+                    grdInformesRealizados.Visible = false;
+                }
+                if (grdBeneficiariosQueAtiende.PageCount <= 0)
+                {
+                    grdBeneficiariosQueAtiende.Visible = false;
+                    lblBeneficiariosQueAtiende.Text = "No atiende ningun beneficiario";
+                }
+                if (grdInformesRealizados.PageCount <= 0)
+                {
+                    grdInformesRealizados.Visible = false;
+                    lblInformesRealizados.Text = "No tiene informe realizados";
+                }
+                if (grdInformesPendientes.PageCount <= 0)
+                {
+                    grdInformesPendientes.Visible = false;
+                    lblInformesPendientes.Text = "No tiene informe pendiente";
+                }
+                if (lstItinerarios.Count <= 0)
+                {
+                    frmItinerario.Visible = false;
+                    lblItinerario.Text = "No está registrado en el itinerario";
+                }
+
             }
         }
         private void cargarUsuarioLogeado()
@@ -84,7 +113,7 @@ namespace Ejemplo.Web
             txtApellidos.Text = U.Apellidos;
             txtCi.Text = U.CI.ToString();
             DateTime fn = new DateTime();
-            if (U.FechaNacimiento != "")
+            if (U.FechaNacimiento != null)
             {
                 fn = DateTime.Parse(U.FechaNacimiento);
                 txtFechaNac.Text = fn.ToString("yyyy-MM-dd");
@@ -360,7 +389,7 @@ namespace Ejemplo.Web
             string Itinerarios = @"<table onscroll='screenTop'><tr ><td style='color:#000000; background-color:#80B7D8'>Hora</td>";
             for (int i = 0; i < lstDias.Count; i++)
             {
-                Itinerarios += "<td style='color:#000000; background-color:#80B7D8'>" + lstDias[i] + "</td>";
+                Itinerarios += "<td style='color:#000000; background-color:#80B7D8;width:100px;'>" + lstDias[i] + "</td>";
             }
             Itinerarios += "</tr>";
 
@@ -402,7 +431,7 @@ namespace Ejemplo.Web
                 {
                     if(celdas[i][j].Comentario==null)
                     {
-                        Itinerarios += "<td style='background-color:#5186A6; color:#5186A6' rowspan={0}></td>";
+                        Itinerarios += "<td style='background-color:#FF8e8e; color:#5186A6;width:100px;' rowspan={0}></td>";
                     }
                     else
                     {
@@ -411,7 +440,35 @@ namespace Ejemplo.Web
                             string nombres = "";
                             foreach( cBeneficiarioItinerario unBeneficiario in celdas[i][j].lstBeneficiarios)
                             {
-                                nombres += "<br>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos;
+                                string color = "";
+                                switch(unBeneficiario.Plan.Tipo)
+                                {
+                                    case "ASSE":
+                                        color = "#58FAF4";
+                                        break;
+                                    case "AYEX":
+                                        color = "#8afa38";
+                                        break;
+                                    case "CAMEC":
+                                        color = "#58FAF4";
+                                        break;
+                                    case "Círculo Católico":
+                                        color = "#58FAF4";
+                                        break;
+                                    case "MIDES":
+                                        color = "#F3F781";
+                                        break;
+                                    case "Particular":
+                                        color = "#FE9A2E";
+                                        break;
+                                    case "Policial":
+                                        color = "#58FAF4";
+                                        break;
+                                    default:
+                                        color = "#ffffff";
+                                        break;
+                                }
+                                nombres += "<p style='background-color:"+color+";padding:5px 0px; margin:0px;'>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos+"</p>";
                             }
                             int filas = 0;
                             for(int k=i; k<lstHoras.Count;k++)
@@ -422,8 +479,10 @@ namespace Ejemplo.Web
                                     celdas[k][j].Comentario = "NO_LISTAR";
                                 }
                             }
-                            Itinerarios += string.Format("<td style='background-color:#68D66C; color:#000000' rowspan={0}'>" +
-                                "<b>" + celdas[i][j].TipoSesion + "</b> " + nombres , filas, ((filas * 25) + filas));
+                            string centro = "";
+                            if (celdas[i][j].Centro == cUtilidades.Centro.JuanLacaze) centro = " - JL"; else centro = " - NH";
+                            Itinerarios += string.Format("<td style='background-color:#f5b041; color:#000000' rowspan={0}'>" +
+                                "<p style='padding:5px 0px; margin:0px;width:100px;'>" + celdas[i][j].TipoSesion +centro+ "</p> " + nombres , filas, ((filas * 25) + filas));
                         }
                     }
                 }

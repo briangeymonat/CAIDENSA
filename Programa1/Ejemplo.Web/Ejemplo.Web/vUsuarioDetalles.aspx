@@ -3,171 +3,150 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h3>Detalles del usuario</h3>
+    <center>
+    <h1>Detalles del usuario</h1></center>
     <br />
-    <table>
-        <tr>
-            <td>
-                <table class="table">
-                    <tr>
-                        <td>
+    <asp:Table runat="server">
+        <asp:TableRow VerticalAlign="Top" HorizontalAlign="Center">
+            <asp:TableCell Width="25%">
+                <asp:Table runat="server">
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblNickname" runat="server" Text="Nickname:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtNickName" runat="server"></asp:TextBox>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtNickName" runat="server" Width="160px"></asp:TextBox>
+                            <asp:Label ID="lblObligatorio1" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblNombres" runat="server" Text="Nombres:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtNombres" runat="server"></asp:TextBox>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtNombres" runat="server" Width="160px"></asp:TextBox>
+                            <asp:Label ID="lblObligatorio2" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblApellidos" runat="server" Text="Apellidos:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtApellidos" runat="server"></asp:TextBox>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtApellidos" runat="server" Width="160px"></asp:TextBox>
+                            <asp:Label ID="lblObligatorio3" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblCi" runat="server" Text="Cédula de identidad:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtCi" runat="server" TextMode="Number"></asp:TextBox>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtCi" runat="server" TextMode="Number" Width="160px"></asp:TextBox>
+                            <asp:Label ID="lblObligatorio4" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblFechaNac" runat="server" Text="Fecha de nacimiento:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtFechaNac" runat="server" TextMode="Date"></asp:TextBox>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtFechaNac" runat="server" TextMode="Date" Width="160px"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblDomicilio" runat="server" Text="Domicilio:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtDomicilio" runat="server"></asp:TextBox>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtDomicilio" runat="server" Width="160px"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblTel" runat="server" Text="Telefono:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtTelefono" runat="server" TextMode="Number"></asp:TextBox>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtTelefono" runat="server" TextMode="Number" Width="160px"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblEmail" runat="server" Text="Correo electrónico:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtEmail" runat="server" TextMode="Email"></asp:TextBox>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Width="160px"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblTipoUsuario" runat="server" Text="Tipo de usuario:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:DropDownList ID="ddlTipoUsuario" runat="server"></asp:DropDownList>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:DropDownList ID="ddlTipoUsuario" runat="server" Width="160px"></asp:DropDownList>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:Label ID="lblEspecialidad" runat="server" Text="Especialidad:"></asp:Label>
-                        </td>
-                        <td>
-                            <asp:DropDownList ID="ddlEspecialidad" runat="server"></asp:DropDownList>
-                        </td>
-                        <td></td>
-                        <td>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:DropDownList ID="ddlEspecialidad" runat="server" Width="160px"></asp:DropDownList>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:Label ID="lblVinculo" runat="server" Text="Vínculo:"></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="3">
                             <asp:RadioButtonList ID="rbTipoDeEmpleado" runat="server" RepeatDirection="Horizontal">
                                 <asp:ListItem>Empleado</asp:ListItem>
                                 <asp:ListItem>Contratado</asp:ListItem>
                                 <asp:ListItem>Socio</asp:ListItem>
                             </asp:RadioButtonList>
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="6">
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell ColumnSpan="6">
                             <asp:Label ID="lblMensaje" runat="server"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell ColumnSpan="2">
                             <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="button" OnClick="btnModificar_Click" />
                             <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="button" OnClick="btnCancelar_Click" />
                             <asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" CssClass="button" OnClick="btnConfirmar_Click" />
-                        </td>
-                        <td colspan="2">
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
                             <asp:Button ID="btnInhabilitar" runat="server" Text="Inhabilitar" CssClass="button" OnClick="btnInhabilitar_Click" />
                             <asp:Button ID="btnHabilitar" runat="server" Text="Habilitar" CssClass="button" OnClick="btnHabilitar_Click" />
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6">
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell ColumnSpan="6">
                             <asp:Button ID="btnRestablecerContrasena" runat="server" Text="Restablecer Contraseña" CssClass="button" OnClick="btnRestablecerContrasena_Click" />
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            <asp:Label ID="lblBeneficiariosQueAtiende" runat="server" Text="Beneficiarios que atiende:"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                </asp:Table>
+            </asp:TableCell>
+            <asp:TableCell Width="50%">
+                <div>
+                    <asp:Panel ID="pnlItinerario" runat="server" Visible="false">
+                        <asp:Label ID="lblItinerario" runat="server" Text="Itinerario semanal" Font-Bold="true" Font-Size="10"></asp:Label>
+                        <formview id="frmItinerario" runat="server"></formview>
+                    </asp:Panel>
+                </div>
+            </asp:TableCell>
+            <asp:TableCell Width="25%">
+                <asp:Table runat="server">
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:Label ID="lblBeneficiariosQueAtiende" runat="server" Text="Beneficiarios que atiende:" Font-Bold="true" Font-Size="10"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:GridView ID="grdBeneficiariosQueAtiende" runat="server" AutoGenerateSelectButton="True"
                                 ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                 OnRowCreated="grdBeneficiariosQueAtiende_RowCreated" OnSelectedIndexChanging="grdBeneficiariosQueAtiende_SelectedIndexChanging" ShowHeaderWhenEmpty="True">
@@ -177,44 +156,21 @@
                                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                                 <SortedAscendingCellStyle BackColor="#E9E7E2" />
                                 <SortedAscendingHeaderStyle BackColor="#506C8C" />
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label ID="lblInformesRealizados" runat="server" Text="Informes realizados:"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:GridView ID="grdInformesRealizados" runat="server" OnRowCreated="grdInformesRealizados_RowCreated"
-                                ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None" ShowHeaderWhenEmpty="True">
-                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                <EditRowStyle BackColor="#999999" />
-                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                            </asp:GridView>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label ID="lblInformesPendientes" runat="server" Text="Informes pendientes:"></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <br />
+                            <asp:Label ID="lblInformesPendientes" runat="server" Text="Informes pendientes:" Font-Bold="true" Font-Size="10"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <asp:GridView ID="grdInformesPendientes" runat="server" AutoGenerateSelectButton="True"
                                 ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                 OnRowCreated="grdInformesPendientes_RowCreated" OnSelectedIndexChanging="grdInformesPendientes_SelectedIndexChanging" ShowHeaderWhenEmpty="True">
@@ -224,25 +180,42 @@
                                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                                 <SortedAscendingCellStyle BackColor="#E9E7E2" />
                                 <SortedAscendingHeaderStyle BackColor="#506C8C" />
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-    <div>
-        <asp:Panel ID="pnlItinerario" runat="server" Visible="false">
-            <h4>Itinerario semanal
-            </h4>
-            <formview id="frmItinerario" runat="server"></formview>
-        </asp:Panel>
-    </div>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <br />
+                            <asp:Label ID="lblInformesRealizados" runat="server" Text="Informes realizados:" Font-Bold="true" Font-Size="10"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:GridView ID="grdInformesRealizados" runat="server" OnRowCreated="grdInformesRealizados_RowCreated"
+                                ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None" ShowHeaderWhenEmpty="True">
+                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                            </asp:GridView>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    
+                </asp:Table>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+
 
 
 </asp:Content>

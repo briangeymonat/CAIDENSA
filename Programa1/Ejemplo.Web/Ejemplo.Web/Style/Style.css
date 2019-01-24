@@ -104,14 +104,12 @@ div.menu ul li a, div.menu ul li a:visited
 }
 .table{
     margin-left:20px;
-    vertical-align: top;
-    top:0px;
-    margin-top:0px;
+    
 }
 
 .VentanaEmergente{
-    background-color:#aeaeae;
-    border-color:#515151;
+    background-color:#fff;
+    border: solid 1px red;
 }
 
 .camposObligatorios{
@@ -119,8 +117,9 @@ div.menu ul li a, div.menu ul li a:visited
 }
 
 .alinearArriba{
-    position:relative;
-    vertical-align:top;
+    align-items:flex-start;
+    align-content: flex-start;
+    text-align:start;
+    vertical-align: top;
     top:0px;
     margin-top:0px;
-}
