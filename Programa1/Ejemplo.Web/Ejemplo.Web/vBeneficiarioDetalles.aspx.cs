@@ -14,12 +14,12 @@ namespace Ejemplo.Web
     {
         private static List<string> Tipos = new List<string> { "ASSE", "AYEX", "CAMEC", "Círculo Católico", "MIDES", "Particular", "Policial" };
         private static cBeneficiario ElBeneficiario;
-        private static List<cDiagnostico> lstUltimosDiagnosticos;
+        private static List<cDiagnosticoBeneficiario> lstUltimosDiagnosticos;
         private static List<cDiagnosticoBeneficiario> lstHistorialDiagnosticos;
         private static List<cPlan> lstPlanesActivos;
         private static cPlan PlanAModificar;
         private static List<cPlan> lstPlanesInactivos;
-        private static List<cInforme> lstInformes;
+        private static List<ListarInformes> lstInformes;
         private static bool Pensionista;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -69,6 +69,7 @@ namespace Ejemplo.Web
         }
         private void ActualizarTodo()
         {
+            ActualizarInformes();
             ActualizarDatos();
             ActualizarDiagnosticos();
             ActualizarGrids();
@@ -87,8 +88,6 @@ namespace Ejemplo.Web
 
         private void ActualizarGrids()
         {
-            grdUltimosDiagnosticos.DataSource = lstUltimosDiagnosticos;
-            grdUltimosDiagnosticos.DataBind();
             grdPlanesActivos.DataSource = lstPlanesActivos;
             grdPlanesActivos.DataBind();
             grdPlanesInactivos.DataSource = lstPlanesInactivos;
@@ -96,8 +95,7 @@ namespace Ejemplo.Web
             grdInformes.DataSource = lstInformes;
             grdInformes.DataBind();
             DataTable dt = new DataTable();
-
-            dt.Columns.Add("Código", typeof(string));
+            
             dt.Columns.Add("Tipo", typeof(string));
             dt.Columns.Add("Fecha", typeof(string));
 
@@ -105,7 +103,6 @@ namespace Ejemplo.Web
             for (int i = 0; i < lstHistorialDiagnosticos.Count; i++)
             {
                 row = dt.NewRow();
-                row["Código"] = lstHistorialDiagnosticos[i].Diagnostico.Codigo;
                 row["Tipo"] = lstHistorialDiagnosticos[i].Diagnostico.Tipo;
                 row["Fecha"] = lstHistorialDiagnosticos[i].Fecha;
 
@@ -114,8 +111,53 @@ namespace Ejemplo.Web
 
             grdHistorialDiagnosticos.DataSource = dt;
             grdHistorialDiagnosticos.DataBind();
-        }
 
+            DataTable dt1 = new DataTable();
+
+            dt1.Columns.Add("Tipo", typeof(string));
+            dt1.Columns.Add("Fecha", typeof(string));
+
+            DataRow row1;
+            for (int i = 0; i < lstUltimosDiagnosticos.Count; i++)
+            {
+                row1 = dt1.NewRow();
+                row1["Tipo"] = lstUltimosDiagnosticos[i].Diagnostico.Tipo;
+                row1["Fecha"] = lstUltimosDiagnosticos[i].Fecha;
+
+                dt1.Rows.Add(row1);
+            }
+
+            grdUltimosDiagnosticos.DataSource = dt1;
+            grdUltimosDiagnosticos.DataBind();
+
+
+
+        }
+        private void ActualizarInformes()
+        {
+            List<cInforme> lstInformes1 = dFachada.InformeTraerTodosTerminadosPorBeneficiario(ElBeneficiario);
+            cInforme unInforme;
+
+            List<ListarInformes> lstInformesParaListar = new List<ListarInformes>();
+            ListarInformes informeAListar;
+
+            for (int i = 0; i < lstInformes1.Count; i++)
+            {
+                unInforme = new cInforme();
+                unInforme = lstInformes1[i];
+                unInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(unInforme.Beneficiario);
+                informeAListar = new ListarInformes();
+                informeAListar.Codigo = unInforme.Codigo;
+                informeAListar.Fecha = unInforme.Fecha;
+                informeAListar.Estado = unInforme.Estado;
+                informeAListar.Tipo = unInforme.Tipo;
+                informeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
+                informeAListar.Nombres = unInforme.Beneficiario.Nombres;
+                informeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
+                lstInformesParaListar.Add(informeAListar);
+            }
+            lstInformes = lstInformesParaListar;
+        }
         private void ActualizarCampos()
         {
             txtNombres.Text = ElBeneficiario.Nombres;
@@ -195,15 +237,15 @@ namespace Ejemplo.Web
                                     }
                                     else if (lstItinerariosPorDia[i][j].lstEspecialistas.Count - 1 != k && k != 0)
                                     {
-                                        especialistas += ", "+lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
+                                        especialistas += ", " + lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
                                         lstItinerariosPorDia[i][j].lstEspecialistas[k].Apellidos;
                                     }
                                     else if (lstItinerariosPorDia[i][j].lstEspecialistas.Count - 1 == k)
                                     {
-                                        especialistas += " y "+lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
+                                        especialistas += " y " + lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
                                         lstItinerariosPorDia[i][j].lstEspecialistas[k].Apellidos;
                                     }
-                                    
+
                                 }
                             }
                             else
@@ -248,19 +290,26 @@ namespace Ejemplo.Web
         private void ActualizarDiagnosticos()
         {
             List<cDiagnosticoBeneficiario> lstDiagnosticos = dFachada.DiagnosticoTraerTodosDiagnosticosPorBeneficiario(ElBeneficiario);
-
-            lstUltimosDiagnosticos = new List<cDiagnostico>();
-            lstHistorialDiagnosticos = new List<cDiagnosticoBeneficiario>();
-            string ultimaFecha = lstDiagnosticos[0].Fecha;
-            for (int i=0; i<lstDiagnosticos.Count;i++)
+            cDiagnosticoBeneficiario db;
+            if (lstDiagnosticos.Count > 0)
             {
-                if(ultimaFecha == lstDiagnosticos[i].Fecha)
+                lstUltimosDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                lstHistorialDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                string ultimaFecha = lstDiagnosticos[0].Fecha;
+                for (int i = 0; i < lstDiagnosticos.Count; i++)
                 {
-                    lstUltimosDiagnosticos.Add(lstDiagnosticos[i].Diagnostico);
-                }
-                else
-                {
-                    lstHistorialDiagnosticos.Add(lstDiagnosticos[i]);
+                    if (ultimaFecha == lstDiagnosticos[i].Fecha)
+                    {
+                        db = new cDiagnosticoBeneficiario();
+                        db.Diagnostico = new cDiagnostico();
+                        db.Diagnostico = lstDiagnosticos[i].Diagnostico;
+                        db.Fecha = lstDiagnosticos[i].Fecha;
+                        lstUltimosDiagnosticos.Add(db);
+                    }
+                    else
+                    {
+                        lstHistorialDiagnosticos.Add(lstDiagnosticos[i]);
+                    }
                 }
             }
         }
@@ -622,6 +671,12 @@ namespace Ejemplo.Web
         {
             e.Row.Cells[0].Visible = false; //codigo
             e.Row.Cells[6].Visible = false; //estado
+        }
+
+        protected void grdInformes_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false; //codigo
+            e.Row.Cells[4].Visible = false; //cod beneficiario
         }
     }
 }

@@ -15,10 +15,10 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <table>
+            <table style="padding:30px;">
                 <tr>
                     <td>
-                        <asp:Label ID="Label5" runat="server" Text="Fecha::" Font-Bold="true"></asp:Label>
+                        <asp:Label ID="Label5" runat="server" Text="Fecha:" Font-Bold="true"></asp:Label>
                         <asp:Label ID="lblFecha" runat="server"></asp:Label>
                     </td>
                 </tr>
@@ -47,13 +47,13 @@
                     </td>
                 </tr>
                 <tr style="vertical-align:top;">
-                    <td style="vertical-align:top;">
+                    <td style="vertical-align:top; width:300px;" >
                         <asp:Label ID="Label2" runat="server" Text="Especialistas: " Font-Bold="true"></asp:Label>
                         <asp:Label ID="lblEspecialistas" runat="server"></asp:Label>
 
                     </td>
-                    <td style="vertical-align:top;">
-                        <asp:Label ID="Label3" runat="server" Text="Comentario" Font-Bold="true"></asp:Label>
+                    <td style="vertical-align:top; margin-left:20px;">
+                        <asp:Label ID="Label3" runat="server" Text="Comentario" Font-Bold="true"  style="vertical-align:top;"></asp:Label>
                         <asp:TextBox ID="txtComentario" runat="server" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>

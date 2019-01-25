@@ -11,15 +11,15 @@ namespace Ejemplo.Web
 {
     public partial class vAgregarObservacionSesion : System.Web.UI.Page
     {
-        static cSesion unaSesion;
+        static cSesion LaSesion;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                int idSesion = int.Parse(Request.QueryString["SesionId"]);
-                unaSesion = new cSesion();
-                unaSesion.Codigo = idSesion;
-                unaSesion = dFachada.SesionTraerEspecifico(unaSesion);
+                int iIdSesion = int.Parse(Request.QueryString["SesionId"]);
+                LaSesion = new cSesion();
+                LaSesion.Codigo = iIdSesion;
+                LaSesion = dFachada.SesionTraerEspecifico(LaSesion);
                 CargarDatos();
             }
 
@@ -29,11 +29,11 @@ namespace Ejemplo.Web
         {
             if (vTareas.ventanaObservacionVerDetalles)
             {
-                lblFecha.Text = unaSesion.Fecha.ToString();
-                lblHoraInicio.Text = unaSesion.HoraInicio.ToString();
-                lblHoraFin.Text = unaSesion.HoraFin.ToString();
+                lblFecha.Text = LaSesion.Fecha.ToString();
+                lblHoraInicio.Text = LaSesion.HoraInicio.ToString();
+                lblHoraFin.Text = LaSesion.HoraFin.ToString();
 
-                switch (unaSesion.Centro)
+                switch (LaSesion.Centro)
                 {
                     case cUtilidades.Centro.JuanLacaze:
                         lblLocalidad.Text = "Juan Lacaze";
@@ -45,7 +45,7 @@ namespace Ejemplo.Web
                         lblLocalidad.Text = "";
                         break;
                 }
-                switch (unaSesion.TipoSesion)
+                switch (LaSesion.TipoSesion)
                 {
                     case cUtilidades.TipoSesion.Individual:
                         lblTipoSesion.Text = "Individual";
@@ -67,22 +67,22 @@ namespace Ejemplo.Web
                         break;
                 }
                 List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
-                for (int i = 0; i < unaSesion.lstBeneficiarios.Count; i++)
+                for (int i = 0; i < LaSesion.lstBeneficiarios.Count; i++)
                 {
-                    lstBeneficiarios.Add(unaSesion.lstBeneficiarios[i].Beneficiario);
+                    lstBeneficiarios.Add(LaSesion.lstBeneficiarios[i].Beneficiario);
                 }
 
 
                 grdBeneficiarios.DataSource = lstBeneficiarios;
                 grdBeneficiarios.DataBind();
-                grdESpecialistas.DataSource = unaSesion.lstUsuarios;
+                grdESpecialistas.DataSource = LaSesion.lstUsuarios;
                 grdESpecialistas.DataBind();
-                lblComentario.Text = unaSesion.Comentario.ToString();
-                cUsuarioSesion us = new cUsuarioSesion();
-                us.Sesion = unaSesion;
-                us.Usuario = vMiPerfil.U;
-                us = dFachada.SesionTraerObservacionPorUsuarioYSesion(us);
-                txtObservacionSesion.Text = us.Observacion.ToString();
+                lblComentario.Text = LaSesion.Comentario.ToString();
+                cUsuarioSesion unUS = new cUsuarioSesion();
+                unUS.Sesion = LaSesion;
+                unUS.Usuario = vMiPerfil.U;
+                unUS = dFachada.SesionTraerObservacionPorUsuarioYSesion(unUS);
+                txtObservacionSesion.Text = unUS.Observacion.ToString();
                 txtObservacionSesion.Enabled = false;
                 btnDescartar.Visible = false;
                 btnRealizar.Visible = false;
@@ -91,10 +91,10 @@ namespace Ejemplo.Web
             }
             else
             {
-                lblFecha.Text = unaSesion.Fecha.ToString();
-                lblHoraInicio.Text = unaSesion.HoraInicio.ToString();
-                lblHoraFin.Text = unaSesion.HoraFin.ToString();
-                switch (unaSesion.Centro)
+                lblFecha.Text = LaSesion.Fecha.ToString();
+                lblHoraInicio.Text = LaSesion.HoraInicio.ToString();
+                lblHoraFin.Text = LaSesion.HoraFin.ToString();
+                switch (LaSesion.Centro)
                 {
                     case cUtilidades.Centro.JuanLacaze:
                         lblLocalidad.Text = "Juan Lacaze";
@@ -106,7 +106,7 @@ namespace Ejemplo.Web
                         lblLocalidad.Text = "";
                         break;
                 }
-                switch (unaSesion.TipoSesion)
+                switch (LaSesion.TipoSesion)
                 {
                     case cUtilidades.TipoSesion.Individual:
                         lblTipoSesion.Text = "Individual";
@@ -128,17 +128,17 @@ namespace Ejemplo.Web
                         break;
                 }
                 List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
-                for (int i = 0; i < unaSesion.lstBeneficiarios.Count; i++)
+                for (int i = 0; i < LaSesion.lstBeneficiarios.Count; i++)
                 {
-                    lstBeneficiarios.Add(unaSesion.lstBeneficiarios[i].Beneficiario);
+                    lstBeneficiarios.Add(LaSesion.lstBeneficiarios[i].Beneficiario);
                 }
 
 
                 grdBeneficiarios.DataSource = lstBeneficiarios;
                 grdBeneficiarios.DataBind();
-                grdESpecialistas.DataSource = unaSesion.lstUsuarios;
+                grdESpecialistas.DataSource = LaSesion.lstUsuarios;
                 grdESpecialistas.DataBind();
-                lblComentario.Text = unaSesion.Comentario.ToString();
+                lblComentario.Text = LaSesion.Comentario.ToString();
                 txtObservacionSesion.Enabled = true;
                 btnDescartar.Visible = true;
                 btnRealizar.Visible = true;
@@ -180,7 +180,7 @@ namespace Ejemplo.Web
             string observacion = string.Empty;
             cUsuarioSesion unUS = new cUsuarioSesion();
             unUS.Usuario = vMiPerfil.U;
-            unUS.Sesion = unaSesion;
+            unUS.Sesion = LaSesion;
             unUS.Observacion = observacion;
             bool resultado = dFachada.SesionAgregarObservacion(unUS);
             if (resultado)
@@ -208,7 +208,7 @@ namespace Ejemplo.Web
                 string observacion = txtObservacionSesion.Text;
                 cUsuarioSesion unUS = new cUsuarioSesion();
                 unUS.Usuario = vMiPerfil.U;
-                unUS.Sesion = unaSesion;
+                unUS.Sesion = LaSesion;
                 unUS.Observacion = observacion;
                 bool resultado = dFachada.SesionAgregarObservacion(unUS);
                 if (resultado)

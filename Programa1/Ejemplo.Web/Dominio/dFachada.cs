@@ -285,6 +285,10 @@ namespace Dominio
         {
             return dInforme.TraerTodosConFiltros(parConsulta);
         }
+        public static List<cInforme> InformeTraerTodosTerminadosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            return dInforme.TraerTodosTerminadosPorBeneficiario(parBeneficiario);
+        }
 
         #endregion
 

@@ -51,7 +51,7 @@ namespace Persistencia.Clases
                 var conn = new SqlConnection(CadenaDeConexion);
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("DiagnosticosBeneficiarios_TraerTodosDiagnosticosPorBeneficiario", conn);
+                SqlCommand cmd = new SqlCommand("DiagnosticosBeneficiarios_TraerTodosDiagnosticosPorBeneficiarioFechaDesc", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@idBeneficiario", parBeneficiario.Codigo));
 

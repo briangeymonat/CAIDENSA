@@ -15,6 +15,13 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Image ID="Image2" runat="server" Height="80px" ImageUrl="/Img/HeaderLogo.jpg" runat="server" AlternateText="Imagen no disponible" ImageAlign="TextTop" />
+            <asp:Image ID="Image3" runat="server" Height="80px" ImageUrl="/Img/HeaderNombre.png" runat="server" AlternateText="Imagen no disponible" ImageAlign="TextTop" />
+
+            <hr style="border: 1px solid black" />
+
+        </div>
+        <div>
             <center>
                 <h2>
                     Ingreso de nueva contraseña

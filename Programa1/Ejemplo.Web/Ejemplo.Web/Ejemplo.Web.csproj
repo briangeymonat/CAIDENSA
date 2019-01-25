@@ -203,7 +203,9 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
-    <Content Include="Img\logo.jpg" />
+    <Content Include="Img\HeaderNombre.png" />
+    <Content Include="Img\EncabezadoInforme.jpg" />
+    <Content Include="Img\HeaderLogo.jpg" />
     <Content Include="vAgregarObservacionSesion.aspx" />
     <Content Include="vInformeDetalles.aspx" />
     <Content Include="vInicio.aspx" />

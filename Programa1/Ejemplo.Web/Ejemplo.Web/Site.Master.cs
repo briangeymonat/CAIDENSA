@@ -147,6 +147,16 @@ namespace Ejemplo.Web
             }
             
         }
+
+        protected void ImgLogoPequeño_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("vInicio.aspx");
+        }
+
+        protected void ImgLogoGrande_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("vInicio.aspx");
+        }
     }
 
 }

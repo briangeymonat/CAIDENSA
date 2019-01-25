@@ -916,6 +916,70 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+
+        public static List<cInforme> TraerTodosTerminadosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            List<cInforme> retorno = new List<cInforme>();
+            cInforme informe;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Informes_TraerTerminadosPorBeneficiario", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idBeneficiario", parBeneficiario.Codigo));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        informe = new cInforme();
+                        informe.Codigo = int.Parse(oReader["InformeId"].ToString());
+                        if (oReader["InformeFecha"] != DBNull.Value)
+                            informe.Fecha = DateTime.Parse(oReader["InformeFecha"].ToString()).ToShortDateString();
+                        int i = int.Parse(oReader["InformeTipo"].ToString());
+                        if (i == 0)
+                            informe.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicomotriz;
+                        if (i == 1)
+                            informe.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicopedagogica;
+                        if (i == 2)
+                            informe.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicologica;
+                        if (i == 3)
+                            informe.Tipo = cUtilidades.TipoInforme.Evaluacion_Fonoaudiologa;
+                        if (i == 4)
+                            informe.Tipo = cUtilidades.TipoInforme.Evolucion;
+                        if (i == 5)
+                            informe.Tipo = cUtilidades.TipoInforme.Tolerancia_Curricular;
+                        if (i == 6)
+                            informe.Tipo = cUtilidades.TipoInforme.Juzgado;
+                        if (i == 7)
+                            informe.Tipo = cUtilidades.TipoInforme.Interdiciplinario;
+                        if (i == 8)
+                            informe.Tipo = cUtilidades.TipoInforme.Otro;
+
+                        int a = int.Parse(oReader["InformeEstado"].ToString());
+                        if (a == 0)
+                            informe.Estado = cUtilidades.EstadoInforme.Pendiente;
+                        if (a == 1)
+                            informe.Estado = cUtilidades.EstadoInforme.EnProceso;
+                        if (a == 2)
+                            informe.Estado = cUtilidades.EstadoInforme.Terminado;
+                        informe.Beneficiario = new cBeneficiario();
+                        informe.Beneficiario.Codigo = int.Parse(oReader["BeneficiarioId"].ToString());
+                        retorno.Add(informe);
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
+
+
         #region
         /*public static List<cInforme> TraerTodos()
         {

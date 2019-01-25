@@ -57,7 +57,7 @@ namespace Ejemplo.Web
                 #endregion
 
                 //LOGO y HEADER
-                string imageUrl = Server.MapPath("/Img") + "/logo.jpg";
+                string imageUrl = Server.MapPath("/Img") + "/EncabezadoInforme.jpg";
                 Image img = Image.GetInstance(imageUrl);
                 img.ScalePercent(38);
                 documento.Add(img);

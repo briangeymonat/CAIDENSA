@@ -57,6 +57,10 @@ namespace Dominio.Clases
         {
             return pInforme.TraerTodosConFiltros(parConsulta);
         }
+        public static List<cInforme> TraerTodosTerminadosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            return pInforme.TraerTodosTerminadosPorBeneficiario(parBeneficiario);
+        }
 
     }
 }

@@ -230,7 +230,7 @@ namespace Ejemplo.Web
                 // EN CASO DE SER EL PRIMERO
                 else if (i == 0) lblEspecialistas.Text += LaSesion.lstUsuarios[i].Nombres + " " + LaSesion.lstUsuarios[i].Apellidos;
                 // EN CASO DE SER UNO DEL MEDIO
-                else if ((LaSesion.lstUsuarios.Count - 1) == i) lblEspecialistas.Text += "y " + LaSesion.lstUsuarios[i].Nombres + " " + LaSesion.lstUsuarios[i].Apellidos + ".";
+                else if ((LaSesion.lstUsuarios.Count - 1) == i) lblEspecialistas.Text += " y " + LaSesion.lstUsuarios[i].Nombres + " " + LaSesion.lstUsuarios[i].Apellidos + ".";
                 // EN CASO DE SER EL ULTIMO
                 else lblEspecialistas.Text += ", " + LaSesion.lstUsuarios[i].Nombres + " " + LaSesion.lstUsuarios[i].Apellidos;
 
