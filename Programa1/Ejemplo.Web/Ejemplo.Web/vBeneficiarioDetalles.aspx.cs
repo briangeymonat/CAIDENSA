@@ -47,7 +47,7 @@ namespace Ejemplo.Web
                     btnAgregarInforme.Visible = false;
                     btnModificar.Visible = false;
                 }
-                if (vMiPerfil.ii == 1) //NO SE QUE ES - bri
+                if (vMiPerfil.ii == 1)
                 {
                     vMiPerfil.ii = 0;
                     btnAgregarInforme.Visible = false;
@@ -112,9 +112,6 @@ namespace Ejemplo.Web
             {
                 cbPensionista.Checked = true;
                 cbPensionista_CheckedChanged(new object(), new EventArgs());
-                //txtAtributario.Text = string.Empty;
-                //txtAtributario.Enabled = false;
-                //cbPensionista.Checked = true;
             }
             else
             {
@@ -459,5 +456,16 @@ namespace Ejemplo.Web
 
         }
 
+        protected void grdPlanesActivos_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[7].Visible = false; //estado
+        }
+
+        protected void grdPlanesInactivos_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Visible = false; //codigo
+            e.Row.Cells[6].Visible = false; //estado
+        }
     }
 }

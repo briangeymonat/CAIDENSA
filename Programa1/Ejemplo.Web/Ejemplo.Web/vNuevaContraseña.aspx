@@ -5,9 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-       <script type="text/javascript">
-        function disableBackButton()
-        {
+    <script type="text/javascript">
+        function disableBackButton() {
             window.history.forward();
         }
         setTimeout("disableBackButton()", 0);
@@ -17,41 +16,42 @@
     <form id="form1" runat="server">
         <div>
             <center>
-                <h3>
+                <h2>
                     Ingreso de nueva contraseña
-                </h3>
-        <table>
-            <tr>
-                <td>
-<asp:Label ID="Label1" runat="server" Text="NickName:"></asp:Label>
-                </td>
-                <td>
-<asp:TextBox ID="txtNickName" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-<asp:Label ID="Label2" runat="server" Text="Contraseña:"></asp:Label>                    
-                </td>
-                <td>
-<asp:TextBox ID="txtContrasena" runat="server" TextMode="Password"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>
-<asp:Label ID="Label3" runat="server" Text="Repetir contraseña:"></asp:Label>                    
-                </td>
-                <td>
-<asp:TextBox ID="txtContrasenaRepetir" runat="server" TextMode="Password"></asp:TextBox>
-                </td>
-            </tr>
+                </h2>
+        <asp:Table runat="server">
+            <asp:TableRow>
+                <asp:TableCell><br />
+                    <asp:Label ID="Label1" runat="server" Text="Nickname:"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell><br />
+                    <asp:TextBox ID="txtNickName" runat="server"></asp:TextBox>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="Label2" runat="server" Text="Contraseña:"></asp:Label>                    
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:TextBox ID="txtContrasena" runat="server" TextMode="Password"></asp:TextBox>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="Label3" runat="server" Text="Repetir contraseña:"></asp:Label>                    
+                </asp:TableCell>
+                <asp:TableCell>
+                        <asp:TextBox ID="txtContrasenaRepetir" runat="server" TextMode="Password"></asp:TextBox>
+                </asp:TableCell>
+            </asp:TableRow>
             
-            <tr>
-                <td colspan="2">
-<asp:Button ID="btnConfirmarNuevaContrasena" runat="server" Text="Confirmar nueva contraseña" OnClick="btnConfirmarNuevaContrasena_Click"></asp:Button>
-                </td>
-            </tr>
-        </table>    
+            <asp:TableRow>
+                <asp:TableCell ColumnSpan="2" HorizontalAlign="Right"><br />
+                        <asp:Button ID="btnAtras" runat="server" Text="Atras" Style="margin-right:20px" OnClick="btnAtras_Click"></asp:Button>
+                        <asp:Button ID="btnConfirmarNuevaContrasena" runat="server" Text="Confirmar nueva contraseña" OnClick="btnConfirmarNuevaContrasena_Click"></asp:Button>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>    
         </center>
         </div>
     </form>

@@ -58,5 +58,10 @@ namespace Ejemplo.Web
                 throw ex;
             }
         }
+
+        protected void btnAtras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("vLogin.aspx");
+        }
     }
 }

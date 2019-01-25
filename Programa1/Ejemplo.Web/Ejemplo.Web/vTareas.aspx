@@ -11,10 +11,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="PanelTaerasAdministrativas" runat="server">
-        <h1 style="padding-left: 40px">Tareas administrativas</h1>
-        <asp:Table runat="server">
+        <h1 style="padding-left: 10px">Tareas administrativas</h1>
+        <asp:Table runat="server" Style="margin-left: 10px">
             <asp:TableRow VerticalAlign="Top">
-                <asp:TableCell Style="padding-left: 40px" Width="20%">
+                <asp:TableCell Width="20%">
                     <asp:Label ID="Label6" runat="server" Text="Sesiones sin marcar asistencia:" Font-Bold="true" Font-Size="11"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
@@ -28,7 +28,7 @@
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow VerticalAlign="Top">
-                <asp:TableCell Style="padding-left: 40px" Width="20%">
+                <asp:TableCell Width="20%">
                     <asp:GridView ID="grdSesionesPasadasDelDia" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnSelectedIndexChanging="grdSesionesPasadasDelDia_SelectedIndexChanging" OnRowCreated="grdSesionesPasadasDelDia_RowCreated" Width="100%">
@@ -96,10 +96,10 @@
         </asp:Table>
     </asp:Panel>
     <asp:Panel ID="PanelTaerasEspecialistas" runat="server">
-        <h1 style="padding-left: 40px">Tareas de especialistas</h1>
-        <asp:Table runat="server">
+        <h1 style="padding-left: 10px">Tareas de especialistas</h1>
+        <asp:Table runat="server" Style="margin-left: 10px">
             <asp:TableRow VerticalAlign="Top">
-                <asp:TableCell Style="padding-left: 40px" Width="20%">
+                <asp:TableCell Width="20%">
                     <asp:Label ID="Label1" runat="server" Text="Sesiones del día:" Font-Bold="true" Font-Size="11"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
@@ -113,7 +113,7 @@
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow VerticalAlign="Top">
-                <asp:TableCell Style="padding-left: 40px" Width="20%">
+                <asp:TableCell Width="20%">
                     <asp:GridView ID="grdSesionesDelDia" runat="server" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnSelectedIndexChanging="grdSesionesDelDia_SelectedIndexChanging" ShowHeaderWhenEmpty="True" OnRowCreated="grdSesionesDelDia_RowCreated" Width="100%">
@@ -180,12 +180,12 @@
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow VerticalAlign="Top">
-                <asp:TableCell Style="padding-left: 40px" Width="20%">
+                <asp:TableCell Width="20%">
                     <asp:Label ID="Label10" runat="server" Text="Sesiones con observaciones realizadas:" Font-Bold="true" Font-Size="11"></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow VerticalAlign="Top">
-                <asp:TableCell Style="padding-left: 40px" Width="20%">
+                <asp:TableCell Width="20%">
                     <asp:GridView ID="grdSesionesObservacionesRealizadas" runat="server" ShowHeaderWhenEmpty="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesObservacionesRealizadas_SelectedIndexChanging" OnRowCreated="grdSesionesObservacionesRealizadas_RowCreated" Width="100%">
