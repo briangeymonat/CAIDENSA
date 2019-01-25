@@ -480,6 +480,7 @@ namespace Ejemplo.Web
             CargarBeneficiarios();
             CargarBeneficiariosAgregados();
 
+            lblSeleccionarPlan.Visible = true;
         }
 
         protected void grdBeneficiariosCargados_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -487,6 +488,10 @@ namespace Ejemplo.Web
             BeneficiariosAgregados.RemoveAt(e.RowIndex);
             CargarBeneficiariosAgregados();
             CargarBeneficiarios();
+            if (BeneficiariosAgregados.Count <= 0)
+            {
+                lblSeleccionarPlan.Visible = false;
+            }
         }
 
         protected void txtBuscarBeneficiarios_TextChanged(object sender, EventArgs e)

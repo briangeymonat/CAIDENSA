@@ -475,6 +475,75 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+        public static List<cItinerario> TraerTodosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            List<cItinerario> retorno = new List<cItinerario>();
+            cItinerario unItinerario;
+
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodosPorBeneficiario", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", parBeneficiario.Codigo));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        unItinerario = new cItinerario();
+
+                        unItinerario.Codigo = int.Parse(oReader["ItinerarioId"].ToString());
+                        switch (int.Parse(oReader["ItinerarioTipoSesion"].ToString()))
+                        {
+                            case 0:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.Individual;
+                                break;
+                            case 1:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.Grupo2;
+                                break;
+                            case 2:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.Grupo3;
+                                break;
+                            case 3:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.Taller;
+                                break;
+                            case 4:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.PROES;
+                                break;
+                        }
+                        unItinerario.Dia = oReader["ItinerarioDia"].ToString();
+                        unItinerario.HoraInicio = DateTime.Parse(oReader["ItinerarioHoraInicio"].ToString()).ToShortTimeString();
+                        unItinerario.HoraFin = DateTime.Parse(oReader["ItinerarioHoraFin"].ToString()).ToShortTimeString();
+                        unItinerario.Comentario = oReader["ItinerarioComentario"].ToString();
+                        switch (int.Parse(oReader["ItinerarioCentro"].ToString()))
+                        {
+                            case 0:
+                                unItinerario.Centro = cUtilidades.Centro.JuanLacaze;
+                                break;
+                            case 1:
+                                unItinerario.Centro = cUtilidades.Centro.NuevaHelvecia;
+                                break;
+                        }
+                        unItinerario.Estado = bool.Parse(oReader["ItinerarioEstado"].ToString());
+
+                        retorno.Add(unItinerario);
+                    }
+                }
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
         public static bool ModificarEstadoDelDia(char parDia)
         {
             bool retorno = true;
