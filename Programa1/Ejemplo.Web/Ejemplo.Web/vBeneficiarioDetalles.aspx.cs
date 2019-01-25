@@ -2,6 +2,7 @@
 using Dominio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,7 +15,7 @@ namespace Ejemplo.Web
         private static List<string> Tipos = new List<string> { "ASSE", "AYEX", "CAMEC", "Círculo Católico", "MIDES", "Particular", "Policial" };
         private static cBeneficiario ElBeneficiario;
         private static List<cDiagnostico> lstUltimosDiagnosticos;
-        private static List<cDiagnostico> lstHistorialDiagnosticos;
+        private static List<cDiagnosticoBeneficiario> lstHistorialDiagnosticos;
         private static List<cPlan> lstPlanesActivos;
         private static cPlan PlanAModificar;
         private static List<cPlan> lstPlanesInactivos;
@@ -69,8 +70,10 @@ namespace Ejemplo.Web
         private void ActualizarTodo()
         {
             ActualizarDatos();
+            ActualizarDiagnosticos();
             ActualizarGrids();
             ActualizarCampos();
+            ActualizarItinerario();
         }
 
         private void ActualizarDatos()
@@ -86,14 +89,31 @@ namespace Ejemplo.Web
         {
             grdUltimosDiagnosticos.DataSource = lstUltimosDiagnosticos;
             grdUltimosDiagnosticos.DataBind();
-            grdHistorialDiagnosticos.DataSource = lstHistorialDiagnosticos;
-            grdHistorialDiagnosticos.DataBind();
             grdPlanesActivos.DataSource = lstPlanesActivos;
             grdPlanesActivos.DataBind();
             grdPlanesInactivos.DataSource = lstPlanesInactivos;
             grdPlanesInactivos.DataBind();
             grdInformes.DataSource = lstInformes;
             grdInformes.DataBind();
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Código", typeof(string));
+            dt.Columns.Add("Tipo", typeof(string));
+            dt.Columns.Add("Fecha", typeof(string));
+
+            DataRow row;
+            for (int i = 0; i < lstHistorialDiagnosticos.Count; i++)
+            {
+                row = dt.NewRow();
+                row["Código"] = lstHistorialDiagnosticos[i].Diagnostico.Codigo;
+                row["Tipo"] = lstHistorialDiagnosticos[i].Diagnostico.Tipo;
+                row["Fecha"] = lstHistorialDiagnosticos[i].Fecha;
+
+                dt.Rows.Add(row);
+            }
+
+            grdHistorialDiagnosticos.DataSource = dt;
+            grdHistorialDiagnosticos.DataBind();
         }
 
         private void ActualizarCampos()
@@ -126,7 +146,143 @@ namespace Ejemplo.Web
             txtMotivoConsulta.Text = ElBeneficiario.MotivoConsulta;
         }
 
+        private void ActualizarItinerario()
+        {
+            List<cItinerario> lstItinerarios = dFachada.ItinerarioTraerTodosPorBeneficiario(ElBeneficiario);
+            if (lstItinerarios.Count > 0)
+            {
+                List<string> lstDias = new List<string>() { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
+                List<List<cItinerario>> lstItinerariosPorDia = new List<List<cItinerario>>();
 
+
+                for (int i = 0; i < lstDias.Count; i++)
+                {
+                    lstItinerariosPorDia.Add(new List<cItinerario>());
+                    foreach (cItinerario unItinerario in lstItinerarios)
+                    {
+                        if (QueDiaEs(unItinerario) == lstDias[i])
+                        {
+                            lstItinerariosPorDia[i].Add(unItinerario);
+                        }
+                    }
+                }
+                string Itinerario = "Asiste al centro ";
+                for (int i = 0; i < lstItinerariosPorDia.Count; i++)
+                {
+                    if (lstItinerariosPorDia[i].Count > 0)
+                    {
+                        if (Itinerario.Length < 20)
+                        {
+                            Itinerario += "el día " + lstDias[i].ToLower();
+                        }
+                        else
+                        {
+                            Itinerario += " El día " + lstDias[i].ToLower();
+                        }
+                        bool SeAgregoAlgunaSesion = false;
+                        for (int j = 0; j < lstItinerariosPorDia[i].Count; j++)
+                        {
+                            string especialistas = "";
+                            if (lstItinerariosPorDia[i][j].lstEspecialistas.Count > 1)
+                            {
+                                especialistas = "con los especialistas ";
+                                for (int k = 0; k < lstItinerariosPorDia[i][j].lstEspecialistas.Count; k++)
+                                {
+                                    if (k == 0)
+                                    {
+                                        especialistas += lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
+                                        lstItinerariosPorDia[i][j].lstEspecialistas[k].Apellidos;
+                                    }
+                                    else if (lstItinerariosPorDia[i][j].lstEspecialistas.Count - 1 != k && k != 0)
+                                    {
+                                        especialistas += ", "+lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
+                                        lstItinerariosPorDia[i][j].lstEspecialistas[k].Apellidos;
+                                    }
+                                    else if (lstItinerariosPorDia[i][j].lstEspecialistas.Count - 1 == k)
+                                    {
+                                        especialistas += " y "+lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
+                                        lstItinerariosPorDia[i][j].lstEspecialistas[k].Apellidos;
+                                    }
+                                    
+                                }
+                            }
+                            else
+                            {
+                                especialistas = "con el especialista " +
+                                    lstItinerariosPorDia[i][j].lstEspecialistas[0].Nombres + " " +
+                                    lstItinerariosPorDia[i][j].lstEspecialistas[0].Apellidos;
+                            }
+                            if (!SeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 != j)
+                            {
+                                Itinerario += string.Format(" desde las {0} hasta las {1} {2}", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, especialistas);
+                                SeAgregoAlgunaSesion = true;
+                            }
+                            else if (!SeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 == j)
+                            {
+                                Itinerario += string.Format(" desde las {0} hasta las {1} {2}.", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, especialistas);
+                                SeAgregoAlgunaSesion = true;
+                            }
+                            else if (SeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 != j)
+                            {
+                                Itinerario += string.Format(", desde las {0} hasta las {1} {2} ", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, especialistas);
+                                SeAgregoAlgunaSesion = true;
+                            }
+                            else if (SeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 == j)
+                            {
+                                Itinerario += string.Format(" y desde las {0} hasta las {1} {2}.", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, especialistas);
+                                SeAgregoAlgunaSesion = true;
+                            }
+                        }
+                    }
+                }
+                this.lblItinerario.Text = Itinerario;
+
+            }
+            else
+            {
+                this.lblItinerario.Text = "Este beneficiario no se encuentra ingresado en el itinerario.";
+            }
+
+        }
+
+        private void ActualizarDiagnosticos()
+        {
+            List<cDiagnosticoBeneficiario> lstDiagnosticos = dFachada.DiagnosticoTraerTodosDiagnosticosPorBeneficiario(ElBeneficiario);
+
+            lstUltimosDiagnosticos = new List<cDiagnostico>();
+            lstHistorialDiagnosticos = new List<cDiagnosticoBeneficiario>();
+            string ultimaFecha = lstDiagnosticos[0].Fecha;
+            for (int i=0; i<lstDiagnosticos.Count;i++)
+            {
+                if(ultimaFecha == lstDiagnosticos[i].Fecha)
+                {
+                    lstUltimosDiagnosticos.Add(lstDiagnosticos[i].Diagnostico);
+                }
+                else
+                {
+                    lstHistorialDiagnosticos.Add(lstDiagnosticos[i]);
+                }
+            }
+        }
+
+        private string QueDiaEs(cItinerario parItinerario)
+        {
+            switch (parItinerario.Dia)
+            {
+                case "L":
+                    return "Lunes";
+                case "M":
+                    return "Martes";
+                case "X":
+                    return "Miércoles";
+                case "J":
+                    return "Jueves";
+                case "V":
+                    return "Viernes";
+                default:
+                    return "Sábado";
+            }
+        }
 
         protected void btnNuevoPlan_Click(object sender, EventArgs e)
         {

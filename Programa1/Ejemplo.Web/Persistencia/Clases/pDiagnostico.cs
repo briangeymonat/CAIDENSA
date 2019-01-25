@@ -42,7 +42,40 @@ namespace Persistencia.Clases
             }
             return retorno;
         }
+        public static List<cDiagnosticoBeneficiario> TraerTodosDiagnosticosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            List<cDiagnosticoBeneficiario> retorno = new List<cDiagnosticoBeneficiario>();
+            cDiagnosticoBeneficiario unDiagnosticoBeneficiario;
+            try
+            {
+                var conn = new SqlConnection(CadenaDeConexion);
+                conn.Open();
 
+                SqlCommand cmd = new SqlCommand("DiagnosticosBeneficiarios_TraerTodosDiagnosticosPorBeneficiario", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idBeneficiario", parBeneficiario.Codigo));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        unDiagnosticoBeneficiario = new cDiagnosticoBeneficiario();
+                        unDiagnosticoBeneficiario.Diagnostico = new cDiagnostico();
+                        unDiagnosticoBeneficiario.Diagnostico.Codigo = int.Parse(oReader["DiagnosticoId"].ToString());
+                        unDiagnosticoBeneficiario.Diagnostico.Tipo = oReader["DiagnosticoTipo"].ToString();
+                        unDiagnosticoBeneficiario.Fecha = DateTime.Parse(oReader["DiagnosticosBeneficiariosFecha"].ToString()).ToShortDateString();
+                        retorno.Add(unDiagnosticoBeneficiario);
+                    }
+                    conn.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return retorno;
+        }
 
         public static List<cDiagnostico> TraerTodos()
         {

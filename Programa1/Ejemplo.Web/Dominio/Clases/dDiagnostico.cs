@@ -14,6 +14,10 @@ namespace Dominio.Clases
         {
             return pDiagnostico.TraerUltimosDiagnosticosPorBeneficiario(parBeneficiario);
         }
+        public static List<cDiagnosticoBeneficiario> TraerTodosDiagnosticosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            return pDiagnostico.TraerTodosDiagnosticosPorBeneficiario(parBeneficiario);
+        }
         public static List<cDiagnostico> TraerTodos()
         {
             return pDiagnostico.TraerTodos();

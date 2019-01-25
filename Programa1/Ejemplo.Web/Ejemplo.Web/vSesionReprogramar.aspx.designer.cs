@@ -112,15 +112,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlHasta;
         
         /// <summary>
-        /// Control Label6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
         /// Control txtBuscarBeneficiarios.
         /// </summary>
         /// <remarks>
@@ -173,6 +164,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdBeneficiariosCargados;
+        
+        /// <summary>
+        /// Control lblSeleccionarPlan.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSeleccionarPlan;
         
         /// <summary>
         /// Control lblNombre1.

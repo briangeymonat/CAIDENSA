@@ -337,6 +337,19 @@ namespace Dominio
             }
             return LosItinerarios;
         }
+        public static List<cItinerario> ItinerarioTraerTodosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorBeneficiario(parBeneficiario);
+            for (int i = 0; i < LosItinerarios.Count; i++)
+            {
+                LosItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(LosItinerarios[i]);
+            }
+            for (int i = 0; i < LosItinerarios.Count; i++)
+            {
+                LosItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(LosItinerarios[i]);
+            }
+            return LosItinerarios;
+        }
         public static cItinerario ItinerarioTraerEspecifico(cItinerario parItinerario)
         {
             cItinerario ElItinerario = dItinerario.TraerEspecifico(parItinerario);
@@ -549,6 +562,10 @@ namespace Dominio
         public static List<string> DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(cBeneficiario parBeneficiario)
         {
             return dDiagnostico.TraerUltimosDiagnosticosPorBeneficiario(parBeneficiario);
+        }
+        public static List<cDiagnosticoBeneficiario> DiagnosticoTraerTodosDiagnosticosPorBeneficiario(cBeneficiario parBeneficiario)
+        {
+            return dDiagnostico.TraerTodosDiagnosticosPorBeneficiario(parBeneficiario);
         }
         public static List<cDiagnostico> DiagnosticoTraerTodos()
         {
