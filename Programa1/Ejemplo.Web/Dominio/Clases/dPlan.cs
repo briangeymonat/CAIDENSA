@@ -10,25 +10,25 @@ namespace Dominio.Clases
 {
     public class dPlan
     {
-        public static bool Agregar(cBeneficiario elBeneficiario)
+        public static bool Agregar(cBeneficiario parBeneficiario)
         {
-            return pPlan.Agregar(elBeneficiario);
+            return pPlan.Agregar(parBeneficiario);
         }
-        public static bool Eliminar(cPlan elPlan)
+        public static bool Eliminar(cPlan parPlan)
         {
-            return pPlan.Eliminar(elPlan);
+            return pPlan.Eliminar(parPlan);
         }
-        public static List<cPlan> TraerActivosPorBeneficiario(cBeneficiario elBeneficiario)
+        public static List<cPlan> TraerActivosPorBeneficiario(cBeneficiario parBeneficiario)
         {
-            return pPlan.TraerActivosPorBeneficiario(elBeneficiario);
+            return pPlan.TraerActivosPorBeneficiario(parBeneficiario);
         }
-        public static List<cPlan> TraerInactivosPorBeneficiario(cBeneficiario elBeneficiario)
+        public static List<cPlan> TraerInactivosPorBeneficiario(cBeneficiario parBeneficiario)
         {
-            return pPlan.TraerInactivosPorBeneficiario(elBeneficiario);
+            return pPlan.TraerInactivosPorBeneficiario(parBeneficiario);
         }
-        public static List<cPlan> TraerTodosPorBeneficiario(cBeneficiario elBeneficiario)
+        public static List<cPlan> TraerTodosPorBeneficiario(cBeneficiario parBeneficiario)
         {
-            return pPlan.TraerTodosPorBeneficiario(elBeneficiario);
+            return pPlan.TraerTodosPorBeneficiario(parBeneficiario);
         }
         public static bool ModificarFechaVencimiento(cPlan parPlan)
         {

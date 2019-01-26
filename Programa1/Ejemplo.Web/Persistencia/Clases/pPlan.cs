@@ -11,43 +11,43 @@ namespace Persistencia.Clases
 {
     public class pPlan : pPersistencia
     {
-        public static bool Agregar(cBeneficiario elBeneficiario)
+        public static bool Agregar(cBeneficiario parBeneficiario)
         {
-            bool retorno = true;
-            for (int i = 0; i < elBeneficiario.lstPlanes.Count; i++)
+            bool bRetorno = true;
+            for (int i = 0; i < parBeneficiario.lstPlanes.Count; i++)
             {
                 try
                 {
-                    var conn = new SqlConnection(CadenaDeConexion);
-                    conn.Open();
+                    var vConn = new SqlConnection(CadenaDeConexion);
+                    vConn.Open();
 
-                    SqlCommand cmd = new SqlCommand("Planes_Agregar", conn);
+                    SqlCommand cmd = new SqlCommand("Planes_Agregar", vConn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add(new SqlParameter("@PlanTipo", elBeneficiario.lstPlanes[i].Tipo));
-                    cmd.Parameters.Add(new SqlParameter("@PlanTratamiento", elBeneficiario.lstPlanes[i].Tratamiento));
-                    cmd.Parameters.Add(new SqlParameter("@PlanEvaluacion", elBeneficiario.lstPlanes[i].Evaluacion));
-                    if(elBeneficiario.lstPlanes[i].FechaInicio != "")
+                    cmd.Parameters.Add(new SqlParameter("@PlanTipo", parBeneficiario.lstPlanes[i].Tipo));
+                    cmd.Parameters.Add(new SqlParameter("@PlanTratamiento", parBeneficiario.lstPlanes[i].Tratamiento));
+                    cmd.Parameters.Add(new SqlParameter("@PlanEvaluacion", parBeneficiario.lstPlanes[i].Evaluacion));
+                    if(parBeneficiario.lstPlanes[i].FechaInicio != "")
                     {
-                        cmd.Parameters.Add(new SqlParameter("@PlanFechaInicio", elBeneficiario.lstPlanes[i].FechaInicio));
+                        cmd.Parameters.Add(new SqlParameter("@PlanFechaInicio", parBeneficiario.lstPlanes[i].FechaInicio));
                     }
                     else
                     {
                         cmd.Parameters.Add(new SqlParameter("@PlanFechaInicio", null));
                     }
-                    if (elBeneficiario.lstPlanes[i].FechaFin != "")
+                    if (parBeneficiario.lstPlanes[i].FechaFin != "")
                     {
-                        cmd.Parameters.Add(new SqlParameter("@PlanFechaFin", elBeneficiario.lstPlanes[i].FechaFin));
+                        cmd.Parameters.Add(new SqlParameter("@PlanFechaFin", parBeneficiario.lstPlanes[i].FechaFin));
                     }
 
-                    cmd.Parameters.Add(new SqlParameter("@PlanActivo", elBeneficiario.lstPlanes[i].Activo));
-                    cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", elBeneficiario.Codigo));
+                    cmd.Parameters.Add(new SqlParameter("@PlanActivo", parBeneficiario.lstPlanes[i].Activo));
+                    cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", parBeneficiario.Codigo));
 
-                    int rtn = cmd.ExecuteNonQuery();
+                    int iRtn = cmd.ExecuteNonQuery();
 
-                    if (rtn <= 0)
+                    if (iRtn <= 0)
                     {
-                        retorno = false;
+                        bRetorno = false;
                     }
                 }
                 catch (Exception ex)
@@ -57,28 +57,28 @@ namespace Persistencia.Clases
             }
 
 
-            return retorno;
+            return bRetorno;
         }
 
-        public static bool Eliminar(cPlan elPlan)
+        public static bool Eliminar(cPlan parPlan)
         {
-            bool retorno = true;
+            bool bRetorno = true;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Planes_Eliminar", conn);
+                SqlCommand cmd = new SqlCommand("Planes_Eliminar", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@PlanId", elPlan.Codigo));
+                cmd.Parameters.Add(new SqlParameter("@PlanId", parPlan.Codigo));
 
-                int rtn = cmd.ExecuteNonQuery();
+                int iRtn = cmd.ExecuteNonQuery();
 
-                if (rtn <= 0)
+                if (iRtn <= 0)
                 {
-                    retorno = false;
+                    bRetorno = false;
                 }
             }
             catch (Exception ex)
@@ -86,23 +86,23 @@ namespace Persistencia.Clases
                 throw ex;
             }
 
-            return retorno;
+            return bRetorno;
         }
 
-        public static List<cPlan> TraerActivosPorBeneficiario(cBeneficiario elBeneficiario)
+        public static List<cPlan> TraerActivosPorBeneficiario(cBeneficiario parBeneficiario)
         {
-            List<cPlan> retorno = new List<cPlan>();
+            List<cPlan> lstRetorno = new List<cPlan>();
             cPlan unPlan;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Planes_TraerActivosPorBeneficiario", conn);
+                SqlCommand cmd = new SqlCommand("Planes_TraerActivosPorBeneficiario", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", elBeneficiario.Codigo));
+                cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", parBeneficiario.Codigo));
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
@@ -115,21 +115,21 @@ namespace Persistencia.Clases
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
                         unPlan.FechaInicio = oReader["PlanFechaInicio"].ToString();
-                        string[] ss = unPlan.FechaInicio.Split(' ');
-                        unPlan.FechaInicio = ss[0];
+                        string[] aSs = unPlan.FechaInicio.Split(' ');
+                        unPlan.FechaInicio = aSs[0];
                         if (oReader["PlanFechaFin"] != DBNull.Value)
                         {
                             unPlan.FechaFin = oReader["PlanFechaFin"].ToString();
-                            string[] sa = unPlan.FechaFin.Split(' ');
-                            unPlan.FechaFin = sa[0];
+                            string[] aSa = unPlan.FechaFin.Split(' ');
+                            unPlan.FechaFin = aSa[0];
                         }
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 
-                        retorno.Add(unPlan);
+                        lstRetorno.Add(unPlan);
                     }
                 }
-                conn.Close();
+                vConn.Close();
             }
             catch (Exception ex)
             {
@@ -137,23 +137,23 @@ namespace Persistencia.Clases
             }
 
 
-            return retorno;
+            return lstRetorno;
         }
 
-        public static List<cPlan> TraerInactivosPorBeneficiario(cBeneficiario elBeneficiario)
+        public static List<cPlan> TraerInactivosPorBeneficiario(cBeneficiario parBeneficiario)
         {
-            List<cPlan> retorno = new List<cPlan>();
+            List<cPlan> lstRetorno = new List<cPlan>();
             cPlan unPlan;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Planes_TraerInactivosPorBeneficiario", conn);
+                SqlCommand cmd = new SqlCommand("Planes_TraerInactivosPorBeneficiario", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", elBeneficiario.Codigo));
+                cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", parBeneficiario.Codigo));
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
@@ -166,44 +166,42 @@ namespace Persistencia.Clases
                         unPlan.Tratamiento = bool.Parse(oReader["PlanTratamiento"].ToString());
                         unPlan.Evaluacion = bool.Parse(oReader["PlanEvaluacion"].ToString());
                         unPlan.FechaInicio = oReader["PlanFechaInicio"].ToString();
-                        string[] ss = unPlan.FechaInicio.Split(' ');
-                        unPlan.FechaInicio = ss[0];
+                        string[] aSs = unPlan.FechaInicio.Split(' ');
+                        unPlan.FechaInicio = aSs[0];
                         if (oReader["PlanFechaFin"] != DBNull.Value)
                         {
                             unPlan.FechaFin =oReader["PlanFechaFin"].ToString();
-                            string[] sa = unPlan.FechaFin.Split(' ');
-                            unPlan.FechaFin = sa[0];
+                            string[] aSa = unPlan.FechaFin.Split(' ');
+                            unPlan.FechaFin = aSa[0];
                         }
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 
-                        retorno.Add(unPlan);
+                        lstRetorno.Add(unPlan);
                     }
                 }
-                conn.Close();
+                vConn.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
-            return retorno;
+            return lstRetorno;
         }
 
-        public static List<cPlan> TraerTodosPorBeneficiario(cBeneficiario elBeneficiario)
+        public static List<cPlan> TraerTodosPorBeneficiario(cBeneficiario parBeneficiario)
         {
-            List<cPlan> retorno = new List<cPlan>();
+            List<cPlan> lstRetorno = new List<cPlan>();
             cPlan unPlan;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Planes_TraerTodosPorBeneficiario", conn);
+                SqlCommand cmd = new SqlCommand("Planes_TraerTodosPorBeneficiario", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", elBeneficiario.Codigo));
+                cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", parBeneficiario.Codigo));
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
@@ -223,10 +221,10 @@ namespace Persistencia.Clases
                         }                        
                         unPlan.Activo = bool.Parse(oReader["PlanActivo"].ToString());
 
-                        retorno.Add(unPlan);
+                        lstRetorno.Add(unPlan);
                     }
                 }
-                conn.Close();
+                vConn.Close();
             }
             catch (Exception ex)
             {
@@ -234,38 +232,38 @@ namespace Persistencia.Clases
             }
 
 
-            return retorno;
+            return lstRetorno;
         }
 
         public static bool ModificarFechaVencimiento(cPlan parPlan)
         {
-            bool retorno = true;
+            bool bRetorno = true;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Planes_ModificarFechaVencimiento", conn);
+                SqlCommand cmd = new SqlCommand("Planes_ModificarFechaVencimiento", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@PlanId", parPlan.Codigo));
                 cmd.Parameters.Add(new SqlParameter("@PlanFechaFin", parPlan.FechaFin));
 
-                int rtn = cmd.ExecuteNonQuery();
-                if(rtn<=0)
+                int iRtn = cmd.ExecuteNonQuery();
+                if(iRtn<=0)
                 {
-                    retorno = false;
+                    bRetorno = false;
                 }
-                if(conn.State == ConnectionState.Open)
+                if(vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch(Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return bRetorno;
         }
     }
 }

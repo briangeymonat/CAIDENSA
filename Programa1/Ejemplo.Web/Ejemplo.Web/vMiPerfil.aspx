@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vMiPerfil.aspx.cs" Inherits="Ejemplo.Web.vMiPerfil" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-       <script type="text/javascript">
-        function disableBackButton()
-        {
+    <script type="text/javascript">
+        function disableBackButton() {
             window.history.forward();
         }
         setTimeout("disableBackButton()", 0);
@@ -15,11 +14,11 @@
     <br />
     <asp:Table runat="server">
         <asp:TableRow VerticalAlign="Top" HorizontalAlign="Center">
-            <asp:TableCell Width="25%" >
+            <asp:TableCell Width="25%">
                 <asp:Table runat="server">
                     <asp:TableRow>
                         <asp:TableCell HorizontalAlign="Center" ColumnSpan="2">
-                            <asp:Label id="Label1" runat="server" Text="Datos personales" Font-Bold="true" Font-Size="10"></asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="Datos personales" Font-Bold="true" Font-Size="10"></asp:Label>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
@@ -28,7 +27,7 @@
                         </asp:TableCell>
                         <asp:TableCell>
                             <asp:TextBox ID="txtNickName" runat="server" Width="160px"></asp:TextBox>
-                            <asp:Label  ID="lblObligatorio1" runat="server" Text="*" CssClass="camposObligatorios" ></asp:Label>
+                            <asp:Label ID="lblObligatorio1" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
@@ -133,14 +132,41 @@
             </asp:TableCell>
             <asp:TableCell Width="50%">
                 <div>
-        <asp:Panel ID="pnlItinerario" runat="server" Visible="false">
-            <asp:Label id="lblItinerario" runat="server" Text="Itinerario semanal" Font-Bold="true" Font-Size="10"></asp:Label>
-            <formview id="frmItinerario" runat="server"></formview>
-        </asp:Panel>
-    </div>
+                    <asp:Panel ID="pnlItinerario" runat="server" Visible="false">
+                        <asp:Label ID="lblItinerario" runat="server" Text="Itinerario semanal" Font-Bold="true" Font-Size="10"></asp:Label>
+                        <formview id="frmItinerario" runat="server"></formview>
+                    </asp:Panel>
+                </div>
             </asp:TableCell>
             <asp:TableCell Width="25%">
                 <asp:Table runat="server">
+                    <asp:TableRow>
+                        <asp:TableCell ID="ref">
+                            <asp:Table runat="server">
+                                <asp:TableRow>
+                                    <asp:TableCell>
+                            <p style="font-size:16px;">Referencias:</p>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                                        <p style="background-color:#8afa38;" runat="server">AYEX</p>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                                        <p style="background-color:#58FAF4;" runat="server">FONASA</p>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                                        <p style="background-color:#F3F781;" runat="server">MIDES</p>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                                        <p style="background-color:#FE9A2E;" runat="server">Particular</p>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                                        <p style="background-color:#58FAF4;" runat="server">Policial</p>
+                        </asp:TableCell>
+                                </asp:TableRow>
+                            </asp:Table>
+                        </asp:TableCell>
+
+                    </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
                             <asp:Label ID="lblBeneficiariosQueAtiende" runat="server" Text="Beneficiarios que atiende:" Font-Bold="true" Font-Size="10"></asp:Label>
@@ -164,7 +190,7 @@
                             </asp:GridView>
                         </asp:TableCell>
                     </asp:TableRow>
-                    
+
                     <asp:TableRow>
                         <asp:TableCell>
                             <br />
@@ -217,5 +243,5 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    
+
 </asp:Content>

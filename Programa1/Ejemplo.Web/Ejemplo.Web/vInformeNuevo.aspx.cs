@@ -11,16 +11,16 @@ namespace Ejemplo.Web
 {
     public partial class vInformeNuevo : System.Web.UI.Page
     {
-        static cBeneficiario beneficiario;
-        static List<cUsuario> lstTodosEspecialistas;
-        static List<cUsuario> lstEspecialistasAgregados;
+        static cBeneficiario ElBeneficiario;
+        static List<cUsuario> LosTodosEspecialistas;
+        static List<cUsuario> LosEspecialistasAgregados;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                lstTodosEspecialistas = new List<cUsuario>();
-                lstEspecialistasAgregados = new List<cUsuario>();
-                lstTodosEspecialistas = dFachada.UsuarioTraerTodosEspecialistasActivos();
+                LosTodosEspecialistas = new List<cUsuario>();
+                LosEspecialistasAgregados = new List<cUsuario>();
+                LosTodosEspecialistas = dFachada.UsuarioTraerTodosEspecialistasActivos();
 
 
                 CargarCombos();
@@ -30,61 +30,58 @@ namespace Ejemplo.Web
         }
         protected void cargarDatos()
         {
-            beneficiario = new cBeneficiario();
-            beneficiario.Codigo = int.Parse(Request.QueryString["idBeneficiario"]);
-            beneficiario = dFachada.BeneficiarioTraerEspecifico(beneficiario);
-            this.lblNombres.Text = beneficiario.Nombres.ToString();
-            this.lblApellidos.Text = beneficiario.Apellidos.ToString();
-            this.lblCI.Text = beneficiario.CI.ToString();
+            ElBeneficiario = new cBeneficiario();
+            ElBeneficiario.Codigo = int.Parse(Request.QueryString["idBeneficiario"]);
+            ElBeneficiario = dFachada.BeneficiarioTraerEspecifico(ElBeneficiario);
+            this.lblNombres.Text = ElBeneficiario.Nombres.ToString();
+            this.lblApellidos.Text = ElBeneficiario.Apellidos.ToString();
+            this.lblCI.Text = ElBeneficiario.CI.ToString();
             
-            string[] parts = beneficiario.FechaNacimiento.Split(' ');
+            string[] aParts = ElBeneficiario.FechaNacimiento.Split(' ');
 
-            this.lblFechaNac.Text = parts[0];
-            string fecha = parts[0];
+            this.lblFechaNac.Text = aParts[0];
+            string sFecha = aParts[0];
 
             #region Hallar la edad cronológica edadAños, edadMeses, edadDias
 
-            string[] partes = fecha.Split('/');
+            string[] aPartes = sFecha.Split('/');
 
 
-            int año = int.Parse(partes[2]);
-            int mes = int.Parse(partes[1]);
-            int dia = int.Parse(partes[0]);
-            int añoActual = DateTime.Now.Year;
-            int mesActual = DateTime.Now.Month;
-            int diaActual = DateTime.Now.Day;
+            int iAño = int.Parse(aPartes[2]);
+            int iMes = int.Parse(aPartes[1]);
+            int iDia = int.Parse(aPartes[0]);
+            int iAñoActual = DateTime.Now.Year;
+            int iMesActual = DateTime.Now.Month;
+            int iDiaActual = DateTime.Now.Day;
 
-            int edadAños = añoActual - año;
-            int edadMeses;
-            int edadDias;
-            if (mesActual >= mes)
+            int iEdadAños = iAñoActual - iAño;
+            int iEdadMeses;
+            int iEdadDias;
+            if (iMesActual >= iMes)
             {
-                edadMeses = mesActual - mes;
+                iEdadMeses = iMesActual - iMes;
             }
             else
             {
-                mesActual += 12;
-                edadMeses = mesActual - mes;
-                edadAños -= 1;
+                iMesActual += 12;
+                iEdadMeses = iMesActual - iMes;
+                iEdadAños -= 1;
             }
-            if (diaActual >= dia)
+            if (iDiaActual >= iDia)
             {
-                edadDias = diaActual - dia;
+                iEdadDias = iDiaActual - iDia;
             }
             else
             {
-                diaActual += 30;
-                edadMeses -= 1;
-                edadDias = diaActual - dia;
+                iDiaActual += 30;
+                iEdadMeses -= 1;
+                iEdadDias = iDiaActual - iDia;
             }
             #endregion
-            this.lblEdad.Text = edadAños + " años y " + edadMeses + " meses";
-            lblMotivoConsulta.Text = beneficiario.MotivoConsulta.ToString();
-            lblEscolaridad.Text = beneficiario.Escolaridad.ToString();
-            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(beneficiario);
-            //falta ocultar algunas columnas de la grilla y los botones agregar y quitar, al igual que realizar informe.
-
-
+            this.lblEdad.Text = iEdadAños + " años y " + iEdadMeses + " meses";
+            lblMotivoConsulta.Text = ElBeneficiario.MotivoConsulta.ToString();
+            lblEscolaridad.Text = ElBeneficiario.Escolaridad.ToString();
+            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(ElBeneficiario);
         }
 
 
@@ -103,16 +100,16 @@ namespace Ejemplo.Web
             ddlTipo.DataBind();
 
 
-            List<cEspecialidad> especialidades = new List<cEspecialidad>();
-            especialidades = dFachada.EspecialidadTraerTodas();
-            for (int i = 0; i < especialidades.Count; i++)
+            List<cEspecialidad> lstEspecialidades = new List<cEspecialidad>();
+            lstEspecialidades = dFachada.EspecialidadTraerTodas();
+            for (int i = 0; i < lstEspecialidades.Count; i++)
             {
-                if (especialidades[i].Nombre == "Sin especialidad")
+                if (lstEspecialidades[i].Nombre == "Sin especialidad")
                 {
-                    especialidades.RemoveAt(i);
+                    lstEspecialidades.RemoveAt(i);
                 }
             }
-            ddlEspecialidad.DataSource = especialidades;
+            ddlEspecialidad.DataSource = lstEspecialidades;
             ddlEspecialidad.DataTextField = "Nombre";
             ddlEspecialidad.DataValueField = "Codigo";
             ddlEspecialidad.DataBind();
@@ -120,22 +117,22 @@ namespace Ejemplo.Web
 
         protected void CargarGrillas()
         {
-            cEspecialidad especialidad = new cEspecialidad();
-            especialidad.Codigo = int.Parse(ddlEspecialidad.SelectedValue);
+            cEspecialidad unaEspecialidad = new cEspecialidad();
+            unaEspecialidad.Codigo = int.Parse(ddlEspecialidad.SelectedValue);
             List<cUsuario> lstMostrar = new List<cUsuario>();
 
-            for (int i = 0; i < lstTodosEspecialistas.Count; i++)
+            for (int i = 0; i < LosTodosEspecialistas.Count; i++)
             {
-                if (lstTodosEspecialistas[i].Especialidad.Codigo == especialidad.Codigo)
+                if (LosTodosEspecialistas[i].Especialidad.Codigo == unaEspecialidad.Codigo)
                 {
-                    lstMostrar.Add(lstTodosEspecialistas[i]);
+                    lstMostrar.Add(LosTodosEspecialistas[i]);
                 }
             }
             this.grdTodosEspecialistas.DataSource = lstMostrar;
             this.grdTodosEspecialistas.DataBind();
 
 
-            this.grdEspecialistasAgregados.DataSource = lstEspecialistasAgregados;
+            this.grdEspecialistasAgregados.DataSource = LosEspecialistasAgregados;
             this.grdEspecialistasAgregados.DataBind();
 
         }
@@ -155,15 +152,15 @@ namespace Ejemplo.Web
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cEspecialidad especialidad = new cEspecialidad();
-            especialidad.Codigo = int.Parse(ddlEspecialidad.SelectedValue);
+            cEspecialidad unaEspecialidad = new cEspecialidad();
+            unaEspecialidad.Codigo = int.Parse(ddlEspecialidad.SelectedValue);
             List<cUsuario> lstMostrar = new List<cUsuario>();
 
-            for (int i = 0; i < lstTodosEspecialistas.Count; i++)
+            for (int i = 0; i < LosTodosEspecialistas.Count; i++)
             {
-                if (lstTodosEspecialistas[i].Especialidad.Codigo == especialidad.Codigo)
+                if (LosTodosEspecialistas[i].Especialidad.Codigo == unaEspecialidad.Codigo)
                 {
-                    lstMostrar.Add(lstTodosEspecialistas[i]);
+                    lstMostrar.Add(LosTodosEspecialistas[i]);
                 }
             }
             this.grdTodosEspecialistas.DataSource = lstMostrar;
@@ -177,13 +174,13 @@ namespace Ejemplo.Web
         protected void grdTodosEspecialistas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaNickName = grdTodosEspecialistas.Rows[e.NewSelectedIndex].Cells[2];
-            string NickName = string.Format(celdaNickName.Text);
-            for (int i = 0; i < lstTodosEspecialistas.Count; i++)
+            string sNickName = string.Format(celdaNickName.Text);
+            for (int i = 0; i < LosTodosEspecialistas.Count; i++)
             {
-                if (lstTodosEspecialistas[i].NickName == NickName)
+                if (LosTodosEspecialistas[i].NickName == sNickName)
                 {
-                    lstEspecialistasAgregados.Add(lstTodosEspecialistas[i]);
-                    lstTodosEspecialistas.RemoveAt(i);
+                    LosEspecialistasAgregados.Add(LosTodosEspecialistas[i]);
+                    LosTodosEspecialistas.RemoveAt(i);
                 }
             }
             CargarGrillas();
@@ -192,13 +189,13 @@ namespace Ejemplo.Web
         protected void grdEspecialistasAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             TableCell celdaNickName = grdEspecialistasAgregados.Rows[e.RowIndex].Cells[2];
-            string NickName = string.Format(celdaNickName.Text);
-            for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
+            string sNickName = string.Format(celdaNickName.Text);
+            for (int i = 0; i < LosEspecialistasAgregados.Count; i++)
             {
-                if (lstEspecialistasAgregados[i].NickName == NickName)
+                if (LosEspecialistasAgregados[i].NickName == sNickName)
                 {
-                    lstTodosEspecialistas.Add(lstEspecialistasAgregados[i]);
-                    lstEspecialistasAgregados.RemoveAt(i);
+                    LosTodosEspecialistas.Add(LosEspecialistasAgregados[i]);
+                    LosEspecialistasAgregados.RemoveAt(i);
                 }
             }
             CargarGrillas();
@@ -219,31 +216,31 @@ namespace Ejemplo.Web
 
         protected void btnRealizarInforme_Click(object sender, EventArgs e)
         {
-            cInforme informe = new cInforme();
+            cInforme unInforme = new cInforme();
             if (ddlTipo.SelectedValue == "Evaluacion Psicomotriz")
-                informe.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicomotriz;
+                unInforme.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicomotriz;
             else if (ddlTipo.SelectedValue == "Evaluacion Psicopedagogica")
-                informe.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicopedagogica;
+                unInforme.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicopedagogica;
             else if (ddlTipo.SelectedValue == "Evaluacion Psicologica")
-                informe.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicologica;
+                unInforme.Tipo = cUtilidades.TipoInforme.Evaluacion_Psicologica;
             else if (ddlTipo.SelectedValue == "Evaluacion Fonoaudiologa")
-                informe.Tipo = cUtilidades.TipoInforme.Evaluacion_Fonoaudiologa;
+                unInforme.Tipo = cUtilidades.TipoInforme.Evaluacion_Fonoaudiologa;
             else if (ddlTipo.SelectedValue == "Evolucion")
-                informe.Tipo = cUtilidades.TipoInforme.Evolucion;
+                unInforme.Tipo = cUtilidades.TipoInforme.Evolucion;
             else if (ddlTipo.SelectedValue == "Tolerancia Curricular")
-                informe.Tipo = cUtilidades.TipoInforme.Tolerancia_Curricular;
+                unInforme.Tipo = cUtilidades.TipoInforme.Tolerancia_Curricular;
             else if (ddlTipo.SelectedValue == "Juzgado")
-                informe.Tipo = cUtilidades.TipoInforme.Juzgado;
+                unInforme.Tipo = cUtilidades.TipoInforme.Juzgado;
             else if (ddlTipo.SelectedValue == "Interdiciplinario")
-                informe.Tipo = cUtilidades.TipoInforme.Interdiciplinario;
+                unInforme.Tipo = cUtilidades.TipoInforme.Interdiciplinario;
             else if (ddlTipo.SelectedValue == "Otro")
-                informe.Tipo = cUtilidades.TipoInforme.Otro;
+                unInforme.Tipo = cUtilidades.TipoInforme.Otro;
 
-            informe.Beneficiario = new cBeneficiario();
-            informe.Beneficiario = beneficiario;
+            unInforme.Beneficiario = new cBeneficiario();
+            unInforme.Beneficiario = ElBeneficiario;
 
-            informe.lstSecciones = new List<cSeccion>();
-            if (lstEspecialistasAgregados.Count == 0)
+            unInforme.lstSecciones = new List<cSeccion>();
+            if (LosEspecialistasAgregados.Count == 0)
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: El informe debe contar con al menos un especialista que realice el mismo')", true);
             }
@@ -251,167 +248,167 @@ namespace Ejemplo.Web
             {
 
                 #region Titulo
-                cSeccion seccion = new cSeccion();
-                seccion.Nombre = cUtilidades.NombreSeccion.Título;
-                seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
+                cSeccion unaSeccion = new cSeccion();
+                unaSeccion.Nombre = cUtilidades.NombreSeccion.Título;
+                unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                for (int i = 0; i < LosEspecialistasAgregados.Count; i++)
                 {
-                    cUsuarioSeccion us = new cUsuarioSeccion();
-                    us.Usuario = new cUsuario();
-                    us.Usuario = lstEspecialistasAgregados[i];
-                    us.Estado = 0;
-                    seccion.lstUsuariosSeccion.Add(us);
+                    cUsuarioSeccion unUS = new cUsuarioSeccion();
+                    unUS.Usuario = new cUsuario();
+                    unUS.Usuario = LosEspecialistasAgregados[i];
+                    unUS.Estado = 0;
+                    unaSeccion.lstUsuariosSeccion.Add(unUS);
                 }
-                informe.lstSecciones.Add(seccion);
+                unInforme.lstSecciones.Add(unaSeccion);
                 #endregion
 
 
                 #region Encuadre
-                seccion = new cSeccion();
-                seccion.Nombre = cUtilidades.NombreSeccion.Encuadre;
+                unaSeccion = new cSeccion();
+                unaSeccion.Nombre = cUtilidades.NombreSeccion.Encuadre;
                 //  seccion.Contenido = dFachada.ItinerarioTraerEncuadrePorBeneficiario(beneficiario); 
-                seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
                 //CUANDO SE TENGA EL ITINERARIO EL CONTENIDO DE ESTA SECCION SE REALIZARÁ AQUI
-                for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
+                for (int i = 0; i < LosEspecialistasAgregados.Count; i++)
                 {
-                    cUsuarioSeccion us = new cUsuarioSeccion();
-                    us.Usuario = new cUsuario();
-                    us.Usuario = lstEspecialistasAgregados[i];
-                    us.Estado = cUtilidades.EstadoInforme.Terminado;
-                    seccion.lstUsuariosSeccion.Add(us);
+                    cUsuarioSeccion unUS = new cUsuarioSeccion();
+                    unUS.Usuario = new cUsuario();
+                    unUS.Usuario = LosEspecialistasAgregados[i];
+                    unUS.Estado = cUtilidades.EstadoInforme.Terminado;
+                    unaSeccion.lstUsuariosSeccion.Add(unUS);
                 }
-                informe.lstSecciones.Add(seccion);
+                unInforme.lstSecciones.Add(unaSeccion);
                 #endregion
                 #region Diagnostico
-                seccion = new cSeccion();
-                seccion.Nombre = cUtilidades.NombreSeccion.Diagnóstico;
-                seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
+                unaSeccion = new cSeccion();
+                unaSeccion.Nombre = cUtilidades.NombreSeccion.Diagnóstico;
+                unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                for (int i = 0; i < LosEspecialistasAgregados.Count; i++)
                 {
-                    cUsuarioSeccion us = new cUsuarioSeccion();
-                    us.Usuario = new cUsuario();
-                    us.Usuario = lstEspecialistasAgregados[i];
-                    us.Estado = 0;
-                    seccion.lstUsuariosSeccion.Add(us);
+                    cUsuarioSeccion unUS = new cUsuarioSeccion();
+                    unUS.Usuario = new cUsuario();
+                    unUS.Usuario = LosEspecialistasAgregados[i];
+                    unUS.Estado = 0;
+                    unaSeccion.lstUsuariosSeccion.Add(unUS);
                 }
-                informe.lstSecciones.Add(seccion);
+                unInforme.lstSecciones.Add(unaSeccion);
                 #endregion
                 #region Presentacion
-                seccion = new cSeccion();
-                seccion.Nombre = cUtilidades.NombreSeccion.Presentación;
-                seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
+                unaSeccion = new cSeccion();
+                unaSeccion.Nombre = cUtilidades.NombreSeccion.Presentación;
+                unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                for (int i = 0; i < LosEspecialistasAgregados.Count; i++)
                 {
-                    cUsuarioSeccion us = new cUsuarioSeccion();
-                    us.Usuario = new cUsuario();
-                    us.Usuario = lstEspecialistasAgregados[i];
-                    us.Estado = 0;
-                    seccion.lstUsuariosSeccion.Add(us);
+                    cUsuarioSeccion unUS = new cUsuarioSeccion();
+                    unUS.Usuario = new cUsuario();
+                    unUS.Usuario = LosEspecialistasAgregados[i];
+                    unUS.Estado = 0;
+                    unaSeccion.lstUsuariosSeccion.Add(unUS);
                 }
-                informe.lstSecciones.Add(seccion);
+                unInforme.lstSecciones.Add(unaSeccion);
                 #endregion
                 #region Abordajes
-                for (int a = 0; a < lstEspecialistasAgregados.Count; a++)
+                for (int a = 0; a < LosEspecialistasAgregados.Count; a++)
                 {
-                    if (lstEspecialistasAgregados[a].Especialidad.Nombre == "Psicologia")
+                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Psicologia")
                     {
-                        seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicológico;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        cUsuarioSeccion us = new cUsuarioSeccion();
-                        us.Usuario = new cUsuario();
-                        us.Usuario = lstEspecialistasAgregados[a];
-                        us.Estado = 0;
-                        seccion.lstUsuariosSeccion.Add(us);
-                        informe.lstSecciones.Add(seccion);
+                        unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicológico;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        cUsuarioSeccion unUS = new cUsuarioSeccion();
+                        unUS.Usuario = new cUsuario();
+                        unUS.Usuario = LosEspecialistasAgregados[a];
+                        unUS.Estado = 0;
+                        unaSeccion.lstUsuariosSeccion.Add(unUS);
+                        unInforme.lstSecciones.Add(unaSeccion);
                     }
-                    if (lstEspecialistasAgregados[a].Especialidad.Nombre == "Pedadogia")
+                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Pedadogia")
                     {
-                        seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Pedagógico;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        cUsuarioSeccion us = new cUsuarioSeccion();
-                        us.Usuario = new cUsuario();
-                        us.Usuario = lstEspecialistasAgregados[a];
-                        us.Estado = 0;
-                        seccion.lstUsuariosSeccion.Add(us);
-                        informe.lstSecciones.Add(seccion);
+                        unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Pedagógico;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        cUsuarioSeccion unUS = new cUsuarioSeccion();
+                        unUS.Usuario = new cUsuario();
+                        unUS.Usuario = LosEspecialistasAgregados[a];
+                        unUS.Estado = 0;
+                        unaSeccion.lstUsuariosSeccion.Add(unUS);
+                        unInforme.lstSecciones.Add(unaSeccion);
                     }
-                    if (lstEspecialistasAgregados[a].Especialidad.Nombre == "Fisioterapia")
+                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Fisioterapia")
                     {
-                        seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        cUsuarioSeccion us = new cUsuarioSeccion();
-                        us.Usuario = new cUsuario();
-                        us.Usuario = lstEspecialistasAgregados[a];
-                        us.Estado = 0;
-                        seccion.lstUsuariosSeccion.Add(us);
-                        informe.lstSecciones.Add(seccion);
+                        unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        cUsuarioSeccion unUS = new cUsuarioSeccion();
+                        unUS.Usuario = new cUsuario();
+                        unUS.Usuario = LosEspecialistasAgregados[a];
+                        unUS.Estado = 0;
+                        unaSeccion.lstUsuariosSeccion.Add(unUS);
+                        unInforme.lstSecciones.Add(unaSeccion);
                     }
-                    if (lstEspecialistasAgregados[a].Especialidad.Nombre == "Fonoaudiologia")
+                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Fonoaudiologia")
                     {
-                        seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        cUsuarioSeccion us = new cUsuarioSeccion();
-                        us.Usuario = new cUsuario();
-                        us.Usuario = lstEspecialistasAgregados[a];
-                        us.Estado = 0;
-                        seccion.lstUsuariosSeccion.Add(us);
-                        informe.lstSecciones.Add(seccion);
+                        unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        cUsuarioSeccion unUS = new cUsuarioSeccion();
+                        unUS.Usuario = new cUsuario();
+                        unUS.Usuario = LosEspecialistasAgregados[a];
+                        unUS.Estado = 0;
+                        unaSeccion.lstUsuariosSeccion.Add(unUS);
+                        unInforme.lstSecciones.Add(unaSeccion);
                     }
-                    if (lstEspecialistasAgregados[a].Especialidad.Nombre == "Psicomotricidad")
+                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Psicomotricidad")
                     {
-                        seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicomotriz;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        cUsuarioSeccion us = new cUsuarioSeccion();
-                        us.Usuario = new cUsuario();
-                        us.Usuario = lstEspecialistasAgregados[a];
-                        us.Estado = 0;
-                        seccion.lstUsuariosSeccion.Add(us);
-                        informe.lstSecciones.Add(seccion);
+                        unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicomotriz;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        cUsuarioSeccion unUS = new cUsuarioSeccion();
+                        unUS.Usuario = new cUsuario();
+                        unUS.Usuario = LosEspecialistasAgregados[a];
+                        unUS.Estado = 0;
+                        unaSeccion.lstUsuariosSeccion.Add(unUS);
+                        unInforme.lstSecciones.Add(unaSeccion);
                     }
                 }
                 #endregion
                 #region En Suma
 
-                seccion = new cSeccion();
-                seccion.Nombre = cUtilidades.NombreSeccion.En_Suma;
-                seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                for (int i = 0; i < lstEspecialistasAgregados.Count; i++)
+                unaSeccion = new cSeccion();
+                unaSeccion.Nombre = cUtilidades.NombreSeccion.En_Suma;
+                unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                for (int i = 0; i < LosEspecialistasAgregados.Count; i++)
                 {
-                    cUsuarioSeccion us = new cUsuarioSeccion();
-                    us.Usuario = new cUsuario();
-                    us.Usuario = lstEspecialistasAgregados[i];
-                    us.Estado = 0;
-                    seccion.lstUsuariosSeccion.Add(us);
+                    cUsuarioSeccion unUS = new cUsuarioSeccion();
+                    unUS.Usuario = new cUsuario();
+                    unUS.Usuario = LosEspecialistasAgregados[i];
+                    unUS.Estado = 0;
+                    unaSeccion.lstUsuariosSeccion.Add(unUS);
                 }
-                informe.lstSecciones.Add(seccion);
+                unInforme.lstSecciones.Add(unaSeccion);
 
                 #endregion
 
                 try
                 {
-                    bool resultado = dFachada.InformeAgregar(informe);
-                    if (resultado)
+                    bool bResultado = dFachada.InformeAgregar(unInforme);
+                    if (bResultado)
                     {
-                        int IdUltimoInforme = dFachada.InformeUltimoIngresado();
-                        cNotificacion notificacion;
-                        for (int i = 0; i < informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                        int iIdUltimoInforme = dFachada.InformeUltimoIngresado();
+                        cNotificacion unNotificacion;
+                        for (int i = 0; i < unInforme.lstSecciones[0].lstUsuariosSeccion.Count; i++)
                         {
-                            notificacion = new cNotificacion();
-                            notificacion.Usuario = new cUsuario();
-                            notificacion.Usuario = informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
-                            notificacion.Informe = new cInforme();
-                            notificacion.Informe.Codigo = IdUltimoInforme;
-                            bool res = dFachada.NotificacionAgregarDeEspecialista(notificacion);
+                            unNotificacion = new cNotificacion();
+                            unNotificacion.Usuario = new cUsuario();
+                            unNotificacion.Usuario = unInforme.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
+                            unNotificacion.Informe = new cInforme();
+                            unNotificacion.Informe.Codigo = iIdUltimoInforme;
+                            bool bRes = dFachada.NotificacionAgregarDeEspecialista(unNotificacion);
                         }
 
 
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se realizó el nuevo informe correctamente')", true);
-                        Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + beneficiario.Codigo);
+                        Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + ElBeneficiario.Codigo);
                     }
                     else
                     {

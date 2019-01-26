@@ -276,7 +276,7 @@ namespace Ejemplo.Web
 
             #region RECORRIDA POR LAS ASISTENCIAS
 
-            List<cBeneficiarioSesion> reprogramadas = new List<cBeneficiarioSesion>();
+            List<cBeneficiarioSesion> lstReprogramadas = new List<cBeneficiarioSesion>();
             if (LaSesion.lstBeneficiarios.Count >= 1)
             {
                 switch (rblBeneficiario1.SelectedValue)
@@ -289,7 +289,7 @@ namespace Ejemplo.Web
                         break;
                     case "Reprogramada":
                         LaSesion.lstBeneficiarios[0].Estado = cUtilidades.EstadoSesion.Reprogramada;
-                        reprogramadas.Add(LaSesion.lstBeneficiarios[0]);
+                        lstReprogramadas.Add(LaSesion.lstBeneficiarios[0]);
                         break;
                     default:
                         LaSesion.lstBeneficiarios[0].Estado = cUtilidades.EstadoSesion.SinEstado;
@@ -308,7 +308,7 @@ namespace Ejemplo.Web
                         break;
                     case "Reprogramada":
                         LaSesion.lstBeneficiarios[1].Estado = cUtilidades.EstadoSesion.Reprogramada;
-                        reprogramadas.Add(LaSesion.lstBeneficiarios[1]);
+                        lstReprogramadas.Add(LaSesion.lstBeneficiarios[1]);
                         break;
                     default:
                         LaSesion.lstBeneficiarios[1].Estado = cUtilidades.EstadoSesion.SinEstado;
@@ -327,7 +327,7 @@ namespace Ejemplo.Web
                         break;
                     case "Reprogramada":
                         LaSesion.lstBeneficiarios[2].Estado = cUtilidades.EstadoSesion.Reprogramada;
-                        reprogramadas.Add(LaSesion.lstBeneficiarios[2]);
+                        lstReprogramadas.Add(LaSesion.lstBeneficiarios[2]);
                         break;
                     default:
                         LaSesion.lstBeneficiarios[2].Estado = cUtilidades.EstadoSesion.SinEstado;
@@ -346,7 +346,7 @@ namespace Ejemplo.Web
                         break;
                     case "Reprogramada":
                         LaSesion.lstBeneficiarios[3].Estado = cUtilidades.EstadoSesion.Reprogramada;
-                        reprogramadas.Add(LaSesion.lstBeneficiarios[3]);
+                        lstReprogramadas.Add(LaSesion.lstBeneficiarios[3]);
                         break;
                     default:
                         LaSesion.lstBeneficiarios[3].Estado = cUtilidades.EstadoSesion.SinEstado;
@@ -365,7 +365,7 @@ namespace Ejemplo.Web
                         break;
                     case "Reprogramada":
                         LaSesion.lstBeneficiarios[4].Estado = cUtilidades.EstadoSesion.Reprogramada;
-                        reprogramadas.Add(LaSesion.lstBeneficiarios[4]);
+                        lstReprogramadas.Add(LaSesion.lstBeneficiarios[4]);
                         break;
                     default:
                         LaSesion.lstBeneficiarios[4].Estado = cUtilidades.EstadoSesion.SinEstado;
@@ -384,7 +384,7 @@ namespace Ejemplo.Web
                         break;
                     case "Reprogramada":
                         LaSesion.lstBeneficiarios[5].Estado = cUtilidades.EstadoSesion.Reprogramada;
-                        reprogramadas.Add(LaSesion.lstBeneficiarios[5]);
+                        lstReprogramadas.Add(LaSesion.lstBeneficiarios[5]);
                         break;
                     default:
                         LaSesion.lstBeneficiarios[5].Estado = cUtilidades.EstadoSesion.SinEstado;
@@ -403,7 +403,7 @@ namespace Ejemplo.Web
                         break;
                     case "Reprogramada":
                         LaSesion.lstBeneficiarios[6].Estado = cUtilidades.EstadoSesion.Reprogramada;
-                        reprogramadas.Add(LaSesion.lstBeneficiarios[6]);
+                        lstReprogramadas.Add(LaSesion.lstBeneficiarios[6]);
                         break;
                     default:
                         LaSesion.lstBeneficiarios[6].Estado = cUtilidades.EstadoSesion.SinEstado;
@@ -422,7 +422,7 @@ namespace Ejemplo.Web
                         break;
                     case "Reprogramada":
                         LaSesion.lstBeneficiarios[7].Estado = cUtilidades.EstadoSesion.Reprogramada;
-                        reprogramadas.Add(LaSesion.lstBeneficiarios[7]);
+                        lstReprogramadas.Add(LaSesion.lstBeneficiarios[7]);
                         break;
                     default:
                         LaSesion.lstBeneficiarios[7].Estado = cUtilidades.EstadoSesion.SinEstado;
@@ -435,24 +435,24 @@ namespace Ejemplo.Web
             LaSesion.Comentario = txtComentario.Text;
             if (dFachada.SesionMarcarAsitencias(LaSesion))
             {
-                if (reprogramadas.Count > 0)
+                if (lstReprogramadas.Count > 0)
                 {
-                    string variables = "?CantidadBeneficiarios=" + reprogramadas.Count + "&CantidadEspecialistas=" + LaSesion.lstUsuarios.Count;
-                    for (int i = 0; i < reprogramadas.Count; i++)
+                    string sVariables = "?CantidadBeneficiarios=" + lstReprogramadas.Count + "&CantidadEspecialistas=" + LaSesion.lstUsuarios.Count;
+                    for (int i = 0; i < lstReprogramadas.Count; i++)
                     {
-                        variables += "&Beneficiario" + (i + 1).ToString() + "=" + reprogramadas[i].Beneficiario.Codigo;
+                        sVariables += "&Beneficiario" + (i + 1).ToString() + "=" + lstReprogramadas[i].Beneficiario.Codigo;
                     }
                     for (int i = 0; i < LaSesion.lstUsuarios.Count; i++)
                     {
-                        variables += "&Usuario" + (i + 1).ToString() + "=" + LaSesion.lstUsuarios[i].Codigo;
+                        sVariables += "&Usuario" + (i + 1).ToString() + "=" + LaSesion.lstUsuarios[i].Codigo;
                     }
-                    Response.Redirect("vSesionReprogramar.aspx" + variables);
+                    Response.Redirect("vSesionReprogramar.aspx" + sVariables);
                 }
                 else
                 {
                     ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se han confirmado las asistencias correctamente')", true);
-                    string script = "window.opener.location.reload(); window.close();";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
+                    string sScript = "window.opener.location.reload(); window.close();";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", sScript, true);
                 }
             }
 
@@ -460,8 +460,8 @@ namespace Ejemplo.Web
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            string script = "window.close();";
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
+            string sScript = "window.close();";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", sScript, true);
         }
     }
 }

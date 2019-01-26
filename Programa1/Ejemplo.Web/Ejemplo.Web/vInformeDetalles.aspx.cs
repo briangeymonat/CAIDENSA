@@ -14,22 +14,22 @@ namespace Ejemplo.Web
 {
     public partial class vInformeDetalles : System.Web.UI.Page
     {
-        static cInforme Informe;
+        static cInforme ElInforme;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                Informe = new cInforme();
-                Informe.Codigo = int.Parse(Request.QueryString["InformeId"]);
-                Informe = dFachada.InformeTraerEspecifico(Informe);
-                Informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(Informe.Beneficiario);
-                Informe.lstSecciones = dFachada.SeccionTraerTodasPorInforme(Informe);
-                for (int i = 0; i < Informe.lstSecciones.Count; i++)
+                ElInforme = new cInforme();
+                ElInforme.Codigo = int.Parse(Request.QueryString["InformeId"]);
+                ElInforme = dFachada.InformeTraerEspecifico(ElInforme);
+                ElInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(ElInforme.Beneficiario);
+                ElInforme.lstSecciones = dFachada.SeccionTraerTodasPorInforme(ElInforme);
+                for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
                 {
-                    Informe.lstSecciones[i].lstUsuariosSeccion = dFachada.UsuarioSeccionTraerTodosPorSeccion(Informe.lstSecciones[i]);
-                    for (int j = 0; j < Informe.lstSecciones[i].lstUsuariosSeccion.Count; j++)
+                    ElInforme.lstSecciones[i].lstUsuariosSeccion = dFachada.UsuarioSeccionTraerTodosPorSeccion(ElInforme.lstSecciones[i]);
+                    for (int j = 0; j < ElInforme.lstSecciones[i].lstUsuariosSeccion.Count; j++)
                     {
-                        Informe.lstSecciones[i].lstUsuariosSeccion[j].Usuario = dFachada.UsuarioTraerEspecifico(Informe.lstSecciones[i].lstUsuariosSeccion[j].Usuario);
+                        ElInforme.lstSecciones[i].lstUsuariosSeccion[j].Usuario = dFachada.UsuarioTraerEspecifico(ElInforme.lstSecciones[i].lstUsuariosSeccion[j].Usuario);
                     }
                 }
                 CargarDatos();
@@ -40,118 +40,119 @@ namespace Ejemplo.Web
         private void CargarDatos()
         {
             OcultarSecciones(false);
-            for (int i = 0; i < Informe.lstSecciones.Count; i++)
+            for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
             {
                 //TITULO
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Título)
-                    lblTitulo.Text = Informe.lstSecciones[i].Contenido.ToString();
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Título)
+                    lblTitulo.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 //ENCUADRE
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Encuadre)
-                    lblEncuadre.Text = Informe.lstSecciones[i].Contenido.ToString();
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Encuadre)
+                    lblEncuadre.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 //PRESENTACION
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Presentación)
-                    lblPresentacion.Text = Informe.lstSecciones[i].Contenido.ToString();
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Presentación)
+                    lblPresentacion.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 //EN SUMA
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
-                    lblEnSuma.Text = Informe.lstSecciones[i].Contenido.ToString();
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
+                    lblEnSuma.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 //ANTECEDENTES PATOLOGICOS
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Antecedentes_patológicos)
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Antecedentes_patológicos)
                 {
                     lblSubtituloAntecedentesPatologicos.Visible = true;
                     lblAntecedentesPatologicos.Visible = true;
-                    lblAntecedentesPatologicos.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    lblAntecedentesPatologicos.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
                 //DESARROLLO
-                else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Desarrollo)
+                else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Desarrollo)
                 {
                     lblSubtituloDesarrollo.Visible = true;
                     lblDesarrollo.Visible = true;
-                    lblDesarrollo.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    lblDesarrollo.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
                 //ABORDAJE PSICOMOTRIZ
-                else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicomotriz)
+                else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicomotriz)
                 {
                     lblSubtituloAbPsicomotriz.Visible = true;
                     lblAbordajePsicomotriz.Visible = true;
-                    lblAbordajePsicomotriz.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    lblAbordajePsicomotriz.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
                 //ABORDAJE PEDAGOGICO
-                else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico)
+                else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico)
                 {
                     lblSubtituloAbPedagogico.Visible = true;
                     lblAbordajePedagogico.Visible = true;
-                    lblAbordajePedagogico.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    lblAbordajePedagogico.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
                 //ABORDAJE PSICOLOGICO
-                else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico)
+                else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico)
                 {
                     lblSubtituloAbPsicologico.Visible = true;
                     lblAbordajePsicologico.Visible = true;
-                    lblAbordajePsicologico.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    lblAbordajePsicologico.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }//ABORDAJE FONOAUDIOLOGICO
-                else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico)
+                else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico)
                 {
                     lblSubtituloAbFonoaudiologico.Visible = true;
                     lblAbordajeFonoaudiologico.Visible = true;
-                    lblAbordajeFonoaudiologico.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    lblAbordajeFonoaudiologico.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }//ABORDAJE FISIOTERAPEUTICO
-                else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico)
+                else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico)
                 {
                     lblSubtituloAbFisioterapeutico.Visible = true;
                     lblAbordajeFisioterapeutico.Visible = true;
-                    lblAbordajeFisioterapeutico.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    lblAbordajeFisioterapeutico.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }//SUGERENCIA
-                else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Sugerencias)
+                else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Sugerencias)
                 {
                     lblSubtituloSugerencia.Visible = true;
                     lblSugerencias.Visible = true;
-                    lblSugerencias.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    lblSugerencias.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
             }
-            lblTipo.Text = Informe.Tipo.ToString();
-            lblNombreApellido.Text = Informe.Beneficiario.Nombres + " " + Informe.Beneficiario.Apellidos;
-            lblCI.Text = Informe.Beneficiario.CI.ToString();
-            lblFechaNacimiento.Text = Informe.Beneficiario.FechaNacimiento.ToString();
+            lblTipo.Text = ElInforme.Tipo.ToString();
+            lblNombreApellido.Text = ElInforme.Beneficiario.Nombres + " " + ElInforme.Beneficiario.Apellidos;
+            lblCI.Text = ElInforme.Beneficiario.CI.ToString();
+            lblFechaNacimiento.Text = ElInforme.Beneficiario.FechaNacimiento.ToString();
 
             #region Hallar la edad cronologica
-            string[] partes = Informe.Beneficiario.FechaNacimiento.ToString().Split('/');
-            int año = int.Parse(partes[2]);
-            int mes = int.Parse(partes[1]);
-            int dia = int.Parse(partes[0]);
-            int añoActual = DateTime.Now.Year;
-            int mesActual = DateTime.Now.Month;
-            int diaActual = DateTime.Now.Day;
 
-            int edadAños = añoActual - año;
-            int edadMeses;
-            int edadDias;
-            if (mesActual >= mes)
+            string[] aPartes = ElInforme.Beneficiario.FechaNacimiento.ToString().Split('/');
+            int iAño = int.Parse(aPartes[2]);
+            int iMes = int.Parse(aPartes[1]);
+            int iDia = int.Parse(aPartes[0]);
+            int iAñoActual = DateTime.Now.Year;
+            int iMesActual = DateTime.Now.Month;
+            int iDiaActual = DateTime.Now.Day;
+
+            int iEdadAños = iAñoActual - iAño;
+            int iEdadMeses;
+            int iEdadDias;
+            if (iMesActual >= iMes)
             {
-                edadMeses = mesActual - mes;
+                iEdadMeses = iMesActual - iMes;
             }
             else
             {
-                mesActual += 12;
-                edadMeses = mesActual - mes;
-                edadAños -= 1;
+                iMesActual += 12;
+                iEdadMeses = iMesActual - iMes;
+                iEdadAños -= 1;
             }
-            if (diaActual >= dia)
+            if (iDiaActual >= iDia)
             {
-                edadDias = diaActual - dia;
+                iEdadDias = iDiaActual - iDia;
             }
             else
             {
-                diaActual += 30;
-                edadMeses -= 1;
-                edadDias = diaActual - dia;
+                iDiaActual += 30;
+                iEdadMeses -= 1;
+                iEdadDias = iDiaActual - iDia;
             }
             #endregion
 
-            lblEdadCronologica.Text = edadAños + " años y " + edadMeses + " meses";
-            lblMotivoConsulta.Text = Informe.Beneficiario.MotivoConsulta.ToString();
-            lblEscolaridad.Text = Informe.Beneficiario.Escolaridad.ToString();
-            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(Informe.Beneficiario);
-            lblFecha.Text = dFachada.BeneficiarioCentroPreferencia(Informe.Beneficiario)+", "+DateTime.Parse(Informe.Fecha).ToString("dd 'de' MMMM 'de' yyyy");
+            lblEdadCronologica.Text = iEdadAños + " años y " + iEdadMeses + " meses";
+            lblMotivoConsulta.Text = ElInforme.Beneficiario.MotivoConsulta.ToString();
+            lblEscolaridad.Text = ElInforme.Beneficiario.Escolaridad.ToString();
+            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(ElInforme.Beneficiario);
+            lblFecha.Text = dFachada.BeneficiarioCentroPreferencia(ElInforme.Beneficiario)+", "+DateTime.Parse(ElInforme.Fecha).ToString("dd 'de' MMMM 'de' yyyy");
         }
 
         private void OcultarSecciones(bool parVisible)
@@ -184,8 +185,8 @@ namespace Ejemplo.Web
         protected void btnExportarPDF_Click(object sender, EventArgs e)
         {
             //Response.Redirect("vReportePDF.aspx?InformeId=" +Informe.Codigo);
-            string open = "window.open('vReportePDF.aspx?InformeId=" + Informe.Codigo+"', '_newtab');";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), open, true);
+            string sOpen = "window.open('vReportePDF.aspx?InformeId=" + ElInforme.Codigo+"', '_newtab');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), sOpen, true);
 
 
 

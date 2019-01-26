@@ -24,14 +24,14 @@ namespace Ejemplo.Web
         {
             if (!FaltanDatosObligatorios())
             {
-                cUsuario usuario = new cUsuario();
-                usuario.Codigo = -1;//Para que cuando verifique tenga un codigo diferente a todos los que estan ingresados en bd
-                usuario.NickName = this.txtNickName.Text;
-                usuario.Nombres = this.txtNombres.Text;
-                usuario.Apellidos = this.txtApellidos.Text;
-                usuario.CI = int.Parse(this.txtCi.Text);
+                cUsuario unUsuario = new cUsuario();
+                unUsuario.Codigo = -1;//Para que cuando verifique tenga un codigo diferente a todos los que estan ingresados en bd
+                unUsuario.NickName = this.txtNickName.Text;
+                unUsuario.Nombres = this.txtNombres.Text;
+                unUsuario.Apellidos = this.txtApellidos.Text;
+                unUsuario.CI = int.Parse(this.txtCi.Text);
 
-                int i = dFachada.UsuarioVerificarNickNameYCi(usuario);
+                int i = dFachada.UsuarioVerificarNickNameYCi(unUsuario);
                 if (i > 0)
                 {
                     ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: El NickName o Cédula de identidad ya existe')", true);
@@ -40,44 +40,44 @@ namespace Ejemplo.Web
                 {
                     if (this.ddlTipoUsuario.SelectedValue == "Administrativo")
                     {
-                        usuario.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
+                        unUsuario.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
                     }
                     if (this.ddlTipoUsuario.SelectedValue == "Administrador")
                     {
-                        usuario.Tipo = cUtilidades.TipoDeUsuario.Administrador;
+                        unUsuario.Tipo = cUtilidades.TipoDeUsuario.Administrador;
                     }
                     if (this.ddlTipoUsuario.SelectedValue == "Usuario")
                     {
-                        usuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
+                        unUsuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                     }
-                    usuario.Domicilio = this.txtDomicilio.Text;
+                    unUsuario.Domicilio = this.txtDomicilio.Text;
                     if (this.txtFechaNac.Text.ToString() != string.Empty)
                     {
-                        usuario.FechaNacimiento = this.txtFechaNac.Text;
+                        unUsuario.FechaNacimiento = this.txtFechaNac.Text;
                     }
-                    usuario.Telefono = this.txtTelefono.Text;
-                    usuario.Email = this.txtEmail.Text;
-                    usuario.Estado = true;
-                    string seleccionado = rbTipoDeEmpleado.SelectedValue;
+                    unUsuario.Telefono = this.txtTelefono.Text;
+                    unUsuario.Email = this.txtEmail.Text;
+                    unUsuario.Estado = true;
+                    string sSeleccionado = rbTipoDeEmpleado.SelectedValue;
 
-                    if (seleccionado == "Socio")
+                    if (sSeleccionado == "Socio")
                     {
-                        usuario.TipoContrato = "S";
+                        unUsuario.TipoContrato = "S";
                     }
-                    if (seleccionado == "Empleado")
+                    if (sSeleccionado == "Empleado")
                     {
-                        usuario.TipoContrato = "E";
+                        unUsuario.TipoContrato = "E";
                     }
-                    if (seleccionado == "Contratado")
+                    if (sSeleccionado == "Contratado")
                     {
-                        usuario.TipoContrato = "C";
+                        unUsuario.TipoContrato = "C";
                     }
 
-                    usuario.Especialidad = new cEspecialidad();
-                    usuario.Especialidad.Codigo = int.Parse(this.ddlEspecialidad.SelectedValue);
+                    unUsuario.Especialidad = new cEspecialidad();
+                    unUsuario.Especialidad.Codigo = int.Parse(this.ddlEspecialidad.SelectedValue);
 
-                    usuario.Especialidad = dFachada.EspecialidadTraerEspecifica(usuario.Especialidad);
-                    if (ddlTipoUsuario.SelectedValue == "Usuario" && usuario.Especialidad.Nombre == "Sin especialidad")
+                    unUsuario.Especialidad = dFachada.EspecialidadTraerEspecifica(unUsuario.Especialidad);
+                    if (ddlTipoUsuario.SelectedValue == "Usuario" && unUsuario.Especialidad.Nombre == "Sin especialidad")
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puede crear un usuario de tipo usuario que no tenga especialidad.')", true);
                     }
@@ -85,8 +85,8 @@ namespace Ejemplo.Web
                     {
                         try
                         {
-                            bool resultado = dFachada.UsuarioAgregar(usuario);
-                            if (resultado)
+                            bool bResultado = dFachada.UsuarioAgregar(unUsuario);
+                            if (bResultado)
                             {
                                 lblMensaje.Text = "Agregado correctamente.";
                                 LimpiarCampos();

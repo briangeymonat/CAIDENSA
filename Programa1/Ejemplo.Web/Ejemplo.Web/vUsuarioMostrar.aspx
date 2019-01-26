@@ -29,7 +29,7 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Panel ID="PanelUsuariosActivos" runat="server">
+                            <asp:Panel ID="pnlUsuariosActivos" runat="server">
                                 <asp:GridView ID="grdUsuariosActivos" Width="100%" runat="server" AutoGenerateSelectButton="True"
                                     ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                     OnSelectedIndexChanging="grdUsuariosActivos_SelectedIndexChanging"
@@ -56,7 +56,7 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Panel ID="PanelUsuariosInactivos" runat="server">
+                            <asp:Panel ID="pnlUsuariosInactivos" runat="server">
                                 <asp:GridView ID="grdUsuariosInactivos" Width="100%" runat="server" AutoGenerateSelectButton="True"
                                     ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                     AutoGenerateColumns="true"

@@ -10,29 +10,29 @@ namespace Dominio.Clases
 {
     public class dBeneficiario
     {
-        public static bool Agregar(cBeneficiario elBeneficiario)
+        public static bool Agregar(cBeneficiario parBeneficiario)
         {
-            return pBeneficiario.Agregar(elBeneficiario);
+            return pBeneficiario.Agregar(parBeneficiario);
         }
-        public static bool Habilitar(cBeneficiario elBeneficiario)
+        public static bool Habilitar(cBeneficiario parBeneficiario)
         {
-            return pBeneficiario.Habilitar(elBeneficiario);
+            return pBeneficiario.Habilitar(parBeneficiario);
         }
-        public static bool Inhabilitar(cBeneficiario elBeneficiario)
+        public static bool Inhabilitar(cBeneficiario parBeneficiario)
         {
-            return pBeneficiario.Inhabilitar(elBeneficiario);
+            return pBeneficiario.Inhabilitar(parBeneficiario);
         }
-        public static bool Modificar(cBeneficiario elBeneficiario)
+        public static bool Modificar(cBeneficiario parBeneficiario)
         {
-            return pBeneficiario.Modificar(elBeneficiario);
+            return pBeneficiario.Modificar(parBeneficiario);
         }
-        public static cBeneficiario TraerEspecifico(cBeneficiario elBeneficiario)
+        public static cBeneficiario TraerEspecifico(cBeneficiario parBeneficiario)
         {
-            return pBeneficiario.TraerEspecifico(elBeneficiario);
+            return pBeneficiario.TraerEspecifico(parBeneficiario);
         }
-        public static cBeneficiario TraerEspecificoCI(cBeneficiario elBeneficiario)
+        public static cBeneficiario TraerEspecificoCI(cBeneficiario parBeneficiario)
         {
-            return pBeneficiario.TraerEspecificoCI(elBeneficiario);
+            return pBeneficiario.TraerEspecificoCI(parBeneficiario);
         }
         public static cBeneficiario TraerEspecificoVerificarModificar(cBeneficiario parBeneficiario)
         {

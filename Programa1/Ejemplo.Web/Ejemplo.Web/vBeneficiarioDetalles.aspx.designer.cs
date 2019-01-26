@@ -328,13 +328,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnOcultar;
         
         /// <summary>
-        /// Control PanelAgregarPlan.
+        /// Control pnlAgregarPlan.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelAgregarPlan;
+        protected global::System.Web.UI.WebControls.Panel pnlAgregarPlan;
         
         /// <summary>
         /// Control lblAgregarPlan.
@@ -436,13 +436,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnAgregarPlan;
         
         /// <summary>
-        /// Control PanelModificarPlan.
+        /// Control pnlModificarPlan.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelModificarPlan;
+        protected global::System.Web.UI.WebControls.Panel pnlModificarPlan;
         
         /// <summary>
         /// Control Label16.
@@ -580,13 +580,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label LAbel;
         
         /// <summary>
-        /// Control PanelUltimosDiagnosticos.
+        /// Control pnlUltimosDiagnosticos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelUltimosDiagnosticos;
+        protected global::System.Web.UI.WebControls.Panel pnlUltimosDiagnosticos;
         
         /// <summary>
         /// Control grdUltimosDiagnosticos.

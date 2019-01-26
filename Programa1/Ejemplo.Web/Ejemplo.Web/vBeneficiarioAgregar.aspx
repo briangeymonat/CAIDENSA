@@ -61,7 +61,7 @@
                             <asp:Label ID="Label2" runat="server" Text="Sexo:"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell ColumnSpan="2">
-                            <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal">
+                            <asp:RadioButtonList ID="rblSexo" runat="server" RepeatDirection="Horizontal">
                                 <asp:ListItem Text="Masculino" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="Femenino"></asp:ListItem>
                             </asp:RadioButtonList>

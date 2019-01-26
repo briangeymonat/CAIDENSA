@@ -11,41 +11,41 @@ namespace Ejemplo.Web
 {
     public partial class vBeneficiarioAgregarPasivo1 : System.Web.UI.Page
     {
-        private static List<string> TiposPlanes = new List<string> { "ASSE", "AYEX", "CAMEC", "Círculo Católico", "MIDES", "Particular", "Policial" };
-        private static List<cUsuario> lstTodosEspecialistasPS;
-        private static List<cUsuario> lstEspecialistasAgregadosPS;
-        private static List<cUsuario> lstTodosEspecialistasUS;
-        private static List<cUsuario> lstEspecialistasAgregadosUS;
+        private static List<string> LosTiposPlanes = new List<string> { "ASSE", "AYEX", "CAMEC", "Círculo Católico", "MIDES", "Particular", "Policial" };
+        private static List<cUsuario> LosTodosEspecialistasPS;
+        private static List<cUsuario> LosEspecialistasAgregadosPS;
+        private static List<cUsuario> LosTodosEspecialistasUS;
+        private static List<cUsuario> LosEspecialistasAgregadosUS;
 
-        private static List<cDiagnostico> lstTodosDiagnosticos;
-        private static List<cDiagnostico> lstDiagnosticosAgregados;
+        private static List<cDiagnostico> LosTodosDiagnosticos;
+        private static List<cDiagnostico> LosDiagnosticosAgregados;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                lstTodosEspecialistasPS = dFachada.UsuarioTraerTodosEspecialistasActivos();
-                lstEspecialistasAgregadosPS = new List<cUsuario>();
+                LosTodosEspecialistasPS = dFachada.UsuarioTraerTodosEspecialistasActivos();
+                LosEspecialistasAgregadosPS = new List<cUsuario>();
 
-                lstTodosEspecialistasUS = dFachada.UsuarioTraerTodosEspecialistasActivos();
-                lstEspecialistasAgregadosUS = new List<cUsuario>();
+                LosTodosEspecialistasUS = dFachada.UsuarioTraerTodosEspecialistasActivos();
+                LosEspecialistasAgregadosUS = new List<cUsuario>();
 
-                lstTodosDiagnosticos = dFachada.DiagnosticoTraerTodos();
-                lstDiagnosticosAgregados = new List<cDiagnostico>();
+                LosTodosDiagnosticos = dFachada.DiagnosticoTraerTodos();
+                LosDiagnosticosAgregados = new List<cDiagnostico>();
 
                 CargarCombos();
                 CargarGrillas();
                 this.btnPrimeraSesionMostrar.Visible = true;
-                this.PanelPrimeraSesion.Visible = false;
+                this.pnlPrimeraSesion.Visible = false;
 
                 this.btnUltimaSesionMostrar.Visible = true;
-                this.PanelUltimaSesion.Visible = false;
+                this.pnlUltimaSesion.Visible = false;
 
                 this.btnAgregarPlanMostrar.Visible = true;
-                this.PanelAgregarPlan.Visible = false;
+                this.pnlAgregarPlan.Visible = false;
 
                 this.btnAgregarDiagnosticoMostrar.Visible = true;
-                this.PanelAgregarDiagnostico.Visible = false;
+                this.pnlAgregarDiagnostico.Visible = false;
 
 
                 this.btnPrimeraSesionOcultar.Visible = false;
@@ -65,30 +65,31 @@ namespace Ejemplo.Web
 
         private void CargarDdlHoras()
         {
-            DateTime hora1 = DateTime.Parse("08:00");
-            List<string> LasHorasDesde = new List<string>();
-            LasHorasDesde.Add(hora1.ToShortTimeString());
+            DateTime dHora1 = DateTime.Parse("08:00");
+            List<string> lstHorasDesde = new List<string>();
+            lstHorasDesde.Add(dHora1.ToShortTimeString());
             do
             {
-                hora1 = hora1.AddMinutes(15);
-                LasHorasDesde.Add(hora1.ToShortTimeString());
-            } while (hora1 != DateTime.Parse("19:45"));
-            ddlDesdePS.DataSource = LasHorasDesde;
+                dHora1 = dHora1.AddMinutes(15);
+                lstHorasDesde.Add(dHora1.ToShortTimeString());
+            }
+            while (dHora1 != DateTime.Parse("19:45"));
+            ddlDesdePS.DataSource = lstHorasDesde;
             ddlDesdePS.DataBind();
-            ddlDesdeUS.DataSource = LasHorasDesde;
+            ddlDesdeUS.DataSource = lstHorasDesde;
             ddlDesdeUS.DataBind();
 
-            List<string> LasHorasHasta = new List<string>();
-            DateTime hora2 = DateTime.Parse("08:15");
-            LasHorasHasta.Add(hora2.ToShortTimeString());
+            List<string> lstHorasHasta = new List<string>();
+            DateTime dHora2 = DateTime.Parse("08:15");
+            lstHorasHasta.Add(dHora2.ToShortTimeString());
             do
             {
-                hora2 = hora2.AddMinutes(15);
-                LasHorasHasta.Add(hora2.ToShortTimeString());
-            } while (hora2 != DateTime.Parse("20:00"));
-            ddlHastaPS.DataSource = LasHorasHasta;
+                dHora2 = dHora2.AddMinutes(15);
+                lstHorasHasta.Add(dHora2.ToShortTimeString());
+            } while (dHora2 != DateTime.Parse("20:00"));
+            ddlHastaPS.DataSource = lstHorasHasta;
             ddlHastaPS.DataBind();
-            ddlHastaUS.DataSource = LasHorasHasta;
+            ddlHastaUS.DataSource = lstHorasHasta;
             ddlHastaUS.DataBind();
         }
 
@@ -117,7 +118,7 @@ namespace Ejemplo.Web
                         {
                             if (!FaltanDatosAgregarDiagnostico())
                             {
-                                if (DateTime.Parse(ddlDesdePS.SelectedValue) < DateTime.Parse(ddlHastaPS.SelectedValue)                                    )
+                                if (DateTime.Parse(ddlDesdePS.SelectedValue) < DateTime.Parse(ddlHastaPS.SelectedValue))
                                 {
                                     if (DateTime.Parse(ddlDesdeUS.SelectedValue) < DateTime.Parse(ddlHastaUS.SelectedValue))
                                     {
@@ -175,91 +176,91 @@ namespace Ejemplo.Web
                                                         unBeneficiario.lstPlanes = dFachada.PlanTraerTodosPorBeneficiario(unBeneficiario);
                                                     }
                                                     #region cargar primera sesion
-                                                    cSesion primeraSesion = new cSesion();
-                                                    string tipo = ddlTipoSesionPS.SelectedValue.ToString();
-                                                    if (tipo == "Individual")
-                                                        primeraSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
-                                                    if (tipo == "Grupo2")
-                                                        primeraSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
-                                                    if (tipo == "Grupo3")
-                                                        primeraSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
-                                                    if (tipo == "Taller")
-                                                        primeraSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
-                                                    if (tipo == "PROES")
-                                                        primeraSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
-                                                    primeraSesion.Fecha = txtFechaPS.Text;
+                                                    cSesion unaPrimeraSesion = new cSesion();
+                                                    string sTipo = ddlTipoSesionPS.SelectedValue.ToString();
+                                                    if (sTipo == "Individual")
+                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
+                                                    if (sTipo == "Grupo2")
+                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
+                                                    if (sTipo == "Grupo3")
+                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
+                                                    if (sTipo == "Taller")
+                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
+                                                    if (sTipo == "PROES")
+                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
+                                                    unaPrimeraSesion.Fecha = txtFechaPS.Text;
                                                     if (rblLocalidadPS.SelectedIndex == 0)
-                                                        primeraSesion.Centro = cUtilidades.Centro.JuanLacaze;
+                                                        unaPrimeraSesion.Centro = cUtilidades.Centro.JuanLacaze;
                                                     else
-                                                        primeraSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
+                                                        unaPrimeraSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
 
-                                                    primeraSesion.HoraInicio = ddlDesdePS.SelectedValue;
-                                                    primeraSesion.HoraFin = ddlHastaPS.SelectedValue;
-                                                    cBeneficiarioSesion bs = new cBeneficiarioSesion();
-                                                    bs.Beneficiario = unBeneficiario;
-                                                    bs.Plan = unBeneficiario.lstPlanes[0];
-                                                    bs.Estado = cUtilidades.EstadoSesion.Asistio;
-                                                    primeraSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
-                                                    primeraSesion.lstBeneficiarios.Add(bs);
-                                                    primeraSesion.lstUsuarios = lstEspecialistasAgregadosPS;
-                                                    primeraSesion.Comentario = txtComentarioPS.Text;
+                                                    unaPrimeraSesion.HoraInicio = ddlDesdePS.SelectedValue;
+                                                    unaPrimeraSesion.HoraFin = ddlHastaPS.SelectedValue;
+                                                    cBeneficiarioSesion unBS = new cBeneficiarioSesion();
+                                                    unBS.Beneficiario = unBeneficiario;
+                                                    unBS.Plan = unBeneficiario.lstPlanes[0];
+                                                    unBS.Estado = cUtilidades.EstadoSesion.Asistio;
+                                                    unaPrimeraSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
+                                                    unaPrimeraSesion.lstBeneficiarios.Add(unBS);
+                                                    unaPrimeraSesion.lstUsuarios = LosEspecialistasAgregadosPS;
+                                                    unaPrimeraSesion.Comentario = txtComentarioPS.Text;
                                                     #endregion
 
                                                     #region cargar ultima sesion
-                                                    cSesion ultimaSesion = new cSesion();
-                                                    string tipo1 = ddlTipoSesionUS.SelectedValue.ToString();
-                                                    if (tipo == "Individual")
-                                                        ultimaSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
-                                                    if (tipo == "Grupo2")
-                                                        ultimaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
-                                                    if (tipo == "Grupo3")
-                                                        ultimaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
-                                                    if (tipo == "Taller")
-                                                        ultimaSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
-                                                    if (tipo == "PROES")
-                                                        ultimaSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
-                                                    ultimaSesion.Fecha = txtFechaUS.Text;
+                                                    cSesion unaUltimaSesion = new cSesion();
+                                                    string sTipo1 = ddlTipoSesionUS.SelectedValue.ToString();
+                                                    if (sTipo1 == "Individual")
+                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
+                                                    if (sTipo1 == "Grupo2")
+                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
+                                                    if (sTipo1 == "Grupo3")
+                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
+                                                    if (sTipo1 == "Taller")
+                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
+                                                    if (sTipo1 == "PROES")
+                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
+                                                    unaUltimaSesion.Fecha = txtFechaUS.Text;
                                                     if (rblLocalidadUS.SelectedIndex == 0)
-                                                        ultimaSesion.Centro = cUtilidades.Centro.JuanLacaze;
+                                                        unaUltimaSesion.Centro = cUtilidades.Centro.JuanLacaze;
                                                     else
-                                                        ultimaSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
-                                                    ultimaSesion.HoraInicio = ddlDesdeUS.SelectedValue;
-                                                    ultimaSesion.HoraFin = ddlHastaUS.SelectedValue;
-                                                    cBeneficiarioSesion bs1 = new cBeneficiarioSesion();
-                                                    bs1.Beneficiario = unBeneficiario;
-                                                    bs1.Plan = unBeneficiario.lstPlanes[0];
-                                                    bs1.Estado = cUtilidades.EstadoSesion.Asistio;
-                                                    ultimaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
-                                                    ultimaSesion.lstBeneficiarios.Add(bs1);
-                                                    ultimaSesion.lstUsuarios = lstEspecialistasAgregadosUS;
-                                                    ultimaSesion.Comentario = txtComentarioUS.Text;
+                                                        unaUltimaSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
+                                                    unaUltimaSesion.HoraInicio = ddlDesdeUS.SelectedValue;
+                                                    unaUltimaSesion.HoraFin = ddlHastaUS.SelectedValue;
+                                                    cBeneficiarioSesion unBS1 = new cBeneficiarioSesion();
+                                                    unBS1.Beneficiario = unBeneficiario;
+                                                    unBS1.Plan = unBeneficiario.lstPlanes[0];
+                                                    unBS1.Estado = cUtilidades.EstadoSesion.Asistio;
+                                                    unaUltimaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
+                                                    unaUltimaSesion.lstBeneficiarios.Add(unBS1);
+                                                    unaUltimaSesion.lstUsuarios = LosEspecialistasAgregadosUS;
+                                                    unaUltimaSesion.Comentario = txtComentarioUS.Text;
                                                     #endregion
 
                                                     #region cargar diagnostico
                                                     unBeneficiario.lstDiagnosticos = new List<cDiagnosticoBeneficiario>();
                                                     cDiagnosticoBeneficiario db;
-                                                    for (int i = 0; i < lstDiagnosticosAgregados.Count; i++)
+                                                    for (int i = 0; i < LosDiagnosticosAgregados.Count; i++)
                                                     {
                                                         db = new cDiagnosticoBeneficiario();
-                                                        db.Diagnostico = lstDiagnosticosAgregados[i];
-                                                        db.Fecha = ultimaSesion.Fecha;
+                                                        db.Diagnostico = LosDiagnosticosAgregados[i];
+                                                        db.Fecha = unaUltimaSesion.Fecha;
                                                         unBeneficiario.lstDiagnosticos.Add(db);
                                                     }
                                                     #endregion
-                                                    if (b && dFachada.SesionAgregar(primeraSesion) &&
-                                                        dFachada.SesionAgregar(ultimaSesion) &&
+                                                    if (b && dFachada.SesionAgregar(unaPrimeraSesion) &&
+                                                        dFachada.SesionAgregar(unaUltimaSesion) &&
                                                         dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(unBeneficiario))
                                                     {
                                                         lblMensajeBeneficiario.Text = "Beneficiario pasivo agregado correctamente.";
                                                         LimpiarCampos();
                                                         this.btnPrimeraSesionMostrar.Visible = true;
-                                                        this.PanelPrimeraSesion.Visible = false;
+                                                        this.pnlPrimeraSesion.Visible = false;
                                                         this.btnUltimaSesionMostrar.Visible = true;
-                                                        this.PanelUltimaSesion.Visible = false;
+                                                        this.pnlUltimaSesion.Visible = false;
                                                         this.btnAgregarPlanMostrar.Visible = true;
-                                                        this.PanelAgregarPlan.Visible = false;
+                                                        this.pnlAgregarPlan.Visible = false;
                                                         this.btnAgregarDiagnosticoMostrar.Visible = true;
-                                                        this.PanelAgregarDiagnostico.Visible = false;
+                                                        this.pnlAgregarDiagnostico.Visible = false;
                                                         this.btnPrimeraSesionOcultar.Visible = false;
                                                         this.btnUltimaSesionOcultar.Visible = false;
                                                         this.btnAgregarPlanOcultar.Visible = false;
@@ -392,8 +393,8 @@ namespace Ejemplo.Web
         }
         private bool FaltanDatosPrimeraSesion()
         {
-            if (txtFechaPS.Text == string.Empty  ||
-                lstEspecialistasAgregadosPS.Count <= 0)
+            if (txtFechaPS.Text == string.Empty ||
+                LosEspecialistasAgregadosPS.Count <= 0)
             {
                 return true;
             }
@@ -405,7 +406,7 @@ namespace Ejemplo.Web
         private bool FaltanDatosUltimaSesion()
         {
             if (txtFechaUS.Text == string.Empty ||
-                lstEspecialistasAgregadosUS.Count <= 0)
+                LosEspecialistasAgregadosUS.Count <= 0)
             {
                 return true;
             }
@@ -427,7 +428,7 @@ namespace Ejemplo.Web
         }
         private bool FaltanDatosAgregarDiagnostico()
         {
-            if (lstDiagnosticosAgregados.Count <= 0)
+            if (LosDiagnosticosAgregados.Count <= 0)
             {
                 return true;
             }
@@ -441,56 +442,56 @@ namespace Ejemplo.Web
         #region Botones de mostrar y ocultar
         protected void btnPrimeraSesionMostrar_Click(object sender, EventArgs e)
         {
-            this.PanelPrimeraSesion.Visible = true;
+            this.pnlPrimeraSesion.Visible = true;
             this.btnPrimeraSesionMostrar.Visible = false;
             this.btnPrimeraSesionOcultar.Visible = true;
         }
 
         protected void btnPrimeraSesionOcultar_Click(object sender, EventArgs e)
         {
-            this.PanelPrimeraSesion.Visible = false;
+            this.pnlPrimeraSesion.Visible = false;
             this.btnPrimeraSesionMostrar.Visible = true;
             this.btnPrimeraSesionOcultar.Visible = false;
         }
 
         protected void btnUltimaSesionMostrar_Click(object sender, EventArgs e)
         {
-            this.PanelUltimaSesion.Visible = true;
+            this.pnlUltimaSesion.Visible = true;
             this.btnUltimaSesionMostrar.Visible = false;
             this.btnUltimaSesionOcultar.Visible = true;
         }
 
         protected void btnUltimaSesionOcultar_Click(object sender, EventArgs e)
         {
-            this.PanelUltimaSesion.Visible = false;
+            this.pnlUltimaSesion.Visible = false;
             this.btnUltimaSesionMostrar.Visible = true;
             this.btnUltimaSesionOcultar.Visible = false;
         }
 
         protected void btnAgregarPlanMostrar_Click(object sender, EventArgs e)
         {
-            this.PanelAgregarPlan.Visible = true;
+            this.pnlAgregarPlan.Visible = true;
             this.btnAgregarPlanMostrar.Visible = false;
             this.btnAgregarPlanOcultar.Visible = true;
         }
 
         protected void btnAgregarPlanOcultar_Click(object sender, EventArgs e)
         {
-            this.PanelAgregarPlan.Visible = false;
+            this.pnlAgregarPlan.Visible = false;
             this.btnAgregarPlanMostrar.Visible = true;
             this.btnAgregarPlanOcultar.Visible = false;
         }
 
         protected void btnAgregarDiagnosticoMostrar_Click(object sender, EventArgs e)
         {
-            this.PanelAgregarDiagnostico.Visible = true;
+            this.pnlAgregarDiagnostico.Visible = true;
             this.btnAgregarDiagnosticoMostrar.Visible = false;
             this.btnAgregarDiagnosticoOcultar.Visible = true;
         }
 
         protected void btnAgregarDiagnosticoOcultar_Click(object sender, EventArgs e)
         {
-            this.PanelAgregarDiagnostico.Visible = false;
+            this.pnlAgregarDiagnostico.Visible = false;
             this.btnAgregarDiagnosticoMostrar.Visible = true;
             this.btnAgregarDiagnosticoOcultar.Visible = false;
         }
@@ -530,7 +531,7 @@ namespace Ejemplo.Web
         }
         protected void CargarComboTipoPlanes()
         {
-            this.ddlTipoPlanes.DataSource = TiposPlanes;
+            this.ddlTipoPlanes.DataSource = LosTiposPlanes;
             this.ddlTipoPlanes.DataBind();
         }
 
@@ -543,53 +544,53 @@ namespace Ejemplo.Web
 
         protected void CargarGrillaEspecialistasPS()
         {
-            cEspecialidad especialidad = new cEspecialidad();
-            especialidad.Codigo = int.Parse(ddlEspecialidadesPS.SelectedValue);
+            cEspecialidad unaEspecialidad = new cEspecialidad();
+            unaEspecialidad.Codigo = int.Parse(ddlEspecialidadesPS.SelectedValue);
             List<cUsuario> lstMostrarPS = new List<cUsuario>();
 
-            for (int i = 0; i < lstTodosEspecialistasPS.Count; i++)
+            for (int i = 0; i < LosTodosEspecialistasPS.Count; i++)
             {
-                if (lstTodosEspecialistasPS[i].Especialidad.Codigo == especialidad.Codigo)
+                if (LosTodosEspecialistasPS[i].Especialidad.Codigo == unaEspecialidad.Codigo)
                 {
-                    lstMostrarPS.Add(lstTodosEspecialistasPS[i]);
+                    lstMostrarPS.Add(LosTodosEspecialistasPS[i]);
                 }
             }
 
             grdTodosEspecialistasPS.DataSource = lstMostrarPS;
             grdTodosEspecialistasPS.DataBind();
 
-            grdEspecialistasAgregadosPS.DataSource = lstEspecialistasAgregadosPS;
+            grdEspecialistasAgregadosPS.DataSource = LosEspecialistasAgregadosPS;
             grdEspecialistasAgregadosPS.DataBind();
 
         }
         protected void CargarGrillaEspecialistasUS()
         {
-            cEspecialidad especialidad = new cEspecialidad();
-            especialidad.Codigo = int.Parse(ddlEspecialidadesUS.SelectedValue);
+            cEspecialidad unaEspecialidad = new cEspecialidad();
+            unaEspecialidad.Codigo = int.Parse(ddlEspecialidadesUS.SelectedValue);
             List<cUsuario> lstMostrarUS = new List<cUsuario>();
 
-            for (int i = 0; i < lstTodosEspecialistasUS.Count; i++)
+            for (int i = 0; i < LosTodosEspecialistasUS.Count; i++)
             {
-                if (lstTodosEspecialistasUS[i].Especialidad.Codigo == especialidad.Codigo)
+                if (LosTodosEspecialistasUS[i].Especialidad.Codigo == unaEspecialidad.Codigo)
                 {
-                    lstMostrarUS.Add(lstTodosEspecialistasUS[i]);
+                    lstMostrarUS.Add(LosTodosEspecialistasUS[i]);
                 }
             }
 
             grdTodosEspecialistasUS.DataSource = lstMostrarUS;
             grdTodosEspecialistasUS.DataBind();
 
-            grdEspecialistasAgregadosUS.DataSource = lstEspecialistasAgregadosUS;
+            grdEspecialistasAgregadosUS.DataSource = LosEspecialistasAgregadosUS;
             grdEspecialistasAgregadosUS.DataBind();
 
         }
 
         protected void CargarGrillaDiagnosticos()
         {
-            grdTodosDiagnosticos.DataSource = lstTodosDiagnosticos;
+            grdTodosDiagnosticos.DataSource = LosTodosDiagnosticos;
             grdTodosDiagnosticos.DataBind();
 
-            grdDiagnosticosAgregados.DataSource = lstDiagnosticosAgregados;
+            grdDiagnosticosAgregados.DataSource = LosDiagnosticosAgregados;
             grdDiagnosticosAgregados.DataBind();
         }
         #endregion
@@ -598,13 +599,13 @@ namespace Ejemplo.Web
         protected void grdTodosDiagnosticos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdTodosDiagnosticos.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            for (int i = 0; i < lstTodosDiagnosticos.Count; i++)
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            for (int i = 0; i < LosTodosDiagnosticos.Count; i++)
             {
-                if (lstTodosDiagnosticos[i].Codigo == codigo)
+                if (LosTodosDiagnosticos[i].Codigo == iCodigo)
                 {
-                    lstDiagnosticosAgregados.Add(lstTodosDiagnosticos[i]);
-                    lstTodosDiagnosticos.RemoveAt(i);
+                    LosDiagnosticosAgregados.Add(LosTodosDiagnosticos[i]);
+                    LosTodosDiagnosticos.RemoveAt(i);
                 }
             }
             CargarGrillaDiagnosticos();
@@ -613,13 +614,13 @@ namespace Ejemplo.Web
         protected void grdDiagnosticosAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             TableCell celdaCodigo = grdDiagnosticosAgregados.Rows[e.RowIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            for (int i = 0; i < lstDiagnosticosAgregados.Count; i++)
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            for (int i = 0; i < LosDiagnosticosAgregados.Count; i++)
             {
-                if (lstDiagnosticosAgregados[i].Codigo == codigo)
+                if (LosDiagnosticosAgregados[i].Codigo == iCodigo)
                 {
-                    lstTodosDiagnosticos.Add(lstDiagnosticosAgregados[i]);
-                    lstDiagnosticosAgregados.RemoveAt(i);
+                    LosTodosDiagnosticos.Add(LosDiagnosticosAgregados[i]);
+                    LosDiagnosticosAgregados.RemoveAt(i);
                 }
             }
             CargarGrillaDiagnosticos();
@@ -660,13 +661,13 @@ namespace Ejemplo.Web
         protected void grdTodosEspecialistasPS_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdTodosEspecialistasPS.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            for (int i = 0; i < lstTodosEspecialistasPS.Count; i++)
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            for (int i = 0; i < LosTodosEspecialistasPS.Count; i++)
             {
-                if (lstTodosEspecialistasPS[i].Codigo == codigo)
+                if (LosTodosEspecialistasPS[i].Codigo == iCodigo)
                 {
-                    lstEspecialistasAgregadosPS.Add(lstTodosEspecialistasPS[i]);
-                    lstTodosEspecialistasPS.RemoveAt(i);
+                    LosEspecialistasAgregadosPS.Add(LosTodosEspecialistasPS[i]);
+                    LosTodosEspecialistasPS.RemoveAt(i);
                 }
             }
             CargarGrillaEspecialistasPS();
@@ -675,13 +676,13 @@ namespace Ejemplo.Web
         protected void grdEspecialistasAgregadosPS_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             TableCell celdaCodigo = grdEspecialistasAgregadosPS.Rows[e.RowIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            for (int i = 0; i < lstEspecialistasAgregadosPS.Count; i++)
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            for (int i = 0; i < LosEspecialistasAgregadosPS.Count; i++)
             {
-                if (lstEspecialistasAgregadosPS[i].Codigo == codigo)
+                if (LosEspecialistasAgregadosPS[i].Codigo == iCodigo)
                 {
-                    lstTodosEspecialistasPS.Add(lstEspecialistasAgregadosPS[i]);
-                    lstEspecialistasAgregadosPS.RemoveAt(i);
+                    LosTodosEspecialistasPS.Add(LosEspecialistasAgregadosPS[i]);
+                    LosEspecialistasAgregadosPS.RemoveAt(i);
                 }
             }
             CargarGrillaEspecialistasPS();
@@ -690,13 +691,13 @@ namespace Ejemplo.Web
         protected void grdEspecialistasAgregadosUS_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             TableCell celdaCodigo = grdEspecialistasAgregadosUS.Rows[e.RowIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            for (int i = 0; i < lstEspecialistasAgregadosUS.Count; i++)
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            for (int i = 0; i < LosEspecialistasAgregadosUS.Count; i++)
             {
-                if (lstEspecialistasAgregadosUS[i].Codigo == codigo)
+                if (LosEspecialistasAgregadosUS[i].Codigo == iCodigo)
                 {
-                    lstTodosEspecialistasUS.Add(lstEspecialistasAgregadosUS[i]);
-                    lstEspecialistasAgregadosUS.RemoveAt(i);
+                    LosTodosEspecialistasUS.Add(LosEspecialistasAgregadosUS[i]);
+                    LosEspecialistasAgregadosUS.RemoveAt(i);
                 }
             }
             CargarGrillaEspecialistasUS();
@@ -705,13 +706,13 @@ namespace Ejemplo.Web
         protected void grdTodosEspecialistasUS_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdTodosEspecialistasUS.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            for (int i = 0; i < lstTodosEspecialistasUS.Count; i++)
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            for (int i = 0; i < LosTodosEspecialistasUS.Count; i++)
             {
-                if (lstTodosEspecialistasUS[i].Codigo == codigo)
+                if (LosTodosEspecialistasUS[i].Codigo == iCodigo)
                 {
-                    lstEspecialistasAgregadosUS.Add(lstTodosEspecialistasUS[i]);
-                    lstTodosEspecialistasUS.RemoveAt(i);
+                    LosEspecialistasAgregadosUS.Add(LosTodosEspecialistasUS[i]);
+                    LosTodosEspecialistasUS.RemoveAt(i);
                 }
             }
             CargarGrillaEspecialistasUS();

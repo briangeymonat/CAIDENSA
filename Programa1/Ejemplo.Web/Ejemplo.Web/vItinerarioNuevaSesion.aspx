@@ -34,7 +34,7 @@
                             <asp:Label ID="Label3" runat="server" Text="Localidad:" Font-Bold="true"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell>
-                            <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal">
+                            <asp:RadioButtonList ID="rblLocalidad" runat="server" RepeatDirection="Horizontal">
                                 <asp:ListItem Text="Juan Lacaze" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="Nueva Helvecia"></asp:ListItem>
                             </asp:RadioButtonList>

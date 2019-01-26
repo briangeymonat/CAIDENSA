@@ -21,71 +21,67 @@ namespace Ejemplo.Web
 
         protected void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            cUsuario usuario = new cUsuario();
-            usuario.NickName = txtNickName.Text;
-            usuario.Contrasena = txtContrasena.Text;
+            cUsuario unUsuario = new cUsuario();
+            unUsuario.NickName = txtNickName.Text;
+            unUsuario.Contrasena = txtContrasena.Text;
             try
             {
-                usuario = dFachada.UsuarioVerificarInicioSesion(usuario);
-                if(usuario!=null)
+                unUsuario = dFachada.UsuarioVerificarInicioSesion(unUsuario);
+                if(unUsuario!=null)
                 {
-                    DateTime fechaActual = DateTime.Now;
+                    DateTime dFechaActual = DateTime.Now;
 
-                    List<cBeneficiario> listaBeneficiarios = new List<cBeneficiario>();
-                    List<cBeneficiario> listaBenConPlanes = new List<cBeneficiario>();
-                    List<cBeneficiario> BeneficiariosConPlanesAVencerse = new List<cBeneficiario>();
-                    listaBeneficiarios = dFachada.BeneficiarioTraerTodos();
-                    cBeneficiario beneficiario;
-                    for (int i = 0; i < listaBeneficiarios.Count; i++)
+                    List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
+                    List<cBeneficiario> lstBenConPlanes = new List<cBeneficiario>();
+                    List<cBeneficiario> lstBeneficiariosConPlanesAVencerse = new List<cBeneficiario>();
+                    lstBeneficiarios = dFachada.BeneficiarioTraerTodos();
+                    cBeneficiario unBeneficiario;
+                    for (int i = 0; i < lstBeneficiarios.Count; i++)
                     {
-                        beneficiario = new cBeneficiario();
-                        beneficiario = listaBeneficiarios[i];
-                        beneficiario.lstPlanes = new List<cPlan>();
-                        beneficiario.lstPlanes = dFachada.PlanTraerActivosPorBeneficiario(beneficiario);
-                        listaBenConPlanes.Add(beneficiario);
+                        unBeneficiario = new cBeneficiario();
+                        unBeneficiario = lstBeneficiarios[i];
+                        unBeneficiario.lstPlanes = new List<cPlan>();
+                        unBeneficiario.lstPlanes = dFachada.PlanTraerActivosPorBeneficiario(unBeneficiario);
+                        lstBenConPlanes.Add(unBeneficiario);
                     }
-                    for (int a = 0; a < listaBenConPlanes.Count; a++)
+                    for (int a = 0; a < lstBenConPlanes.Count; a++)
                     {
-                        for (int b = 0; b < listaBenConPlanes[a].lstPlanes.Count; b++)
+                        for (int b = 0; b < lstBenConPlanes[a].lstPlanes.Count; b++)
                         {
-                            if (listaBenConPlanes[a].lstPlanes[b].FechaFin != null)
+                            if (lstBenConPlanes[a].lstPlanes[b].FechaFin != null)
                             {
-                                DateTime fecha = new DateTime();
-                                fecha = DateTime.Parse(listaBenConPlanes[a].lstPlanes[b].FechaFin);
-                                TimeSpan d = fecha - fechaActual;
-                                Double td = d.TotalDays;
-                                if (td < 185)
+                                DateTime dFecha = new DateTime();
+                                dFecha = DateTime.Parse(lstBenConPlanes[a].lstPlanes[b].FechaFin);
+                                TimeSpan tsD = dFecha - dFechaActual;
+                                Double douTd = tsD.TotalDays;
+                                if (douTd < 185)
                                 {
-                                    BeneficiariosConPlanesAVencerse.Add(listaBenConPlanes[a]);
+                                    lstBeneficiariosConPlanesAVencerse.Add(lstBenConPlanes[a]);
                                     break;
                                     //si tiene varios planes se lista solo una vez el beneficiario
                                 }
                             }
                         }
                     }
-                    cUsuario user = new cUsuario();
-                    cNotificacion notificacion;
-                    user = dFachada.UsuarioTraerEspecificoXNickName(usuario);
-                    if (user.Tipo != cUtilidades.TipoDeUsuario.Usuario)
+                    cNotificacion unaNotificacion;
+                    if (unUsuario.Tipo != cUtilidades.TipoDeUsuario.Usuario)
                     {
-
-
-                        for (int i = 0; i < BeneficiariosConPlanesAVencerse.Count; i++)
+                        for (int i = 0; i < lstBeneficiariosConPlanesAVencerse.Count; i++)
                         {
-                            for (int j = 0; j < BeneficiariosConPlanesAVencerse[i].lstPlanes.Count; j++)
+                            for (int j = 0; j < lstBeneficiariosConPlanesAVencerse[i].lstPlanes.Count; j++)
                             {
-                                notificacion = new cNotificacion();
-                                notificacion.Usuario = user;
-                                notificacion.Plan = BeneficiariosConPlanesAVencerse[i].lstPlanes[j];
-                                int a = dFachada.NotificacionVerificarIngresoParaAdministrador(notificacion);
+                                unaNotificacion = new cNotificacion();
+                                unaNotificacion.Usuario = unUsuario;
+                                unaNotificacion.Plan = lstBeneficiariosConPlanesAVencerse[i].lstPlanes[j];
+                                int a = dFachada.NotificacionVerificarIngresoParaAdministrador(unaNotificacion);
                                 if (a == 0)
                                 {
-                                    dFachada.NotificacionAgregarDeAdministrador(notificacion);
+                                    dFachada.NotificacionAgregarDeAdministrador(unaNotificacion);
                                 }
                             }
                         }
                     }
-                    Response.Redirect("vMiPerfil.aspx?nick="+usuario.NickName);
+                    Response.Redirect("vMiPerfil.aspx?nick="+unUsuario.NickName);
 
                 }
                 else

@@ -11,26 +11,24 @@ namespace Ejemplo.Web
 {
     public partial class vTareas : System.Web.UI.Page
     {
-        List<cBeneficiario> BeneficiariosConPlanesPorVencerse;
-        List<cBeneficiario> BeneficiariosConPlanesSinFechaDeVencimiento;
-        private static List<cSesion> SesionesPasaronDelDia;
-        public static bool enproceso;
+        List<cBeneficiario> LosBeneficiariosConPlanesPorVencerse;
+        List<cBeneficiario> LosBeneficiariosConPlanesSinFechaDeVencimiento;
+        private static List<cSesion> LasSesionesPasaronDelDia;
         public static bool ventanaObservacion = true;
         public static bool ventanaReprogramar = true;
         public static bool ventanaObservacionVerDetalles = false;
-        static List<cBeneficiario> lstBeneficiarios;
+        static List<cBeneficiario> LosBeneficiarios;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                BeneficiariosConPlanesPorVencerse = new List<cBeneficiario>();
-                BeneficiariosConPlanesSinFechaDeVencimiento = new List<cBeneficiario>();
+                LosBeneficiariosConPlanesPorVencerse = new List<cBeneficiario>();
+                LosBeneficiariosConPlanesSinFechaDeVencimiento = new List<cBeneficiario>();
                 CargarComboBeneficiario();
                 CargarGrillasAdministrativas();
                 CargarGrillasEspecialistas();
-                enproceso = false;
                 if ((vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrador || vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrativo) && vMiPerfil.U.Especialidad.Nombre == "Sin especialidad")
                 {
                     PanelTaerasAdministrativas.Visible = true;
@@ -64,71 +62,71 @@ namespace Ejemplo.Web
         {
             DateTime fechaActual = DateTime.Now;
 
-            List<cBeneficiario> listaBeneficiarios = new List<cBeneficiario>();
-            List<cBeneficiario> listaBenConPlanes = new List<cBeneficiario>();
-            List<cBeneficiario> BeneficiariosConPlanesAVencerse = new List<cBeneficiario>();
-            listaBeneficiarios = dFachada.BeneficiarioTraerTodos();
-            cBeneficiario beneficiario;
-            for (int i = 0; i < listaBeneficiarios.Count; i++)
+            List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
+            List<cBeneficiario> lstBenConPlanes = new List<cBeneficiario>();
+            List<cBeneficiario> lstBeneficiariosConPlanesAVencerse = new List<cBeneficiario>();
+            lstBeneficiarios = dFachada.BeneficiarioTraerTodos();
+            cBeneficiario unBeneficiario;
+            for (int i = 0; i < lstBeneficiarios.Count; i++)
             {
-                beneficiario = new cBeneficiario();
-                beneficiario = listaBeneficiarios[i];
-                beneficiario.lstPlanes = new List<cPlan>();
-                beneficiario.lstPlanes = dFachada.PlanTraerActivosPorBeneficiario(beneficiario);
-                listaBenConPlanes.Add(beneficiario);
+                unBeneficiario = new cBeneficiario();
+                unBeneficiario = lstBeneficiarios[i];
+                unBeneficiario.lstPlanes = new List<cPlan>();
+                unBeneficiario.lstPlanes = dFachada.PlanTraerActivosPorBeneficiario(unBeneficiario);
+                lstBenConPlanes.Add(unBeneficiario);
             }
-            for (int a = 0; a < listaBenConPlanes.Count; a++)
+            for (int a = 0; a < lstBenConPlanes.Count; a++)
             {
-                for (int b = 0; b < listaBenConPlanes[a].lstPlanes.Count; b++)
+                for (int b = 0; b < lstBenConPlanes[a].lstPlanes.Count; b++)
                 {
-                    if (listaBenConPlanes[a].lstPlanes[b].FechaFin != null)
+                    if (lstBenConPlanes[a].lstPlanes[b].FechaFin != null)
                     {
-                        DateTime fecha = new DateTime();
-                        fecha = DateTime.Parse(listaBenConPlanes[a].lstPlanes[b].FechaFin);
-                        TimeSpan d = fecha - fechaActual;
-                        Double td = d.TotalDays;
-                        if (td < 185)
+                        DateTime dFecha = new DateTime();
+                        dFecha = DateTime.Parse(lstBenConPlanes[a].lstPlanes[b].FechaFin);
+                        TimeSpan tsD = dFecha - fechaActual;
+                        Double douTd = tsD.TotalDays;
+                        if (douTd < 185)
                         {
-                            BeneficiariosConPlanesAVencerse.Add(listaBenConPlanes[a]);
+                            lstBeneficiariosConPlanesAVencerse.Add(lstBenConPlanes[a]);
                             break;
                             //si tiene varios planes se lista solo una vez el beneficiario
                         }
                     }
                 }
             }
-            BeneficiariosConPlanesPorVencerse = BeneficiariosConPlanesAVencerse;
-            grdPlanesPorVencerse.DataSource = BeneficiariosConPlanesAVencerse;
+            LosBeneficiariosConPlanesPorVencerse = lstBeneficiariosConPlanesAVencerse;
+            grdPlanesPorVencerse.DataSource = lstBeneficiariosConPlanesAVencerse;
             grdPlanesPorVencerse.DataBind();
         }
         protected void CargarGrillaPlanesSinFechaVencimiento()
         {
-            List<cBeneficiario> listaBeneficiarios = new List<cBeneficiario>();
-            List<cBeneficiario> listaBenConPlanes = new List<cBeneficiario>();
-            List<cBeneficiario> BeneficiariosConPlanesSinFechaVencimiento = new List<cBeneficiario>();
-            listaBeneficiarios = dFachada.BeneficiarioTraerTodos();
-            cBeneficiario beneficiario;
-            for (int i = 0; i < listaBeneficiarios.Count; i++)
+            List<cBeneficiario> lstBeneficiarios = new List<cBeneficiario>();
+            List<cBeneficiario> lstBenConPlanes = new List<cBeneficiario>();
+            List<cBeneficiario> lstBeneficiariosConPlanesSinFechaVencimiento = new List<cBeneficiario>();
+            lstBeneficiarios = dFachada.BeneficiarioTraerTodos();
+            cBeneficiario unBeneficiario;
+            for (int i = 0; i < lstBeneficiarios.Count; i++)
             {
-                beneficiario = new cBeneficiario();
-                beneficiario = listaBeneficiarios[i];
-                beneficiario.lstPlanes = new List<cPlan>();
-                beneficiario.lstPlanes = dFachada.PlanTraerActivosPorBeneficiario(beneficiario);
-                listaBenConPlanes.Add(beneficiario);
+                unBeneficiario = new cBeneficiario();
+                unBeneficiario = lstBeneficiarios[i];
+                unBeneficiario.lstPlanes = new List<cPlan>();
+                unBeneficiario.lstPlanes = dFachada.PlanTraerActivosPorBeneficiario(unBeneficiario);
+                lstBenConPlanes.Add(unBeneficiario);
             }
-            for (int a = 0; a < listaBenConPlanes.Count; a++)
+            for (int a = 0; a < lstBenConPlanes.Count; a++)
             {
-                for (int b = 0; b < listaBenConPlanes[a].lstPlanes.Count; b++)
+                for (int b = 0; b < lstBenConPlanes[a].lstPlanes.Count; b++)
                 {
-                    if (listaBenConPlanes[a].lstPlanes[b].FechaFin == null)
+                    if (lstBenConPlanes[a].lstPlanes[b].FechaFin == null)
                     {
-                        BeneficiariosConPlanesSinFechaVencimiento.Add(listaBenConPlanes[a]);
+                        lstBeneficiariosConPlanesSinFechaVencimiento.Add(lstBenConPlanes[a]);
                         break;
                         //si tiene varios planes se lista solo una vez el beneficiario
                     }
                 }
             }
-            BeneficiariosConPlanesSinFechaDeVencimiento = BeneficiariosConPlanesSinFechaVencimiento;
-            this.grdBeneficiariosConPlanSinFechaVencimiento.DataSource = BeneficiariosConPlanesSinFechaVencimiento;
+            LosBeneficiariosConPlanesSinFechaDeVencimiento = lstBeneficiariosConPlanesSinFechaVencimiento;
+            this.grdBeneficiariosConPlanSinFechaVencimiento.DataSource = lstBeneficiariosConPlanesSinFechaVencimiento;
             this.grdBeneficiariosConPlanSinFechaVencimiento.DataBind();
         }
         protected void CargarGrillaEspecialistasConInformesPendientes()
@@ -138,8 +136,8 @@ namespace Ejemplo.Web
         }
         protected void CargarGrillaSesionesPasaronDelDia()
         {
-            SesionesPasaronDelDia = dFachada.SesionTraerPasaronDelDia();
-            grdSesionesPasadasDelDia.DataSource = SesionesPasaronDelDia;
+            LasSesionesPasaronDelDia = dFachada.SesionTraerPasaronDelDia();
+            grdSesionesPasadasDelDia.DataSource = LasSesionesPasaronDelDia;
             grdSesionesPasadasDelDia.DataBind();
         }
 
@@ -173,8 +171,8 @@ namespace Ejemplo.Web
         protected void grdPlanesPorVencerse_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdPlanesPorVencerse.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + codigo.ToString());
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString());
         }
         protected void grdBeneficiariosConPlanSinFechaVencimiento_RowCreated(object sender, GridViewRowEventArgs e)
         {
@@ -193,17 +191,16 @@ namespace Ejemplo.Web
         protected void grdBeneficiariosConPlanSinFechaVencimiento_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdBeneficiariosConPlanSinFechaVencimiento.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + codigo.ToString());
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString());
         }
         #endregion
         #region TAREAS ESPECIALISTAS
 
         protected void CargarGrillasEspecialistas()
-        {//son 5 ahora 28/12
+        {
             CargarGrillaInformesPendientes();
             CargarGrillaInformesEnProceso();
-            //CargarGrillaInformesTerminados();
             CargarGrillaSesionesDelDia();
             CargarGrillasSesionesObservaciones();
             CargarGrillaSesionesConObservacionesRealizadas();
@@ -211,88 +208,61 @@ namespace Ejemplo.Web
 
         protected void CargarGrillaInformesPendientes()
         {
-            List<cInforme> ListaInformes = dFachada.InformeTraerTodosPendientesPorEspecialista(vMiPerfil.U);
-            cInforme informe;
+            List<cInforme> lstInformes = dFachada.InformeTraerTodosPendientesPorEspecialista(vMiPerfil.U);
+            cInforme unInforme;
 
-            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
-            ListarInformes informeAListar;
+            List<ListarInformes> lstInformesParaListar = new List<ListarInformes>();
+            ListarInformes unInformeAListar;
 
-            for (int i = 0; i < ListaInformes.Count; i++)
+            for (int i = 0; i < lstInformes.Count; i++)
             {
-                informe = new cInforme();
-                informe = ListaInformes[i];
-                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
-                informeAListar = new ListarInformes();
-                informeAListar.Codigo = informe.Codigo;
-                informeAListar.Fecha = informe.Fecha;
-                informeAListar.Estado = informe.Estado;
-                informeAListar.Tipo = informe.Tipo;
-                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.Nombres = informe.Beneficiario.Nombres;
-                informeAListar.Apellidos = informe.Beneficiario.Apellidos;
-                ListaInformesParaListar.Add(informeAListar);
+                unInforme = new cInforme();
+                unInforme = lstInformes[i];
+                unInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(unInforme.Beneficiario);
+                unInformeAListar = new ListarInformes();
+                unInformeAListar.Codigo = unInforme.Codigo;
+                unInformeAListar.Fecha = unInforme.Fecha;
+                unInformeAListar.Estado = unInforme.Estado;
+                unInformeAListar.Tipo = unInforme.Tipo;
+                unInformeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
+                unInformeAListar.Nombres = unInforme.Beneficiario.Nombres;
+                unInformeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
+                lstInformesParaListar.Add(unInformeAListar);
             }
 
-            grdInformesPendientes.DataSource = ListaInformesParaListar;
+            grdInformesPendientes.DataSource = lstInformesParaListar;
             grdInformesPendientes.DataBind();
         }
         protected void CargarGrillaInformesEnProceso()
         {
-            List<cInforme> ListaInformes = dFachada.InformeTraerTodosEnProcesoPorEspecialista(vMiPerfil.U);
-            cInforme informe;
+            List<cInforme> lstInformes = dFachada.InformeTraerTodosEnProcesoPorEspecialista(vMiPerfil.U);
+            cInforme unInforme;
 
-            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
-            ListarInformes informeAListar;
+            List<ListarInformes> lstInformesParaListar = new List<ListarInformes>();
+            ListarInformes unInformeAListar;
 
-            for (int i = 0; i < ListaInformes.Count; i++)
+            for (int i = 0; i < lstInformes.Count; i++)
             {
-                informe = new cInforme();
-                informe = ListaInformes[i];
-                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
-                informeAListar = new ListarInformes();
-                informeAListar.Codigo = informe.Codigo;
-                informeAListar.Fecha = informe.Fecha;
-                informeAListar.Estado = informe.Estado;
-                informeAListar.Tipo = informe.Tipo;
-                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.Nombres = informe.Beneficiario.Nombres;
-                informeAListar.Apellidos = informe.Beneficiario.Apellidos;
-                ListaInformesParaListar.Add(informeAListar);
+                unInforme = new cInforme();
+                unInforme = lstInformes[i];
+                unInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(unInforme.Beneficiario);
+                unInformeAListar = new ListarInformes();
+                unInformeAListar.Codigo = unInforme.Codigo;
+                unInformeAListar.Fecha = unInforme.Fecha;
+                unInformeAListar.Estado = unInforme.Estado;
+                unInformeAListar.Tipo = unInforme.Tipo;
+                unInformeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
+                unInformeAListar.Nombres = unInforme.Beneficiario.Nombres;
+                unInformeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
+                lstInformesParaListar.Add(unInformeAListar);
             }
 
-            grdInformesEnProceso.DataSource = ListaInformesParaListar;
+            grdInformesEnProceso.DataSource = lstInformesParaListar;
             grdInformesEnProceso.DataBind();
         }
-        /*protected void CargarGrillaInformesTerminados()
-        {
-            List<cInforme> ListaInformes = dFachada.InformeTraerTodosTerminadosPorEspecialista(vMiPerfil.U);
-            cInforme informe;
-
-            List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
-            ListarInformes informeAListar;
-
-            for (int i = 0; i < ListaInformes.Count; i++)
-            {
-                informe = new cInforme();
-                informe = ListaInformes[i];
-                informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
-                informeAListar = new ListarInformes();
-                informeAListar.Codigo = informe.Codigo;
-                informeAListar.Fecha = informe.Fecha;
-                informeAListar.Estado = informe.Estado;
-                informeAListar.Tipo = informe.Tipo;
-                informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                informeAListar.NombresBeneficiario = informe.Beneficiario.Nombres;
-                informeAListar.ApellidosBeneficiario = informe.Beneficiario.Apellidos;
-                ListaInformesParaListar.Add(informeAListar);
-            }
-
-            grdInformesTerminados.DataSource = ListaInformesParaListar;
-            grdInformesTerminados.DataBind();
-        }*/
         protected void CargarGrillaSesionesDelDia()
         {
-            List<cSesion> sesiones = new List<cSesion>();
+            List<cSesion> lstSesiones = new List<cSesion>();
             grdSesionesDelDia.DataSource = dFachada.SesionTraerProximasDelDiaPorEspecialista(vMiPerfil.U);
             grdSesionesDelDia.DataBind();
         }
@@ -303,15 +273,15 @@ namespace Ejemplo.Web
         }
         protected void CargarComboBeneficiario()
         {
-            lstBeneficiarios = new List<cBeneficiario>();
-            lstBeneficiarios = dFachada.BeneficiarioTraerTodosPorEspecialista(vMiPerfil.U);
+            LosBeneficiarios = new List<cBeneficiario>();
+            LosBeneficiarios = dFachada.BeneficiarioTraerTodosPorEspecialista(vMiPerfil.U);
             List<string> lstNombreApellido = new List<string>() { "Todos" };
-            string nomApe;
-            for (int i = 0; i < lstBeneficiarios.Count; i++)
+            string sNomApe;
+            for (int i = 0; i < LosBeneficiarios.Count; i++)
             {
-                nomApe = "";
-                nomApe = lstBeneficiarios[i].Nombres + " " + lstBeneficiarios[i].Apellidos;
-                lstNombreApellido.Add(nomApe);
+                sNomApe = "";
+                sNomApe = LosBeneficiarios[i].Nombres + " " + LosBeneficiarios[i].Apellidos;
+                lstNombreApellido.Add(sNomApe);
             }
             ddlBeneficiario.DataSource = lstNombreApellido;
             ddlBeneficiario.DataBind();
@@ -325,28 +295,28 @@ namespace Ejemplo.Web
             }
             else
             {
-                string Consulta = "SELECT distinct S.* FROM UsuariosSesiones us " +
+                string sConsulta = "SELECT distinct S.* FROM UsuariosSesiones us " +
                     "join Sesiones S on us.SesionId = S.SesionId " +
                     "join BeneficiariosSesiones bs on bs.SesionId = S.SesionId";
-                List<string> condiciones = new List<string>() { " WHERE" };
-                condiciones.Add(string.Format(" us.UsuarioId={0} and us.UsuariosSesionesObservacion  is not NULL and us.UsuariosSesionesObservacion <> ''", vMiPerfil.U.Codigo));
+                List<string> lstCondiciones = new List<string>() { " WHERE" };
+                lstCondiciones.Add(string.Format(" us.UsuarioId={0} and us.UsuariosSesionesObservacion  is not NULL and us.UsuariosSesionesObservacion <> ''", vMiPerfil.U.Codigo));
                 //Beneficiario
                 if (ddlBeneficiario.SelectedIndex != 0)
                 {
-                    cBeneficiario beneficiario = lstBeneficiarios[ddlBeneficiario.SelectedIndex - 1];
-                    int codigo = beneficiario.Codigo;
-                    condiciones.Add(string.Format(" and bs.BeneficiarioId={0}", codigo));
+                    cBeneficiario unBeneficiario = LosBeneficiarios[ddlBeneficiario.SelectedIndex - 1];
+                    int iCodigo = unBeneficiario.Codigo;
+                    lstCondiciones.Add(string.Format(" and bs.BeneficiarioId={0}", iCodigo));
                 }
                 //Fecha
                 if (txtDesde.Text != string.Empty && txtHasta.Text != string.Empty)
                 {
-                    condiciones.Add(string.Format(" and s.SesionFecha between '{0}' and '{1}'", txtDesde.Text, txtHasta.Text));
+                    lstCondiciones.Add(string.Format(" and s.SesionFecha between '{0}' and '{1}'", txtDesde.Text, txtHasta.Text));
                 }
-                for (int i = 0; i < condiciones.Count; i++)
+                for (int i = 0; i < lstCondiciones.Count; i++)
                 {
-                    Consulta += condiciones[i];
+                    sConsulta += lstCondiciones[i];
                 }
-                grdSesionesObservacionesRealizadas.DataSource = dFachada.SesionTraerTodasPorEspecialistaConFiltros(Consulta);
+                grdSesionesObservacionesRealizadas.DataSource = dFachada.SesionTraerTodasPorEspecialistaConFiltros(sConsulta);
                 grdSesionesObservacionesRealizadas.DataBind();
             }
         }
@@ -360,15 +330,14 @@ namespace Ejemplo.Web
         protected void grdInformesPendientes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdInformesPendientes.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vInformeRedactar.aspx?InformeId=" + codigo.ToString());
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vInformeRedactar.aspx?InformeId=" + iCodigo.ToString());
         }
         protected void grdInformesEnProceso_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            enproceso = true;
             TableCell celdaCodigo = grdInformesEnProceso.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vInformeRedactar.aspx?InformeId=" + codigo.ToString());
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vInformeRedactar.aspx?InformeId=" + iCodigo.ToString());
         }
         protected void grdInformesEnProceso_RowCreated(object sender, GridViewRowEventArgs e)
         {
@@ -385,18 +354,15 @@ namespace Ejemplo.Web
             {
                 ventanaReprogramar = false;
                 TableCell celdaId = grdSesionesPasadasDelDia.Rows[e.NewSelectedIndex].Cells[1];
-                int idSesion = int.Parse(celdaId.Text);
-                string vtn = "window.open('vDetallesSesionParaAsistencia.aspx?Id=" + SesionesPasaronDelDia[e.NewSelectedIndex].Codigo + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
+                int iIdSesion = int.Parse(celdaId.Text);
+                string sVtn = "window.open('vDetallesSesionParaAsistencia.aspx?Id=" + LasSesionesPasaronDelDia[e.NewSelectedIndex].Codigo + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
             }
             else
             {
                 CargarGrillaSesionesPasaronDelDia();
                 ventanaReprogramar = true;
-            }
-
-            //?id=<%# Eval('Id').ToString) %>
-            //  + SesionesPasaronDelDia[e.NewSelectedIndex].Codigo
+            }            
         }
         protected void grdObservacionesDeSesiones_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
@@ -405,10 +371,10 @@ namespace Ejemplo.Web
                 ventanaObservacionVerDetalles = false;
                 ventanaObservacion = false;
                 TableCell celdaId = grdObservacionesDeSesiones.Rows[e.NewSelectedIndex].Cells[1];
-                int idSesion = int.Parse(celdaId.Text);
+                int iIdSesion = int.Parse(celdaId.Text);
                 //Response.Redirect("vAgregarObservacionSesion.aspx?SesionId=" + idSesion);
-                string vtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + idSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
+                string sVtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + iIdSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
             }
             else
             {
@@ -422,9 +388,9 @@ namespace Ejemplo.Web
         protected void grdSesionesDelDia_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaId = grdSesionesDelDia.Rows[e.NewSelectedIndex].Cells[1];
-            int idSesion = int.Parse(celdaId.Text);
-            string vtn = "window.open('vDetallesSesion.aspx?Id=" + idSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=100', 'width=700')";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
+            int iIdSesion = int.Parse(celdaId.Text);
+            string sVtn = "window.open('vDetallesSesion.aspx?Id=" + iIdSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=100', 'width=700')";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
 
         }
         protected void btnAplicar_Click(object sender, EventArgs e)
@@ -445,9 +411,9 @@ namespace Ejemplo.Web
                 ventanaObservacionVerDetalles = true;
                 ventanaObservacion = false;
                 TableCell celdaId = grdSesionesObservacionesRealizadas.Rows[e.NewSelectedIndex].Cells[1];
-                int idSesion = int.Parse(celdaId.Text);
-                string vtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + idSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", vtn, true);
+                int iIdSesion = int.Parse(celdaId.Text);
+                string sVtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + iIdSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
             }
             else
             {

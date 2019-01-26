@@ -11,123 +11,107 @@ namespace Ejemplo.Web
 {
     public partial class vInformeRedactar : System.Web.UI.Page
     {
-        static cInforme Informe;
-        static List<cDiagnostico> lstTodosDiagnosticos;
-        static List<cDiagnostico> lstDiagnosticosAgregados;
+        static cInforme ElInforme;
+        static List<cDiagnostico> LosDiagnosticos;
+        static List<cDiagnostico> LosDiagnosticosAgregados;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                Informe = new cInforme();
-                Informe.Codigo = int.Parse(Request.QueryString["InformeId"]);
-                Informe = dFachada.InformeTraerEspecifico(Informe);
-                Informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(Informe.Beneficiario);
-                Informe.lstSecciones = dFachada.SeccionTraerTodasPorInforme(Informe);
-                for (int i = 0; i < Informe.lstSecciones.Count; i++)
+                ElInforme = new cInforme();
+                ElInforme.Codigo = int.Parse(Request.QueryString["InformeId"]);
+                ElInforme = dFachada.InformeTraerEspecifico(ElInforme);
+                ElInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(ElInforme.Beneficiario);
+                ElInforme.lstSecciones = dFachada.SeccionTraerTodasPorInforme(ElInforme);
+                for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
                 {
-                    Informe.lstSecciones[i].lstUsuariosSeccion = dFachada.UsuarioSeccionTraerTodosPorSeccion(Informe.lstSecciones[i]);
-                    for (int j = 0; j < Informe.lstSecciones[i].lstUsuariosSeccion.Count; j++)
+                    ElInforme.lstSecciones[i].lstUsuariosSeccion = dFachada.UsuarioSeccionTraerTodosPorSeccion(ElInforme.lstSecciones[i]);
+                    for (int j = 0; j < ElInforme.lstSecciones[i].lstUsuariosSeccion.Count; j++)
                     {
-                        Informe.lstSecciones[i].lstUsuariosSeccion[j].Usuario = dFachada.UsuarioTraerEspecifico(Informe.lstSecciones[i].lstUsuariosSeccion[j].Usuario);
+                        ElInforme.lstSecciones[i].lstUsuariosSeccion[j].Usuario = dFachada.UsuarioTraerEspecifico(ElInforme.lstSecciones[i].lstUsuariosSeccion[j].Usuario);
                     }
                 }
-                lstTodosDiagnosticos = new List<cDiagnostico>();
-                lstTodosDiagnosticos = dFachada.DiagnosticoTraerTodos();
-                lstDiagnosticosAgregados = new List<cDiagnostico>();
+                LosDiagnosticos = new List<cDiagnostico>();
+                LosDiagnosticos = dFachada.DiagnosticoTraerTodos();
+                LosDiagnosticosAgregados = new List<cDiagnostico>();
                 CargarGrillasDiagnostico();
                 txtAntecedentesPatologicos.Enabled = false;
                 txtDesarrollo.Enabled = false;
                 txtSugerencia.Enabled = false;
-                if (vTareas.enproceso)
-                {
-                    vTareas.enproceso = false;
-                    //CargarDatos();
-                    CargarDatosEnProceso(); // carga los datos con el contenido de las secciones
-                    /*cbAntecedentesPatologicos.Enabled = false;
-                    cbDesarrollo.Enabled = false;
-                    cbSugerencia.Enabled = false;*/
-                }
-                else
-                {
-                    CargarDatosEnProceso();
-                    //CargarDatos(); //carga los datos solo del beneficiario
-                }
+                CargarDatosEnProceso();
                 CargarGrillasDiagnostico();
-
-
-
             }
         }
 
         protected void CargarDatosEnProceso()
         {
-            lblTipo.Text = Informe.Tipo.ToString().Replace("_", " ");
+            lblTipo.Text = ElInforme.Tipo.ToString().Replace("_", " ");
 
-            for (int i = 0; i < Informe.lstSecciones.Count; i++)
+            for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
             {
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Título)
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Título)
                 {
-                    txtTitulo.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtTitulo.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
             }
 
-            lblNombres.Text = Informe.Beneficiario.Nombres.ToString();
-            lblApellidos.Text = Informe.Beneficiario.Apellidos.ToString();
-            lblFechaNac.Text = Informe.Beneficiario.FechaNacimiento.ToString();
-            lblCI.Text = Informe.Beneficiario.CI.ToString();
+            lblNombres.Text = ElInforme.Beneficiario.Nombres.ToString();
+            lblApellidos.Text = ElInforme.Beneficiario.Apellidos.ToString();
+            lblFechaNac.Text = ElInforme.Beneficiario.FechaNacimiento.ToString();
+            lblCI.Text = ElInforme.Beneficiario.CI.ToString();
             #region Hallar la edad cronologica
-            string[] partes = Informe.Beneficiario.FechaNacimiento.ToString().Split('/');
-            int año = int.Parse(partes[2]);
-            int mes = int.Parse(partes[1]);
-            int dia = int.Parse(partes[0]);
-            int añoActual = DateTime.Now.Year;
-            int mesActual = DateTime.Now.Month;
-            int diaActual = DateTime.Now.Day;
+            string[] aPartes = ElInforme.Beneficiario.FechaNacimiento.ToString().Split('/');
+            int iAño = int.Parse(aPartes[2]);
+            int iMes = int.Parse(aPartes[1]);
+            int iDia = int.Parse(aPartes[0]);
+            int iAñoActual = DateTime.Now.Year;
+            int iMesActual = DateTime.Now.Month;
+            int iDiaActual = DateTime.Now.Day;
 
-            int edadAños = añoActual - año;
-            int edadMeses;
-            int edadDias;
-            if (mesActual >= mes)
+            int iEdadAños = iAñoActual - iAño;
+            int iEdadMeses;
+            int iEdadDias;
+            if (iMesActual >= iMes)
             {
-                edadMeses = mesActual - mes;
+                iEdadMeses = iMesActual - iMes;
             }
             else
             {
-                mesActual += 12;
-                edadMeses = mesActual - mes;
-                edadAños -= 1;
+                iMesActual += 12;
+                iEdadMeses = iMesActual - iMes;
+                iEdadAños -= 1;
             }
-            if (diaActual >= dia)
+            if (iDiaActual >= iDia)
             {
-                edadDias = diaActual - dia;
+                iEdadDias = iDiaActual - iDia;
             }
             else
             {
-                diaActual += 30;
-                edadMeses -= 1;
-                edadDias = diaActual - dia;
+                iDiaActual += 30;
+                iEdadMeses -= 1;
+                iEdadDias = iDiaActual - iDia;
             }
             #endregion
 
-            lblEdad.Text = edadAños + " años y " + edadMeses + " meses";
-            lblMotivoConsulta.Text = Informe.Beneficiario.MotivoConsulta.ToString();
-            lblEscolaridad.Text = Informe.Beneficiario.Escolaridad.ToString();
-            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(Informe.Beneficiario);
+            lblEdad.Text = iEdadAños + " años y " + iEdadMeses + " meses";
+            lblMotivoConsulta.Text = ElInforme.Beneficiario.MotivoConsulta.ToString();
+            lblEscolaridad.Text = ElInforme.Beneficiario.Escolaridad.ToString();
+            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(ElInforme.Beneficiario);
             #region TraerUltimos diagnosticos
-            List<string> diagnosticos = dFachada.DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(Informe.Beneficiario);
-            string diag = "";
-            if (diagnosticos.Count > 0)
+            List<string> lstsDiagnosticos = dFachada.DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(ElInforme.Beneficiario);
+            string sDiag = "";
+            if (lstsDiagnosticos.Count > 0)
             {
-                for (int i = 0; i < diagnosticos.Count; i++)
+                for (int i = 0; i < lstsDiagnosticos.Count; i++)
                 {
                     if (i == 0)
-                        diag = diagnosticos[i];
-                    else if (diagnosticos.Count - i == 1)
-                        diag = diag + " y " + diagnosticos[i];
+                        sDiag = lstsDiagnosticos[i];
+                    else if (lstsDiagnosticos.Count - i == 1)
+                        sDiag = sDiag + " y " + lstsDiagnosticos[i];
                     else
-                        diag = diag + ", " + diagnosticos[i];
+                        sDiag = sDiag + ", " + lstsDiagnosticos[i];
                 }
-                lblUltimoDiagnostico.Text = diag;//Funcion de traer ultimo diagnostico del beneficiario
+                lblUltimoDiagnostico.Text = sDiag;//Funcion de traer ultimo diagnostico del beneficiario
             }
             else
             {
@@ -135,36 +119,36 @@ namespace Ejemplo.Web
             }
             #endregion
 
-            string dg = "";
-            for (int i = 0; i < Informe.lstSecciones.Count; i++)
+            string sDg = "";
+            for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
             {
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Diagnóstico)
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Diagnóstico)
                 {
-                    dg = Informe.lstSecciones[i].Contenido.ToString();
+                    sDg = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
             }
             List<cDiagnostico> lstDiagnosticos = new List<cDiagnostico>();
-            cDiagnostico d;
-            string[] parts = dg.Split(',');
-            for (int i = 0; i < parts.Length; i++)
+            cDiagnostico unDiagnostico;
+            string[] aParts = sDg.Split(',');
+            for (int i = 0; i < aParts.Length; i++)
             {
-                string[] parts2 = parts[i].Split('y'); //por ahora no hay diagnosticos con y pero en caso de haberlo hay que buscar una alternativa
-                for (int j = 0; j < parts2.Length; j++)
+                string[] aParts2 = aParts[i].Split('y'); //por ahora no hay diagnosticos con y pero en caso de haberlo hay que buscar una alternativa
+                for (int j = 0; j < aParts2.Length; j++)
                 {
-                    d = new cDiagnostico();
-                    d.Tipo = parts2[j].Trim();
-                    lstDiagnosticos.Add(d);
+                    unDiagnostico = new cDiagnostico();
+                    unDiagnostico.Tipo = aParts2[j].Trim();
+                    lstDiagnosticos.Add(unDiagnostico);
                 }
             }
 
-            for (int i = 0; i < lstTodosDiagnosticos.Count; i++)
+            for (int i = 0; i < LosDiagnosticos.Count; i++)
             {
                 for (int j = 0; j < lstDiagnosticos.Count; j++)
                 {
-                    if (lstTodosDiagnosticos[i].Tipo == lstDiagnosticos[j].Tipo)
+                    if (LosDiagnosticos[i].Tipo == lstDiagnosticos[j].Tipo)
                     {
-                        lstDiagnosticosAgregados.Add(lstTodosDiagnosticos[i]);
-                        lstTodosDiagnosticos.RemoveAt(i);
+                        LosDiagnosticosAgregados.Add(LosDiagnosticos[i]);
+                        LosDiagnosticos.RemoveAt(i);
                         i--;
                         break;
                     }
@@ -172,53 +156,53 @@ namespace Ejemplo.Web
             }
 
 
-            for (int i = 0; i < Informe.lstSecciones.Count; i++)
+            for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
             {
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Presentación)
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Presentación)
                 {
-                    txtPresentacion.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtPresentacion.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicomotriz && vMiPerfil.U.Especialidad.Nombre == "Psicomotricidad")
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicomotriz && vMiPerfil.U.Especialidad.Nombre == "Psicomotricidad")
                 {
-                    txtAbordaje.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
                 {
-                    txtAbordaje.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico && vMiPerfil.U.Especialidad.Nombre == "Psicologia")
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico && vMiPerfil.U.Especialidad.Nombre == "Psicologia")
                 {
-                    txtAbordaje.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico && vMiPerfil.U.Especialidad.Nombre == "Fonoaudiologia")
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico && vMiPerfil.U.Especialidad.Nombre == "Fonoaudiologia")
                 {
-                    txtAbordaje.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico && vMiPerfil.U.Especialidad.Nombre == "Fisioterapia")
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico && vMiPerfil.U.Especialidad.Nombre == "Fisioterapia")
                 {
-                    txtAbordaje.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
                 {
-                    txtEnsuma.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtEnsuma.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
 
 
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Antecedentes_patológicos)
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Antecedentes_patológicos)
                 {
-                    txtAntecedentesPatologicos.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtAntecedentesPatologicos.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                     txtAntecedentesPatologicos.Enabled = true;
                     cbAntecedentesPatologicos.Checked = true;
                 }
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Desarrollo)
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Desarrollo)
                 {
-                    txtDesarrollo.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtDesarrollo.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                     txtDesarrollo.Enabled = true;
                     cbDesarrollo.Checked = true;
                 }
-                if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Sugerencias)
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Sugerencias)
                 {
-                    txtSugerencia.Text = Informe.lstSecciones[i].Contenido.ToString();
+                    txtSugerencia.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                     txtSugerencia.Enabled = true;
                     cbSugerencia.Checked = true;
                 }
@@ -234,65 +218,65 @@ namespace Ejemplo.Web
         protected void CargarDatos()
         {
 
-            lblTipo.Text = Informe.Tipo.ToString().Replace("_", " ");
+            lblTipo.Text = ElInforme.Tipo.ToString().Replace("_", " ");
 
-            lblNombres.Text = Informe.Beneficiario.Nombres.ToString();
-            lblApellidos.Text = Informe.Beneficiario.Apellidos.ToString();
-            lblFechaNac.Text = Informe.Beneficiario.FechaNacimiento.ToString();
-            lblCI.Text = Informe.Beneficiario.CI.ToString();
+            lblNombres.Text = ElInforme.Beneficiario.Nombres.ToString();
+            lblApellidos.Text = ElInforme.Beneficiario.Apellidos.ToString();
+            lblFechaNac.Text = ElInforme.Beneficiario.FechaNacimiento.ToString();
+            lblCI.Text = ElInforme.Beneficiario.CI.ToString();
 
             #region Hallar la edad cronologica
-            string[] partes = Informe.Beneficiario.FechaNacimiento.ToString().Split('/');
-            int año = int.Parse(partes[2]);
-            int mes = int.Parse(partes[1]);
-            int dia = int.Parse(partes[0]);
-            int añoActual = DateTime.Now.Year;
-            int mesActual = DateTime.Now.Month;
-            int diaActual = DateTime.Now.Day;
+            string[] aPartes = ElInforme.Beneficiario.FechaNacimiento.ToString().Split('/');
+            int iAño = int.Parse(aPartes[2]);
+            int iMes = int.Parse(aPartes[1]);
+            int iDia = int.Parse(aPartes[0]);
+            int iAñoActual = DateTime.Now.Year;
+            int iMesActual = DateTime.Now.Month;
+            int iDiaActual = DateTime.Now.Day;
 
-            int edadAños = añoActual - año;
-            int edadMeses;
-            int edadDias;
-            if (mesActual >= mes)
+            int iEdadAños = iAñoActual - iAño;
+            int iEdadMeses;
+            int iEdadDias;
+            if (iMesActual >= iMes)
             {
-                edadMeses = mesActual - mes;
+                iEdadMeses = iMesActual - iMes;
             }
             else
             {
-                mesActual += 12;
-                edadMeses = mesActual - mes;
-                edadAños -= 1;
+                iMesActual += 12;
+                iEdadMeses = iMesActual - iMes;
+                iEdadAños -= 1;
             }
-            if (diaActual >= dia)
+            if (iDiaActual >= iDia)
             {
-                edadDias = diaActual - dia;
+                iEdadDias = iDiaActual - iDia;
             }
             else
             {
-                diaActual += 30;
-                edadMeses -= 1;
-                edadDias = diaActual - dia;
+                iDiaActual += 30;
+                iEdadMeses -= 1;
+                iEdadDias = iDiaActual - iDia;
             }
             #endregion
 
-            lblEdad.Text = edadAños + " años y " + edadMeses + " meses";
-            lblMotivoConsulta.Text = Informe.Beneficiario.MotivoConsulta.ToString();
-            lblEscolaridad.Text = Informe.Beneficiario.Escolaridad.ToString();
-            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(Informe.Beneficiario);
-            List<string> diagnosticos = dFachada.DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(Informe.Beneficiario);
-            string diag = "";
-            if (diagnosticos.Count > 0)
+            lblEdad.Text = iEdadAños + " años y " + iEdadMeses + " meses";
+            lblMotivoConsulta.Text = ElInforme.Beneficiario.MotivoConsulta.ToString();
+            lblEscolaridad.Text = ElInforme.Beneficiario.Escolaridad.ToString();
+            lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(ElInforme.Beneficiario);
+            List<string> lstDiagnosticos = dFachada.DiagnosticoTraerUltimosDiagnosticosPorBeneficiario(ElInforme.Beneficiario);
+            string sDiag = "";
+            if (lstDiagnosticos.Count > 0)
             {
-                for (int i = 0; i < diagnosticos.Count; i++)
+                for (int i = 0; i < lstDiagnosticos.Count; i++)
                 {
                     if (i == 0)
-                        diag = diagnosticos[i];
-                    else if (diagnosticos.Count - i == 1)
-                        diag = diag + " y " + diagnosticos[i];
+                        sDiag = lstDiagnosticos[i];
+                    else if (lstDiagnosticos.Count - i == 1)
+                        sDiag = sDiag + " y " + lstDiagnosticos[i];
                     else
-                        diag = diag + ", " + diagnosticos[i];
+                        sDiag = sDiag + ", " + lstDiagnosticos[i];
                 }
-                lblUltimoDiagnostico.Text = diag;//Funcion de traer ultimo diagnostico del beneficiario
+                lblUltimoDiagnostico.Text = sDiag;//Funcion de traer ultimo diagnostico del beneficiario
             }
             else
             {
@@ -304,10 +288,10 @@ namespace Ejemplo.Web
         }
         protected void CargarGrillasDiagnostico()
         {
-            grdTodosDiagnosticos.DataSource = lstTodosDiagnosticos;
+            grdTodosDiagnosticos.DataSource = LosDiagnosticos;
             grdTodosDiagnosticos.DataBind();
             grdTodosDiagnosticos.SelectedIndex = -1;
-            grdDiagnosticosAgregados.DataSource = lstDiagnosticosAgregados;
+            grdDiagnosticosAgregados.DataSource = LosDiagnosticosAgregados;
             grdDiagnosticosAgregados.DataBind();
             grdDiagnosticosAgregados.SelectedIndex = -1;
         }
@@ -315,13 +299,13 @@ namespace Ejemplo.Web
         protected void grdTodosDiagnosticos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdTodosDiagnosticos.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            for (int i = 0; i < lstTodosDiagnosticos.Count; i++)
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            for (int i = 0; i < LosDiagnosticos.Count; i++)
             {
-                if (lstTodosDiagnosticos[i].Codigo == codigo)
+                if (LosDiagnosticos[i].Codigo == iCodigo)
                 {
-                    lstDiagnosticosAgregados.Add(lstTodosDiagnosticos[i]);
-                    lstTodosDiagnosticos.RemoveAt(i);
+                    LosDiagnosticosAgregados.Add(LosDiagnosticos[i]);
+                    LosDiagnosticos.RemoveAt(i);
                 }
             }
             CargarGrillasDiagnostico();
@@ -335,13 +319,13 @@ namespace Ejemplo.Web
         protected void grdDiagnosticosAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             TableCell celdaCodigo = grdDiagnosticosAgregados.Rows[e.RowIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            for (int i = 0; i < lstDiagnosticosAgregados.Count; i++)
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            for (int i = 0; i < LosDiagnosticosAgregados.Count; i++)
             {
-                if (lstDiagnosticosAgregados[i].Codigo == codigo)
+                if (LosDiagnosticosAgregados[i].Codigo == iCodigo)
                 {
-                    lstTodosDiagnosticos.Add(lstDiagnosticosAgregados[i]);
-                    lstDiagnosticosAgregados.RemoveAt(i);
+                    LosDiagnosticos.Add(LosDiagnosticosAgregados[i]);
+                    LosDiagnosticosAgregados.RemoveAt(i);
                 }
             }
             CargarGrillasDiagnostico();
@@ -383,9 +367,9 @@ namespace Ejemplo.Web
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            bool a = false;
-            bool d = false;
-            bool s = false;
+            bool bA = false;
+            bool bD = false;
+            bool bS = false;
             if (FaltanDatos())
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan datos.')", true);
@@ -395,78 +379,78 @@ namespace Ejemplo.Web
 
                 #region Cargando el contenido de las secciones obligatorias
 
-                for (int i = 0; i < Informe.lstSecciones.Count; i++)
+                for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
                 {
-                    if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Título)
+                    if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Título)
                     {
-                        Informe.lstSecciones[i].Contenido = txtTitulo.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtTitulo.Text;
 
                     }
-                    else if(Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Encuadre)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Encuadre)
                     {
-                        Informe.lstSecciones[i].Contenido = lblEncuadre.Text;
+                        ElInforme.lstSecciones[i].Contenido = lblEncuadre.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Diagnóstico)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Diagnóstico)
                     {
-                        string diag = "";
-                        if (lstDiagnosticosAgregados.Count > 0)
+                        string sDiag = "";
+                        if (LosDiagnosticosAgregados.Count > 0)
                         {
-                            for (int j = 0; j < lstDiagnosticosAgregados.Count; j++)
+                            for (int j = 0; j < LosDiagnosticosAgregados.Count; j++)
                             {
                                 if (j == 0)
-                                    diag = lstDiagnosticosAgregados[j].Tipo;
-                                else if (lstDiagnosticosAgregados.Count - j == 1)
-                                    diag = diag + " y " + lstDiagnosticosAgregados[j].Tipo;
+                                    sDiag = LosDiagnosticosAgregados[j].Tipo;
+                                else if (LosDiagnosticosAgregados.Count - j == 1)
+                                    sDiag = sDiag + " y " + LosDiagnosticosAgregados[j].Tipo;
                                 else
-                                    diag = diag + ", " + lstDiagnosticosAgregados[j].Tipo;
+                                    sDiag = sDiag + ", " + LosDiagnosticosAgregados[j].Tipo;
                             }
-                            Informe.lstSecciones[i].Contenido = diag;
+                            ElInforme.lstSecciones[i].Contenido = sDiag;
                         }
 
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Presentación)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Presentación)
                     {
-                        Informe.lstSecciones[i].Contenido = txtPresentacion.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtPresentacion.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicomotriz && vMiPerfil.U.Especialidad.Nombre == "Psicomotricidad")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicomotriz && vMiPerfil.U.Especialidad.Nombre == "Psicomotricidad")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico && vMiPerfil.U.Especialidad.Nombre == "Psicologia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico && vMiPerfil.U.Especialidad.Nombre == "Psicologia")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico && vMiPerfil.U.Especialidad.Nombre == "Fonoaudiologia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico && vMiPerfil.U.Especialidad.Nombre == "Fonoaudiologia")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico && vMiPerfil.U.Especialidad.Nombre == "Fisioterapia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico && vMiPerfil.U.Especialidad.Nombre == "Fisioterapia")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
                     {
-                        Informe.lstSecciones[i].Contenido = txtEnsuma.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtEnsuma.Text;
                     }
 
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Antecedentes_patológicos)
-                    {                        
-                        Informe.lstSecciones[i].Contenido = txtAntecedentesPatologicos.Text;
-                        a = true;
-                    }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Desarrollo)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Antecedentes_patológicos)
                     {
-                        Informe.lstSecciones[i].Contenido = txtDesarrollo.Text;
-                        d = true;
+                        ElInforme.lstSecciones[i].Contenido = txtAntecedentesPatologicos.Text;
+                        bA = true;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Sugerencias)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Desarrollo)
                     {
-                        Informe.lstSecciones[i].Contenido = txtSugerencia.Text;
-                        s = true;
+                        ElInforme.lstSecciones[i].Contenido = txtDesarrollo.Text;
+                        bD = true;
+                    }
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Sugerencias)
+                    {
+                        ElInforme.lstSecciones[i].Contenido = txtSugerencia.Text;
+                        bS = true;
                     }
 
 
@@ -476,62 +460,62 @@ namespace Ejemplo.Web
 
 
                 #region Agregar las secciones opcionales
-                if (!a)
+                if (!bA)
                 {
                     if (cbAntecedentesPatologicos.Checked)
                     {
-                        cSeccion seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Antecedentes_patológicos;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        for (int i = 0; i < Informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                        cSeccion unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Antecedentes_patológicos;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        for (int i = 0; i < ElInforme.lstSecciones[0].lstUsuariosSeccion.Count; i++)
                         {
-                            cUsuarioSeccion us = new cUsuarioSeccion();
-                            us.Usuario = new cUsuario();
-                            us.Usuario = Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
-                            us.Estado = cUtilidades.EstadoInforme.EnProceso;
-                            seccion.lstUsuariosSeccion.Add(us);
-                            seccion.Contenido = txtAntecedentesPatologicos.Text;
+                            cUsuarioSeccion unUS = new cUsuarioSeccion();
+                            unUS.Usuario = new cUsuario();
+                            unUS.Usuario = ElInforme.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
+                            unUS.Estado = cUtilidades.EstadoInforme.EnProceso;
+                            unaSeccion.lstUsuariosSeccion.Add(unUS);
+                            unaSeccion.Contenido = txtAntecedentesPatologicos.Text;
                         }
-                        Informe.lstSecciones.Add(seccion);
+                        ElInforme.lstSecciones.Add(unaSeccion);
                     }
                 }
-                if (!d)
+                if (!bD)
                 {
                     if (cbDesarrollo.Checked)
                     {
-                        cSeccion seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Desarrollo;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        for (int i = 0; i < Informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                        cSeccion unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Desarrollo;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        for (int i = 0; i < ElInforme.lstSecciones[0].lstUsuariosSeccion.Count; i++)
                         {
-                            cUsuarioSeccion us = new cUsuarioSeccion();
-                            us.Usuario = new cUsuario();
-                            us.Usuario = Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
-                            us.Estado = cUtilidades.EstadoInforme.EnProceso;
-                            seccion.lstUsuariosSeccion.Add(us);
-                            seccion.Contenido = txtDesarrollo.Text;
+                            cUsuarioSeccion unUS = new cUsuarioSeccion();
+                            unUS.Usuario = new cUsuario();
+                            unUS.Usuario = ElInforme.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
+                            unUS.Estado = cUtilidades.EstadoInforme.EnProceso;
+                            unaSeccion.lstUsuariosSeccion.Add(unUS);
+                            unaSeccion.Contenido = txtDesarrollo.Text;
                         }
-                        Informe.lstSecciones.Add(seccion);
+                        ElInforme.lstSecciones.Add(unaSeccion);
                     }
                 }
 
-                if (!s)
+                if (!bS)
                 {
                     if (cbSugerencia.Checked)
                     {
-                        cSeccion seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Sugerencias;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        for (int i = 0; i < Informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                        cSeccion unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Sugerencias;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        for (int i = 0; i < ElInforme.lstSecciones[0].lstUsuariosSeccion.Count; i++)
                         {
-                            cUsuarioSeccion us = new cUsuarioSeccion();
-                            us.Usuario = new cUsuario();
-                            us.Usuario = Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
-                            us.Estado = cUtilidades.EstadoInforme.EnProceso;
-                            seccion.lstUsuariosSeccion.Add(us);
-                            seccion.Contenido = txtSugerencia.Text;
+                            cUsuarioSeccion unUS = new cUsuarioSeccion();
+                            unUS.Usuario = new cUsuario();
+                            unUS.Usuario = ElInforme.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
+                            unUS.Estado = cUtilidades.EstadoInforme.EnProceso;
+                            unaSeccion.lstUsuariosSeccion.Add(unUS);
+                            unaSeccion.Contenido = txtSugerencia.Text;
                         }
-                        Informe.lstSecciones.Add(seccion);
+                        ElInforme.lstSecciones.Add(unaSeccion);
                     }
                 }
 
@@ -539,8 +523,8 @@ namespace Ejemplo.Web
 
                 try
                 {
-                    bool resultado = dFachada.InformeRedactar(Informe);
-                    if (resultado)
+                    bool bResultado = dFachada.InformeRedactar(ElInforme);
+                    if (bResultado)
                     {
                         Response.Redirect("vTareas.aspx");
 
@@ -560,29 +544,29 @@ namespace Ejemplo.Web
         }
         protected bool FaltanDatos()
         {
-            bool retorno;
-            if (txtTitulo.Text == "" || txtPresentacion.Text == "" || txtAbordaje.Text == "" || txtEnsuma.Text == "" || lstDiagnosticosAgregados.Count < 1)
+            bool bRetorno;
+            if (txtTitulo.Text == "" || txtPresentacion.Text == "" || txtAbordaje.Text == "" || txtEnsuma.Text == "" || LosDiagnosticosAgregados.Count < 1)
             {
-                retorno = true;
+                bRetorno = true;
             }
             else
             {
                 if (cbAntecedentesPatologicos.Checked && txtAntecedentesPatologicos.Text == "")
-                    retorno = true;
+                    bRetorno = true;
                 if (cbDesarrollo.Checked && txtDesarrollo.Text == "")
-                    retorno = true;
+                    bRetorno = true;
                 if (cbSugerencia.Checked && txtSugerencia.Text == "")
-                    retorno = true;
-                retorno = false;
+                    bRetorno = true;
+                bRetorno = false;
             }
-            return retorno;
+            return bRetorno;
         }
 
         protected void btnFinalizar_Click(object sender, EventArgs e)
         {
-            bool a = false;
-            bool d = false;
-            bool s = false;
+            bool bA = false;
+            bool bD = false;
+            bool bS = false;
             if (FaltanDatos())
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan datos.')", true);
@@ -592,78 +576,78 @@ namespace Ejemplo.Web
 
                 #region Cargando el contenido de las secciones obligatorias
 
-                for (int i = 0; i < Informe.lstSecciones.Count; i++)
+                for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
                 {
-                    if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Título)
+                    if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Título)
                     {
-                        Informe.lstSecciones[i].Contenido = txtTitulo.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtTitulo.Text;
 
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Encuadre)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Encuadre)
                     {
-                        Informe.lstSecciones[i].Contenido = lblEncuadre.Text;
+                        ElInforme.lstSecciones[i].Contenido = lblEncuadre.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Diagnóstico)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Diagnóstico)
                     {
-                        string diag = "";
-                        if (lstDiagnosticosAgregados.Count > 0)
+                        string sDiag = "";
+                        if (LosDiagnosticosAgregados.Count > 0)
                         {
-                            for (int j = 0; j < lstDiagnosticosAgregados.Count; j++)
+                            for (int j = 0; j < LosDiagnosticosAgregados.Count; j++)
                             {
                                 if (j == 0)
-                                    diag = lstDiagnosticosAgregados[j].Tipo;
-                                else if (lstDiagnosticosAgregados.Count - j == 1)
-                                    diag = diag + " y " + lstDiagnosticosAgregados[j].Tipo;
+                                    sDiag = LosDiagnosticosAgregados[j].Tipo;
+                                else if (LosDiagnosticosAgregados.Count - j == 1)
+                                    sDiag = sDiag + " y " + LosDiagnosticosAgregados[j].Tipo;
                                 else
-                                    diag = diag + ", " + lstDiagnosticosAgregados[j].Tipo;
+                                    sDiag = sDiag + ", " + LosDiagnosticosAgregados[j].Tipo;
                             }
-                            Informe.lstSecciones[i].Contenido = diag;
+                            ElInforme.lstSecciones[i].Contenido = sDiag;
                         }
 
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Presentación)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Presentación)
                     {
-                        Informe.lstSecciones[i].Contenido = txtPresentacion.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtPresentacion.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicomotriz && vMiPerfil.U.Especialidad.Nombre == "Psicomotricidad")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicomotriz && vMiPerfil.U.Especialidad.Nombre == "Psicomotricidad")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico && vMiPerfil.U.Especialidad.Nombre == "Psicologia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico && vMiPerfil.U.Especialidad.Nombre == "Psicologia")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico && vMiPerfil.U.Especialidad.Nombre == "Fonoaudiologia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico && vMiPerfil.U.Especialidad.Nombre == "Fonoaudiologia")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico && vMiPerfil.U.Especialidad.Nombre == "Fisioterapia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico && vMiPerfil.U.Especialidad.Nombre == "Fisioterapia")
                     {
-                        Informe.lstSecciones[i].Contenido = txtAbordaje.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
                     {
-                        Informe.lstSecciones[i].Contenido = txtEnsuma.Text;
+                        ElInforme.lstSecciones[i].Contenido = txtEnsuma.Text;
                     }
 
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Antecedentes_patológicos)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Antecedentes_patológicos)
                     {
-                        Informe.lstSecciones[i].Contenido = txtAntecedentesPatologicos.Text;
-                        a = true;
+                        ElInforme.lstSecciones[i].Contenido = txtAntecedentesPatologicos.Text;
+                        bA = true;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Desarrollo)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Desarrollo)
                     {
-                        Informe.lstSecciones[i].Contenido = txtDesarrollo.Text;
-                        d = true;
+                        ElInforme.lstSecciones[i].Contenido = txtDesarrollo.Text;
+                        bD = true;
                     }
-                    else if (Informe.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Sugerencias)
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Sugerencias)
                     {
-                        Informe.lstSecciones[i].Contenido = txtSugerencia.Text;
-                        s = true;
+                        ElInforme.lstSecciones[i].Contenido = txtSugerencia.Text;
+                        bS = true;
                     }
 
 
@@ -673,62 +657,62 @@ namespace Ejemplo.Web
 
 
                 #region Agregar las secciones opcionales
-                if (!a)
+                if (!bA)
                 {
                     if (cbAntecedentesPatologicos.Checked)
                     {
-                        cSeccion seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Antecedentes_patológicos;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        for (int i = 0; i < Informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                        cSeccion unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Antecedentes_patológicos;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        for (int i = 0; i < ElInforme.lstSecciones[0].lstUsuariosSeccion.Count; i++)
                         {
-                            cUsuarioSeccion us = new cUsuarioSeccion();
-                            us.Usuario = new cUsuario();
-                            us.Usuario = Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
-                            us.Estado = cUtilidades.EstadoInforme.EnProceso;
-                            seccion.lstUsuariosSeccion.Add(us);
-                            seccion.Contenido = txtAntecedentesPatologicos.Text;
+                            cUsuarioSeccion unUS = new cUsuarioSeccion();
+                            unUS.Usuario = new cUsuario();
+                            unUS.Usuario = ElInforme.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
+                            unUS.Estado = cUtilidades.EstadoInforme.EnProceso;
+                            unaSeccion.lstUsuariosSeccion.Add(unUS);
+                            unaSeccion.Contenido = txtAntecedentesPatologicos.Text;
                         }
-                        Informe.lstSecciones.Add(seccion);
+                        ElInforme.lstSecciones.Add(unaSeccion);
                     }
                 }
-                if (!d)
+                if (!bD)
                 {
                     if (cbDesarrollo.Checked)
                     {
-                        cSeccion seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Desarrollo;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        for (int i = 0; i < Informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                        cSeccion unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Desarrollo;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        for (int i = 0; i < ElInforme.lstSecciones[0].lstUsuariosSeccion.Count; i++)
                         {
-                            cUsuarioSeccion us = new cUsuarioSeccion();
-                            us.Usuario = new cUsuario();
-                            us.Usuario = Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
-                            us.Estado = cUtilidades.EstadoInforme.EnProceso;
-                            seccion.lstUsuariosSeccion.Add(us);
-                            seccion.Contenido = txtDesarrollo.Text;
+                            cUsuarioSeccion unUS = new cUsuarioSeccion();
+                            unUS.Usuario = new cUsuario();
+                            unUS.Usuario = ElInforme.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
+                            unUS.Estado = cUtilidades.EstadoInforme.EnProceso;
+                            unaSeccion.lstUsuariosSeccion.Add(unUS);
+                            unaSeccion.Contenido = txtDesarrollo.Text;
                         }
-                        Informe.lstSecciones.Add(seccion);
+                        ElInforme.lstSecciones.Add(unaSeccion);
                     }
                 }
 
-                if (!s)
+                if (!bS)
                 {
                     if (cbSugerencia.Checked)
                     {
-                        cSeccion seccion = new cSeccion();
-                        seccion.Nombre = cUtilidades.NombreSeccion.Sugerencias;
-                        seccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
-                        for (int i = 0; i < Informe.lstSecciones[0].lstUsuariosSeccion.Count; i++)
+                        cSeccion unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Sugerencias;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        for (int i = 0; i < ElInforme.lstSecciones[0].lstUsuariosSeccion.Count; i++)
                         {
-                            cUsuarioSeccion us = new cUsuarioSeccion();
-                            us.Usuario = new cUsuario();
-                            us.Usuario = Informe.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
-                            us.Estado = cUtilidades.EstadoInforme.EnProceso;
-                            seccion.lstUsuariosSeccion.Add(us);
-                            seccion.Contenido = txtSugerencia.Text;
+                            cUsuarioSeccion unUS = new cUsuarioSeccion();
+                            unUS.Usuario = new cUsuario();
+                            unUS.Usuario = ElInforme.lstSecciones[0].lstUsuariosSeccion[i].Usuario;
+                            unUS.Estado = cUtilidades.EstadoInforme.EnProceso;
+                            unaSeccion.lstUsuariosSeccion.Add(unUS);
+                            unaSeccion.Contenido = txtSugerencia.Text;
                         }
-                        Informe.lstSecciones.Add(seccion);
+                        ElInforme.lstSecciones.Add(unaSeccion);
                     }
                 }
 
@@ -736,30 +720,30 @@ namespace Ejemplo.Web
 
                 try
                 {
-                    int i = dFachada.InformeVerificarSeccionesTerminadas(Informe, vMiPerfil.U);
-                    if(i==0)
+                    int i = dFachada.InformeVerificarSeccionesTerminadas(ElInforme, vMiPerfil.U);
+                    if (i == 0)
                     {
-                        bool resultado = dFachada.InformeFinalizar(Informe);
-                        if (resultado)
+                        bool bResultado = dFachada.InformeFinalizar(ElInforme);
+                        if (bResultado)
                         {
-                            Informe.Beneficiario.lstDiagnosticos = new List<cDiagnosticoBeneficiario>();
-                            cDiagnosticoBeneficiario db;
-                            for(int j=0;j<lstDiagnosticosAgregados.Count;j++)
+                            ElInforme.Beneficiario.lstDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                            cDiagnosticoBeneficiario unDB;
+                            for (int j = 0; j < LosDiagnosticosAgregados.Count; j++)
                             {
-                                db = new cDiagnosticoBeneficiario();
-                                db.Diagnostico = lstDiagnosticosAgregados[j];
-                                db.Fecha = DateTime.Today.ToString("yyyy-MM-dd");
-                                Informe.Beneficiario.lstDiagnosticos.Add(db);
+                                unDB = new cDiagnosticoBeneficiario();
+                                unDB.Diagnostico = LosDiagnosticosAgregados[j];
+                                unDB.Fecha = DateTime.Today.ToString("yyyy-MM-dd");
+                                ElInforme.Beneficiario.lstDiagnosticos.Add(unDB);
                             }
-                            bool res = dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(Informe.Beneficiario);
-                            if(res)
+                            bool bRes = dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(ElInforme.Beneficiario);
+                            if (bRes)
                             {
                                 Response.Redirect("vTareas.aspx");
                             }
                             else
                             {
                                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('No se pudo agregar los diagnosticos al beneficiario')", true);
-                            }                
+                            }
 
                         }
                         else
@@ -770,8 +754,8 @@ namespace Ejemplo.Web
                     }
                     else
                     {
-                        bool res = dFachada.InformeFinalizarSecciones(Informe, vMiPerfil.U);
-                        if(res)
+                        bool bRes = dFachada.InformeFinalizarSecciones(ElInforme, vMiPerfil.U);
+                        if (bRes)
                         {
                             Response.Redirect("vTareas.aspx");
                         }
@@ -783,7 +767,7 @@ namespace Ejemplo.Web
 
                     }
 
-                    
+
                 }
                 catch (Exception ex)
                 {

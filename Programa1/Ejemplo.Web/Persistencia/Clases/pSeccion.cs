@@ -13,14 +13,14 @@ namespace Persistencia.Clases
     {
         public static List<cSeccion> TraerTodasPorInforme(cInforme parInforme)
         {
-            List<cSeccion> retorno = new List<cSeccion>();
-            cSeccion seccion;
+            List<cSeccion> lstRetorno = new List<cSeccion>();
+            cSeccion unaSeccion;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Secciones_TraerTodasPorInforme", conn);
+                SqlCommand cmd = new SqlCommand("Secciones_TraerTodasPorInforme", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@idInforme", parInforme.Codigo));
 
@@ -29,33 +29,33 @@ namespace Persistencia.Clases
                 {
                     while (oReader.Read())
                     {
-                        seccion = new cSeccion();
-                        seccion.Codigo = int.Parse(oReader["SeccionId"].ToString());
+                        unaSeccion = new cSeccion();
+                        unaSeccion.Codigo = int.Parse(oReader["SeccionId"].ToString());
                         int i = int.Parse(oReader["SeccionNombre"].ToString());
-                        if (i == 0) seccion.Nombre = cUtilidades.NombreSeccion.Título;
-                        if (i == 1) seccion.Nombre = cUtilidades.NombreSeccion.Encuadre;
-                        if (i == 2) seccion.Nombre = cUtilidades.NombreSeccion.Diagnóstico;
-                        if (i == 3) seccion.Nombre = cUtilidades.NombreSeccion.Antecedentes_patológicos;
-                        if (i == 4) seccion.Nombre = cUtilidades.NombreSeccion.Desarrollo;
-                        if (i == 5) seccion.Nombre = cUtilidades.NombreSeccion.Presentación;
-                        if (i == 6) seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicomotriz;
-                        if (i == 7) seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Pedagógico;
-                        if (i == 8) seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicológico;
-                        if (i == 9) seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico;
-                        if (i == 10) seccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico;
-                        if (i == 11) seccion.Nombre = cUtilidades.NombreSeccion.En_Suma;
-                        if (i == 12) seccion.Nombre = cUtilidades.NombreSeccion.Sugerencias;
-                        seccion.Contenido = oReader["SeccionContenido"].ToString();
-                        retorno.Add(seccion);
+                        if (i == 0) unaSeccion.Nombre = cUtilidades.NombreSeccion.Título;
+                        if (i == 1) unaSeccion.Nombre = cUtilidades.NombreSeccion.Encuadre;
+                        if (i == 2) unaSeccion.Nombre = cUtilidades.NombreSeccion.Diagnóstico;
+                        if (i == 3) unaSeccion.Nombre = cUtilidades.NombreSeccion.Antecedentes_patológicos;
+                        if (i == 4) unaSeccion.Nombre = cUtilidades.NombreSeccion.Desarrollo;
+                        if (i == 5) unaSeccion.Nombre = cUtilidades.NombreSeccion.Presentación;
+                        if (i == 6) unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicomotriz;
+                        if (i == 7) unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Pedagógico;
+                        if (i == 8) unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicológico;
+                        if (i == 9) unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fonoaudiológico;
+                        if (i == 10) unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico;
+                        if (i == 11) unaSeccion.Nombre = cUtilidades.NombreSeccion.En_Suma;
+                        if (i == 12) unaSeccion.Nombre = cUtilidades.NombreSeccion.Sugerencias;
+                        unaSeccion.Contenido = oReader["SeccionContenido"].ToString();
+                        lstRetorno.Add(unaSeccion);
                     }
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
 
 

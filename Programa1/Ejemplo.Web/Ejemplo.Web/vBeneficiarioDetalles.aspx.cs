@@ -12,15 +12,15 @@ namespace Ejemplo.Web
 {
     public partial class vBeneficiarioDetalles : System.Web.UI.Page
     {
-        private static List<string> Tipos = new List<string> { "ASSE", "AYEX", "CAMEC", "Círculo Católico", "MIDES", "Particular", "Policial" };
+        private static List<string> LosTipos = new List<string> { "ASSE", "AYEX", "CAMEC", "Círculo Católico", "MIDES", "Particular", "Policial" };
         private static cBeneficiario ElBeneficiario;
-        private static List<cDiagnosticoBeneficiario> lstUltimosDiagnosticos;
-        private static List<cDiagnosticoBeneficiario> lstHistorialDiagnosticos;
-        private static List<cPlan> lstPlanesActivos;
-        private static cPlan PlanAModificar;
-        private static List<cPlan> lstPlanesInactivos;
-        private static List<ListarInformes> lstInformes;
-        private static bool Pensionista;
+        private static List<cDiagnosticoBeneficiario> LosUltimosDiagnosticos;
+        private static List<cDiagnosticoBeneficiario> LosHistorialDiagnosticos;
+        private static List<cPlan> LosPlanesActivos;
+        private static cPlan ElPlanAModificar;
+        private static List<cPlan> LosPlanesInactivos;
+        private static List<ListarInformes> LosInformes;
+        private static bool BPensionista;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -29,12 +29,12 @@ namespace Ejemplo.Web
                 ElBeneficiario.Codigo = int.Parse(Request.QueryString["BeneficiarioId"]);
                 habilitarCampos(false);
                 txtAtributario.Enabled = false;
-                this.PanelAgregarPlan.Visible = false;
+                this.pnlAgregarPlan.Visible = false;
                 this.btnOcultar.Visible = false;
                 this.btnCancelar.Visible = false;
                 this.btnConfirmar.Visible = false;
                 ActualizarTodo();
-                PanelModificarPlan.Visible = false;
+                pnlModificarPlan.Visible = false;
                 if (ElBeneficiario.Estado)
                 {
                     btnHabilitar.Visible = false;
@@ -80,19 +80,19 @@ namespace Ejemplo.Web
         private void ActualizarDatos()
         {
             ElBeneficiario = dFachada.BeneficiarioTraerEspecifico(ElBeneficiario);
-            lstPlanesActivos = dFachada.PlanTraerActivosPorBeneficiario(ElBeneficiario);
-            lstPlanesInactivos = dFachada.PlanTraerInactivosPorBeneficiario(ElBeneficiario);
-            ddlTipos.DataSource = Tipos;
+            LosPlanesActivos = dFachada.PlanTraerActivosPorBeneficiario(ElBeneficiario);
+            LosPlanesInactivos = dFachada.PlanTraerInactivosPorBeneficiario(ElBeneficiario);
+            ddlTipos.DataSource = LosTipos;
             ddlTipos.DataBind();
         }
 
         private void ActualizarGrids()
         {
-            grdPlanesActivos.DataSource = lstPlanesActivos;
+            grdPlanesActivos.DataSource = LosPlanesActivos;
             grdPlanesActivos.DataBind();
-            grdPlanesInactivos.DataSource = lstPlanesInactivos;
+            grdPlanesInactivos.DataSource = LosPlanesInactivos;
             grdPlanesInactivos.DataBind();
-            grdInformes.DataSource = lstInformes;
+            grdInformes.DataSource = LosInformes;
             grdInformes.DataBind();
             DataTable dt = new DataTable();
             
@@ -100,11 +100,11 @@ namespace Ejemplo.Web
             dt.Columns.Add("Fecha", typeof(string));
 
             DataRow row;
-            for (int i = 0; i < lstHistorialDiagnosticos.Count; i++)
+            for (int i = 0; i < LosHistorialDiagnosticos.Count; i++)
             {
                 row = dt.NewRow();
-                row["Tipo"] = lstHistorialDiagnosticos[i].Diagnostico.Tipo;
-                row["Fecha"] = lstHistorialDiagnosticos[i].Fecha;
+                row["Tipo"] = LosHistorialDiagnosticos[i].Diagnostico.Tipo;
+                row["Fecha"] = LosHistorialDiagnosticos[i].Fecha;
 
                 dt.Rows.Add(row);
             }
@@ -118,11 +118,11 @@ namespace Ejemplo.Web
             dt1.Columns.Add("Fecha", typeof(string));
 
             DataRow row1;
-            for (int i = 0; i < lstUltimosDiagnosticos.Count; i++)
+            for (int i = 0; i < LosUltimosDiagnosticos.Count; i++)
             {
                 row1 = dt1.NewRow();
-                row1["Tipo"] = lstUltimosDiagnosticos[i].Diagnostico.Tipo;
-                row1["Fecha"] = lstUltimosDiagnosticos[i].Fecha;
+                row1["Tipo"] = LosUltimosDiagnosticos[i].Diagnostico.Tipo;
+                row1["Fecha"] = LosUltimosDiagnosticos[i].Fecha;
 
                 dt1.Rows.Add(row1);
             }
@@ -139,24 +139,24 @@ namespace Ejemplo.Web
             cInforme unInforme;
 
             List<ListarInformes> lstInformesParaListar = new List<ListarInformes>();
-            ListarInformes informeAListar;
+            ListarInformes unInformeAListar;
 
             for (int i = 0; i < lstInformes1.Count; i++)
             {
                 unInforme = new cInforme();
                 unInforme = lstInformes1[i];
                 unInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(unInforme.Beneficiario);
-                informeAListar = new ListarInformes();
-                informeAListar.Codigo = unInforme.Codigo;
-                informeAListar.Fecha = unInforme.Fecha;
-                informeAListar.Estado = unInforme.Estado;
-                informeAListar.Tipo = unInforme.Tipo;
-                informeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
-                informeAListar.Nombres = unInforme.Beneficiario.Nombres;
-                informeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
-                lstInformesParaListar.Add(informeAListar);
+                unInformeAListar = new ListarInformes();
+                unInformeAListar.Codigo = unInforme.Codigo;
+                unInformeAListar.Fecha = unInforme.Fecha;
+                unInformeAListar.Estado = unInforme.Estado;
+                unInformeAListar.Tipo = unInforme.Tipo;
+                unInformeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
+                unInformeAListar.Nombres = unInforme.Beneficiario.Nombres;
+                unInformeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
+                lstInformesParaListar.Add(unInformeAListar);
             }
-            lstInformes = lstInformesParaListar;
+            LosInformes = lstInformesParaListar;
         }
         private void ActualizarCampos()
         {
@@ -164,8 +164,8 @@ namespace Ejemplo.Web
             txtApellidos.Text = ElBeneficiario.Apellidos;
             txtCi.Text = ElBeneficiario.CI.ToString();
             if (ElBeneficiario.Sexo == "M") rblSexo.Items[0].Selected = true; else rblSexo.Items[1].Selected = true;
-            DateTime fn = DateTime.Parse(ElBeneficiario.FechaNacimiento);
-            txtFechaNac.Text = fn.ToString("yyyy-MM-dd");
+            DateTime dFn = DateTime.Parse(ElBeneficiario.FechaNacimiento);
+            txtFechaNac.Text = dFn.ToString("yyyy-MM-dd");
             txtDomicilio.Text = ElBeneficiario.Domicilio;
             txtTelefono1.Text = ElBeneficiario.Telefono1;
             txtTelefono2.Text = ElBeneficiario.Telefono2;
@@ -208,41 +208,41 @@ namespace Ejemplo.Web
                         }
                     }
                 }
-                string Itinerario = "Asiste al centro ";
+                string sItinerario = "Asiste al centro ";
                 for (int i = 0; i < lstItinerariosPorDia.Count; i++)
                 {
                     if (lstItinerariosPorDia[i].Count > 0)
                     {
-                        if (Itinerario.Length < 20)
+                        if (sItinerario.Length < 20)
                         {
-                            Itinerario += "el día " + lstDias[i].ToLower();
+                            sItinerario += "el día " + lstDias[i].ToLower();
                         }
                         else
                         {
-                            Itinerario += " El día " + lstDias[i].ToLower();
+                            sItinerario += " El día " + lstDias[i].ToLower();
                         }
-                        bool SeAgregoAlgunaSesion = false;
+                        bool bSeAgregoAlgunaSesion = false;
                         for (int j = 0; j < lstItinerariosPorDia[i].Count; j++)
                         {
-                            string especialistas = "";
+                            string sEspecialistas = "";
                             if (lstItinerariosPorDia[i][j].lstEspecialistas.Count > 1)
                             {
-                                especialistas = "con los especialistas ";
+                                sEspecialistas = "con los especialistas ";
                                 for (int k = 0; k < lstItinerariosPorDia[i][j].lstEspecialistas.Count; k++)
                                 {
                                     if (k == 0)
                                     {
-                                        especialistas += lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
+                                        sEspecialistas += lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
                                         lstItinerariosPorDia[i][j].lstEspecialistas[k].Apellidos;
                                     }
                                     else if (lstItinerariosPorDia[i][j].lstEspecialistas.Count - 1 != k && k != 0)
                                     {
-                                        especialistas += ", " + lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
+                                        sEspecialistas += ", " + lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
                                         lstItinerariosPorDia[i][j].lstEspecialistas[k].Apellidos;
                                     }
                                     else if (lstItinerariosPorDia[i][j].lstEspecialistas.Count - 1 == k)
                                     {
-                                        especialistas += " y " + lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
+                                        sEspecialistas += " y " + lstItinerariosPorDia[i][j].lstEspecialistas[k].Nombres + " " +
                                         lstItinerariosPorDia[i][j].lstEspecialistas[k].Apellidos;
                                     }
 
@@ -250,34 +250,34 @@ namespace Ejemplo.Web
                             }
                             else
                             {
-                                especialistas = "con el especialista " +
+                                sEspecialistas = "con el especialista " +
                                     lstItinerariosPorDia[i][j].lstEspecialistas[0].Nombres + " " +
                                     lstItinerariosPorDia[i][j].lstEspecialistas[0].Apellidos;
                             }
-                            if (!SeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 != j)
+                            if (!bSeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 != j)
                             {
-                                Itinerario += string.Format(" desde las {0} hasta las {1} {2}", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, especialistas);
-                                SeAgregoAlgunaSesion = true;
+                                sItinerario += string.Format(" desde las {0} hasta las {1} {2}", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, sEspecialistas);
+                                bSeAgregoAlgunaSesion = true;
                             }
-                            else if (!SeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 == j)
+                            else if (!bSeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 == j)
                             {
-                                Itinerario += string.Format(" desde las {0} hasta las {1} {2}.", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, especialistas);
-                                SeAgregoAlgunaSesion = true;
+                                sItinerario += string.Format(" desde las {0} hasta las {1} {2}.", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, sEspecialistas);
+                                bSeAgregoAlgunaSesion = true;
                             }
-                            else if (SeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 != j)
+                            else if (bSeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 != j)
                             {
-                                Itinerario += string.Format(", desde las {0} hasta las {1} {2} ", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, especialistas);
-                                SeAgregoAlgunaSesion = true;
+                                sItinerario += string.Format(", desde las {0} hasta las {1} {2} ", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, sEspecialistas);
+                                bSeAgregoAlgunaSesion = true;
                             }
-                            else if (SeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 == j)
+                            else if (bSeAgregoAlgunaSesion && lstItinerariosPorDia[i].Count - 1 == j)
                             {
-                                Itinerario += string.Format(" y desde las {0} hasta las {1} {2}.", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, especialistas);
-                                SeAgregoAlgunaSesion = true;
+                                sItinerario += string.Format(" y desde las {0} hasta las {1} {2}.", lstItinerariosPorDia[i][j].HoraInicio, lstItinerariosPorDia[i][j].HoraFin, sEspecialistas);
+                                bSeAgregoAlgunaSesion = true;
                             }
                         }
                     }
                 }
-                this.lblItinerario.Text = Itinerario;
+                this.lblItinerario.Text = sItinerario;
 
             }
             else
@@ -290,25 +290,25 @@ namespace Ejemplo.Web
         private void ActualizarDiagnosticos()
         {
             List<cDiagnosticoBeneficiario> lstDiagnosticos = dFachada.DiagnosticoTraerTodosDiagnosticosPorBeneficiario(ElBeneficiario);
-            cDiagnosticoBeneficiario db;
+            cDiagnosticoBeneficiario unDB;
             if (lstDiagnosticos.Count > 0)
             {
-                lstUltimosDiagnosticos = new List<cDiagnosticoBeneficiario>();
-                lstHistorialDiagnosticos = new List<cDiagnosticoBeneficiario>();
-                string ultimaFecha = lstDiagnosticos[0].Fecha;
+                LosUltimosDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                LosHistorialDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                string sUltimaFecha = lstDiagnosticos[0].Fecha;
                 for (int i = 0; i < lstDiagnosticos.Count; i++)
                 {
-                    if (ultimaFecha == lstDiagnosticos[i].Fecha)
+                    if (sUltimaFecha == lstDiagnosticos[i].Fecha)
                     {
-                        db = new cDiagnosticoBeneficiario();
-                        db.Diagnostico = new cDiagnostico();
-                        db.Diagnostico = lstDiagnosticos[i].Diagnostico;
-                        db.Fecha = lstDiagnosticos[i].Fecha;
-                        lstUltimosDiagnosticos.Add(db);
+                        unDB = new cDiagnosticoBeneficiario();
+                        unDB.Diagnostico = new cDiagnostico();
+                        unDB.Diagnostico = lstDiagnosticos[i].Diagnostico;
+                        unDB.Fecha = lstDiagnosticos[i].Fecha;
+                        LosUltimosDiagnosticos.Add(unDB);
                     }
                     else
                     {
-                        lstHistorialDiagnosticos.Add(lstDiagnosticos[i]);
+                        LosHistorialDiagnosticos.Add(lstDiagnosticos[i]);
                     }
                 }
             }
@@ -335,14 +335,14 @@ namespace Ejemplo.Web
 
         protected void btnNuevoPlan_Click(object sender, EventArgs e)
         {
-            this.PanelAgregarPlan.Visible = true;
+            this.pnlAgregarPlan.Visible = true;
             this.btnNuevoPlan.Visible = false;
             this.btnOcultar.Visible = true;
         }
 
         protected void btnOcultar_Click(object sender, EventArgs e)
         {
-            this.PanelAgregarPlan.Visible = false;
+            this.pnlAgregarPlan.Visible = false;
             this.btnNuevoPlan.Visible = true;
             this.btnOcultar.Visible = false;
         }
@@ -479,7 +479,6 @@ namespace Ejemplo.Web
         private bool FaltanDatosPlan()
         {
             if (txtDesde.Text == string.Empty ||
-                /*txtHasta.Text == string.Empty ||*/
                 (cbTratamiento.Checked == false && cbEvaluacion.Checked == false))
             {
                 return true;
@@ -528,15 +527,15 @@ namespace Ejemplo.Web
 
         protected void grdPlanesActivos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            dFachada.PlanEliminar(lstPlanesActivos[e.RowIndex]);
+            dFachada.PlanEliminar(LosPlanesActivos[e.RowIndex]);
             ActualizarTodo();
         }
 
         protected void cbPensionista_CheckedChanged(object sender, EventArgs e)
         {
-            Pensionista = cbPensionista.Checked;
-            txtAtributario.Enabled = !Pensionista;
-            if (Pensionista)
+            BPensionista = cbPensionista.Checked;
+            txtAtributario.Enabled = !BPensionista;
+            if (BPensionista)
             {
                 txtAtributario.Text = string.Empty;
             }
@@ -567,7 +566,7 @@ namespace Ejemplo.Web
 
         protected void btnInhabilitar_Click(object sender, EventArgs e)
         {
-            if (lstPlanesActivos.Count > 0)
+            if (LosPlanesActivos.Count > 0)
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar el beneficiario porque hay planes activos.')", true);
             }
@@ -594,20 +593,20 @@ namespace Ejemplo.Web
 
         protected void grdPlanesActivos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            if (lstPlanesActivos[e.NewSelectedIndex].FechaFin == null)
+            if (LosPlanesActivos[e.NewSelectedIndex].FechaFin == null)
             {
-                PlanAModificar = lstPlanesActivos[e.NewSelectedIndex];
-                PanelModificarPlan.Visible = true;
-                List<string> tipo = new List<string>() { PlanAModificar.Tipo };
-                ddlTipoPlanModificar.DataSource = tipo;
+                ElPlanAModificar = LosPlanesActivos[e.NewSelectedIndex];
+                pnlModificarPlan.Visible = true;
+                List<string> lstTipo = new List<string>() { ElPlanAModificar.Tipo };
+                ddlTipoPlanModificar.DataSource = lstTipo;
                 ddlTipoPlanModificar.DataBind();
                 ddlTipoPlanModificar.Enabled = false;
-                cboEvaluacionModificar.Checked = PlanAModificar.Evaluacion;
+                cboEvaluacionModificar.Checked = ElPlanAModificar.Evaluacion;
                 cboEvaluacionModificar.Enabled = false;
-                cboTratamientoModificar.Checked = PlanAModificar.Tratamiento;
+                cboTratamientoModificar.Checked = ElPlanAModificar.Tratamiento;
                 cboTratamientoModificar.Enabled = false;
-                DateTime fn = DateTime.Parse(PlanAModificar.FechaInicio);
-                txtFechaInicioModificar.Text = fn.ToString("yyyy-MM-dd");
+                DateTime dFN = DateTime.Parse(ElPlanAModificar.FechaInicio);
+                txtFechaInicioModificar.Text = dFN.ToString("yyyy-MM-dd");
                 txtFechaInicioModificar.Enabled = false;
             }
             else
@@ -617,8 +616,8 @@ namespace Ejemplo.Web
         }
         protected void btnCancelarModificarPlan_Click(object sender, EventArgs e)
         {
-            PanelModificarPlan.Visible = false;
-            ddlTipoPlanModificar.DataSource = PlanAModificar.Tipo;
+            pnlModificarPlan.Visible = false;
+            ddlTipoPlanModificar.DataSource = ElPlanAModificar.Tipo;
             ddlTipoPlanModificar.DataBind();
             ddlTipoPlanModificar.Enabled = false;
             cboEvaluacionModificar.Checked = false;
@@ -637,12 +636,12 @@ namespace Ejemplo.Web
             }
             else
             {
-                PlanAModificar.FechaFin = txtFechaFinModificar.Text;
-                if (dFachada.PlanModificarFechaVencimiento(PlanAModificar))
+                ElPlanAModificar.FechaFin = txtFechaFinModificar.Text;
+                if (dFachada.PlanModificarFechaVencimiento(ElPlanAModificar))
                 {
                     lblMensaje.Text = "La fecha del plan se ha modificado correctamente";
-                    PanelModificarPlan.Visible = false;
-                    ddlTipoPlanModificar.DataSource = PlanAModificar.Tipo;
+                    pnlModificarPlan.Visible = false;
+                    ddlTipoPlanModificar.DataSource = ElPlanAModificar.Tipo;
                     ddlTipoPlanModificar.DataBind();
                     ddlTipoPlanModificar.Enabled = false;
                     cboEvaluacionModificar.Checked = false;

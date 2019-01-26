@@ -11,19 +11,19 @@ namespace Ejemplo.Web
 {
     public partial class vItinerarioNuevaConsulta : System.Web.UI.Page
     {
-        private static List<string> TiposDeSesion = new List<string>() { "Individual", "Grupo 2", "Grupo 3", "Taller", "PROES" };
-        private static List<string> Dias = new List<string>() { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
-        private static List<string> Especialidades = new List<string>() { "Psicologia", "Pedadogia", "Fisioterapia", "Fonoaudiologia", "Psicomotricidad" };
-        private static List<cBeneficiario> TodosLosBenefiicarios;
-        private static List<cBeneficiario> BeneficiariosAgregados;
+        private static List<string> LosTiposDeSesion = new List<string>() { "Individual", "Grupo 2", "Grupo 3", "Taller", "PROES" };
+        private static List<string> LosDias = new List<string>() { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
+        private static List<string> LosEspecialidades = new List<string>() { "Psicologia", "Pedadogia", "Fisioterapia", "Fonoaudiologia", "Psicomotricidad" };
+        private static List<cBeneficiario> LosBenefiicarios;
+        private static List<cBeneficiario> LosBeneficiariosAgregados;
         private static List<cUsuario> LosEspecialistas;
-        private static List<cUsuario> EspecialistasAgregados;
+        private static List<cUsuario> LosEspecialistasAgregados;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 CargarTodo();
-                if (BeneficiariosAgregados.Count <= 0)
+                if (LosBeneficiariosAgregados.Count <= 0)
                     lblSeleccionarPlan.Visible = false;
                 else
                     lblSeleccionarPlan.Visible = true;
@@ -32,8 +32,8 @@ namespace Ejemplo.Web
         }
         private void CargarTodo()
         {
-            BeneficiariosAgregados = new List<cBeneficiario>();
-            EspecialistasAgregados = new List<cUsuario>();
+            LosBeneficiariosAgregados = new List<cBeneficiario>();
+            LosEspecialistasAgregados = new List<cUsuario>();
             CargarDdlTiposDeSesion();
             CargarDdlDias();
             CargarDdlEspecialidades();
@@ -47,7 +47,7 @@ namespace Ejemplo.Web
         }
         private void CargarDdlTiposDeSesion()
         {
-            ddlTipoSesion.DataSource = TiposDeSesion;
+            ddlTipoSesion.DataSource = LosTiposDeSesion;
             ddlTipoSesion.DataBind();
         }
         private bool VerificarCantidadAgregados()
@@ -55,19 +55,19 @@ namespace Ejemplo.Web
             switch (ddlTipoSesion.SelectedValue.ToString())
             {
                 case "Individual":
-                    if (BeneficiariosAgregados.Count == 1) return true;
+                    if (LosBeneficiariosAgregados.Count == 1) return true;
                     else return false;
                 case "Grupo 2":
-                    if (BeneficiariosAgregados.Count == 2) return true;
+                    if (LosBeneficiariosAgregados.Count == 2) return true;
                     else return false;
                 case "Grupo 3":
-                    if (BeneficiariosAgregados.Count == 3) return true;
+                    if (LosBeneficiariosAgregados.Count == 3) return true;
                     else return false;
                 case "Taller":
-                    if (BeneficiariosAgregados.Count == 4) return true;
+                    if (LosBeneficiariosAgregados.Count == 4) return true;
                     else return false;
                 case "PROES":
-                    if (BeneficiariosAgregados.Count <= 8 && BeneficiariosAgregados.Count >= 5 && EspecialistasAgregados.Count == 2) return true;
+                    if (LosBeneficiariosAgregados.Count <= 8 && LosBeneficiariosAgregados.Count >= 5 && LosEspecialistasAgregados.Count == 2) return true;
                     else return false;
                 default:
                     return false;
@@ -75,78 +75,78 @@ namespace Ejemplo.Web
         }
         private void CargarDdlDias()
         {
-            ddlDias.DataSource = Dias;
+            ddlDias.DataSource = LosDias;
             ddlDias.DataBind();
         }
         private void CargarDdlEspecialidades()
         {
-            ddlEspecialidades.DataSource = Especialidades;
+            ddlEspecialidades.DataSource = LosEspecialidades;
             ddlEspecialidades.DataBind();
         }
 
         private void CargarDdlHoras()
         {
-            DateTime hora1 = DateTime.Parse("08:00");
+            DateTime dHora1 = DateTime.Parse("08:00");
             List<string> LasHorasDesde = new List<string>();
-            LasHorasDesde.Add(hora1.ToShortTimeString());
+            LasHorasDesde.Add(dHora1.ToShortTimeString());
             do
             {
-                hora1 = hora1.AddMinutes(15);
-                LasHorasDesde.Add(hora1.ToShortTimeString());
-            } while (hora1 != DateTime.Parse("19:45"));
+                dHora1 = dHora1.AddMinutes(15);
+                LasHorasDesde.Add(dHora1.ToShortTimeString());
+            } while (dHora1 != DateTime.Parse("19:45"));
             ddlDesde.DataSource = LasHorasDesde;
             ddlDesde.DataBind();
 
             List<string> LasHorasHasta = new List<string>();
-            DateTime hora2 = DateTime.Parse("08:15");
-            LasHorasHasta.Add(hora2.ToShortTimeString());
+            DateTime dHora2 = DateTime.Parse("08:15");
+            LasHorasHasta.Add(dHora2.ToShortTimeString());
             do
             {
-                hora2 = hora2.AddMinutes(15);
-                LasHorasHasta.Add(hora2.ToShortTimeString());
-            } while (hora2 != DateTime.Parse("20:00"));
+                dHora2 = dHora2.AddMinutes(15);
+                LasHorasHasta.Add(dHora2.ToShortTimeString());
+            } while (dHora2 != DateTime.Parse("20:00"));
             ddlHasta.DataSource = LasHorasHasta;
             ddlHasta.DataBind();
         }
         private void CargarBeneficiarios()
         {
-            string Consulta = "SELECT DISTINCT B.* FROM Beneficiarios B JOIN Planes P ON B.BeneficiarioId = P.BeneficiarioId WHERE B.BeneficiarioEstado = 1 AND P.PlanActivo = 1";
+            string sConsulta = "SELECT DISTINCT B.* FROM Beneficiarios B JOIN Planes P ON B.BeneficiarioId = P.BeneficiarioId WHERE B.BeneficiarioEstado = 1 AND P.PlanActivo = 1";
             if (txtBuscarBeneficiarios.Text != string.Empty)
             {
-                Consulta += string.Format("AND (B.BeneficiarioNombres LIKE '{0}%' or B.BeneficiarioApellidos LIKE '{0}%' or CONVERT(varchar, B.BeneficiarioCI) LIKE '{0}%' )", txtBuscarBeneficiarios.Text);
+                sConsulta += string.Format("AND (B.BeneficiarioNombres LIKE '{0}%' or B.BeneficiarioApellidos LIKE '{0}%' or CONVERT(varchar, B.BeneficiarioCI) LIKE '{0}%' )", txtBuscarBeneficiarios.Text);
             }
-            if (BeneficiariosAgregados.Count > 0)
+            if (LosBeneficiariosAgregados.Count > 0)
             {
-                for (int i = 0; i < BeneficiariosAgregados.Count; i++)
+                for (int i = 0; i < LosBeneficiariosAgregados.Count; i++)
                 {
-                    Consulta += " AND B.BeneficiarioId != " + BeneficiariosAgregados[i].Codigo.ToString();
+                    sConsulta += " AND B.BeneficiarioId != " + LosBeneficiariosAgregados[i].Codigo.ToString();
                 }
             }
-            TodosLosBenefiicarios = dFachada.BeneficiarioTraerTodosConFiltros(Consulta);
-            grdBeneficiarios.DataSource = TodosLosBenefiicarios;
+            LosBenefiicarios = dFachada.BeneficiarioTraerTodosConFiltros(sConsulta);
+            grdBeneficiarios.DataSource = LosBenefiicarios;
             grdBeneficiarios.DataBind();
         }
         private void CargarBeneficiariosAgregados()
         {
-            for (int i = 0; i < BeneficiariosAgregados.Count; i++)
+            for (int i = 0; i < LosBeneficiariosAgregados.Count; i++)
             {
-                BeneficiariosAgregados[i].lstPlanes = dFachada.PlanTraerActivosPorBeneficiario(BeneficiariosAgregados[i]);
+                LosBeneficiariosAgregados[i].lstPlanes = dFachada.PlanTraerActivosPorBeneficiario(LosBeneficiariosAgregados[i]);
             }
-            grdBeneficiariosAgregados.DataSource = BeneficiariosAgregados;
+            grdBeneficiariosAgregados.DataSource = LosBeneficiariosAgregados;
             grdBeneficiariosAgregados.DataBind();
 
             #region Mostrar/Ocultar DdlPlanes
-            List<List<string>> losPlanes = new List<List<string>>();
-            for (int i = 0; i < BeneficiariosAgregados.Count; i++)
+            List<List<string>> lstPlanes = new List<List<string>>();
+            for (int i = 0; i < LosBeneficiariosAgregados.Count; i++)
             {
-                losPlanes.Add(new List<string>());
-                foreach (cPlan unPlan in BeneficiariosAgregados[i].lstPlanes)
+                lstPlanes.Add(new List<string>());
+                foreach (cPlan unPlan in LosBeneficiariosAgregados[i].lstPlanes)
                 {
-                    losPlanes[i].Add(unPlan.Tipo);
+                    lstPlanes[i].Add(unPlan.Tipo);
                 }
             }
 
-            switch (BeneficiariosAgregados.Count)
+            switch (LosBeneficiariosAgregados.Count)
             {
                 case 1:
                     ddlPlan1.Visible = true;
@@ -165,9 +165,9 @@ namespace Ejemplo.Web
                     lblNombre6.Visible = false;
                     lblNombre7.Visible = false;
                     lblNombre8.Visible = false;
-                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan1.DataSource = lstPlanes[0];
                     ddlPlan1.DataBind();
-                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
+                    lblNombre1.Text = LosBeneficiariosAgregados[0].Nombres + " " + LosBeneficiariosAgregados[0].Apellidos;
                     break;
                 case 2:
                     ddlPlan1.Visible = true;
@@ -186,12 +186,12 @@ namespace Ejemplo.Web
                     lblNombre6.Visible = false;
                     lblNombre7.Visible = false;
                     lblNombre8.Visible = false;
-                    ddlPlan1.DataSource = losPlanes[0];
+                    ddlPlan1.DataSource = lstPlanes[0];
                     ddlPlan1.DataBind();
-                    ddlPlan2.DataSource = losPlanes[1];
+                    ddlPlan2.DataSource = lstPlanes[1];
                     ddlPlan2.DataBind();
-                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
-                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
+                    lblNombre1.Text = LosBeneficiariosAgregados[0].Nombres + " " + LosBeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = LosBeneficiariosAgregados[1].Nombres + " " + LosBeneficiariosAgregados[1].Apellidos;
                     break;
                 case 3:
                     ddlPlan1.Visible = true;
@@ -210,15 +210,15 @@ namespace Ejemplo.Web
                     lblNombre6.Visible = false;
                     lblNombre7.Visible = false;
                     lblNombre8.Visible = false;
-                    ddlPlan1.DataSource = losPlanes[0];
-                    ddlPlan2.DataSource = losPlanes[1];
-                    ddlPlan3.DataSource = losPlanes[2];
+                    ddlPlan1.DataSource = lstPlanes[0];
+                    ddlPlan2.DataSource = lstPlanes[1];
+                    ddlPlan3.DataSource = lstPlanes[2];
                     ddlPlan1.DataBind();
                     ddlPlan2.DataBind();
                     ddlPlan3.DataBind();
-                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
-                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
-                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
+                    lblNombre1.Text = LosBeneficiariosAgregados[0].Nombres + " " + LosBeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = LosBeneficiariosAgregados[1].Nombres + " " + LosBeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = LosBeneficiariosAgregados[2].Nombres + " " + LosBeneficiariosAgregados[2].Apellidos;
                     break;
                 case 4:
                     ddlPlan1.Visible = true;
@@ -237,18 +237,18 @@ namespace Ejemplo.Web
                     lblNombre6.Visible = false;
                     lblNombre7.Visible = false;
                     lblNombre8.Visible = false;
-                    ddlPlan1.DataSource = losPlanes[0];
-                    ddlPlan2.DataSource = losPlanes[1];
-                    ddlPlan3.DataSource = losPlanes[2];
-                    ddlPlan4.DataSource = losPlanes[3];
+                    ddlPlan1.DataSource = lstPlanes[0];
+                    ddlPlan2.DataSource = lstPlanes[1];
+                    ddlPlan3.DataSource = lstPlanes[2];
+                    ddlPlan4.DataSource = lstPlanes[3];
                     ddlPlan1.DataBind();
                     ddlPlan2.DataBind();
                     ddlPlan3.DataBind();
                     ddlPlan4.DataBind();
-                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
-                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
-                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
-                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
+                    lblNombre1.Text = LosBeneficiariosAgregados[0].Nombres + " " + LosBeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = LosBeneficiariosAgregados[1].Nombres + " " + LosBeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = LosBeneficiariosAgregados[2].Nombres + " " + LosBeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = LosBeneficiariosAgregados[3].Nombres + " " + LosBeneficiariosAgregados[3].Apellidos;
                     break;
                 case 5:
                     ddlPlan1.Visible = true;
@@ -267,21 +267,21 @@ namespace Ejemplo.Web
                     lblNombre6.Visible = false;
                     lblNombre7.Visible = false;
                     lblNombre8.Visible = false;
-                    ddlPlan1.DataSource = losPlanes[0];
-                    ddlPlan2.DataSource = losPlanes[1];
-                    ddlPlan3.DataSource = losPlanes[2];
-                    ddlPlan4.DataSource = losPlanes[3];
-                    ddlPlan5.DataSource = losPlanes[4];
+                    ddlPlan1.DataSource = lstPlanes[0];
+                    ddlPlan2.DataSource = lstPlanes[1];
+                    ddlPlan3.DataSource = lstPlanes[2];
+                    ddlPlan4.DataSource = lstPlanes[3];
+                    ddlPlan5.DataSource = lstPlanes[4];
                     ddlPlan1.DataBind();
                     ddlPlan2.DataBind();
                     ddlPlan3.DataBind();
                     ddlPlan4.DataBind();
                     ddlPlan5.DataBind();
-                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
-                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
-                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
-                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
-                    lblNombre5.Text = BeneficiariosAgregados[4].Nombres + " " + BeneficiariosAgregados[4].Apellidos;
+                    lblNombre1.Text = LosBeneficiariosAgregados[0].Nombres + " " + LosBeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = LosBeneficiariosAgregados[1].Nombres + " " + LosBeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = LosBeneficiariosAgregados[2].Nombres + " " + LosBeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = LosBeneficiariosAgregados[3].Nombres + " " + LosBeneficiariosAgregados[3].Apellidos;
+                    lblNombre5.Text = LosBeneficiariosAgregados[4].Nombres + " " + LosBeneficiariosAgregados[4].Apellidos;
                     break;
                 case 6:
                     ddlPlan1.Visible = true;
@@ -300,24 +300,24 @@ namespace Ejemplo.Web
                     lblNombre6.Visible = true;
                     lblNombre7.Visible = false;
                     lblNombre8.Visible = false;
-                    ddlPlan1.DataSource = losPlanes[0];
-                    ddlPlan2.DataSource = losPlanes[1];
-                    ddlPlan3.DataSource = losPlanes[2];
-                    ddlPlan4.DataSource = losPlanes[3];
-                    ddlPlan5.DataSource = losPlanes[4];
-                    ddlPlan6.DataSource = losPlanes[5];
+                    ddlPlan1.DataSource = lstPlanes[0];
+                    ddlPlan2.DataSource = lstPlanes[1];
+                    ddlPlan3.DataSource = lstPlanes[2];
+                    ddlPlan4.DataSource = lstPlanes[3];
+                    ddlPlan5.DataSource = lstPlanes[4];
+                    ddlPlan6.DataSource = lstPlanes[5];
                     ddlPlan1.DataBind();
                     ddlPlan2.DataBind();
                     ddlPlan3.DataBind();
                     ddlPlan4.DataBind();
                     ddlPlan5.DataBind();
                     ddlPlan6.DataBind();
-                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
-                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
-                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
-                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
-                    lblNombre5.Text = BeneficiariosAgregados[4].Nombres + " " + BeneficiariosAgregados[4].Apellidos;
-                    lblNombre6.Text = BeneficiariosAgregados[5].Nombres + " " + BeneficiariosAgregados[5].Apellidos;
+                    lblNombre1.Text = LosBeneficiariosAgregados[0].Nombres + " " + LosBeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = LosBeneficiariosAgregados[1].Nombres + " " + LosBeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = LosBeneficiariosAgregados[2].Nombres + " " + LosBeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = LosBeneficiariosAgregados[3].Nombres + " " + LosBeneficiariosAgregados[3].Apellidos;
+                    lblNombre5.Text = LosBeneficiariosAgregados[4].Nombres + " " + LosBeneficiariosAgregados[4].Apellidos;
+                    lblNombre6.Text = LosBeneficiariosAgregados[5].Nombres + " " + LosBeneficiariosAgregados[5].Apellidos;
                     break;
                 case 7:
                     ddlPlan1.Visible = true;
@@ -336,13 +336,13 @@ namespace Ejemplo.Web
                     lblNombre6.Visible = true;
                     lblNombre7.Visible = true;
                     lblNombre8.Visible = false;
-                    ddlPlan1.DataSource = losPlanes[0];
-                    ddlPlan2.DataSource = losPlanes[1];
-                    ddlPlan3.DataSource = losPlanes[2];
-                    ddlPlan4.DataSource = losPlanes[3];
-                    ddlPlan5.DataSource = losPlanes[4];
-                    ddlPlan6.DataSource = losPlanes[5];
-                    ddlPlan7.DataSource = losPlanes[6];
+                    ddlPlan1.DataSource = lstPlanes[0];
+                    ddlPlan2.DataSource = lstPlanes[1];
+                    ddlPlan3.DataSource = lstPlanes[2];
+                    ddlPlan4.DataSource = lstPlanes[3];
+                    ddlPlan5.DataSource = lstPlanes[4];
+                    ddlPlan6.DataSource = lstPlanes[5];
+                    ddlPlan7.DataSource = lstPlanes[6];
                     ddlPlan1.DataBind();
                     ddlPlan2.DataBind();
                     ddlPlan3.DataBind();
@@ -350,13 +350,13 @@ namespace Ejemplo.Web
                     ddlPlan5.DataBind();
                     ddlPlan6.DataBind();
                     ddlPlan7.DataBind();
-                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
-                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
-                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
-                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
-                    lblNombre5.Text = BeneficiariosAgregados[4].Nombres + " " + BeneficiariosAgregados[4].Apellidos;
-                    lblNombre6.Text = BeneficiariosAgregados[5].Nombres + " " + BeneficiariosAgregados[5].Apellidos;
-                    lblNombre7.Text = BeneficiariosAgregados[6].Nombres + " " + BeneficiariosAgregados[6].Apellidos;
+                    lblNombre1.Text = LosBeneficiariosAgregados[0].Nombres + " " + LosBeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = LosBeneficiariosAgregados[1].Nombres + " " + LosBeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = LosBeneficiariosAgregados[2].Nombres + " " + LosBeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = LosBeneficiariosAgregados[3].Nombres + " " + LosBeneficiariosAgregados[3].Apellidos;
+                    lblNombre5.Text = LosBeneficiariosAgregados[4].Nombres + " " + LosBeneficiariosAgregados[4].Apellidos;
+                    lblNombre6.Text = LosBeneficiariosAgregados[5].Nombres + " " + LosBeneficiariosAgregados[5].Apellidos;
+                    lblNombre7.Text = LosBeneficiariosAgregados[6].Nombres + " " + LosBeneficiariosAgregados[6].Apellidos;
                     break;
                 case 8:
                     ddlPlan1.Visible = true;
@@ -376,14 +376,14 @@ namespace Ejemplo.Web
                     lblNombre7.Visible = true;
                     lblNombre8.Visible = true;
 
-                    ddlPlan1.DataSource = losPlanes[0];
-                    ddlPlan2.DataSource = losPlanes[1];
-                    ddlPlan3.DataSource = losPlanes[2];
-                    ddlPlan4.DataSource = losPlanes[3];
-                    ddlPlan5.DataSource = losPlanes[4];
-                    ddlPlan6.DataSource = losPlanes[5];
-                    ddlPlan7.DataSource = losPlanes[6];
-                    ddlPlan8.DataSource = losPlanes[7];
+                    ddlPlan1.DataSource = lstPlanes[0];
+                    ddlPlan2.DataSource = lstPlanes[1];
+                    ddlPlan3.DataSource = lstPlanes[2];
+                    ddlPlan4.DataSource = lstPlanes[3];
+                    ddlPlan5.DataSource = lstPlanes[4];
+                    ddlPlan6.DataSource = lstPlanes[5];
+                    ddlPlan7.DataSource = lstPlanes[6];
+                    ddlPlan8.DataSource = lstPlanes[7];
                     ddlPlan1.DataBind();
                     ddlPlan2.DataBind();
                     ddlPlan3.DataBind();
@@ -392,14 +392,14 @@ namespace Ejemplo.Web
                     ddlPlan6.DataBind();
                     ddlPlan7.DataBind();
                     ddlPlan8.DataBind();
-                    lblNombre1.Text = BeneficiariosAgregados[0].Nombres + " " + BeneficiariosAgregados[0].Apellidos;
-                    lblNombre2.Text = BeneficiariosAgregados[1].Nombres + " " + BeneficiariosAgregados[1].Apellidos;
-                    lblNombre3.Text = BeneficiariosAgregados[2].Nombres + " " + BeneficiariosAgregados[2].Apellidos;
-                    lblNombre4.Text = BeneficiariosAgregados[3].Nombres + " " + BeneficiariosAgregados[3].Apellidos;
-                    lblNombre5.Text = BeneficiariosAgregados[4].Nombres + " " + BeneficiariosAgregados[4].Apellidos;
-                    lblNombre6.Text = BeneficiariosAgregados[5].Nombres + " " + BeneficiariosAgregados[5].Apellidos;
-                    lblNombre7.Text = BeneficiariosAgregados[6].Nombres + " " + BeneficiariosAgregados[6].Apellidos;
-                    lblNombre8.Text = BeneficiariosAgregados[7].Nombres + " " + BeneficiariosAgregados[7].Apellidos;
+                    lblNombre1.Text = LosBeneficiariosAgregados[0].Nombres + " " + LosBeneficiariosAgregados[0].Apellidos;
+                    lblNombre2.Text = LosBeneficiariosAgregados[1].Nombres + " " + LosBeneficiariosAgregados[1].Apellidos;
+                    lblNombre3.Text = LosBeneficiariosAgregados[2].Nombres + " " + LosBeneficiariosAgregados[2].Apellidos;
+                    lblNombre4.Text = LosBeneficiariosAgregados[3].Nombres + " " + LosBeneficiariosAgregados[3].Apellidos;
+                    lblNombre5.Text = LosBeneficiariosAgregados[4].Nombres + " " + LosBeneficiariosAgregados[4].Apellidos;
+                    lblNombre6.Text = LosBeneficiariosAgregados[5].Nombres + " " + LosBeneficiariosAgregados[5].Apellidos;
+                    lblNombre7.Text = LosBeneficiariosAgregados[6].Nombres + " " + LosBeneficiariosAgregados[6].Apellidos;
+                    lblNombre8.Text = LosBeneficiariosAgregados[7].Nombres + " " + LosBeneficiariosAgregados[7].Apellidos;
                     break;
                 default:
                     ddlPlan1.Visible = false;
@@ -431,49 +431,49 @@ namespace Ejemplo.Web
             unaEspecialidad = dFachada.EspecialidadTraerEspecificaPorNombre(unaEspecialidad);
 
 
-            string Consulta = "SELECT U.*, E.EspecialidadNombre FROM Usuarios U JOIN Especialidades E ON U.EspecialidadId=E.EspecialidadId" +
+            string sConsulta = "SELECT U.*, E.EspecialidadNombre FROM Usuarios U JOIN Especialidades E ON U.EspecialidadId=E.EspecialidadId" +
                 " WHERE UsuarioEstado = 1 AND E.EspecialidadId = " + unaEspecialidad.Codigo.ToString();
-            if (EspecialistasAgregados.Count > 0)
+            if (LosEspecialistasAgregados.Count > 0)
             {
-                for (int i = 0; i < EspecialistasAgregados.Count; i++)
+                for (int i = 0; i < LosEspecialistasAgregados.Count; i++)
                 {
-                    Consulta += " AND UsuarioId != " + EspecialistasAgregados[i].Codigo.ToString();
+                    sConsulta += " AND UsuarioId != " + LosEspecialistasAgregados[i].Codigo.ToString();
                 }
             }
-            LosEspecialistas = dFachada.UsuarioTraerEspecialistasConFiltros(Consulta);
+            LosEspecialistas = dFachada.UsuarioTraerEspecialistasConFiltros(sConsulta);
             grdTodosEspecialistas.DataSource = LosEspecialistas;
             grdTodosEspecialistas.DataBind();
         }
         private void CargarEspecialistasAgregados()
         {
-            grdEspecialistasAgregados.DataSource = EspecialistasAgregados;
+            grdEspecialistasAgregados.DataSource = LosEspecialistasAgregados;
             grdEspecialistasAgregados.DataBind();
         }
 
         protected void grdBeneficiarios_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            BeneficiariosAgregados.Add(TodosLosBenefiicarios[e.NewSelectedIndex]);
+            LosBeneficiariosAgregados.Add(LosBenefiicarios[e.NewSelectedIndex]);
             CargarBeneficiarios();
             CargarBeneficiariosAgregados();
-            if (BeneficiariosAgregados.Count <= 0)
+            if (LosBeneficiariosAgregados.Count <= 0)
                 lblSeleccionarPlan.Visible = false;
             else
                 lblSeleccionarPlan.Visible = true;
         }
         protected void grdBeneficiariosAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            BeneficiariosAgregados.RemoveAt(e.RowIndex);
+            LosBeneficiariosAgregados.RemoveAt(e.RowIndex);
             CargarBeneficiariosAgregados();
             CargarBeneficiarios();
             for (int i = 0; i < grdBeneficiariosAgregados.Rows.Count; i++)
             {
                 List<string> planes = new List<string>();
-                foreach (cPlan unPlan in BeneficiariosAgregados[i].lstPlanes)
+                foreach (cPlan unPlan in LosBeneficiariosAgregados[i].lstPlanes)
                 {
                     planes.Add(unPlan.Tipo);
                 }
             }
-            if (BeneficiariosAgregados.Count <= 0)
+            if (LosBeneficiariosAgregados.Count <= 0)
                 lblSeleccionarPlan.Visible = false;
             else
                 lblSeleccionarPlan.Visible = true;
@@ -493,22 +493,22 @@ namespace Ejemplo.Web
 
         protected void grdTodosEspecialistas_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            EspecialistasAgregados.Add(LosEspecialistas[e.NewSelectedIndex]);
+            LosEspecialistasAgregados.Add(LosEspecialistas[e.NewSelectedIndex]);
             CargarEspecialistasAgregados();
             CargarEspecialistas();
         }
 
         protected void grdEspecialistasAgregados_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            EspecialistasAgregados.RemoveAt(e.RowIndex);
+            LosEspecialistasAgregados.RemoveAt(e.RowIndex);
             CargarEspecialistasAgregados();
             CargarEspecialistas();
         }
 
         private bool FaltanDatos()
         {
-            if (BeneficiariosAgregados.Count <= 0 ||
-                EspecialistasAgregados.Count <= 0)
+            if (LosBeneficiariosAgregados.Count <= 0 ||
+                LosEspecialistasAgregados.Count <= 0)
                 return true;
             return false;
         }
@@ -562,7 +562,7 @@ namespace Ejemplo.Web
                             unItinerario.Dia = "S";
                             break;
                     }
-                    if (RadioButtonList1.SelectedIndex == 0) unItinerario.Centro = cUtilidades.Centro.JuanLacaze;
+                    if (rblLocalidad.SelectedIndex == 0) unItinerario.Centro = cUtilidades.Centro.JuanLacaze;
                     else unItinerario.Centro = cUtilidades.Centro.NuevaHelvecia;
                     if (DateTime.Parse(ddlDesde.SelectedValue) >= DateTime.Parse(ddlHasta.SelectedValue))
                     {
@@ -571,40 +571,40 @@ namespace Ejemplo.Web
                     else
                     {
                         unItinerario.HoraInicio = ddlDesde.SelectedValue;
-                        DateTime hasta = DateTime.Parse(ddlHasta.SelectedValue);
-                        hasta = hasta.AddMinutes(-1);
-                        unItinerario.HoraFin = hasta.ToShortTimeString();
+                        DateTime dHasta = DateTime.Parse(ddlHasta.SelectedValue);
+                        dHasta = dHasta.AddMinutes(-1);
+                        unItinerario.HoraFin = dHasta.ToShortTimeString();
                         unItinerario.lstBeneficiarios = new List<cBeneficiarioItinerario>();
                         cBeneficiarioItinerario unBen;
-                        for (int i = 0; i < BeneficiariosAgregados.Count; i++)
+                        for (int i = 0; i < LosBeneficiariosAgregados.Count; i++)
                         {
                             unBen = new cBeneficiarioItinerario();
-                            unBen.Beneficiario = BeneficiariosAgregados[i];
+                            unBen.Beneficiario = LosBeneficiariosAgregados[i];
                             switch (i)
                             {
                                 case 0:
-                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan1.SelectedIndex];
+                                    unBen.Plan = LosBeneficiariosAgregados[i].lstPlanes[ddlPlan1.SelectedIndex];
                                     break;
                                 case 1:
-                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan2.SelectedIndex];
+                                    unBen.Plan = LosBeneficiariosAgregados[i].lstPlanes[ddlPlan2.SelectedIndex];
                                     break;
                                 case 2:
-                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan3.SelectedIndex];
+                                    unBen.Plan = LosBeneficiariosAgregados[i].lstPlanes[ddlPlan3.SelectedIndex];
                                     break;
                                 case 3:
-                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan4.SelectedIndex];
+                                    unBen.Plan = LosBeneficiariosAgregados[i].lstPlanes[ddlPlan4.SelectedIndex];
                                     break;
                                 case 4:
-                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan5.SelectedIndex];
+                                    unBen.Plan = LosBeneficiariosAgregados[i].lstPlanes[ddlPlan5.SelectedIndex];
                                     break;
                                 case 5:
-                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan6.SelectedIndex];
+                                    unBen.Plan = LosBeneficiariosAgregados[i].lstPlanes[ddlPlan6.SelectedIndex];
                                     break;
                                 case 6:
-                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan7.SelectedIndex];
+                                    unBen.Plan = LosBeneficiariosAgregados[i].lstPlanes[ddlPlan7.SelectedIndex];
                                     break;
                                 case 7:
-                                    unBen.Plan = BeneficiariosAgregados[i].lstPlanes[ddlPlan8.SelectedIndex];
+                                    unBen.Plan = LosBeneficiariosAgregados[i].lstPlanes[ddlPlan8.SelectedIndex];
                                     break;
                                 default:
                                     break;
@@ -612,81 +612,81 @@ namespace Ejemplo.Web
 
                             unItinerario.lstBeneficiarios.Add(unBen);
                         }
-                        unItinerario.lstEspecialistas = EspecialistasAgregados;
+                        unItinerario.lstEspecialistas = LosEspecialistasAgregados;
                         unItinerario.Comentario = txtComentario.Text;
-                        List<cUsuario> EspecialistasNoDisponibles = dFachada.ItinerarioVerificarHorarioUsuario(unItinerario);
-                        List<cBeneficiario> BeneficiariosNoDisponibles = dFachada.ItinerarioVerificarHorarioBeneficiarios(unItinerario);
-                        string especialistas = "";
-                        string beneficiarios = "";
+                        List<cUsuario> lstEspecialistasNoDisponibles = dFachada.ItinerarioVerificarHorarioUsuario(unItinerario);
+                        List<cBeneficiario> lstBeneficiariosNoDisponibles = dFachada.ItinerarioVerificarHorarioBeneficiarios(unItinerario);
+                        string sEspecialistas = "";
+                        string sBeneficiarios = "";
 
 
                         //ESPECIALISTAS NO DISPONIBLES
-                        if (EspecialistasNoDisponibles.Count > 0)
+                        if (lstEspecialistasNoDisponibles.Count > 0)
                         {
-                            if (EspecialistasNoDisponibles.Count > 1)
+                            if (lstEspecialistasNoDisponibles.Count > 1)
                             {
-                                especialistas += "Los especialistas ";
+                                sEspecialistas += "Los especialistas ";
                             }
-                            for (int i = 0; i < EspecialistasNoDisponibles.Count; i++)
+                            for (int i = 0; i < lstEspecialistasNoDisponibles.Count; i++)
                             {
-                                if (i == EspecialistasNoDisponibles.Count - 1)
+                                if (i == lstEspecialistasNoDisponibles.Count - 1)
                                 {
-                                    especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos;
+                                    sEspecialistas += lstEspecialistasNoDisponibles[i].Nombres + " " + lstEspecialistasNoDisponibles[i].Apellidos;
                                 }
                                 else if (i == 0)
                                 {
-                                    especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos + ", ";
+                                    sEspecialistas += lstEspecialistasNoDisponibles[i].Nombres + " " + lstEspecialistasNoDisponibles[i].Apellidos + ", ";
                                 }
-                                else if (i == EspecialistasNoDisponibles.Count - 2)
+                                else if (i == lstEspecialistasNoDisponibles.Count - 2)
                                 {
-                                    especialistas += EspecialistasNoDisponibles[i].Nombres + " " + EspecialistasNoDisponibles[i].Apellidos + " y ";
+                                    sEspecialistas += lstEspecialistasNoDisponibles[i].Nombres + " " + lstEspecialistasNoDisponibles[i].Apellidos + " y ";
                                 }
                             }
-                            if (EspecialistasNoDisponibles.Count > 1)
+                            if (lstEspecialistasNoDisponibles.Count > 1)
                             {
-                                especialistas += " no están disponibles para la sesión.";
+                                sEspecialistas += " no están disponibles para la sesión.";
                             }
                             else
                             {
-                                especialistas += " no está disponible para la sesión.";
+                                sEspecialistas += " no está disponible para la sesión.";
                             }
                         }
 
                         //BENEFICIARIOS NO DISPONIBLES
 
-                        if (BeneficiariosNoDisponibles.Count > 0)
+                        if (lstBeneficiariosNoDisponibles.Count > 0)
                         {
-                            if (EspecialistasNoDisponibles.Count > 1)
+                            if (lstEspecialistasNoDisponibles.Count > 1)
                             {
-                                beneficiarios += "Los beneficiarios ";
+                                sBeneficiarios += "Los beneficiarios ";
                             }
-                            for (int i = 0; i < BeneficiariosNoDisponibles.Count; i++)
+                            for (int i = 0; i < lstBeneficiariosNoDisponibles.Count; i++)
                             {
-                                if (i == BeneficiariosNoDisponibles.Count - 1)
+                                if (i == lstBeneficiariosNoDisponibles.Count - 1)
                                 {
-                                    beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos;
+                                    sBeneficiarios += lstBeneficiariosNoDisponibles[i].Nombres + " " + lstBeneficiariosNoDisponibles[i].Apellidos;
                                 }
                                 else if (i == 0)
                                 {
-                                    beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos + ", ";
+                                    sBeneficiarios += lstBeneficiariosNoDisponibles[i].Nombres + " " + lstBeneficiariosNoDisponibles[i].Apellidos + ", ";
                                 }
-                                else if (i == BeneficiariosNoDisponibles.Count - 2)
+                                else if (i == lstBeneficiariosNoDisponibles.Count - 2)
                                 {
-                                    beneficiarios += BeneficiariosNoDisponibles[i].Nombres + " " + BeneficiariosNoDisponibles[i].Apellidos + " y ";
+                                    sBeneficiarios += lstBeneficiariosNoDisponibles[i].Nombres + " " + lstBeneficiariosNoDisponibles[i].Apellidos + " y ";
                                 }
                             }
-                            if (BeneficiariosNoDisponibles.Count > 1)
+                            if (lstBeneficiariosNoDisponibles.Count > 1)
                             {
-                                beneficiarios += " no están disponibles para la sesión.";
+                                sBeneficiarios += " no están disponibles para la sesión.";
                             }
                             else
                             {
-                                beneficiarios += " no está disponible para la sesión.";
+                                sBeneficiarios += " no está disponible para la sesión.";
                             }
                         }
-                        if (EspecialistasNoDisponibles.Count > 0 || BeneficiariosNoDisponibles.Count > 0)
+                        if (lstEspecialistasNoDisponibles.Count > 0 || lstBeneficiariosNoDisponibles.Count > 0)
                         {
-                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", string.Format("alert('ERROR: {0}{1} Su horario coincide con el de otra sesión.')", especialistas, beneficiarios), true);
+                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", string.Format("alert('ERROR: {0}{1} Su horario coincide con el de otra sesión.')", sEspecialistas, sBeneficiarios), true);
                         }
                         else
                         {

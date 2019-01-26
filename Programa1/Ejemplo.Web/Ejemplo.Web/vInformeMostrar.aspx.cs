@@ -11,8 +11,8 @@ namespace Ejemplo.Web
 {
     public partial class vInformeMostrar : System.Web.UI.Page
     {
-        List<string> lstEnums;
-        List<cDiagnostico> lstDiagnosticos;
+        List<string> LosEnums;
+        List<cDiagnostico> LosDiagnosticos;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -24,27 +24,27 @@ namespace Ejemplo.Web
         }
         private void CargarDdlTipos()
         {
-            lstEnums = new List<string>() { "Todos" };
+            LosEnums = new List<string>() { "Todos" };
             foreach (var item in Enum.GetValues(typeof(cUtilidades.TipoInforme)))
             {
-                lstEnums.Add(item.ToString());
+                LosEnums.Add(item.ToString());
             }
-            for (int i = 0; i < lstEnums.Count; i++)
+            for (int i = 0; i < LosEnums.Count; i++)
             {
-                lstEnums[i] = lstEnums[i].Replace("_", " ");
+                LosEnums[i] = LosEnums[i].Replace("_", " ");
             }
 
-            ddlTipos.DataSource = lstEnums;
+            ddlTipos.DataSource = LosEnums;
             ddlTipos.DataBind();
         }
         private void CargarDdlDiagnosticos()
         {
-            lstDiagnosticos = dFachada.DiagnosticoTraerTodos();
-            cDiagnostico todos = new cDiagnostico();
-            todos.Codigo = 0;
-            todos.Tipo = "Todos";
-            lstDiagnosticos.Insert(0, todos);
-            ddlDiagnosticos.DataSource = lstDiagnosticos;
+            LosDiagnosticos = dFachada.DiagnosticoTraerTodos();
+            cDiagnostico unDiagnostico = new cDiagnostico();
+            unDiagnostico.Codigo = 0;
+            unDiagnostico.Tipo = "Todos";
+            LosDiagnosticos.Insert(0, unDiagnostico);
+            ddlDiagnosticos.DataSource = LosDiagnosticos;
             ddlDiagnosticos.DataValueField = "Tipo";
             ddlDiagnosticos.DataTextField = "Tipo";
             ddlDiagnosticos.DataBind();
@@ -68,73 +68,73 @@ namespace Ejemplo.Web
                 else
                 {
 
-                    string Consulta = "SELECT I.* FROM Informes I JOIN Beneficiarios B ON I.BeneficiarioId = B.BeneficiarioId";
+                    string sConsulta = "SELECT I.* FROM Informes I JOIN Beneficiarios B ON I.BeneficiarioId = B.BeneficiarioId";
 
-                    List<string> condiciones = new List<string>() { " WHERE" };
-                    condiciones.Add(" I.InformeFecha IS NOT NULL and I.InformeEstado = 2");
+                    List<string> lstCondiciones = new List<string>() { " WHERE" };
+                    lstCondiciones.Add(" I.InformeFecha IS NOT NULL and I.InformeEstado = 2");
                     //Tipos
                     if (ddlTipos.SelectedIndex != 0)
                     {
-                        condiciones.Add(string.Format(" and I.InformeTipo = {0}", ddlTipos.SelectedIndex - 1));
+                        lstCondiciones.Add(string.Format(" and I.InformeTipo = {0}", ddlTipos.SelectedIndex - 1));
                     }
 
                     //Diagnosticos
                     if (ddlDiagnosticos.SelectedIndex != 0)
                     {
-                        condiciones.Add(string.Format(" and I.InformeId in (SELECT S.InformeId FROM Secciones S WHERE S.SeccionNombre=2 and S.SeccionContenido LIKE '%{0}%')", ddlDiagnosticos.SelectedValue));
+                        lstCondiciones.Add(string.Format(" and I.InformeId in (SELECT S.InformeId FROM Secciones S WHERE S.SeccionNombre=2 and S.SeccionContenido LIKE '%{0}%')", ddlDiagnosticos.SelectedValue));
                     }
 
 
                     //Rango de edad
                     if (txtDesde.Text != string.Empty && txtHasta.Text != string.Empty)
                     {
-                            condiciones.Add(string.Format(" and (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int)-cast(convert(varchar(8), B1.BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios B1 WHERE B1.BeneficiarioId = B.BeneficiarioId)" +
+                            lstCondiciones.Add(string.Format(" and (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int)-cast(convert(varchar(8), B1.BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios B1 WHERE B1.BeneficiarioId = B.BeneficiarioId)" +
                                 " BETWEEN {0} and {1}", txtDesde.Text, txtHasta.Text));
                     }
 
                     //Fecha
                     if (txtFechaInicial.Text != string.Empty && txtFechaFinal.Text != string.Empty)
                     {
-                            condiciones.Add(string.Format(" and I.InformeFecha BETWEEN '{0}' and '{1}'", txtFechaInicial.Text, txtFechaFinal.Text));
+                            lstCondiciones.Add(string.Format(" and I.InformeFecha BETWEEN '{0}' and '{1}'", txtFechaInicial.Text, txtFechaFinal.Text));
                     }
 
 
                     //BUSCADOR
-                    condiciones.Add(string.Format(" and (B.BeneficiarioNombres LIKE '%{0}%' or B.BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, B.BeneficiarioCI) LIKE '%{0}%' )", txtBuscarInforme.Text));
+                    lstCondiciones.Add(string.Format(" and (B.BeneficiarioNombres LIKE '%{0}%' or B.BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, B.BeneficiarioCI) LIKE '%{0}%' )", txtBuscarInforme.Text));
 
                     //ORDENAR POR FECHA
-                    condiciones.Add(" ORDER BY I.InformeFecha desc");
+                    lstCondiciones.Add(" ORDER BY I.InformeFecha desc");
 
-                    if (condiciones.Count > 1)
+                    if (lstCondiciones.Count > 1)
                     {
-                        for (int i = 0; i < condiciones.Count; i++)
+                        for (int i = 0; i < lstCondiciones.Count; i++)
                         {
-                            Consulta += condiciones[i];
+                            sConsulta += lstCondiciones[i];
                         }
                     }
 
-                    List<cInforme> lstInformes = dFachada.InformeTraerTodosConFiltros(Consulta);
-                    cInforme informe;
+                    List<cInforme> lstInformes = dFachada.InformeTraerTodosConFiltros(sConsulta);
+                    cInforme unInforme;
 
-                    List<ListarInformes> ListaInformesParaListar = new List<ListarInformes>();
-                    ListarInformes informeAListar;
+                    List<ListarInformes> lstListaInformesParaListar = new List<ListarInformes>();
+                    ListarInformes unInformeAListar;
 
                     for (int i = 0; i < lstInformes.Count; i++)
                     {
-                        informe = new cInforme();
-                        informe = lstInformes[i];
-                        informe.Beneficiario = dFachada.BeneficiarioTraerEspecifico(informe.Beneficiario);
-                        informeAListar = new ListarInformes();
-                        informeAListar.Codigo = informe.Codigo;
-                        informeAListar.Fecha = informe.Fecha;
-                        informeAListar.Estado = informe.Estado;
-                        informeAListar.Tipo = informe.Tipo;
-                        informeAListar.CodigoBeneficiario = informe.Beneficiario.Codigo;
-                        informeAListar.Nombres = informe.Beneficiario.Nombres;
-                        informeAListar.Apellidos = informe.Beneficiario.Apellidos;
-                        ListaInformesParaListar.Add(informeAListar);
+                        unInforme = new cInforme();
+                        unInforme = lstInformes[i];
+                        unInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(unInforme.Beneficiario);
+                        unInformeAListar = new ListarInformes();
+                        unInformeAListar.Codigo = unInforme.Codigo;
+                        unInformeAListar.Fecha = unInforme.Fecha;
+                        unInformeAListar.Estado = unInforme.Estado;
+                        unInformeAListar.Tipo = unInforme.Tipo;
+                        unInformeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
+                        unInformeAListar.Nombres = unInforme.Beneficiario.Nombres;
+                        unInformeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
+                        lstListaInformesParaListar.Add(unInformeAListar);
                     }
-                    grdInformes.DataSource = ListaInformesParaListar;
+                    grdInformes.DataSource = lstListaInformesParaListar;
                     grdInformes.DataBind();
                 }
 
@@ -158,8 +158,8 @@ namespace Ejemplo.Web
         {
             //PODRIA APARECER UNA VENTANITA PARA EXPORTAR A PDF EL INFORME
             TableCell celdaCodigo = grdInformes.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vInformeDetalles.aspx?InformeId=" + codigo.ToString());
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vInformeDetalles.aspx?InformeId=" + iCodigo.ToString());
 
         }
     }

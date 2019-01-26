@@ -13,14 +13,14 @@ namespace Persistencia.Clases
     {
         public static List<cNotificacion> TraerTodasNuevasAdministrador(cUsuario parUsuario)
         {
-            List<cNotificacion> retorno = new List<cNotificacion>();
+            List<cNotificacion> lstRetorno = new List<cNotificacion>();
             cNotificacion unaNotificacion;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Notificaciones_TraerTodasNuevasAdministrador", conn);
+                SqlCommand cmd = new SqlCommand("Notificaciones_TraerTodasNuevasAdministrador", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@UsuarioId", parUsuario.Codigo));
 
@@ -35,7 +35,7 @@ namespace Persistencia.Clases
                         unaNotificacion.Plan = new cPlan();
                         unaNotificacion.Usuario.Codigo = int.Parse(oReader["UsuarioId"].ToString());
                         unaNotificacion.Plan.Codigo = int.Parse(oReader["PlanId"].ToString());
-                        retorno.Add(unaNotificacion);
+                        lstRetorno.Add(unaNotificacion);
                     }
                 }
             }
@@ -43,19 +43,19 @@ namespace Persistencia.Clases
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
 
         public static List<cNotificacion> TraerTodasNuevasEspecialista(cUsuario parUsuario)
         {
-            List<cNotificacion> retorno = new List<cNotificacion>();
+            List<cNotificacion> lstRetorno = new List<cNotificacion>();
             cNotificacion unaNotificacion;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Notificaciones_TraerTodasNuevasEspecialista", conn);
+                SqlCommand cmd = new SqlCommand("Notificaciones_TraerTodasNuevasEspecialista", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@UsuarioId", parUsuario.Codigo));
 
@@ -70,7 +70,7 @@ namespace Persistencia.Clases
                         unaNotificacion.Usuario = new cUsuario();
                         unaNotificacion.Usuario.Codigo = int.Parse(oReader["UsuarioId"].ToString());
                         unaNotificacion.Informe.Codigo = int.Parse(oReader["InformeId"].ToString());
-                        retorno.Add(unaNotificacion);
+                        lstRetorno.Add(unaNotificacion);
                     }
                 }
             }
@@ -78,74 +78,74 @@ namespace Persistencia.Clases
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
 
         public static bool AgregarDeEspecialista(cNotificacion parNotificacion)
         {
-            bool retorno = true;
+            bool bRetorno = true;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("Notificacion_AgregarDeEspecialista", conn);
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
+                SqlCommand cmd = new SqlCommand("Notificacion_AgregarDeEspecialista", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@UsuarioId", parNotificacion.Usuario.Codigo));
                 cmd.Parameters.Add(new SqlParameter("@InformeId", parNotificacion.Informe.Codigo));
 
-                int rtn = cmd.ExecuteNonQuery();
-                if (rtn <= 0)
+                int iRtn = cmd.ExecuteNonQuery();
+                if (iRtn <= 0)
                 {
-                    retorno = false;
+                    bRetorno = false;
                 }
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch(Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return bRetorno;
         }
 
         public static bool AgregarDeAdministrador(cNotificacion parNotificacion)
         {
-            bool retorno = true;
+            bool bRetorno = true;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("Notificacion_AgregarDeAdministrador", conn);
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
+                SqlCommand cmd = new SqlCommand("Notificacion_AgregarDeAdministrador", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@UsuarioId", parNotificacion.Usuario.Codigo));
                 cmd.Parameters.Add(new SqlParameter("@PlanId", parNotificacion.Plan.Codigo));
 
-                int rtn = cmd.ExecuteNonQuery();
-                if (rtn <= 0)
+                int iRtn = cmd.ExecuteNonQuery();
+                if (iRtn <= 0)
                 {
-                    retorno = false;
+                    bRetorno = false;
                 }
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return bRetorno;
         }
         public static int VerificarIngresoParaAdministrador(cNotificacion parNotificacion)
         {
-            int retorno = -1;
+            int iRetorno = -1;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("Notificacion_VerificarIngresoParaAdministrador", conn);
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
+                SqlCommand cmd = new SqlCommand("Notificacion_VerificarIngresoParaAdministrador", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@UsuarioId", parNotificacion.Usuario.Codigo));
                 cmd.Parameters.Add(new SqlParameter("@PlanId", parNotificacion.Plan.Codigo));
@@ -153,8 +153,8 @@ namespace Persistencia.Clases
                 {
                     while(oReader.Read())
                     {
-                        retorno = new int();
-                        retorno = int.Parse(oReader["cantidad"].ToString());
+                        iRetorno = new int();
+                        iRetorno = int.Parse(oReader["cantidad"].ToString());
                     }
                 }
             }
@@ -162,32 +162,32 @@ namespace Persistencia.Clases
             {
                 throw ex;
             }
-            return retorno;
+            return iRetorno;
 
         }
         public static bool CambiarEstadoVista(cNotificacion parNotificacion)
         {
-            bool retorno = true;
+            bool bRetorno = true;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("Notificacion_Vista", conn);
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
+                SqlCommand cmd = new SqlCommand("Notificacion_Vista", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@idUsuario", parNotificacion.Usuario.Codigo));
-                int rtn = cmd.ExecuteNonQuery();
-                if(rtn<=0)
-                { retorno = false; }
-                if(conn.State ==ConnectionState.Open)
+                int iRtn = cmd.ExecuteNonQuery();
+                if(iRtn<=0)
+                { bRetorno = false; }
+                if(vConn.State ==ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch(Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return bRetorno;
         }
     }
 }

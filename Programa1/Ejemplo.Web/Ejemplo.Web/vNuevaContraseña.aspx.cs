@@ -21,22 +21,22 @@ namespace Ejemplo.Web
 
         protected void btnConfirmarNuevaContrasena_Click(object sender, EventArgs e)
         {
-            cUsuario usuario = new cUsuario();
-            usuario.NickName = txtNickName.Text;
+            cUsuario unUsuario = new cUsuario();
+            unUsuario.NickName = txtNickName.Text;
             try
             {
                 if(txtContrasena.Text==txtContrasenaRepetir.Text)
                 {
-                    int i = dFachada.UsuarioExisteNickNameSinContrasena(usuario);
+                    int i = dFachada.UsuarioExisteNickNameSinContrasena(unUsuario);
                     if (i==0)
                     {
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: El NickName no existe o ya tiene contraseña ingresada')", true);
                     }
                     else
                     {
-                        usuario.Contrasena = txtContrasena.Text;
-                        bool resultado = dFachada.UsuarioAgregarConstrasena(usuario);
-                        if(resultado)
+                        unUsuario.Contrasena = txtContrasena.Text;
+                        bool bResultado = dFachada.UsuarioAgregarConstrasena(unUsuario);
+                        if(bResultado)
                         {
                             ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se restableció la contraseña correctamente')", true);
                             Response.Redirect("vLogin.aspx");

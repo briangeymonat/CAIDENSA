@@ -31,13 +31,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblUsuariosActivos;
         
         /// <summary>
-        /// Control PanelUsuariosActivos.
+        /// Control pnlUsuariosActivos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelUsuariosActivos;
+        protected global::System.Web.UI.WebControls.Panel pnlUsuariosActivos;
         
         /// <summary>
         /// Control grdUsuariosActivos.
@@ -58,13 +58,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblUsuariosInactivos;
         
         /// <summary>
-        /// Control PanelUsuariosInactivos.
+        /// Control pnlUsuariosInactivos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelUsuariosInactivos;
+        protected global::System.Web.UI.WebControls.Panel pnlUsuariosInactivos;
         
         /// <summary>
         /// Control grdUsuariosInactivos.

@@ -11,25 +11,25 @@ namespace Ejemplo.Web
 {
     public partial class DetallesSesion : System.Web.UI.Page
     {
-        private static cSesion unaSesion;
+        private static cSesion LaSesion;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
             {
-                unaSesion = new cSesion();
-                unaSesion.Codigo = int.Parse(Request.QueryString["Id"]);
-                unaSesion = dFachada.SesionTraerEspecifico(unaSesion);
+                LaSesion = new cSesion();
+                LaSesion.Codigo = int.Parse(Request.QueryString["Id"]);
+                LaSesion = dFachada.SesionTraerEspecifico(LaSesion);
                 CargarDatos();
             }
         }
 
         private void CargarDatos()
         {
-            lblFecha.Text = unaSesion.Fecha.ToString();
-            lblHoraInicio.Text = unaSesion.HoraInicio.ToString();
-            lblHoraFin.Text = unaSesion.HoraFin.ToString();
-            lblComentario.Text = unaSesion.Comentario.ToString();
-            switch (unaSesion.Centro)
+            lblFecha.Text = LaSesion.Fecha.ToString();
+            lblHoraInicio.Text = LaSesion.HoraInicio.ToString();
+            lblHoraFin.Text = LaSesion.HoraFin.ToString();
+            lblComentario.Text = LaSesion.Comentario.ToString();
+            switch (LaSesion.Centro)
             {
                 case cUtilidades.Centro.JuanLacaze:
                     lblLocalidad.Text = "Juan Lacaze";
@@ -41,7 +41,7 @@ namespace Ejemplo.Web
                     lblLocalidad.Text = "";
                     break;
             }
-            switch (unaSesion.TipoSesion)
+            switch (LaSesion.TipoSesion)
             {
                 case cUtilidades.TipoSesion.Individual:
                     lblTipoSesion.Text = "Individual";
@@ -63,12 +63,12 @@ namespace Ejemplo.Web
                     break;
             }
             
-            grdEspecialistas.DataSource = unaSesion.lstUsuarios;
+            grdEspecialistas.DataSource = LaSesion.lstUsuarios;
             grdEspecialistas.DataBind();
             List<cBeneficiario> beneficiarios = new List<cBeneficiario>();
-            for(int i=0; i<unaSesion.lstBeneficiarios.Count; i++)
+            for(int i=0; i<LaSesion.lstBeneficiarios.Count; i++)
             {
-                beneficiarios.Add(unaSesion.lstBeneficiarios[i].Beneficiario);
+                beneficiarios.Add(LaSesion.lstBeneficiarios[i].Beneficiario);
             }
             grdBeneficiarios.DataSource = beneficiarios;
             grdBeneficiarios.DataBind();

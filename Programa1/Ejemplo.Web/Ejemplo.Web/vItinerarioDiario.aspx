@@ -10,25 +10,6 @@
         }
         setTimeout("disableBackButton()", 0);
 
-        function btnMostrarSesion(id) {
-            $.ajax({
-                type: "POST",
-                url: "vItinerarioDiario.aspx/MostrarSesion",
-                data: '{parCodigo: ' + id + '}',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: resultado,
-                error: errores
-            });
-        };
-        function resultado(msg) {
-            //msg.d tiene el resultado devuelto por el método
-            $('#num3').val(msg.d);
-        }
-        function errores(msg) {
-            //msg.responseText tiene el mensaje de error enviado por el servidor
-            alert('Error: ' + msg.responseText);
-        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

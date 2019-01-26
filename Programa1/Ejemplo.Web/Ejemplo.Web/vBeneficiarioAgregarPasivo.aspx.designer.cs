@@ -346,13 +346,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnPrimeraSesionOcultar;
         
         /// <summary>
-        /// Control PanelPrimeraSesion.
+        /// Control pnlPrimeraSesion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelPrimeraSesion;
+        protected global::System.Web.UI.WebControls.Panel pnlPrimeraSesion;
         
         /// <summary>
         /// Control Label1.
@@ -535,13 +535,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnUltimaSesionOcultar;
         
         /// <summary>
-        /// Control PanelUltimaSesion.
+        /// Control pnlUltimaSesion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelUltimaSesion;
+        protected global::System.Web.UI.WebControls.Panel pnlUltimaSesion;
         
         /// <summary>
         /// Control Label12.
@@ -724,13 +724,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnAgregarPlanOcultar;
         
         /// <summary>
-        /// Control PanelAgregarPlan.
+        /// Control pnlAgregarPlan.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelAgregarPlan;
+        protected global::System.Web.UI.WebControls.Panel pnlAgregarPlan;
         
         /// <summary>
         /// Control lblTipo.
@@ -823,13 +823,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnAgregarDiagnosticoOcultar;
         
         /// <summary>
-        /// Control PanelAgregarDiagnostico.
+        /// Control pnlAgregarDiagnostico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelAgregarDiagnostico;
+        protected global::System.Web.UI.WebControls.Panel pnlAgregarDiagnostico;
         
         /// <summary>
         /// Control Label22.

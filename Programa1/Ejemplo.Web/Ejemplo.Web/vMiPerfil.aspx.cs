@@ -14,15 +14,16 @@ namespace Ejemplo.Web
         public static cUsuario U;
         public static int i = 0;
         public static int ii = 0;
-        private static List<cItinerario> lstItinerarios;
-        private static List<string> lstDias = new List<string>() { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
-        private static List<DateTime> lstHoras;
-        private static List<List<cItinerario>> celdas;
+        private static List<cItinerario> LosItinerarios;
+        private static List<string> LosDias = new List<string>() { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
+        private static List<DateTime> LosHoras;
+        private static List<List<cItinerario>> LasCeldas;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                LosItinerarios = new List<cItinerario>();
                 if (i == 0)
                 {
                     cargarUsuarioLogeado();
@@ -36,14 +37,14 @@ namespace Ejemplo.Web
 
 
                 // CARGA DE HORAS
-                DateTime hora = DateTime.Parse("08:00");
-                lstHoras = new List<DateTime>();
-                lstHoras.Add(hora);
+                DateTime dHora = DateTime.Parse("08:00");
+                LosHoras = new List<DateTime>();
+                LosHoras.Add(dHora);
                 do
                 {
-                    hora = hora.AddMinutes(15);
-                    lstHoras.Add(hora);
-                } while (hora != DateTime.Parse("20:00"));
+                    dHora = dHora.AddMinutes(15);
+                    LosHoras.Add(dHora);
+                } while (dHora != DateTime.Parse("20:00"));
                 if (U.Especialidad.Codigo != 6)
                 {
                     CargarItinerarios();
@@ -56,6 +57,7 @@ namespace Ejemplo.Web
                     grdBeneficiariosQueAtiende.Visible = false;
                     grdInformesPendientes.Visible = false;
                     grdInformesRealizados.Visible = false;
+                    @ref.Visible = false;
                 }
                 if (grdBeneficiariosQueAtiende.PageCount <= 0)
                 {
@@ -72,19 +74,20 @@ namespace Ejemplo.Web
                     grdInformesPendientes.Visible = false;
                     lblInformesPendientes.Text = "No tiene informe pendiente";
                 }
-                if (lstItinerarios.Count <= 0)
+                if (LosItinerarios.Count <= 0 || LosItinerarios==null)
                 {
                     frmItinerario.Visible = false;
                     lblItinerario.Text = "No está registrado en el itinerario";
+                    @ref.Visible = false;
                 }
 
             }
         }
         private void cargarUsuarioLogeado()
         {
-            string nickname = Request.QueryString["nick"];
+            string sNickname = Request.QueryString["nick"];
             cUsuario unUsuario = new cUsuario();
-            unUsuario.NickName = nickname;
+            unUsuario.NickName = sNickname;
             try
             {
                 unUsuario = dFachada.UsuarioTraerEspecificoXNickName(unUsuario);
@@ -112,11 +115,11 @@ namespace Ejemplo.Web
             txtNombres.Text = U.Nombres;
             txtApellidos.Text = U.Apellidos;
             txtCi.Text = U.CI.ToString();
-            DateTime fn = new DateTime();
+            DateTime dFN = new DateTime();
             if (U.FechaNacimiento != null)
             {
-                fn = DateTime.Parse(U.FechaNacimiento);
-                txtFechaNac.Text = fn.ToString("yyyy-MM-dd");
+                dFN = DateTime.Parse(U.FechaNacimiento);
+                txtFechaNac.Text = dFN.ToString("yyyy-MM-dd");
             }
             else
             {
@@ -161,22 +164,22 @@ namespace Ejemplo.Web
             cInforme unInforme;
 
             List<ListarInformes> lstInformesParaListar = new List<ListarInformes>();
-            ListarInformes informeAListar;
+            ListarInformes lstinformeAListar;
 
             for (int i = 0; i < lstInformes.Count; i++)
             {
                 unInforme = new cInforme();
                 unInforme = lstInformes[i];
                 unInforme.Beneficiario = dFachada.BeneficiarioTraerEspecifico(unInforme.Beneficiario);
-                informeAListar = new ListarInformes();
-                informeAListar.Codigo = unInforme.Codigo;
-                informeAListar.Fecha = unInforme.Fecha;
-                informeAListar.Estado = unInforme.Estado;
-                informeAListar.Tipo = unInforme.Tipo;
-                informeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
-                informeAListar.Nombres = unInforme.Beneficiario.Nombres;
-                informeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
-                lstInformesParaListar.Add(informeAListar);
+                lstinformeAListar = new ListarInformes();
+                lstinformeAListar.Codigo = unInforme.Codigo;
+                lstinformeAListar.Fecha = unInforme.Fecha;
+                lstinformeAListar.Estado = unInforme.Estado;
+                lstinformeAListar.Tipo = unInforme.Tipo;
+                lstinformeAListar.CodigoBeneficiario = unInforme.Beneficiario.Codigo;
+                lstinformeAListar.Nombres = unInforme.Beneficiario.Nombres;
+                lstinformeAListar.Apellidos = unInforme.Beneficiario.Apellidos;
+                lstInformesParaListar.Add(lstinformeAListar);
             }
 
             grdInformesRealizados.DataSource = lstInformesParaListar;
@@ -280,16 +283,16 @@ namespace Ejemplo.Web
                     {
                         unUsuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
                     }
-                    string seleccionado = rbTipoDeEmpleado.SelectedValue;
-                    if (seleccionado == "Socio")
+                    string sSeleccionado = rbTipoDeEmpleado.SelectedValue;
+                    if (sSeleccionado == "Socio")
                     {
                         unUsuario.TipoContrato = "S";
                     }
-                    if (seleccionado == "Empleado")
+                    if (sSeleccionado == "Empleado")
                     {
                         unUsuario.TipoContrato = "E";
                     }
-                    if (seleccionado == "Contratado")
+                    if (sSeleccionado == "Contratado")
                     {
                         unUsuario.TipoContrato = "C";
                     }
@@ -298,8 +301,8 @@ namespace Ejemplo.Web
 
                     try
                     {
-                        bool resultado = dFachada.UsuarioModificar(unUsuario);
-                        if (resultado)
+                        bool bResultado = dFachada.UsuarioModificar(unUsuario);
+                        if (bResultado)
                         {
                             lblMensaje.Text = "Modificado correctamente";
                             U = unUsuario;
@@ -366,131 +369,131 @@ namespace Ejemplo.Web
         {
             ii = 1;
             TableCell celdaCodigo = grdBeneficiariosQueAtiende.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + codigo.ToString());
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString());
         }
 
         protected void grdInformesPendientes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             TableCell celdaCodigo = grdInformesPendientes.Rows[e.NewSelectedIndex].Cells[1];
-            int codigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vInformeRedactar.aspx?InformeId=" + codigo.ToString());
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vInformeRedactar.aspx?InformeId=" + iCodigo.ToString());
         }
 
         private void CargarItinerarios()
         {
             pnlItinerario.Visible = true;
 
-            lstItinerarios = dFachada.ItinerarioTraerTodosPorEspecialista(U);
+            LosItinerarios = dFachada.ItinerarioTraerTodosPorEspecialista(U);
 
 
             // ↓↓↓↓ ARMADO DEL HEADER ↓↓↓↓
 
-            string Itinerarios = @"<table onscroll='screenTop'><tr ><td style='color:#000000; background-color:#80B7D8'>Hora</td>";
-            for (int i = 0; i < lstDias.Count; i++)
+            string sItinerarios = @"<table onscroll='screenTop'><tr ><td style='color:#000000; background-color:#80B7D8'>Hora</td>";
+            for (int i = 0; i < LosDias.Count; i++)
             {
-                Itinerarios += "<td style='color:#000000; background-color:#80B7D8;width:100px;'>" + lstDias[i] + "</td>";
+                sItinerarios += "<td style='color:#000000; background-color:#80B7D8;width:100px;'>" + LosDias[i] + "</td>";
             }
-            Itinerarios += "</tr>";
+            sItinerarios += "</tr>";
 
             // ↑↑↑↑ ARMADO DEL HEADER ↑↑↑↑
 
             #region ORDENAMIENTO DE SESIONES SEGÚN EL DÍA
 
-            celdas = new List<List<cItinerario>>();
+            LasCeldas = new List<List<cItinerario>>();
 
-            for (int i = 0; i < lstHoras.Count; i++)
+            for (int i = 0; i < LosHoras.Count; i++)
             {
-                celdas.Add(new List<cItinerario>());
+                LasCeldas.Add(new List<cItinerario>());
 
-                for(int j=0;j<lstDias.Count;j++)
+                for(int j=0;j<LosDias.Count;j++)
                 {
-                    bool HayAlgunaSesion = false;
-                    for(int k=0; k<lstItinerarios.Count;k++)
+                    bool bHayAlgunaSesion = false;
+                    for(int k=0; k<LosItinerarios.Count;k++)
                     {
-                        if(!HayAlgunaSesion)
+                        if(!bHayAlgunaSesion)
                         {
-                            if (DateTime.Parse(lstItinerarios[k].HoraInicio) >= lstHoras[i] && DateTime.Parse(lstItinerarios[k].HoraInicio) < lstHoras[i + 1])
+                            if (DateTime.Parse(LosItinerarios[k].HoraInicio) >= LosHoras[i] && DateTime.Parse(LosItinerarios[k].HoraInicio) < LosHoras[i + 1])
                             {
-                                if(QueDiaEs(lstItinerarios[k])==lstDias[j])
+                                if(QueDiaEs(LosItinerarios[k])==LosDias[j])
                                 {
-                                    HayAlgunaSesion = true;
-                                    celdas[i].Add(lstItinerarios[k]);
+                                    bHayAlgunaSesion = true;
+                                    LasCeldas[i].Add(LosItinerarios[k]);
                                 }
                             }
                         }
                     }
-                    if (!HayAlgunaSesion) { celdas[i].Add(new cItinerario()); }
+                    if (!bHayAlgunaSesion) { LasCeldas[i].Add(new cItinerario()); }
                 }
             }
 
-            for(int i=0; i<lstHoras.Count;i++)
+            for(int i=0; i<LosHoras.Count;i++)
             {
-                Itinerarios += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + lstHoras[i].ToShortTimeString() + "</td>";
-                for(int j=0; j<lstDias.Count;j++)
+                sItinerarios += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + LosHoras[i].ToShortTimeString() + "</td>";
+                for(int j=0; j<LosDias.Count;j++)
                 {
-                    if(celdas[i][j].Comentario==null)
+                    if(LasCeldas[i][j].Comentario==null)
                     {
-                        Itinerarios += "<td style='background-color:#FF8e8e; color:#5186A6;width:100px;' rowspan={0}></td>";
+                        sItinerarios += "<td style='background-color:#FF8e8e; color:#5186A6;width:100px;' rowspan={0}></td>";
                     }
                     else
                     {
-                        if(celdas[i][j].Comentario != "NO_LISTAR")
+                        if(LasCeldas[i][j].Comentario != "NO_LISTAR")
                         {
-                            string nombres = "";
-                            foreach( cBeneficiarioItinerario unBeneficiario in celdas[i][j].lstBeneficiarios)
+                            string sNombres = "";
+                            foreach( cBeneficiarioItinerario unBeneficiario in LasCeldas[i][j].lstBeneficiarios)
                             {
-                                string color = "";
+                                string sColor = "";
                                 switch(unBeneficiario.Plan.Tipo)
                                 {
                                     case "ASSE":
-                                        color = "#58FAF4";
+                                        sColor = "#58FAF4";
                                         break;
                                     case "AYEX":
-                                        color = "#8afa38";
+                                        sColor = "#8afa38";
                                         break;
                                     case "CAMEC":
-                                        color = "#58FAF4";
+                                        sColor = "#58FAF4";
                                         break;
                                     case "Círculo Católico":
-                                        color = "#58FAF4";
+                                        sColor = "#58FAF4";
                                         break;
                                     case "MIDES":
-                                        color = "#F3F781";
+                                        sColor = "#F3F781";
                                         break;
                                     case "Particular":
-                                        color = "#FE9A2E";
+                                        sColor = "#FE9A2E";
                                         break;
                                     case "Policial":
-                                        color = "#58FAF4";
+                                        sColor = "#58FAF4";
                                         break;
                                     default:
-                                        color = "#ffffff";
+                                        sColor = "#ffffff";
                                         break;
                                 }
-                                nombres += "<p style='background-color:"+color+";padding:5px 0px; margin:0px;'>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos+"</p>";
+                                sNombres += "<p style='background-color:"+sColor+";padding:5px 0px; margin:0px;'>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos+"</p>";
                             }
-                            int filas = 0;
-                            for(int k=i; k<lstHoras.Count;k++)
+                            int iFilas = 0;
+                            for(int k=i; k<LosHoras.Count;k++)
                             {
-                                if(DateTime.Parse(celdas[i][j].HoraFin)>lstHoras[k])
+                                if(DateTime.Parse(LasCeldas[i][j].HoraFin)>LosHoras[k])
                                 {
-                                    filas++;
-                                    celdas[k][j].Comentario = "NO_LISTAR";
+                                    iFilas++;
+                                    LasCeldas[k][j].Comentario = "NO_LISTAR";
                                 }
                             }
-                            string centro = "";
-                            if (celdas[i][j].Centro == cUtilidades.Centro.JuanLacaze) centro = " - JL"; else centro = " - NH";
-                            Itinerarios += string.Format("<td style='background-color:#f5b041; color:#000000' rowspan={0}'>" +
-                                "<p style='padding:5px 0px; margin:0px;width:100px;'>" + celdas[i][j].TipoSesion +centro+ "</p> " + nombres , filas, ((filas * 25) + filas));
+                            string sCentro = "";
+                            if (LasCeldas[i][j].Centro == cUtilidades.Centro.JuanLacaze) sCentro = " - JL"; else sCentro = " - NH";
+                            sItinerarios += string.Format("<td style='background-color:#f5b041; color:#000000' rowspan={0}'>" +
+                                "<p style='padding:5px 0px; margin:0px;width:100px;'>" + LasCeldas[i][j].TipoSesion +sCentro+ "</p> " + sNombres , iFilas, ((iFilas * 25) + iFilas));
                         }
                     }
                 }
-                Itinerarios += "</tr>";
+                sItinerarios += "</tr>";
             }
-            Itinerarios += "</table>";
+            sItinerarios += "</table>";
 
-            frmItinerario.InnerHtml = Itinerarios;
+            frmItinerario.InnerHtml = sItinerarios;
 
             #endregion
 

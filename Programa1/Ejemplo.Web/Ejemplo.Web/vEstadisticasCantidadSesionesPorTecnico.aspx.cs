@@ -12,30 +12,30 @@ namespace Ejemplo.Web
     public partial class vEstadisticasCantidadSesionesPorTecnico : System.Web.UI.Page
     {
 
-        List<string> años;
-        List<string> meses = new List<string>() { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+        List<string> LosAños;
+        List<string> LosMeses = new List<string>() { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                años = new List<string>();
-                List<DateTime> fechas = dFachada.SesionTraerMaximaFechaYMinimaFecha();
-                DateTime fechaMaxima = fechas[0];
-                DateTime fechaMinima = fechas[1];
-                for (int i = fechaMaxima.Year; i >= fechaMinima.Year; i--)
+                LosAños = new List<string>();
+                List<DateTime> lstFechas = dFachada.SesionTraerMaximaFechaYMinimaFecha();
+                DateTime dFechaMaxima = lstFechas[0];
+                DateTime dFechaMinima = lstFechas[1];
+                for (int i = dFechaMaxima.Year; i >= dFechaMinima.Year; i--)
                 {
-                    años.Add(i.ToString());
+                    LosAños.Add(i.ToString());
                 }
-                ddlAños.DataSource = años;
+                ddlAños.DataSource = LosAños;
                 ddlAños.DataBind();
-                ddlMeses.DataSource = meses;
+                ddlMeses.DataSource = LosMeses;
                 ddlMeses.DataBind();
                 CargarGrilla();
             }
         }
         protected void CargarGrilla()
         {
-            string Consulta = string.Format("Select distinct U.UsuarioNombres, U.UsuarioApellidos, " +
+            string sConsulta = string.Format("Select distinct U.UsuarioNombres, U.UsuarioApellidos, " +
                 "(Select Count(*) from Sesiones s1 join UsuariosSesiones us1 on us1.SesionId = s1.SesionId where us1.UsuarioId = u.UsuarioId and s1.SesionTipo = 0 and '{0}' = (select DATEPART(YEAR, s1.SesionFecha)) and '{1}' = (select DATEPART(month, s1.SesionFecha))) Individual, " +
                 "(Select Count(*) from Sesiones s1 join UsuariosSesiones us1 on us1.SesionId = s1.SesionId where us1.UsuarioId = u.UsuarioId and s1.SesionTipo = 1 and '{0}' = (select DATEPART(YEAR, s1.SesionFecha)) and '{1}' = (select DATEPART(month, s1.SesionFecha))) Grupo2, " +
                 "(Select Count(*) from Sesiones s1 join UsuariosSesiones us1 on us1.SesionId = s1.SesionId where us1.UsuarioId = u.UsuarioId and s1.SesionTipo = 2 and '{0}' = (select DATEPART(YEAR, s1.SesionFecha)) and '{1}' = (select DATEPART(month, s1.SesionFecha))) Grupo3, " +
@@ -45,7 +45,7 @@ namespace Ejemplo.Web
                 " Where '{0}' = (select DATEPART(YEAR, s.SesionFecha)) and '{1}' = (select DATEPART(month, s.SesionFecha)) " +
                 "and (u.UsuarioNombres LIKE '%{2}%' or u.UsuarioApellidos LIKE '%{2}%')",
                 this.ddlAños.SelectedValue, this.ddlMeses.SelectedIndex + 1, this.txtBuscarEspecialista.Text);
-            List<List<string>> lstUsuarios = dFachada.EstadisticaTraerCantidadSesionPorTipoSesion(Consulta);
+            List<List<string>> lstUsuarios = dFachada.EstadisticaTraerCantidadSesionPorTipoSesion(sConsulta);
 
             DataTable dt = new DataTable();
             dt.Columns.Add("Especialista", typeof(string));

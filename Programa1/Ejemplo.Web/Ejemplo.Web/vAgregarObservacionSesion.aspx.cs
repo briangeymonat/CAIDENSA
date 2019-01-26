@@ -177,18 +177,18 @@ namespace Ejemplo.Web
 
         protected void btnDescartar_Click(object sender, EventArgs e)
         {
-            string observacion = string.Empty;
+            string sObservacion = string.Empty;
             cUsuarioSesion unUS = new cUsuarioSesion();
             unUS.Usuario = vMiPerfil.U;
             unUS.Sesion = LaSesion;
-            unUS.Observacion = observacion;
-            bool resultado = dFachada.SesionAgregarObservacion(unUS);
-            if (resultado)
+            unUS.Observacion = sObservacion;
+            bool bResultado = dFachada.SesionAgregarObservacion(unUS);
+            if (bResultado)
             {
                 //vTareas.ventanaObservacion = false;
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se descartó la sesión para realizar la observación')", true);
-                string script = "window.opener.location.reload(); window.close();";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
+                string sScript = "window.opener.location.reload(); window.close();";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", sScript, true);
                 //Response.Redirect("vInicio.aspx");
             }
             else
@@ -205,18 +205,18 @@ namespace Ejemplo.Web
             }
             else
             {
-                string observacion = txtObservacionSesion.Text;
+                string sObservacion = txtObservacionSesion.Text;
                 cUsuarioSesion unUS = new cUsuarioSesion();
                 unUS.Usuario = vMiPerfil.U;
                 unUS.Sesion = LaSesion;
-                unUS.Observacion = observacion;
-                bool resultado = dFachada.SesionAgregarObservacion(unUS);
-                if (resultado)
+                unUS.Observacion = sObservacion;
+                bool bResultado = dFachada.SesionAgregarObservacion(unUS);
+                if (bResultado)
                 {
                     //vTareas.ventanaObservacion = false;
                     ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se agregó la observación correctamente')", true);
-                    string script = "window.opener.location.reload(); window.close();";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
+                    string sScript = "window.opener.location.reload(); window.close();";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", sScript, true);
                 }
                 else
                 {
@@ -228,8 +228,8 @@ namespace Ejemplo.Web
 
         protected void btnCerrar_Click(object sender, EventArgs e)
         {
-            string script = "window.close();";
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", script, true);
+            string sScript = "window.close();";
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", sScript, true);
         }
     }
 }

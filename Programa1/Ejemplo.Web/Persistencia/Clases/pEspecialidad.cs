@@ -13,45 +13,45 @@ namespace Persistencia.Clases
     {
         public static List<cEspecialidad> TraerTodas()
         {
-            List<cEspecialidad> retorno = new List<cEspecialidad>();
-            cEspecialidad especialidad = null;
+            List<cEspecialidad> lstRetorno = new List<cEspecialidad>();
+            cEspecialidad unaEspecialidad = null;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Especialidades_TraerTodas", conn);
+                SqlCommand cmd = new SqlCommand("Especialidades_TraerTodas", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (SqlDataReader oReader = cmd.ExecuteReader())
                 {
                     while(oReader.Read())
                     {
-                        especialidad = new cEspecialidad();
-                        especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
-                        especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
-                        retorno.Add(especialidad);
+                        unaEspecialidad = new cEspecialidad();
+                        unaEspecialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
+                        unaEspecialidad.Nombre = oReader["EspecialidadNombre"].ToString();
+                        lstRetorno.Add(unaEspecialidad);
                     }
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch(Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
         public static cEspecialidad TraerEspecifica(cEspecialidad parEspecialidad)
         {
-            cEspecialidad retorno = null;
+            cEspecialidad unRetorno = null;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Especialidad_TraerEspecifica", conn);
+                SqlCommand cmd = new SqlCommand("Especialidad_TraerEspecifica", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@codigo", parEspecialidad.Codigo));
 
@@ -59,29 +59,29 @@ namespace Persistencia.Clases
                 {
                     while (oReader.Read())
                     {
-                        retorno = new cEspecialidad();
-                        retorno.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
-                        retorno.Nombre = oReader["EspecialidadNombre"].ToString();
+                        unRetorno = new cEspecialidad();
+                        unRetorno.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
+                        unRetorno.Nombre = oReader["EspecialidadNombre"].ToString();
                     }
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return unRetorno;
         }
         public static cEspecialidad TraerEspecificaPorNombre(cEspecialidad parEspecialidad)
         {
-            cEspecialidad retorno = new cEspecialidad();
+            cEspecialidad unRetorno = new cEspecialidad();
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Especialidad_TraerEspecificaPorNombre", conn);
+                SqlCommand cmd = new SqlCommand("Especialidad_TraerEspecificaPorNombre", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@EspecialidadNombre", parEspecialidad.Nombre));
 
@@ -89,17 +89,17 @@ namespace Persistencia.Clases
                 {
                     while (oReader.Read())
                     {
-                        retorno.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
-                        retorno.Nombre = oReader["EspecialidadNombre"].ToString();
+                        unRetorno.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
+                        unRetorno.Nombre = oReader["EspecialidadNombre"].ToString();
                     }
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return unRetorno;
         }
     }
 }

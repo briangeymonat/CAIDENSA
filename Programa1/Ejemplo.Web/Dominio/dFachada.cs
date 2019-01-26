@@ -65,21 +65,21 @@ namespace Dominio
         {
             return dUsuario.VerificarInicioSesion(parUsuario);
         }
-        public static List<cUsuario> UsuarioTraerTodosActivosPorNombreApellido(string texto)
+        public static List<cUsuario> UsuarioTraerTodosActivosPorNombreApellido(string parTexto)
         {
-            return dUsuario.TraerTodosActivosPorNombreApellido(texto);
+            return dUsuario.TraerTodosActivosPorNombreApellido(parTexto);
         }
-        public static List<cUsuario> UsuarioTraerTodosInactivosPorNombreApellido(string texto)
+        public static List<cUsuario> UsuarioTraerTodosInactivosPorNombreApellido(string parTexto)
         {
-            return dUsuario.TraerTodosInactivosPorNombreApellido(texto);
+            return dUsuario.TraerTodosInactivosPorNombreApellido(parTexto);
         }
-        public static List<cUsuario> UsuarioTraerTodosActivosPorCI(string texto)
+        public static List<cUsuario> UsuarioTraerTodosActivosPorCI(string parTexto)
         {
-            return dUsuario.TraerTodosActivosPorCI(texto);
+            return dUsuario.TraerTodosActivosPorCI(parTexto);
         }
-        public static List<cUsuario> UsuarioTraerTodosInactivosPorCI(string texto)
+        public static List<cUsuario> UsuarioTraerTodosInactivosPorCI(string parTexto)
         {
-            return dUsuario.TraerTodosInactivosPorCI(texto);
+            return dUsuario.TraerTodosInactivosPorCI(parTexto);
         }
         public static int UsuarioCantidadAdministradoresActivos()
         {
@@ -317,49 +317,49 @@ namespace Dominio
 
         public static List<cItinerario> ItinerarioTraerTodosPorDia(char parDia, int parCentro)
         {
-            List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorDia(parDia, parCentro);
-            for (int i = 0; i < LosItinerarios.Count; i++)
+            List<cItinerario> lstItinerarios = dItinerario.TraerTodosPorDia(parDia, parCentro);
+            for (int i = 0; i < lstItinerarios.Count; i++)
             {
-                LosItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(LosItinerarios[i]);
+                lstItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(lstItinerarios[i]);
             }
-            for (int i = 0; i < LosItinerarios.Count; i++)
+            for (int i = 0; i < lstItinerarios.Count; i++)
             {
-                LosItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(LosItinerarios[i]);
+                lstItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(lstItinerarios[i]);
             }
-            return LosItinerarios;
+            return lstItinerarios;
         }
         public static List<cItinerario> ItinerarioTraerTodosPorEspecialista(cUsuario parUsuario)
         {
-            List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorEspecialista(parUsuario);
-            for (int i = 0; i < LosItinerarios.Count; i++)
+            List<cItinerario> lstItinerarios = dItinerario.TraerTodosPorEspecialista(parUsuario);
+            for (int i = 0; i < lstItinerarios.Count; i++)
             {
-                LosItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(LosItinerarios[i]);
+                lstItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(lstItinerarios[i]);
             }
-            for (int i = 0; i < LosItinerarios.Count; i++)
+            for (int i = 0; i < lstItinerarios.Count; i++)
             {
-                LosItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(LosItinerarios[i]);
+                lstItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(lstItinerarios[i]);
             }
-            return LosItinerarios;
+            return lstItinerarios;
         }
         public static List<cItinerario> ItinerarioTraerTodosPorBeneficiario(cBeneficiario parBeneficiario)
         {
-            List<cItinerario> LosItinerarios = dItinerario.TraerTodosPorBeneficiario(parBeneficiario);
-            for (int i = 0; i < LosItinerarios.Count; i++)
+            List<cItinerario> lstItinerarios = dItinerario.TraerTodosPorBeneficiario(parBeneficiario);
+            for (int i = 0; i < lstItinerarios.Count; i++)
             {
-                LosItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(LosItinerarios[i]);
+                lstItinerarios[i].lstEspecialistas = UsuarioTraerTodosPorItinerario(lstItinerarios[i]);
             }
-            for (int i = 0; i < LosItinerarios.Count; i++)
+            for (int i = 0; i < lstItinerarios.Count; i++)
             {
-                LosItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(LosItinerarios[i]);
+                lstItinerarios[i].lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(lstItinerarios[i]);
             }
-            return LosItinerarios;
+            return lstItinerarios;
         }
         public static cItinerario ItinerarioTraerEspecifico(cItinerario parItinerario)
         {
-            cItinerario ElItinerario = dItinerario.TraerEspecifico(parItinerario);
-            ElItinerario.lstEspecialistas = UsuarioTraerTodosPorItinerario(ElItinerario);
-            ElItinerario.lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(ElItinerario);
-            return ElItinerario;
+            cItinerario unItinerario = dItinerario.TraerEspecifico(parItinerario);
+            unItinerario.lstEspecialistas = UsuarioTraerTodosPorItinerario(unItinerario);
+            unItinerario.lstBeneficiarios = BeneficiarioTraerTodosPorItinerario(unItinerario);
+            return unItinerario;
         }
 
         public static bool ItinerarioModificarEstadoDelDia(char parDia)
@@ -444,7 +444,7 @@ namespace Dominio
             List<cItinerario> lstJL = ItinerarioTraerTodosPorDia(dia, 0);
             List<cItinerario> lstNH = ItinerarioTraerTodosPorDia(dia, 1);
             cSesion unaSesion;
-            bool retorno = true;
+            bool bRetorno = true;
             foreach(cItinerario unItinerario in lstJL)
             {
                 unaSesion = new cSesion();
@@ -465,7 +465,7 @@ namespace Dominio
                     }
                     unaSesion.lstUsuarios = unItinerario.lstEspecialistas;
                     unaSesion.TipoSesion = unItinerario.TipoSesion;
-                    retorno = retorno == SesionAgregar(unaSesion);
+                    bRetorno = bRetorno == SesionAgregar(unaSesion);
                 }
             }
             foreach (cItinerario unItinerario in lstNH)
@@ -488,16 +488,16 @@ namespace Dominio
                     }
                     unaSesion.lstUsuarios = unItinerario.lstEspecialistas;
                     unaSesion.TipoSesion = unItinerario.TipoSesion;
-                    retorno = retorno == SesionAgregar(unaSesion);
+                    bRetorno = bRetorno == SesionAgregar(unaSesion);
                 }
             }
-            if(retorno)
+            if(bRetorno)
             {
 
-                retorno = retorno == ItinerarioModificarEstadoDelDia(dia);
+                bRetorno = bRetorno == ItinerarioModificarEstadoDelDia(dia);
             }
             
-            return retorno;
+            return bRetorno;
             
         }
 

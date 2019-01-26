@@ -11,7 +11,7 @@ namespace Ejemplo.Web
 {
     public partial class vBeneficiarioMostrar : System.Web.UI.Page
     {
-        private static List<cBeneficiario> TodosLosBeneficiarios;
+        private static List<cBeneficiario> LosBeneficiarios;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -28,55 +28,55 @@ namespace Ejemplo.Web
         }
         private void CargarDiagnosticos()
         {
-            List<cDiagnostico> LosDiagnosticos = dFachada.DiagnosticoTraerTodos();
-            List<string> combo = new List<string>() { "Ninguno" };
-            foreach (cDiagnostico unDiagnostico in LosDiagnosticos)
+            List<cDiagnostico> lstDiagnosticos = dFachada.DiagnosticoTraerTodos();
+            List<string> lstCombo = new List<string>() { "Ninguno" };
+            foreach (cDiagnostico unDiagnostico in lstDiagnosticos)
             {
-                combo.Add(unDiagnostico.Tipo);
+                lstCombo.Add(unDiagnostico.Tipo);
             }
-            ddlDiagnosticos.DataSource = combo;
+            ddlDiagnosticos.DataSource = lstCombo;
             ddlDiagnosticos.DataBind();
         }
         private void ActualizarGrdBeneficiarios()
         {
-            grdBeneficiarios.DataSource = TodosLosBeneficiarios;
+            grdBeneficiarios.DataSource = LosBeneficiarios;
             grdBeneficiarios.DataBind();
             grdBeneficiarios.SelectedIndex = -1;
         }
         private void ActualizarTodosLosBeneficiarios()
         {
 
-            string Consulta = "SELECT DISTINCT B.* FROM Beneficiarios B" +
+            string sConsulta = "SELECT DISTINCT B.* FROM Beneficiarios B" +
                 " LEFT JOIN Planes P ON B.BeneficiarioId = P.BeneficiarioId" +
                 " LEFT JOIN BeneficiariosSesiones BS ON B.BeneficiarioId = BS.BeneficiarioId" +
                 " LEFT JOIN Sesiones S ON BS.SesionId = S.SesionId" +
                 " LEFT JOIN UsuariosSesiones US ON S.SesionId = US.SesionId" +
                 " LEFT JOIN Usuarios U ON US.UsuarioId = U.UsuarioId" +
                 " LEFT JOIN Especialidades E ON U.EspecialidadId = E.EspecialidadId";
-            List<string> condiciones = new List<string>();
-            condiciones.Add(" WHERE");
+            List<string> lstCondiciones = new List<string>();
+            lstCondiciones.Add(" WHERE");
 
-            bool or = false;
+            bool bOr = false;
 
             // ACTIVOS O PASIVOS
             if ((cbActivos.Checked) != (cbPasivos.Checked))
             {
                 // ACTIVO
-                if (cbActivos.Checked) condiciones.Add(" BeneficiarioEstado=1");
+                if (cbActivos.Checked) lstCondiciones.Add(" BeneficiarioEstado=1");
                 // PASIVO
-                if (cbPasivos.Checked) condiciones.Add(" BeneficiarioEstado=0");
+                if (cbPasivos.Checked) lstCondiciones.Add(" BeneficiarioEstado=0");
             }
 
 
             //LOCALIDAD
             if (cbJuanLacaze.Checked)                       //Juan Lacaze
             {
-                if (condiciones.Count > 1) condiciones.Add(" and S.SesionCentro=0"); else condiciones.Add(" S.SesionCentro=0");
+                if (lstCondiciones.Count > 1) lstCondiciones.Add(" and S.SesionCentro=0"); else lstCondiciones.Add(" S.SesionCentro=0");
             }
 
             if (cbNuevaHelvecia.Checked)                    //Nueva Helvecia
             {
-                if (condiciones.Count > 1) condiciones.Add(" and S.SesionCentro=1"); else condiciones.Add(" S.SesionCentro=1");
+                if (lstCondiciones.Count > 1) lstCondiciones.Add(" and S.SesionCentro=1"); else lstCondiciones.Add(" S.SesionCentro=1");
             }
 
 
@@ -85,11 +85,11 @@ namespace Ejemplo.Web
             {
                 if (cblSexo.Items[0].Selected)
                 {
-                    if (condiciones.Count > 1) condiciones.Add(" and BeneficiarioSexo='M'"); else condiciones.Add(" BeneficiarioSexo='M'");
+                    if (lstCondiciones.Count > 1) lstCondiciones.Add(" and BeneficiarioSexo='M'"); else lstCondiciones.Add(" BeneficiarioSexo='M'");
                 }
                 else
                 {
-                    if (condiciones.Count > 1) condiciones.Add(" and BeneficiarioSexo='F'"); else condiciones.Add(" BeneficiarioSexo='F'");
+                    if (lstCondiciones.Count > 1) lstCondiciones.Add(" and BeneficiarioSexo='F'"); else lstCondiciones.Add(" BeneficiarioSexo='F'");
                 }
             }
 
@@ -99,27 +99,27 @@ namespace Ejemplo.Web
             {
                 if (cblPlan.Items[i].Selected)
                 {
-                    if (condiciones.Count > 1)
-                        if (or) condiciones.Add(string.Format(" or P.PlanTipo='{0}'", cblPlan.Items[i].Text));
-                        else condiciones.Add(string.Format(" and (P.PlanTipo='{0}'", cblPlan.Items[i].Text));
-                    else condiciones.Add(string.Format(" (P.PlanTipo='{0}'", cblPlan.Items[i].Text));
-                    or = true;
+                    if (lstCondiciones.Count > 1)
+                        if (bOr) lstCondiciones.Add(string.Format(" or P.PlanTipo='{0}'", cblPlan.Items[i].Text));
+                        else lstCondiciones.Add(string.Format(" and (P.PlanTipo='{0}'", cblPlan.Items[i].Text));
+                    else lstCondiciones.Add(string.Format(" (P.PlanTipo='{0}'", cblPlan.Items[i].Text));
+                    bOr = true;
                 }
             }
-            if (or) condiciones.Add(")");
+            if (bOr) lstCondiciones.Add(")");
 
 
-            or = false;
+            bOr = false;
 
 
             //RANGO DE EDAD
             if (txtDesde.Text != string.Empty && txtHasta.Text != string.Empty)
             {
-                if (condiciones.Count > 1) condiciones.Add(string.Format(" and (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int)" +
+                if (lstCondiciones.Count > 1) lstCondiciones.Add(string.Format(" and (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int)" +
                     " -cast(convert(varchar(8), B1.BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios B1 WHERE B1.BeneficiarioId = B.BeneficiarioId)" +
                     " BETWEEN {0} and {1}",
                     txtDesde.Text, txtHasta.Text));
-                else condiciones.Add(string.Format(" (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int)" +
+                else lstCondiciones.Add(string.Format(" (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int)" +
                     " -cast(convert(varchar(8), B1.BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios B1 WHERE B1.BeneficiarioId = B.BeneficiarioId)" +
                     " BETWEEN {0} and {1}",
                     txtDesde.Text, txtHasta.Text));
@@ -130,24 +130,24 @@ namespace Ejemplo.Web
             {
                 if (cblEspecialidad.Items[i].Selected)
                 {
-                    if (condiciones.Count > 1)
-                        if (or) condiciones.Add(string.Format(" or E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
-                        else condiciones.Add(string.Format(" and (E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
+                    if (lstCondiciones.Count > 1)
+                        if (bOr) lstCondiciones.Add(string.Format(" or E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
+                        else lstCondiciones.Add(string.Format(" and (E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
                     else
-                        condiciones.Add(string.Format(" (E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
-                    or = true;
+                        lstCondiciones.Add(string.Format(" (E.EspecialidadNombre = '{0}'", cblEspecialidad.Items[i].Text));
+                    bOr = true;
                 }
             }
-            if (or) condiciones.Add(")");
+            if (bOr) lstCondiciones.Add(")");
 
             //DIAGNOSTICO
 
             if (ddlDiagnosticos.SelectedIndex != 0)
             {
-                if (condiciones.Count > 1)
-                    condiciones.Add(string.Format(" and B.BeneficiarioId in(SELECT DB.BeneficiarioId FROM DiagnosticosBeneficiarios DB  JOIN Diagnostico D ON DB.DiagnosticoId = D.DiagnosticoId WHERE D.DiagnosticoTipo = '{0}')", ddlDiagnosticos.SelectedValue));
+                if (lstCondiciones.Count > 1)
+                    lstCondiciones.Add(string.Format(" and B.BeneficiarioId in(SELECT DB.BeneficiarioId FROM DiagnosticosBeneficiarios DB  JOIN Diagnostico D ON DB.DiagnosticoId = D.DiagnosticoId WHERE D.DiagnosticoTipo = '{0}')", ddlDiagnosticos.SelectedValue));
                 else
-                    condiciones.Add(string.Format(" B.BeneficiarioId in(SELECT DB.BeneficiarioId FROM DiagnosticosBeneficiarios DB  JOIN Diagnostico D ON DB.DiagnosticoId = D.DiagnosticoId WHERE DB.DiagnosticosBeneficiariosFecha=(Select MAX(db1.DiagnosticosBeneficiariosFecha) from DiagnosticosBeneficiarios db1 where db1.BeneficiarioId=db.BeneficiarioId) and D.DiagnosticoTipo = '{0}')", ddlDiagnosticos.SelectedValue));
+                    lstCondiciones.Add(string.Format(" B.BeneficiarioId in(SELECT DB.BeneficiarioId FROM DiagnosticosBeneficiarios DB  JOIN Diagnostico D ON DB.DiagnosticoId = D.DiagnosticoId WHERE DB.DiagnosticosBeneficiariosFecha=(Select MAX(db1.DiagnosticosBeneficiariosFecha) from DiagnosticosBeneficiarios db1 where db1.BeneficiarioId=db.BeneficiarioId) and D.DiagnosticoTipo = '{0}')", ddlDiagnosticos.SelectedValue));
             }
 
 
@@ -156,20 +156,20 @@ namespace Ejemplo.Web
 
 
             //BUSCADOR
-            if (condiciones.Count > 1) condiciones.Add(string.Format(" and (BeneficiarioNombres LIKE '%{0}%' or BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, BeneficiarioCI) LIKE '%{0}%' )", txtBuscarBeneficiarios.Text));
-            else condiciones.Add(string.Format(" (BeneficiarioNombres LIKE '%{0}%' or BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, BeneficiarioCI) LIKE '%{0}%' )", txtBuscarBeneficiarios.Text));
+            if (lstCondiciones.Count > 1) lstCondiciones.Add(string.Format(" and (BeneficiarioNombres LIKE '%{0}%' or BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, BeneficiarioCI) LIKE '%{0}%' )", txtBuscarBeneficiarios.Text));
+            else lstCondiciones.Add(string.Format(" (BeneficiarioNombres LIKE '%{0}%' or BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, BeneficiarioCI) LIKE '%{0}%' )", txtBuscarBeneficiarios.Text));
 
-            if (condiciones.Count > 1)
+            if (lstCondiciones.Count > 1)
             {
-                for (int i = 0; i < condiciones.Count; i++)
+                for (int i = 0; i < lstCondiciones.Count; i++)
                 {
-                    Consulta += condiciones[i];
+                    sConsulta += lstCondiciones[i];
                 }
-                TodosLosBeneficiarios = dFachada.BeneficiarioTraerTodosConFiltros(Consulta);
+                LosBeneficiarios = dFachada.BeneficiarioTraerTodosConFiltros(sConsulta);
             }
             else
             {
-                TodosLosBeneficiarios = dFachada.BeneficiarioTraerTodos();
+                LosBeneficiarios = dFachada.BeneficiarioTraerTodos();
             }
         }
 
@@ -187,7 +187,7 @@ namespace Ejemplo.Web
 
         protected void grdBeneficiarios_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + TodosLosBeneficiarios[e.NewSelectedIndex].Codigo.ToString());
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + LosBeneficiarios[e.NewSelectedIndex].Codigo.ToString());
         }
 
         protected void grdBeneficiarios_RowCreated(object sender, GridViewRowEventArgs e)

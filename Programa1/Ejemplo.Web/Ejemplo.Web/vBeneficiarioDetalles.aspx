@@ -151,7 +151,7 @@
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
-                <asp:Panel ID="PanelAgregarPlan" runat="server">
+                <asp:Panel ID="pnlAgregarPlan" runat="server">
                     <asp:Table runat="server" Style="border: solid 1px black;">
                         <asp:TableRow>
                             <asp:TableCell ColumnSpan="2">
@@ -205,7 +205,7 @@
                         </asp:TableRow>
                     </asp:Table>
                 </asp:Panel>
-                <asp:Panel ID="PanelModificarPlan" runat="server">
+                <asp:Panel ID="pnlModificarPlan" runat="server">
                     <asp:Table runat="server" Style="margin-top: 40px; border: solid 1px black;">
                         <asp:TableRow>
                             <asp:TableCell ColumnSpan="4">
@@ -282,7 +282,7 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Panel ID="PanelUltimosDiagnosticos" runat="server" ScrollBars="Vertical" Height="150px">
+                            <asp:Panel ID="pnlUltimosDiagnosticos" runat="server" ScrollBars="Vertical" Height="150px">
                                 <asp:GridView ID="grdUltimosDiagnosticos" runat="server" ShowHeaderWhenEmpty="true" Width="100%">
                                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                     <EditRowStyle BackColor="#999999" />

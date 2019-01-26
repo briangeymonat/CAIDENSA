@@ -21,8 +21,6 @@
         </asp:TableRow>
         <asp:TableRow VerticalAlign="Top">
             <asp:TableCell Style="padding-left: 50px;">
-                <asp:TableRow>
-                    <asp:TableCell>
                         <br />
                         <asp:Panel ID="PanelBeneficiarios" runat="server" ScrollBars="Vertical" Height="750px">
                             <asp:GridView ID="grdBeneficiarios" runat="server" ShowHeaderWhenEmpty="true"
@@ -41,8 +39,6 @@
                             </asp:GridView>
                         </asp:Panel>
                     </asp:TableCell>
-                </asp:TableRow>
-            </asp:TableCell>
             <asp:TableCell>
                 <asp:Table runat="server" Style="width: 250px">
                     <asp:TableRow>

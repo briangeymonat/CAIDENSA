@@ -71,21 +71,21 @@ namespace Ejemplo.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<cNotificacion> notificacionesAdministrador = dFachada.NotifiacionTraerTodasNuevasAdministrador(vMiPerfil.U);
-            List<cNotificacion> notificacionesEspecialista = dFachada.NotifiacionTraerTodasNuevasEspecialista(vMiPerfil.U);
+            List<cNotificacion> lstNotificacionesAdministrador = dFachada.NotifiacionTraerTodasNuevasAdministrador(vMiPerfil.U);
+            List<cNotificacion> lstNotificacionesEspecialista = dFachada.NotifiacionTraerTodasNuevasEspecialista(vMiPerfil.U);
 
-            int a = notificacionesAdministrador.Count + notificacionesEspecialista.Count;
+            int iA = lstNotificacionesAdministrador.Count + lstNotificacionesEspecialista.Count;
             if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrador)
             {
                 //int a = notificacionesAdministrador.Count;
-                if (a > 0)
-                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + a; // y color rojo falta
+                if (iA > 0)
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; // y color rojo falta
             }
             else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
             {
                 //int a = notificacionesAdministrador.Count;
-                if (a > 0)
-                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + a; // y color rojo falta
+                if (iA > 0)
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; // y color rojo falta
             }
             else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Usuario)
             {
@@ -98,8 +98,8 @@ namespace Ejemplo.Web
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Diagnóstico"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Asistencias"));
                 //int a = notificacionesEspecialista.Count;
-                if (a > 0)
-                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + a; // y color rojo falta
+                if (iA > 0)
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; // y color rojo falta
             }
 
 
@@ -114,27 +114,27 @@ namespace Ejemplo.Web
         protected void MenuNavegacion_MenuItemClick(object sender, MenuEventArgs e)
         {
            
-            String a = e.Item.Text;
-            string[] parts = a.Split(' ');
-            string part1;
-            string part2;
-            if (parts.Length==1)
+            String sA = e.Item.Text;
+            string[] aParts = sA.Split(' ');
+            string sPart1;
+            string sPart2;
+            if (aParts.Length==1)
             {
-                part1 = parts[0];
+                sPart1 = aParts[0];
             }
             else
             {
-                part1 = parts[0];
-                part2 = parts[1];
+                sPart1 = aParts[0];
+                sPart2 = aParts[1];
             }             
-            if (part1=="Tareas")
+            if (sPart1=="Tareas")
             {
-                cNotificacion notificacion = new cNotificacion();
-                notificacion.Usuario = vMiPerfil.U;
+                cNotificacion unaNotificacion = new cNotificacion();
+                unaNotificacion.Usuario = vMiPerfil.U;
                 try
                 {
-                    bool resultado = dFachada.NotificacionCambiarEstadoVista(notificacion);
-                    if (resultado)
+                    bool bResultado = dFachada.NotificacionCambiarEstadoVista(unaNotificacion);
+                    if (bResultado)
                     {
                         Response.Redirect("vTareas.aspx");
                     }                    

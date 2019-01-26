@@ -13,23 +13,23 @@ namespace Ejemplo.Web
 {
     public partial class vAsistencias : System.Web.UI.Page
     {
-        List<string> años;
-        List<string> meses = new List<string>() { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+        List<string> LosAños;
+        List<string> LosMeses = new List<string>() { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                años = new List<string>();
-                List<DateTime> fechas = dFachada.SesionTraerMaximaFechaYMinimaFecha();
-                DateTime fechaMaxima = fechas[0];
-                DateTime fechaMinima = fechas[1];
-                for (int i = fechaMaxima.Year; i >= fechaMinima.Year; i--)
+                LosAños = new List<string>();
+                List<DateTime> lstFechas = dFachada.SesionTraerMaximaFechaYMinimaFecha();
+                DateTime dFechaMaxima = lstFechas[0];
+                DateTime dFechaMinima = lstFechas[1];
+                for (int i = dFechaMaxima.Year; i >= dFechaMinima.Year; i--)
                 {
-                    años.Add(i.ToString());
+                    LosAños.Add(i.ToString());
                 }
-                ddlAños.DataSource = años;
+                ddlAños.DataSource = LosAños;
                 ddlAños.DataBind();
-                ddlMeses.DataSource = meses;
+                ddlMeses.DataSource = LosMeses;
                 ddlMeses.DataBind();
                 CargarAsistencias();
             }
@@ -44,275 +44,275 @@ namespace Ejemplo.Web
             }
             else
             {
-                string Consulta = "Select distinct b.* from Beneficiarios b join " +
+                string sConsulta = "Select distinct b.* from Beneficiarios b join " +
                "BeneficiariosSesiones bs on b.BeneficiarioId = bs.BeneficiarioId join " +
                 "Sesiones S on S.SesionId = bs.SesionId join " +
                 "Planes p on p.BeneficiarioId = b.BeneficiarioId join " +
                 "UsuariosSesiones us on us.SesionId = s.SesionId join " +
                 "Usuarios u on u.UsuarioId = us.UsuarioId join " +
                 "Especialidades E on E.EspecialidadId = u.EspecialidadId";
-                List<string> condiciones = new List<string>();
-                condiciones.Add(" WHERE");
-                condiciones.Add(string.Format(" '{0}' = (select DATEPART(YEAR, s.SesionFecha)) and '{1}' = (select DATEPART(month, s.SesionFecha)) ", ddlAños.SelectedValue, ddlMeses.SelectedIndex + 1));
-                bool or = false;
+                List<string> lstCondiciones = new List<string>();
+                lstCondiciones.Add(" WHERE");
+                lstCondiciones.Add(string.Format(" '{0}' = (select DATEPART(YEAR, s.SesionFecha)) and '{1}' = (select DATEPART(month, s.SesionFecha)) ", ddlAños.SelectedValue, ddlMeses.SelectedIndex + 1));
+                bool bOr = false;
 
                 //Localidad
                 if (cbJuanLacaze.Checked)
                 {
-                    condiciones.Add("  and s.SesionCentro = 0");
+                    lstCondiciones.Add("  and s.SesionCentro = 0");
                 }
                 if (cbNuevaHelvecia.Checked)
                 {
-                    condiciones.Add("  and s.SesionCentro = 1");
+                    lstCondiciones.Add("  and s.SesionCentro = 1");
                 }
 
                 //Barra busqueda
-                condiciones.Add(string.Format(" and (b.BeneficiarioNombres LIKE '%{0}%' or b.BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, b.BeneficiarioCI) LIKE '%{0}%')", txtBuscarBeneficiarios.Text));
+                lstCondiciones.Add(string.Format(" and (b.BeneficiarioNombres LIKE '%{0}%' or b.BeneficiarioApellidos LIKE '%{0}%' or CONVERT(varchar, b.BeneficiarioCI) LIKE '%{0}%')", txtBuscarBeneficiarios.Text));
 
                 //Tipo Plan
                 #region Tipo Plan
                 if (cbASSE.Checked)
                 {
-                    condiciones.Add(" and (p.PlanTipo='ASSE'");
-                    or = true;
+                    lstCondiciones.Add(" and (p.PlanTipo='ASSE'");
+                    bOr = true;
                 }
                 if (cbAYEX.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or p.PlanTipo='AYEX'");
+                        lstCondiciones.Add(" or p.PlanTipo='AYEX'");
                     }
                     else
                     {
-                        condiciones.Add(" and (p.PlanTipo='AYEX'");
-                        or = true;
+                        lstCondiciones.Add(" and (p.PlanTipo='AYEX'");
+                        bOr = true;
                     }
                 }
                 if (cbCAMEC.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or p.PlanTipo='CAMEC'");
+                        lstCondiciones.Add(" or p.PlanTipo='CAMEC'");
                     }
                     else
                     {
-                        condiciones.Add(" and (p.PlanTipo='CAMEC'");
-                        or = true;
+                        lstCondiciones.Add(" and (p.PlanTipo='CAMEC'");
+                        bOr = true;
                     }
                 }
                 if (cbCirculocatolico.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or p.PlanTipo='Círculo Católico'");
+                        lstCondiciones.Add(" or p.PlanTipo='Círculo Católico'");
                     }
                     else
                     {
-                        condiciones.Add(" and (p.PlanTipo='Círculo Católico'");
-                        or = true;
+                        lstCondiciones.Add(" and (p.PlanTipo='Círculo Católico'");
+                        bOr = true;
                     }
                 }
                 if (cbMIDES.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or p.PlanTipo='MIDES'");
+                        lstCondiciones.Add(" or p.PlanTipo='MIDES'");
                     }
                     else
                     {
-                        condiciones.Add(" and (p.PlanTipo='MIDES'");
-                        or = true;
+                        lstCondiciones.Add(" and (p.PlanTipo='MIDES'");
+                        bOr = true;
                     }
                 }
                 if (cbParticular.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or p.PlanTipo='Particular'");
+                        lstCondiciones.Add(" or p.PlanTipo='Particular'");
                     }
                     else
                     {
-                        condiciones.Add(" and (p.PlanTipo='Particular'");
-                        or = true;
+                        lstCondiciones.Add(" and (p.PlanTipo='Particular'");
+                        bOr = true;
                     }
                 }
                 if (cbPolicial.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or p.PlanTipo='Policial'");
+                        lstCondiciones.Add(" or p.PlanTipo='Policial'");
                     }
                     else
                     {
-                        condiciones.Add(" and (p.PlanTipo='Policial'");
-                        or = true;
+                        lstCondiciones.Add(" and (p.PlanTipo='Policial'");
+                        bOr = true;
                     }
                 }
-                if (or) condiciones.Add(")");
-                or = false;
+                if (bOr) lstCondiciones.Add(")");
+                bOr = false;
                 #endregion
 
                 //Edad
                 if (txtDesde.Text != string.Empty && txtHasta.Text != string.Empty)
                 {
-                    condiciones.Add(string.Format(" and (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int) - cast(convert(varchar(8), B1.BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios B1 WHERE B1.BeneficiarioId = B.BeneficiarioId) BETWEEN {0} and {1}", txtDesde.Text, txtHasta.Text));
+                    lstCondiciones.Add(string.Format(" and (Select floor((cast(convert(varchar(8), GETDATE(), 112) as int) - cast(convert(varchar(8), B1.BeneficiarioFechaNacimiento, 112) as int)) / 10000) from Beneficiarios B1 WHERE B1.BeneficiarioId = B.BeneficiarioId) BETWEEN {0} and {1}", txtDesde.Text, txtHasta.Text));
                 }
 
                 //Especialidad que asisten
                 #region Especialidad que asisten
                 if (cbFisioterapeuta.Checked)
                 {
-                    condiciones.Add(" and (E.EspecialidadNombre='Fisioterapia'");
-                    or = true;
+                    lstCondiciones.Add(" and (E.EspecialidadNombre='Fisioterapia'");
+                    bOr = true;
                 }
                 if (cbFonoaudiologo.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or E.EspecialidadNombre='Fonoaudiologia'");
+                        lstCondiciones.Add(" or E.EspecialidadNombre='Fonoaudiologia'");
                     }
                     else
                     {
-                        condiciones.Add(" and (E.EspecialidadNombre='Fonoaudiologia'");
-                        or = true;
+                        lstCondiciones.Add(" and (E.EspecialidadNombre='Fonoaudiologia'");
+                        bOr = true;
                     }
                 }
                 if (cbPedagogo.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or E.EspecialidadNombre='Pedadogia'");
+                        lstCondiciones.Add(" or E.EspecialidadNombre='Pedadogia'");
                     }
                     else
                     {
-                        condiciones.Add(" and (E.EspecialidadNombre='Pedadogia'");
-                        or = true;
+                        lstCondiciones.Add(" and (E.EspecialidadNombre='Pedadogia'");
+                        bOr = true;
                     }
                 }
                 if (cbPsicologo.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or E.EspecialidadNombre='Psicologia'");
+                        lstCondiciones.Add(" or E.EspecialidadNombre='Psicologia'");
                     }
                     else
                     {
-                        condiciones.Add(" and (E.EspecialidadNombre='Psicologia'");
-                        or = true;
+                        lstCondiciones.Add(" and (E.EspecialidadNombre='Psicologia'");
+                        bOr = true;
                     }
                 }
                 if (cbPsicomotricista.Checked)
                 {
-                    if (or)
+                    if (bOr)
                     {
-                        condiciones.Add(" or E.EspecialidadNombre='Psicomotricidad'");
+                        lstCondiciones.Add(" or E.EspecialidadNombre='Psicomotricidad'");
                     }
                     else
                     {
-                        condiciones.Add(" and (E.EspecialidadNombre='Psicomotricidad'");
-                        or = true;
+                        lstCondiciones.Add(" and (E.EspecialidadNombre='Psicomotricidad'");
+                        bOr = true;
                     }
                 }
-                if (or)
+                if (bOr)
                 {
-                    condiciones.Add(")");
+                    lstCondiciones.Add(")");
                 }
 
-                or = false;
+                bOr = false;
                 #endregion
 
-                for (int i = 0; i < condiciones.Count; i++)
+                for (int i = 0; i < lstCondiciones.Count; i++)
                 {
-                    Consulta += condiciones[i];
+                    sConsulta += lstCondiciones[i];
                 }
-                List<cBeneficiario> LosBeneficiarios = dFachada.BeneficiarioTraerTodosConFiltros(Consulta);
-                List<List<string>> Asistencias = new List<List<string>>();
-                for (int i = 0; i < LosBeneficiarios.Count; i++)
+                List<cBeneficiario> lstBeneficiarios = dFachada.BeneficiarioTraerTodosConFiltros(sConsulta);
+                List<List<string>> lstAsistencias = new List<List<string>>();
+                for (int i = 0; i < lstBeneficiarios.Count; i++)
                 {
-                    Asistencias.Add(new List<string>());
+                    lstAsistencias.Add(new List<string>());
                 }
-                for (int i = 0; i < LosBeneficiarios.Count; i++)
+                for (int i = 0; i < lstBeneficiarios.Count; i++)
                 {
-                    Asistencias[i] = dFachada.SesionTraerAsistenciasDeBeneficiarioPorMes(LosBeneficiarios[i], ddlAños.SelectedValue, (ddlMeses.SelectedIndex + 1).ToString());
+                    lstAsistencias[i] = dFachada.SesionTraerAsistenciasDeBeneficiarioPorMes(lstBeneficiarios[i], ddlAños.SelectedValue, (ddlMeses.SelectedIndex + 1).ToString());
                 }
                 DataTable dt = new DataTable();
                 dt.Columns.Add("Nombres", typeof(string));
                 dt.Columns.Add("Apellidos", typeof(string));
                 dt.Columns.Add("Cédula de identidad", typeof(string));
-                int maximo = DateTime.DaysInMonth(int.Parse(ddlAños.SelectedValue), ddlMeses.SelectedIndex + 1);
-                for (int i = 1; i <= maximo; i++)
+                int iMaximo = DateTime.DaysInMonth(int.Parse(ddlAños.SelectedValue), ddlMeses.SelectedIndex + 1);
+                for (int i = 1; i <= iMaximo; i++)
                 {
-                    DateTime dia = new DateTime();
-                    dia = dia.AddYears(int.Parse(ddlAños.SelectedValue) - 1);
-                    dia = dia.AddMonths(ddlMeses.SelectedIndex);
-                    dia = dia.AddDays(i - 1);
-                    string elDia;
-                    switch (dia.DayOfWeek)
+                    DateTime dDia = new DateTime();
+                    dDia = dDia.AddYears(int.Parse(ddlAños.SelectedValue) - 1);
+                    dDia = dDia.AddMonths(ddlMeses.SelectedIndex);
+                    dDia = dDia.AddDays(i - 1);
+                    string sElDia;
+                    switch (dDia.DayOfWeek)
                     {
                         case DayOfWeek.Monday:
-                            elDia = string.Format("Lun \n\r {0}", dia.ToString("dd"));
+                            sElDia = string.Format("Lun \n\r {0}", dDia.ToString("dd"));
                             break;
                         case DayOfWeek.Tuesday:
-                            elDia = string.Format("Mar {0}", dia.ToString("dd"));
+                            sElDia = string.Format("Mar {0}", dDia.ToString("dd"));
                             break;
                         case DayOfWeek.Wednesday:
-                            elDia = string.Format("Mie {0}", dia.ToString("dd"));
+                            sElDia = string.Format("Mie {0}", dDia.ToString("dd"));
                             break;
                         case DayOfWeek.Thursday:
-                            elDia = string.Format("Jue {0}", dia.ToString("dd"));
+                            sElDia = string.Format("Jue {0}", dDia.ToString("dd"));
                             break;
                         case DayOfWeek.Friday:
-                            elDia = string.Format("Vie {0}", dia.ToString("dd"));
+                            sElDia = string.Format("Vie {0}", dDia.ToString("dd"));
                             break;
                         case DayOfWeek.Saturday:
-                            elDia = string.Format("Sab {0}", dia.ToString("dd"));
+                            sElDia = string.Format("Sab {0}", dDia.ToString("dd"));
                             break;
                         default:
-                            elDia = string.Format("Dom {0}", dia.ToString("dd"));
+                            sElDia = string.Format("Dom {0}", dDia.ToString("dd"));
                             break;
                     }
 
-                    dt.Columns.Add(elDia /*+ i.ToString(), typeof(string)*/);
+                    dt.Columns.Add(sElDia /*+ i.ToString(), typeof(string)*/);
                 }
                 DataRow row;
-                for (int i = 0; i < LosBeneficiarios.Count; i++)
+                for (int i = 0; i < lstBeneficiarios.Count; i++)
                 {
                     row = dt.NewRow();
-                    row["Nombres"] = LosBeneficiarios[i].Nombres;
-                    row["Apellidos"] = LosBeneficiarios[i].Apellidos;
-                    row["Cédula de identidad"] = LosBeneficiarios[i].CI;
-                    for (int j = 0; j < Asistencias[i].Count; j++)
+                    row["Nombres"] = lstBeneficiarios[i].Nombres;
+                    row["Apellidos"] = lstBeneficiarios[i].Apellidos;
+                    row["Cédula de identidad"] = lstBeneficiarios[i].CI;
+                    for (int j = 0; j < lstAsistencias[i].Count; j++)
                     {
-                        DateTime dia = new DateTime();
-                        dia = dia.AddYears(int.Parse(ddlAños.SelectedValue) - 1);
-                        dia = dia.AddMonths(ddlMeses.SelectedIndex);
-                        dia = dia.AddDays(j);
-                        string elDia;
-                        switch (dia.DayOfWeek)
+                        DateTime dDia = new DateTime();
+                        dDia = dDia.AddYears(int.Parse(ddlAños.SelectedValue) - 1);
+                        dDia = dDia.AddMonths(ddlMeses.SelectedIndex);
+                        dDia = dDia.AddDays(j);
+                        string sElDia;
+                        switch (dDia.DayOfWeek)
                         {
                             case DayOfWeek.Monday:
-                                elDia = string.Format("Lun \n\r {0}", dia.ToString("dd"));
+                                sElDia = string.Format("Lun \n\r {0}", dDia.ToString("dd"));
                                 break;
                             case DayOfWeek.Tuesday:
-                                elDia = string.Format("Mar {0}", dia.ToString("dd"));
+                                sElDia = string.Format("Mar {0}", dDia.ToString("dd"));
                                 break;
                             case DayOfWeek.Wednesday:
-                                elDia = string.Format("Mie {0}", dia.ToString("dd"));
+                                sElDia = string.Format("Mie {0}", dDia.ToString("dd"));
                                 break;
                             case DayOfWeek.Thursday:
-                                elDia = string.Format("Jue {0}", dia.ToString("dd"));
+                                sElDia = string.Format("Jue {0}", dDia.ToString("dd"));
                                 break;
                             case DayOfWeek.Friday:
-                                elDia = string.Format("Vie {0}", dia.ToString("dd"));
+                                sElDia = string.Format("Vie {0}", dDia.ToString("dd"));
                                 break;
                             case DayOfWeek.Saturday:
-                                elDia = string.Format("Sab {0}", dia.ToString("dd"));
+                                sElDia = string.Format("Sab {0}", dDia.ToString("dd"));
                                 break;
                             default:
-                                elDia = string.Format("Dom {0}", dia.ToString("dd"));
+                                sElDia = string.Format("Dom {0}", dDia.ToString("dd"));
                                 break;
                         }
-                        row[elDia /*+ (j+1).ToString()*/] = Asistencias[i][j];
+                        row[sElDia] = lstAsistencias[i][j];
                     }
                     dt.Rows.Add(row);
                 }

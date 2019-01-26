@@ -13,14 +13,14 @@ namespace Persistencia.Clases
     {
         public static bool Agregar(cItinerario parItinerario)
         {
-            bool retorno = true;
+            bool bRetorno = true;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerario_Agregar", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_Agregar", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioTipoSesion", parItinerario.TipoSesion));
@@ -30,16 +30,16 @@ namespace Persistencia.Clases
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioComentario", parItinerario.Comentario));
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioCentro", parItinerario.Centro));
 
-                int rtn = cmd.ExecuteNonQuery();
+                int iRtn = cmd.ExecuteNonQuery();
 
-                if (rtn <= 0)
+                if (iRtn <= 0)
                 {
-                    retorno = false;
+                    bRetorno = false;
                 }
 
-                if (retorno)
+                if (bRetorno)
                 {
-                    SqlCommand cmd1 = new SqlCommand("Itinerario_TraerUltimoId", conn);
+                    SqlCommand cmd1 = new SqlCommand("Itinerario_TraerUltimoId", vConn);
                     cmd1.CommandType = CommandType.StoredProcedure;
 
                     using (SqlDataReader oReader = cmd1.ExecuteReader())
@@ -52,7 +52,7 @@ namespace Persistencia.Clases
 
                     for (int i = 0; i < parItinerario.lstBeneficiarios.Count; i++)
                     {
-                        SqlCommand cmd2 = new SqlCommand("BeneficiariosItinerarios_Agregar", conn);
+                        SqlCommand cmd2 = new SqlCommand("BeneficiariosItinerarios_Agregar", vConn);
                         cmd2.CommandType = CommandType.StoredProcedure;
                         cmd2.Parameters.Add(new SqlParameter("@BeneficiarioId", parItinerario.lstBeneficiarios[i].Beneficiario.Codigo));
                         cmd2.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
@@ -61,7 +61,7 @@ namespace Persistencia.Clases
                     }
                     for (int i = 0; i < parItinerario.lstEspecialistas.Count; i++)
                     {
-                        SqlCommand cmd3 = new SqlCommand("UsuariosItinerarios_Agregar", conn);
+                        SqlCommand cmd3 = new SqlCommand("UsuariosItinerarios_Agregar", vConn);
                         cmd3.CommandType = CommandType.StoredProcedure;
                         cmd3.Parameters.Add(new SqlParameter("@UsuarioId", parItinerario.lstEspecialistas[i].Codigo));
                         cmd3.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
@@ -69,9 +69,9 @@ namespace Persistencia.Clases
                     }
                 }
 
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
 
             }
@@ -80,30 +80,30 @@ namespace Persistencia.Clases
                 throw ex;
             }
 
-            return retorno;
+            return bRetorno;
         }
 
         public static bool Modificar(cItinerario parItinerario)
         {
-            bool retorno = true;
+            bool bRetorno = true;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerario_EliminarUsuariosYBeneficiarios", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_EliminarUsuariosYBeneficiarios", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
-                int rtn = cmd.ExecuteNonQuery();
-                if (rtn <= 0)
+                int iRtn = cmd.ExecuteNonQuery();
+                if (iRtn <= 0)
                 {
-                    retorno = false;
+                    bRetorno = false;
                 }
-                if (retorno)
+                if (bRetorno)
                 {
-                    SqlCommand cmd2 = new SqlCommand("Itinerario_Modificar", conn);
+                    SqlCommand cmd2 = new SqlCommand("Itinerario_Modificar", vConn);
                     cmd2.CommandType = CommandType.StoredProcedure;
 
                     cmd2.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
@@ -120,7 +120,7 @@ namespace Persistencia.Clases
 
                     foreach (cBeneficiarioItinerario unBenIt in parItinerario.lstBeneficiarios)
                     {
-                        SqlCommand cmd3 = new SqlCommand("BeneficiariosItinerarios_Agregar", conn);
+                        SqlCommand cmd3 = new SqlCommand("BeneficiariosItinerarios_Agregar", vConn);
                         cmd3.CommandType = CommandType.StoredProcedure;
                         cmd3.Parameters.Add(new SqlParameter("@BeneficiarioId", unBenIt.Beneficiario.Codigo));
                         cmd3.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
@@ -130,16 +130,16 @@ namespace Persistencia.Clases
 
                     foreach(cUsuario unUsu in parItinerario.lstEspecialistas)
                     {
-                        SqlCommand cmd4 = new SqlCommand("UsuariosItinerarios_Agregar", conn);
+                        SqlCommand cmd4 = new SqlCommand("UsuariosItinerarios_Agregar", vConn);
                         cmd4.CommandType = CommandType.StoredProcedure;
                         cmd4.Parameters.Add(new SqlParameter("@UsuarioId", unUsu.Codigo));
                         cmd4.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
                         cmd4.ExecuteNonQuery();
                     }
                 }
-                if(conn.State == ConnectionState.Open)
+                if(vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch(Exception ex)
@@ -148,30 +148,30 @@ namespace Persistencia.Clases
             }
 
 
-            return retorno;
+            return bRetorno;
         }
         public static bool Eliminar(cItinerario parItinerario)
         {
-            bool retorno = true;
+            bool bRetorno = true;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerario_Eliminar", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_Eliminar", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
 
-                int rtn = cmd.ExecuteNonQuery();
-                if(rtn<=0)
+                int iRtn = cmd.ExecuteNonQuery();
+                if(iRtn<=0)
                 {
-                    retorno = false;
+                    bRetorno = false;
                 }
-                if(conn.State == ConnectionState.Open)
+                if(vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch(Exception ex)
@@ -179,18 +179,18 @@ namespace Persistencia.Clases
                 throw ex;
             }
 
-            return retorno;
+            return bRetorno;
         }
 
         public static List<cUsuario> VerificarHorarioUsuario(cItinerario parItinerario) //Devuelve lista de usuarios que están disponibles
         {
-            List<cUsuario> retorno = new List<cUsuario>();
+            List<cUsuario> lstRetorno = new List<cUsuario>();
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("UsuariosItinerarios_VerificarHorario", conn);
+                SqlCommand cmd = new SqlCommand("UsuariosItinerarios_VerificarHorario", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parItinerario.Dia));
@@ -201,34 +201,34 @@ namespace Persistencia.Clases
                 {
                     while (oReader.Read())
                     {
-                        int codigo = int.Parse(oReader["UsuarioId"].ToString());
+                        int iCodigo = int.Parse(oReader["UsuarioId"].ToString());
                         for (int i = 0; i < parItinerario.lstEspecialistas.Count; i++)
                         {
-                            if (parItinerario.lstEspecialistas[i].Codigo == codigo)
+                            if (parItinerario.lstEspecialistas[i].Codigo == iCodigo)
                             {
-                                retorno.Add(parItinerario.lstEspecialistas[i]);
+                                lstRetorno.Add(parItinerario.lstEspecialistas[i]);
                             }
                         }
 
                     }
                 }
-                conn.Close();
+                vConn.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
         public static List<cBeneficiario> VerificarHorarioBeneficiarios(cItinerario parItinerario) //Devuelve lista de beneficiarios que están disponibles
         {
-            List<cBeneficiario> retorno = new List<cBeneficiario>();
+            List<cBeneficiario> lstRetorno = new List<cBeneficiario>();
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("BeneficiariosItinerarios_VerificarHorario", conn);
+                SqlCommand cmd = new SqlCommand("BeneficiariosItinerarios_VerificarHorario", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parItinerario.Dia));
@@ -239,34 +239,34 @@ namespace Persistencia.Clases
                 {
                     while (oReader.Read())
                     {
-                        int codigo = int.Parse(oReader["BeneficiarioId"].ToString());
+                        int iCodigo = int.Parse(oReader["BeneficiarioId"].ToString());
                         for (int i = 0; i < parItinerario.lstBeneficiarios.Count; i++)
                         {
-                            if (parItinerario.lstBeneficiarios[i].Beneficiario.Codigo == codigo)
+                            if (parItinerario.lstBeneficiarios[i].Beneficiario.Codigo == iCodigo)
                             {
-                                retorno.Add(parItinerario.lstBeneficiarios[i].Beneficiario);
+                                lstRetorno.Add(parItinerario.lstBeneficiarios[i].Beneficiario);
                             }
                         }
                     }
                 }
-                conn.Close();
+                vConn.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
 
         public static List<cUsuario> VerificarHorarioUsuarioModificar(cItinerario parItinerario) //Devuelve lista de usuarios que están disponibles
         {
-            List<cUsuario> retorno = new List<cUsuario>();
+            List<cUsuario> lstRetorno = new List<cUsuario>();
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("UsuariosItinerarios_VerificarHorarioModificar", conn);
+                SqlCommand cmd = new SqlCommand("UsuariosItinerarios_VerificarHorarioModificar", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parItinerario.Dia));
@@ -278,34 +278,34 @@ namespace Persistencia.Clases
                 {
                     while (oReader.Read())
                     {
-                        int codigo = int.Parse(oReader["UsuarioId"].ToString());
+                        int iCodigo = int.Parse(oReader["UsuarioId"].ToString());
                         for (int i = 0; i < parItinerario.lstEspecialistas.Count; i++)
                         {
-                            if (parItinerario.lstEspecialistas[i].Codigo == codigo)
+                            if (parItinerario.lstEspecialistas[i].Codigo == iCodigo)
                             {
-                                retorno.Add(parItinerario.lstEspecialistas[i]);
+                                lstRetorno.Add(parItinerario.lstEspecialistas[i]);
                             }
                         }
 
                     }
                 }
-                conn.Close();
+                vConn.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
         public static List<cBeneficiario> VerificarHorarioBeneficiariosModificar(cItinerario parItinerario) //Devuelve lista de beneficiarios que están disponibles
         {
-            List<cBeneficiario> retorno = new List<cBeneficiario>();
+            List<cBeneficiario> lstRetorno = new List<cBeneficiario>();
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("BeneficiariosItinerarios_VerificarHorarioModificar", conn);
+                SqlCommand cmd = new SqlCommand("BeneficiariosItinerarios_VerificarHorarioModificar", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parItinerario.Dia));
@@ -317,36 +317,36 @@ namespace Persistencia.Clases
                 {
                     while (oReader.Read())
                     {
-                        int codigo = int.Parse(oReader["BeneficiarioId"].ToString());
+                        int iCodigo = int.Parse(oReader["BeneficiarioId"].ToString());
                         for (int i = 0; i < parItinerario.lstBeneficiarios.Count; i++)
                         {
-                            if (parItinerario.lstBeneficiarios[i].Beneficiario.Codigo == codigo)
+                            if (parItinerario.lstBeneficiarios[i].Beneficiario.Codigo == iCodigo)
                             {
-                                retorno.Add(parItinerario.lstBeneficiarios[i].Beneficiario);
+                                lstRetorno.Add(parItinerario.lstBeneficiarios[i].Beneficiario);
                             }
                         }
                     }
                 }
-                conn.Close();
+                vConn.Close();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
 
         public static List<cItinerario> TraerTodosPorDia(char parDia, int parCentro)
         {
-            List<cItinerario> retorno = new List<cItinerario>();
+            List<cItinerario> lstRetorno = new List<cItinerario>();
             cItinerario unItinerario;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodosPorDia", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodosPorDia", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parDia));
@@ -392,31 +392,31 @@ namespace Persistencia.Clases
                         }
                         unItinerario.Estado = bool.Parse(oReader["ItinerarioEstado"].ToString());
 
-                        retorno.Add(unItinerario);
+                        lstRetorno.Add(unItinerario);
                     }
                 }
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
         public static List<cItinerario> TraerTodosPorEspecialista(cUsuario parUsuario)
         {
-            List<cItinerario> retorno = new List<cItinerario>();
+            List<cItinerario> lstRetorno = new List<cItinerario>();
             cItinerario unItinerario;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodosPorEspecialista", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodosPorEspecialista", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@UsuarioId", parUsuario.Codigo));
@@ -461,31 +461,31 @@ namespace Persistencia.Clases
                         }
                         unItinerario.Estado = bool.Parse(oReader["ItinerarioEstado"].ToString());
 
-                        retorno.Add(unItinerario);
+                        lstRetorno.Add(unItinerario);
                     }
                 }
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
         public static List<cItinerario> TraerTodosPorBeneficiario(cBeneficiario parBeneficiario)
         {
-            List<cItinerario> retorno = new List<cItinerario>();
+            List<cItinerario> lstRetorno = new List<cItinerario>();
             cItinerario unItinerario;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodosPorBeneficiario", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodosPorBeneficiario", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@BeneficiarioId", parBeneficiario.Codigo));
@@ -530,42 +530,42 @@ namespace Persistencia.Clases
                         }
                         unItinerario.Estado = bool.Parse(oReader["ItinerarioEstado"].ToString());
 
-                        retorno.Add(unItinerario);
+                        lstRetorno.Add(unItinerario);
                     }
                 }
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return lstRetorno;
         }
         public static bool ModificarEstadoDelDia(char parDia)
         {
-            bool retorno = true;
+            bool bRetorno = true;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerarios_CambiarEstado", conn);
+                SqlCommand cmd = new SqlCommand("Itinerarios_CambiarEstado", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioDia", parDia));
 
-                int rtn = cmd.ExecuteNonQuery();
-                if (rtn <= 0)
+                int iRtn = cmd.ExecuteNonQuery();
+                if (iRtn <= 0)
                 {
-                    retorno = false;
+                    bRetorno = false;
                 }
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
@@ -573,20 +573,20 @@ namespace Persistencia.Clases
                 throw ex;
             }
 
-            return retorno;
+            return bRetorno;
         }
         public static string TraerEncuadrePorBeneficiario(cBeneficiario parBeneficiario)
         {
-            List<string> especialidades = new List<string>();
-            string retorno = "";
+            List<string> lstEspecialidades = new List<string>();
+            string sRetorno = "";
             string s = "";
             int i = 0;
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerario_TraerEncuadrePorBeneficiario", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerEncuadrePorBeneficiario", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@idBeneficiario", parBeneficiario.Codigo));
 
@@ -597,84 +597,84 @@ namespace Persistencia.Clases
                         s = "";
                         i += int.Parse(oReader["cantidad"].ToString());
                         s = oReader["EspecialidadNombre"].ToString();
-                        especialidades.Add(s);
+                        lstEspecialidades.Add(s);
                     }
                 }
                 if (i == 0)
                 {
-                    retorno = "No tiene abordaje";
+                    sRetorno = "No tiene abordaje";
                 }
                 else
                 {
 
-                    retorno = "Abordaje ";
-                    for (int j = 0; j < especialidades.Count; j++)
+                    sRetorno = "Abordaje ";
+                    for (int j = 0; j < lstEspecialidades.Count; j++)
                     {
                         if (j == 0)
                         {
-                            if (especialidades[j] == "Psicologia")
-                                retorno = retorno + "psicológico";
-                            if (especialidades[j] == "Pedadogia")
-                                retorno = retorno + "pedagógico";
-                            if (especialidades[j] == "Fisioterapia")
-                                retorno = retorno + "fisioterapéutico";
-                            if (especialidades[j] == "Fonoaudiologia")
-                                retorno = retorno + "fonoaudiológico";
-                            if (especialidades[j] == "Psicomotricidad")
-                                retorno = retorno + "psicomotriz";
+                            if (lstEspecialidades[j] == "Psicologia")
+                                sRetorno = sRetorno + "psicológico";
+                            if (lstEspecialidades[j] == "Pedadogia")
+                                sRetorno = sRetorno + "pedagógico";
+                            if (lstEspecialidades[j] == "Fisioterapia")
+                                sRetorno = sRetorno + "fisioterapéutico";
+                            if (lstEspecialidades[j] == "Fonoaudiologia")
+                                sRetorno = sRetorno + "fonoaudiológico";
+                            if (lstEspecialidades[j] == "Psicomotricidad")
+                                sRetorno = sRetorno + "psicomotriz";
                         }
-                        else if ((especialidades.Count - j) == 1)
+                        else if ((lstEspecialidades.Count - j) == 1)
                         {
-                            if (especialidades[j] == "Psicologia")
-                                retorno = retorno + " y psicológico";
-                            if (especialidades[j] == "Pedadogia")
-                                retorno = retorno + " y pedagógico";
-                            if (especialidades[j] == "Fisioterapia")
-                                retorno = retorno + " y fisioterapéutico";
-                            if (especialidades[j] == "Fonoaudiologia")
-                                retorno = retorno + " y fonoaudiológico";
-                            if (especialidades[j] == "Psicomotricidad")
-                                retorno = retorno + " y psicomotriz";
+                            if (lstEspecialidades[j] == "Psicologia")
+                                sRetorno = sRetorno + " y psicológico";
+                            if (lstEspecialidades[j] == "Pedadogia")
+                                sRetorno = sRetorno + " y pedagógico";
+                            if (lstEspecialidades[j] == "Fisioterapia")
+                                sRetorno = sRetorno + " y fisioterapéutico";
+                            if (lstEspecialidades[j] == "Fonoaudiologia")
+                                sRetorno = sRetorno + " y fonoaudiológico";
+                            if (lstEspecialidades[j] == "Psicomotricidad")
+                                sRetorno = sRetorno + " y psicomotriz";
                         }
                         else
                         {
-                            if (especialidades[j] == "Psicologia")
-                                retorno = retorno + ", psicológico";
-                            if (especialidades[j] == "Pedadogia")
-                                retorno = retorno + ", pedagógico";
-                            if (especialidades[j] == "Fisioterapia")
-                                retorno = retorno + ", fisioterapéutico";
-                            if (especialidades[j] == "Fonoaudiologia")
-                                retorno = retorno + ", fonoaudiológico";
-                            if (especialidades[j] == "Psicomotricidad")
-                                retorno = retorno + ", psicomotriz";
+                            if (lstEspecialidades[j] == "Psicologia")
+                                sRetorno = sRetorno + ", psicológico";
+                            if (lstEspecialidades[j] == "Pedadogia")
+                                sRetorno = sRetorno + ", pedagógico";
+                            if (lstEspecialidades[j] == "Fisioterapia")
+                                sRetorno = sRetorno + ", fisioterapéutico";
+                            if (lstEspecialidades[j] == "Fonoaudiologia")
+                                sRetorno = sRetorno + ", fonoaudiológico";
+                            if (lstEspecialidades[j] == "Psicomotricidad")
+                                sRetorno = sRetorno + ", psicomotriz";
                         }
                     }
-                    retorno = retorno + " " + i + " veces semanales.";
+                    sRetorno = sRetorno + " " + i + " veces semanales.";
 
                 }
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return sRetorno;
         }
 
         public static cItinerario TraerEspecifico(cItinerario parItinerario)
         {
-            cItinerario retorno = null;
+            cItinerario unRetorno = null;
 
             try
             {
-                var conn = new SqlConnection(CadenaDeConexion);
-                conn.Open();
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
-                SqlCommand cmd = new SqlCommand("Itinerario_TraerEspecifico", conn);
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerEspecifico", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add(new SqlParameter("@ItinerarioId", parItinerario.Codigo));
@@ -683,54 +683,54 @@ namespace Persistencia.Clases
                 {
                     while (oReader.Read())
                     {
-                        retorno = new cItinerario();
+                        unRetorno = new cItinerario();
 
-                        retorno.Codigo = int.Parse(oReader["ItinerarioId"].ToString());
+                        unRetorno.Codigo = int.Parse(oReader["ItinerarioId"].ToString());
                         switch (int.Parse(oReader["ItinerarioTipoSesion"].ToString()))
                         {
                             case 0:
-                                retorno.TipoSesion = cUtilidades.TipoSesion.Individual;
+                                unRetorno.TipoSesion = cUtilidades.TipoSesion.Individual;
                                 break;
                             case 1:
-                                retorno.TipoSesion = cUtilidades.TipoSesion.Grupo2;
+                                unRetorno.TipoSesion = cUtilidades.TipoSesion.Grupo2;
                                 break;
                             case 2:
-                                retorno.TipoSesion = cUtilidades.TipoSesion.Grupo3;
+                                unRetorno.TipoSesion = cUtilidades.TipoSesion.Grupo3;
                                 break;
                             case 3:
-                                retorno.TipoSesion = cUtilidades.TipoSesion.Taller;
+                                unRetorno.TipoSesion = cUtilidades.TipoSesion.Taller;
                                 break;
                             case 4:
-                                retorno.TipoSesion = cUtilidades.TipoSesion.PROES;
+                                unRetorno.TipoSesion = cUtilidades.TipoSesion.PROES;
                                 break;
                         }
-                        retorno.Dia = oReader["ItinerarioDia"].ToString();
-                        retorno.HoraInicio = DateTime.Parse(oReader["ItinerarioHoraInicio"].ToString()).ToShortTimeString();
-                        retorno.HoraFin = DateTime.Parse(oReader["ItinerarioHoraFin"].ToString()).ToShortTimeString();
-                        retorno.Comentario = oReader["ItinerarioComentario"].ToString();
+                        unRetorno.Dia = oReader["ItinerarioDia"].ToString();
+                        unRetorno.HoraInicio = DateTime.Parse(oReader["ItinerarioHoraInicio"].ToString()).ToShortTimeString();
+                        unRetorno.HoraFin = DateTime.Parse(oReader["ItinerarioHoraFin"].ToString()).ToShortTimeString();
+                        unRetorno.Comentario = oReader["ItinerarioComentario"].ToString();
                         switch (int.Parse(oReader["ItinerarioCentro"].ToString()))
                         {
                             case 0:
-                                retorno.Centro = cUtilidades.Centro.JuanLacaze;
+                                unRetorno.Centro = cUtilidades.Centro.JuanLacaze;
                                 break;
                             case 1:
-                                retorno.Centro = cUtilidades.Centro.NuevaHelvecia;
+                                unRetorno.Centro = cUtilidades.Centro.NuevaHelvecia;
                                 break;
                         }
-                        retorno.Estado = bool.Parse(oReader["ItinerarioEstado"].ToString());
+                        unRetorno.Estado = bool.Parse(oReader["ItinerarioEstado"].ToString());
 
                     }
                 }
-                if (conn.State == ConnectionState.Open)
+                if (vConn.State == ConnectionState.Open)
                 {
-                    conn.Close();
+                    vConn.Close();
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return retorno;
+            return unRetorno;
         }
     }
 }

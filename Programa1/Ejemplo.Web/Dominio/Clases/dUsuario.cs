@@ -62,21 +62,21 @@ namespace Dominio.Clases
         {
             return pUsuario.VerificarInicioSesion(parUsuario);
         }
-        public static List<cUsuario> TraerTodosActivosPorNombreApellido(string texto)
+        public static List<cUsuario> TraerTodosActivosPorNombreApellido(string parTexto)
         {
-            return pUsuario.TraerTodosActivosPorNombreApellido(texto);
+            return pUsuario.TraerTodosActivosPorNombreApellido(parTexto);
         }
-        public static List<cUsuario> TraerTodosInactivosPorNombreApellido(string texto)
+        public static List<cUsuario> TraerTodosInactivosPorNombreApellido(string parTexto)
         {
-            return pUsuario.TraerTodosInactivosPorNombreApellido(texto);
+            return pUsuario.TraerTodosInactivosPorNombreApellido(parTexto);
         }
-        public static List<cUsuario> TraerTodosActivosPorCI(string texto)
+        public static List<cUsuario> TraerTodosActivosPorCI(string parTexto)
         {
-            return pUsuario.TraerTodosActivosPorCI(texto);
+            return pUsuario.TraerTodosActivosPorCI(parTexto);
         }
-        public static List<cUsuario> TraerTodosInactivosPorCI(string texto)
+        public static List<cUsuario> TraerTodosInactivosPorCI(string parTexto)
         {
-            return pUsuario.TraerTodosInactivosPorCI(texto);
+            return pUsuario.TraerTodosInactivosPorCI(parTexto);
         }
         public static int CantidadAdministradoresActivos()
         {

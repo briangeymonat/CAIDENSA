@@ -13,14 +13,14 @@ namespace Ejemplo.Web
     public partial class vBeneficiarioAgregar : System.Web.UI.Page
     {
         private static List<cPlan> LosPlanes;
-        private static List<string> Tipos = new List<string> { "ASSE", "AYEX", "CAMEC", "Círculo Católico", "MIDES", "Particular", "Policial" };
-        private static bool Pensionista;
+        private static List<string> LosTipos = new List<string> { "ASSE", "AYEX", "CAMEC", "Círculo Católico", "MIDES", "Particular", "Policial" };
+        private static bool bPensionista;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 ActualizarTodo();
-                Pensionista = false;
+                bPensionista = false;
             }
         }
         private void ActualizarTodo()
@@ -42,7 +42,7 @@ namespace Ejemplo.Web
         }
         private void ActualizarDdlTipos()
         {
-            ddlTipoPlanes.DataSource = Tipos;
+            ddlTipoPlanes.DataSource = LosTipos;
             ddlTipoPlanes.DataBind();
         }
 
@@ -88,7 +88,6 @@ namespace Ejemplo.Web
         private bool FaltanDatosPlan()
         {
             if (txtDesde.Text == string.Empty ||
-                /*txtHasta.Text == string.Empty ||*/
                 (cbTratamiento.Checked == false && cbEvaluacion.Checked == false))
             {
                 return true;
@@ -108,7 +107,7 @@ namespace Ejemplo.Web
                 unBeneficiario.Domicilio = txtDomicilio.Text;
                 unBeneficiario.Telefono1 = txtTel1.Text;
                 unBeneficiario.Telefono2 = txtTel2.Text;
-                if (RadioButtonList1.SelectedItem.Text == "Masculino")
+                if (rblSexo.SelectedItem.Text == "Masculino")
                 {
                     unBeneficiario.Sexo = "M";
                 }
@@ -174,18 +173,10 @@ namespace Ejemplo.Web
                 {
                     unPlan.FechaFin = txtHasta.Text;
                 }
-                /*else
-                {
-                    unPlan.FechaFin = null;
-                }*/
                 if (txtDesde.Text != string.Empty)
                 {
                     unPlan.FechaInicio = txtDesde.Text;
                 }
-                /*else
-                {
-                    unPlan.FechaInicio = null;
-                }*/
                 LosPlanes.Add(unPlan);
                 lblMensajePlan.Text = "Plan agregado correctamente al beneficiario";
                 ActualizarGrdPlanes();
@@ -200,9 +191,9 @@ namespace Ejemplo.Web
 
         protected void cbPensionista_CheckedChanged(object sender, EventArgs e)
         {
-            Pensionista = !Pensionista;
-            txtAtributario.Enabled = !Pensionista;
-            if (Pensionista)
+            bPensionista = !bPensionista;
+            txtAtributario.Enabled = !bPensionista;
+            if (bPensionista)
             {
                 txtAtributario.Text = string.Empty;
             }
