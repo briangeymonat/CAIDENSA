@@ -266,7 +266,6 @@ namespace Ejemplo.Web
                 #region Encuadre
                 unaSeccion = new cSeccion();
                 unaSeccion.Nombre = cUtilidades.NombreSeccion.Encuadre;
-                //  seccion.Contenido = dFachada.ItinerarioTraerEncuadrePorBeneficiario(beneficiario); 
                 unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
                 //CUANDO SE TENGA EL ITINERARIO EL CONTENIDO DE ESTA SECCION SE REALIZARÁ AQUI
                 for (int i = 0; i < LosEspecialistasAgregados.Count; i++)

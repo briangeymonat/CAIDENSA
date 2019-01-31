@@ -9,7 +9,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 style="padding-left: 60px">Modificar sesión de itinerario
+    <h2 style="padding-left: 60px">Detalles de la sesión de itinerario
     </h2>
     <asp:Table runat="server" Width="60%">
         <asp:TableRow VerticalAlign="Top">

@@ -292,11 +292,6 @@ namespace Ejemplo.Web
         {
             frmItinerario.InnerHtml = parHtml;
         }
-        [WebMethod]
-        public void MostrarSesion(int parCodigo)
-        {
-            btnSeleccionar_Click(new object(), new EventArgs());
-        }
         protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
             string sVtn = "window.open('vDetallesSesion.aspx','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";

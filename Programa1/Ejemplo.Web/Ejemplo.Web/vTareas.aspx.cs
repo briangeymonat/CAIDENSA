@@ -372,7 +372,6 @@ namespace Ejemplo.Web
                 ventanaObservacion = false;
                 TableCell celdaId = grdObservacionesDeSesiones.Rows[e.NewSelectedIndex].Cells[1];
                 int iIdSesion = int.Parse(celdaId.Text);
-                //Response.Redirect("vAgregarObservacionSesion.aspx?SesionId=" + idSesion);
                 string sVtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + iIdSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
             }
