@@ -549,9 +549,13 @@ namespace Dominio
         {
             return dSesion.TraerAsistenciasDeBeneficiarioPorMes(parBeneficiario, parAno, parMes);
         }
-        public static List<cSesion> SesionTraerPorRango(DateTime parFechaInicial, DateTime parFechaFinal)
+        public static List<cSesion> SesionTraerPorRango(DateTime parFechaInicial, DateTime parFechaFinal, cUsuario parUsuario)
         {
-            return dSesion.TraerPorRango(parFechaInicial, parFechaFinal);
+            return dSesion.TraerPorRango(parFechaInicial, parFechaFinal, parUsuario);
+        }
+        public static List<cSesion> SesionTraerTodasPorFecha(DateTime parFecha, int parCentro)
+        {
+            return dSesion.TraerTodasPorFecha(parFecha, parCentro);
         }
         #endregion
 

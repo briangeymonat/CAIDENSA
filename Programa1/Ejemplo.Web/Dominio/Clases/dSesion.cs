@@ -63,9 +63,15 @@ namespace Dominio.Clases
             return pSesion.TraerAsistenciasDeBeneficiarioPorMes(parBeneficiario, parAno, parMes);
         }
 
-        public static List<cSesion> TraerPorRango(DateTime parFechaInicial, DateTime parFechaFinal)
+        public static List<cSesion> TraerPorRango(DateTime parFechaInicial, DateTime parFechaFinal, cUsuario parUsuario)
         {
-            return pSesion.TraerPorRango(parFechaInicial, parFechaFinal);
+            return pSesion.TraerPorRango(parFechaInicial, parFechaFinal, parUsuario);
         }
-    }
+
+        public static List<cSesion> TraerTodasPorFecha(DateTime parFecha, int parCentro)
+        {
+            return pSesion.TraerTodasPorFecha(parFecha, parCentro);
+        }
+
+        }
 }

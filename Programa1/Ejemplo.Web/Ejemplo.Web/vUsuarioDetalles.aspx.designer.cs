@@ -247,13 +247,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblVinculo;
         
         /// <summary>
-        /// Control rbTipoDeEmpleado.
+        /// Control rblTipoDeEmpleado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbTipoDeEmpleado;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblTipoDeEmpleado;
         
         /// <summary>
         /// Control lblMensaje.
@@ -353,6 +353,24 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TableCell @ref;
+        
+        /// <summary>
+        /// Control rblCalendario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblCalendario;
+        
+        /// <summary>
+        /// Control txtSemana.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSemana;
         
         /// <summary>
         /// Control lblBeneficiariosQueAtiende.

@@ -110,7 +110,7 @@
                             <asp:Label ID="lblVinculo" runat="server" Text="Vínculo:"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell ColumnSpan="3">
-                            <asp:RadioButtonList ID="rbTipoDeEmpleado" runat="server" RepeatDirection="Horizontal">
+                            <asp:RadioButtonList ID="rblTipoDeEmpleado" runat="server" RepeatDirection="Horizontal">
                                 <asp:ListItem>Empleado</asp:ListItem>
                                 <asp:ListItem>Contratado</asp:ListItem>
                                 <asp:ListItem>Socio</asp:ListItem>
@@ -154,6 +154,17 @@
                     <asp:TableRow>
                         <asp:TableCell ID="ref">
                             <asp:Table runat="server">
+                                <asp:TableRow>
+                                    <asp:TableCell ColumnSpan="3">
+                                        <asp:RadioButtonList ID="rblCalendario" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rblCalendario_SelectedIndexChanged">
+                                            <asp:ListItem Text="Itinerario semanal" Selected="True"></asp:ListItem>
+                                            <asp:ListItem Text="Sesiones reprogramdas"></asp:ListItem>
+                                        </asp:RadioButtonList>
+                                    </asp:TableCell>
+                                    <asp:TableCell ColumnSpan="3" >
+                                        <asp:TextBox ID="txtSemana" runat="server" TextMode="Week" Visible="false" AutoPostBack="true" OnTextChanged="txtSemana_TextChanged"></asp:TextBox>
+                                    </asp:TableCell>
+                                </asp:TableRow>
                                 <asp:TableRow>
                                     <asp:TableCell>
                             <p style="font-size:16px;">Referencias:</p>

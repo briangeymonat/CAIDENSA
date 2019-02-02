@@ -18,7 +18,7 @@ namespace Ejemplo.Web
         private static List<cSesion> LasSesiones;
         private static List<cItinerario> LosItinerarios;
         private static List<string> LosDias = new List<string>() { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
-        private static List<DateTime> LosHoras;
+        private static List<DateTime> LasHoras;
         private static List<List<cItinerario>> LasCeldas;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -47,12 +47,12 @@ namespace Ejemplo.Web
 
                 // CARGA DE HORAS
                 DateTime dHora = DateTime.Parse("08:00");
-                LosHoras = new List<DateTime>();
-                LosHoras.Add(dHora);
+                LasHoras = new List<DateTime>();
+                LasHoras.Add(dHora);
                 do
                 {
                     dHora = dHora.AddMinutes(15);
-                    LosHoras.Add(dHora);
+                    LasHoras.Add(dHora);
                 } while (dHora != DateTime.Parse("20:00"));
                 if (U.Especialidad.Codigo != 6)
                 {
@@ -419,7 +419,7 @@ namespace Ejemplo.Web
 
             LasCeldas = new List<List<cItinerario>>();
 
-            for (int i = 0; i < LosHoras.Count; i++)
+            for (int i = 0; i < LasHoras.Count; i++)
             {
                 LasCeldas.Add(new List<cItinerario>());
 
@@ -430,7 +430,7 @@ namespace Ejemplo.Web
                     {
                         if (!bHayAlgunaSesion)
                         {
-                            if (DateTime.Parse(LosItinerarios[k].HoraInicio) >= LosHoras[i] && DateTime.Parse(LosItinerarios[k].HoraInicio) < LosHoras[i + 1])
+                            if (DateTime.Parse(LosItinerarios[k].HoraInicio) >= LasHoras[i] && DateTime.Parse(LosItinerarios[k].HoraInicio) < LasHoras[i + 1])
                             {
                                 if (QueDiaEs(LosItinerarios[k]) == LosDias[j])
                                 {
@@ -444,9 +444,9 @@ namespace Ejemplo.Web
                 }
             }
 
-            for (int i = 0; i < LosHoras.Count; i++)
+            for (int i = 0; i < LasHoras.Count; i++)
             {
-                sItinerarios += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + LosHoras[i].ToShortTimeString() + "</td>";
+                sItinerarios += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + LasHoras[i].ToShortTimeString() + "</td>";
                 for (int j = 0; j < LosDias.Count; j++)
                 {
                     if (LasCeldas[i][j].Comentario == null)
@@ -491,9 +491,9 @@ namespace Ejemplo.Web
                                 sNombres += "<p style='background-color:" + sColor + ";padding:5px 0px; margin:0px;'>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos + "</p>";
                             }
                             int iFilas = 0;
-                            for (int k = i; k < LosHoras.Count; k++)
+                            for (int k = i; k < LasHoras.Count; k++)
                             {
-                                if (DateTime.Parse(LasCeldas[i][j].HoraFin) > LosHoras[k])
+                                if (DateTime.Parse(LasCeldas[i][j].HoraFin) > LasHoras[k])
                                 {
                                     iFilas++;
                                     LasCeldas[k][j].Comentario = "NO_LISTAR";
@@ -556,7 +556,7 @@ namespace Ejemplo.Web
                 dFechaInicial = dFechaInicial.AddDays(-1);
             }
             DateTime dFechaFinal = dFechaInicial.AddDays(6);
-            LasSesiones = dFachada.SesionTraerPorRango(dFechaInicial, dFechaFinal);
+            LasSesiones = dFachada.SesionTraerPorRango(dFechaInicial, dFechaFinal, U);
 
             pnlItinerario.Visible = true;
 
@@ -579,7 +579,7 @@ namespace Ejemplo.Web
 
             List<List<cSesion>> lstCeldas = new List<List<cSesion>>();
 
-            for (int i = 0; i < LosHoras.Count; i++)
+            for (int i = 0; i < LasHoras.Count; i++)
             {
                 lstCeldas.Add(new List<cSesion>());
 
@@ -590,7 +590,7 @@ namespace Ejemplo.Web
                     {
                         if (!bHayAlgunaSesion)
                         {
-                            if (DateTime.Parse(LasSesiones[k].HoraInicio) >= LosHoras[i] && DateTime.Parse(LasSesiones[k].HoraInicio) < LosHoras[i + 1])
+                            if (DateTime.Parse(LasSesiones[k].HoraInicio) >= LasHoras[i] && DateTime.Parse(LasSesiones[k].HoraInicio) < LasHoras[i + 1])
                             {
                                 if (DateTime.Parse(LasSesiones[k].Fecha).DayOfWeek.GetHashCode()-1 == j)
                                 {
@@ -604,9 +604,9 @@ namespace Ejemplo.Web
                 }
             }
 
-            for (int i = 0; i < LosHoras.Count; i++)
+            for (int i = 0; i < LasHoras.Count; i++)
             {
-                sSesiones += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + LosHoras[i].ToShortTimeString() + "</td>";
+                sSesiones += "<tr><td style='height:20px; color:#000000; background-color:#80B7D8'>" + LasHoras[i].ToShortTimeString() + "</td>";
                 for (int j = 0; j < LosDias.Count; j++)
                 {
                     if (lstCeldas[i][j].Comentario == null)
@@ -651,9 +651,9 @@ namespace Ejemplo.Web
                                 sNombres += "<p style='background-color:" + sColor + ";padding:5px 0px; margin:0px;'>" + unBeneficiario.Beneficiario.Nombres + " " + unBeneficiario.Beneficiario.Apellidos + "</p>";
                             }
                             int iFilas = 0;
-                            for (int k = i; k < LosHoras.Count; k++)
+                            for (int k = i; k < LasHoras.Count; k++)
                             {
-                                if (DateTime.Parse(lstCeldas[i][j].HoraFin) > LosHoras[k])
+                                if (DateTime.Parse(lstCeldas[i][j].HoraFin) > LasHoras[k])
                                 {
                                     iFilas++;
                                     lstCeldas[k][j].Comentario = "NO_LISTAR";

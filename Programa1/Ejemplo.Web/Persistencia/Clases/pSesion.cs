@@ -1127,7 +1127,7 @@ namespace Persistencia.Clases
             return lstRetorno;
         }
 
-        public static List<cSesion> TraerPorRango(DateTime parFechaInicial, DateTime parFechaFinal)
+        public static List<cSesion> TraerPorRango(DateTime parFechaInicial, DateTime parFechaFinal, cUsuario parUsuario)
         {
             List<cSesion> lstRetorno = new List<cSesion>();
             cSesion unaSesion;
@@ -1138,6 +1138,7 @@ namespace Persistencia.Clases
 
                 SqlCommand cmd = new SqlCommand("Sesiones_TraerPorRango", vConn);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@UsuarioId", parUsuario.Codigo));
                 cmd.Parameters.Add(new SqlParameter("@fechaIni", parFechaInicial));
                 cmd.Parameters.Add(new SqlParameter("@fechaFin", parFechaFinal));
 
@@ -1277,5 +1278,154 @@ namespace Persistencia.Clases
             return lstRetorno;
         }
 
+        public static List<cSesion> TraerTodasPorFecha(DateTime parFecha, int parCentro)
+        {
+            List<cSesion> lstRetorno = new List<cSesion>();
+            cSesion unaSesion;
+            try
+            {
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
+
+                SqlCommand cmd = new SqlCommand("Sesiones_TraerTodasPorDia", vConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@fecha", parFecha));
+                cmd.Parameters.Add(new SqlParameter("@centro", parCentro));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        unaSesion = new cSesion();
+                        unaSesion.Codigo = int.Parse(oReader["SesionId"].ToString());
+                        unaSesion.Comentario = oReader["SesionComentario"].ToString();
+                        unaSesion.Fecha = DateTime.Parse(oReader["SesionFecha"].ToString()).ToShortDateString();
+                        unaSesion.HoraInicio = DateTime.Parse(oReader["SesionHoraInicio"].ToString()).ToShortTimeString();
+                        unaSesion.HoraFin = DateTime.Parse(oReader["SesionHoraFin"].ToString()).ToShortTimeString();
+                        int i = int.Parse(oReader["SesionTipo"].ToString());
+                        if (i == 0) unaSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
+                        if (i == 1) unaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
+                        if (i == 2) unaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
+                        if (i == 3) unaSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
+                        if (i == 4) unaSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
+                        int iA = int.Parse(oReader["SesionCentro"].ToString());
+                        if (iA == 0) unaSesion.Centro = cUtilidades.Centro.JuanLacaze;
+                        if (iA == 1) unaSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
+
+                        List<cBeneficiarioSesion> lstBeneficiariosSesion = new List<cBeneficiarioSesion>();
+                        cBeneficiarioSesion unBeneficiarioSesion;
+                        SqlCommand cmd1 = new SqlCommand("Beneficiarios_TraerPorSesion", vConn);
+                        cmd1.CommandType = CommandType.StoredProcedure;
+                        cmd1.Parameters.Add(new SqlParameter("@idSesion", unaSesion.Codigo));
+
+                        using (SqlDataReader oReader1 = cmd1.ExecuteReader())
+                        {
+                            while (oReader1.Read())
+                            {
+                                unBeneficiarioSesion = new cBeneficiarioSesion();
+                                unBeneficiarioSesion.Beneficiario = new cBeneficiario();
+                                unBeneficiarioSesion.Beneficiario.Codigo = int.Parse(oReader1["BeneficiarioId"].ToString());
+                                unBeneficiarioSesion.Beneficiario.Nombres = oReader1["BeneficiarioNombres"].ToString();
+                                unBeneficiarioSesion.Beneficiario.Apellidos = oReader1["BeneficiarioApellidos"].ToString();
+                                unBeneficiarioSesion.Beneficiario.CI = int.Parse(oReader1["BeneficiarioCI"].ToString());
+                                unBeneficiarioSesion.Beneficiario.Sexo = oReader1["BeneficiarioSexo"].ToString();
+                                unBeneficiarioSesion.Beneficiario.Telefono1 = oReader1["BeneficiarioTelefono1"].ToString();
+                                unBeneficiarioSesion.Beneficiario.Telefono2 = oReader1["BeneficiarioTelefono2"].ToString();
+                                unBeneficiarioSesion.Beneficiario.Domicilio = oReader1["BeneficiarioDomicilio"].ToString();
+                                unBeneficiarioSesion.Beneficiario.Email = oReader1["BeneficiarioEmail"].ToString();
+                                unBeneficiarioSesion.Beneficiario.FechaNacimiento = oReader1["BeneficiarioFechaNacimiento"].ToString();
+                                string[] aSs = unBeneficiarioSesion.Beneficiario.FechaNacimiento.Split(' ');
+                                unBeneficiarioSesion.Beneficiario.FechaNacimiento = aSs[0];
+                                unBeneficiarioSesion.Beneficiario.Atributario = oReader1["BeneficiarioAtributario"].ToString();
+                                unBeneficiarioSesion.Beneficiario.MotivoConsulta = oReader1["BeneficiarioMotivoConsulta"].ToString();
+                                unBeneficiarioSesion.Beneficiario.Escolaridad = oReader1["BeneficiarioEscolaridad"].ToString();
+                                unBeneficiarioSesion.Beneficiario.Derivador = oReader1["BeneficiarioDerivador"].ToString();
+                                unBeneficiarioSesion.Beneficiario.Estado = bool.Parse(oReader1["BeneficiarioEstado"].ToString());
+                                unBeneficiarioSesion.Plan = new cPlan();
+                                unBeneficiarioSesion.Plan.Codigo = int.Parse(oReader1["PlanId"].ToString());
+                                unBeneficiarioSesion.Plan.Tipo = oReader1["PlanTipo"].ToString();
+
+                                int iB = int.Parse(oReader1["BeneficiariosSesionesEstado"].ToString());
+                                if (iB == 0) unBeneficiarioSesion.Estado = cUtilidades.EstadoSesion.Asistio;
+                                if (iB == 1) unBeneficiarioSesion.Estado = cUtilidades.EstadoSesion.NoAsistio;
+                                if (iB == 2) unBeneficiarioSesion.Estado = cUtilidades.EstadoSesion.Reprogramada;
+                                if (iB == 3) unBeneficiarioSesion.Estado = cUtilidades.EstadoSesion.SinEstado;
+                                lstBeneficiariosSesion.Add(unBeneficiarioSesion);
+                            }
+                        }
+                        unaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
+                        unaSesion.lstBeneficiarios = lstBeneficiariosSesion;
+
+
+
+                        List<cUsuario> lstUsuarios = new List<cUsuario>();
+                        cUsuario unUsuario;
+                        SqlCommand cmd2 = new SqlCommand("Usuario_TraerTodosPorSesion", vConn);
+                        cmd2.CommandType = CommandType.StoredProcedure;
+                        cmd2.Parameters.Add(new SqlParameter("@idSesion", unaSesion.Codigo));
+
+                        using (SqlDataReader oReader2 = cmd2.ExecuteReader())
+                        {
+                            while (oReader2.Read())
+                            {
+                                unUsuario = new cUsuario();
+                                unUsuario.Codigo = int.Parse(oReader2["UsuarioId"].ToString());
+                                unUsuario.NickName = oReader2["UsuarioNickName"].ToString();
+                                unUsuario.Nombres = oReader2["UsuarioNombres"].ToString();
+                                unUsuario.Apellidos = oReader2["UsuarioApellidos"].ToString();
+                                unUsuario.CI = int.Parse(oReader2["UsuarioCI"].ToString());
+                                int iC = int.Parse(oReader2["UsuarioTipo"].ToString());
+                                if (iC == 0)
+                                {
+                                    unUsuario.Tipo = cUtilidades.TipoDeUsuario.Administrador;
+                                }
+                                if (iC == 1)
+                                {
+                                    unUsuario.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
+                                }
+                                if (iC == 2)
+                                {
+                                    unUsuario.Tipo = cUtilidades.TipoDeUsuario.Usuario;
+                                }
+                                unUsuario.Domicilio = oReader2["UsuarioDomicilio"].ToString();
+                                if (oReader2["UsuarioFechaNacimiento"] != DBNull.Value)
+                                {
+                                    unUsuario.FechaNacimiento = DateTime.Parse(oReader2["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                                }
+                                unUsuario.Telefono = oReader2["UsuarioTelefono"].ToString();
+                                unUsuario.Estado = bool.Parse(oReader2["UsuarioEstado"].ToString());
+                                unUsuario.Email = oReader2["UsuarioEmail"].ToString();
+                                string sD = oReader2["UsuarioTipoContrato"].ToString();
+                                if (sD == "S")
+                                {
+                                    unUsuario.TipoContrato = "Socio";
+                                }
+                                if (sD == "C")
+                                {
+                                    unUsuario.TipoContrato = "Contratado";
+                                }
+                                if (sD == "E")
+                                {
+                                    unUsuario.TipoContrato = "Empleado";
+                                }
+                                unUsuario.Especialidad = new cEspecialidad();
+                                unUsuario.Especialidad.Codigo = int.Parse(oReader2["EspecialidadId"].ToString());
+                                unUsuario.Especialidad.Nombre = oReader2["EspecialidadNombre"].ToString();
+                                lstUsuarios.Add(unUsuario);
+                            }
+                        }
+                        unaSesion.lstUsuarios = new List<cUsuario>();
+                        unaSesion.lstUsuarios = lstUsuarios;
+                        lstRetorno.Add(unaSesion);
+                    }
+                    vConn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return lstRetorno;
+        }
     }
 }
