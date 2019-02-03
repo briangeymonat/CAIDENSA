@@ -20,12 +20,17 @@ namespace Ejemplo.Web
         private static List<string> LosDias = new List<string>() { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
         private static List<DateTime> LasHoras;
         private static List<List<cItinerario>> LasCeldas;
+        private static string SVentanaAnterior;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-
+                SVentanaAnterior = Request.QueryString["ventana"];
+                if(SVentanaAnterior=="nomostrar")
+                {
+                    btnAtras.Visible = false;
+                }
                 int iX = System.Globalization.CultureInfo.CurrentUICulture.Calendar.GetWeekOfYear(DateTime.Today, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
                 if (iX > 9)
                     txtSemana.Text = DateTime.Today.ToString("yyyy-W" + iX);
@@ -63,29 +68,30 @@ namespace Ejemplo.Web
                     lblBeneficiariosQueAtiende.Visible = false;
                     lblInformesPendientes.Visible = false;
                     lblInformesRealizados.Visible = false;
-                    grdBeneficiariosQueAtiende.Visible = false;
-                    grdInformesPendientes.Visible = false;
-                    grdInformesRealizados.Visible = false;
+                    pnlBeneficiariosQueAtiende.Visible = false;
+                    pnlInformesPendientes.Visible = false;
+                    pnlInformesRealizados.Visible = false;
+                    lblItinerario.Visible = false;
                     @ref.Visible = false;
                 }
                 if (grdBeneficiariosQueAtiende.PageCount <= 0)
                 {
-                    grdBeneficiariosQueAtiende.Visible = false;
+                    pnlBeneficiariosQueAtiende.Visible = false;
                     lblBeneficiariosQueAtiende.Text = "No atiende ningun beneficiario";
                 }
                 if (grdInformesRealizados.PageCount <= 0)
                 {
-                    grdInformesRealizados.Visible = false;
+                    pnlInformesRealizados.Visible = false;
                     lblInformesRealizados.Text = "No tiene informe realizados";
                 }
                 if (grdInformesPendientes.PageCount <= 0)
                 {
-                    grdInformesPendientes.Visible = false;
+                    pnlInformesPendientes.Visible = false;
                     lblInformesPendientes.Text = "No tiene informe pendiente";
                 }
                 if (LosItinerarios.Count <= 0 || LosItinerarios == null)
                 {
-                    frmItinerario.Visible = false;
+                    pnlItinerario.Visible = false;
                     lblItinerario.Text = "No está registrado en el itinerario";
                     @ref.Visible = false;
                 }
@@ -367,8 +373,8 @@ namespace Ejemplo.Web
 
         protected void grdInformesRealizados_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            e.Row.Cells[0].Visible = false; //codigo
-            e.Row.Cells[4].Visible = false; //codBeneficiario
+            e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[5].Visible = false; //codBeneficiario
         }
 
         protected void grdInformesPendientes_RowCreated(object sender, GridViewRowEventArgs e)
@@ -383,7 +389,7 @@ namespace Ejemplo.Web
             ii = 1;
             TableCell celdaCodigo = grdBeneficiariosQueAtiende.Rows[e.NewSelectedIndex].Cells[1];
             int iCodigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString());
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString()+ "&ventana=vMiPerfil.aspx?nick=" + U.NickName);
         }
 
         protected void grdInformesPendientes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
@@ -695,6 +701,18 @@ namespace Ejemplo.Web
         protected void txtSemana_TextChanged(object sender, EventArgs e)
         {
             CargarSesionesReprogramadas();
+        }
+
+        protected void grdInformesRealizados_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            TableCell celdaCodigo = grdInformesRealizados.Rows[e.NewSelectedIndex].Cells[1];
+            int iCodigo = int.Parse(celdaCodigo.Text);
+            Response.Redirect("vInformeDetalles.aspx?InformeId=" + iCodigo.ToString() + "&Ventana=vMiPerfil.aspx?nick=" + U.NickName);
+        }
+
+        protected void btnAtras_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect(SVentanaAnterior);
         }
     }
 }

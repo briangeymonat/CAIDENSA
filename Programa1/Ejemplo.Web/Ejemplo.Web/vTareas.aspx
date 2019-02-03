@@ -29,6 +29,7 @@
             </asp:TableRow>
             <asp:TableRow VerticalAlign="Top">
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdSesionesPasadasDelDia" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnSelectedIndexChanging="grdSesionesPasadasDelDia_SelectedIndexChanging" OnRowCreated="grdSesionesPasadasDelDia_RowCreated" Width="100%">
@@ -43,8 +44,10 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel2" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdPlanesPorVencerse" runat="server" ShowHeaderWhenEmpty="True" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnRowCreated="grdPlanesPorVencerse_RowCreated" OnSelectedIndexChanging="grdPlanesPorVencerse_SelectedIndexChanging" Width="100%">
@@ -59,8 +62,10 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel3" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdEspecialistasConInformesPendientes" runat="server" ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnRowCreated="grdEspecialistasConInformesPendientes_RowCreated" ShowHeaderWhenEmpty="True" Width="100%">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -74,8 +79,10 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel4" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdBeneficiariosConPlanSinFechaVencimiento" runat="server" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnRowCreated="grdBeneficiariosConPlanSinFechaVencimiento_RowCreated" OnSelectedIndexChanging="grdBeneficiariosConPlanSinFechaVencimiento_SelectedIndexChanging" ShowHeaderWhenEmpty="True" Width="100%">
@@ -91,6 +98,7 @@
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
 
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
@@ -114,6 +122,7 @@
             </asp:TableRow>
             <asp:TableRow VerticalAlign="Top">
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel5" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdSesionesDelDia" runat="server" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnSelectedIndexChanging="grdSesionesDelDia_SelectedIndexChanging" ShowHeaderWhenEmpty="True" OnRowCreated="grdSesionesDelDia_RowCreated" Width="100%">
@@ -128,8 +137,10 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel6" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdObservacionesDeSesiones" runat="server" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnSelectedIndexChanging="grdObservacionesDeSesiones_SelectedIndexChanging" ShowHeaderWhenEmpty="True" OnRowCreated="grdObservacionesDeSesiones_RowCreated" Width="100%">
@@ -144,8 +155,10 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel7" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdInformesPendientes" runat="server" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnRowCreated="grdInformesPendientes_RowCreated" OnSelectedIndexChanging="grdInformesPendientes_SelectedIndexChanging" ShowHeaderWhenEmpty="True" Width="100%">
@@ -161,8 +174,10 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel8" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdInformesEnProceso" runat="server" AutoGenerateSelectButton="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         OnRowCreated="grdInformesEnProceso_RowCreated" OnSelectedIndexChanging="grdInformesEnProceso_SelectedIndexChanging" ShowHeaderWhenEmpty="True" Width="100%">
@@ -177,6 +192,7 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow VerticalAlign="Top">
@@ -186,6 +202,7 @@
             </asp:TableRow>
             <asp:TableRow VerticalAlign="Top">
                 <asp:TableCell Width="20%">
+                            <asp:Panel ID="Panel9" runat="server" ScrollBars="Vertical" Height="250px">
                     <asp:GridView ID="grdSesionesObservacionesRealizadas" runat="server" ShowHeaderWhenEmpty="True"
                         ViewStateMode="Enabled" CellPadding="2" ForeColor="#333333" GridLines="Both"
                         AutoGenerateSelectButton="True" OnSelectedIndexChanging="grdSesionesObservacionesRealizadas_SelectedIndexChanging" OnRowCreated="grdSesionesObservacionesRealizadas_RowCreated" Width="100%">
@@ -200,6 +217,7 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                                </asp:Panel>
                 </asp:TableCell>
                 <asp:TableCell Width="20%">
                     <asp:Table runat="server">

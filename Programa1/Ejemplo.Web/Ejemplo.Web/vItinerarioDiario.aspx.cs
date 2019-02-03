@@ -38,6 +38,9 @@ namespace Ejemplo.Web
                 CargarItinerarios();
                 CargarDdlEspecialistas();
                 CargarGrdItinerariosPorEspecialista();
+
+                
+
                 if (LosItinerarios.Count <= 0)
                 {
                     frmItinerario.Visible = false;
@@ -56,6 +59,12 @@ namespace Ejemplo.Web
         {
             ddlDias.DataSource = LosDias;
             ddlDias.DataBind();
+
+            if(DateTime.Today.DayOfWeek.GetHashCode()!=7)
+            {
+                ddlDias.SelectedIndex = DateTime.Today.DayOfWeek.GetHashCode()-1;
+            }
+
         }
         private void CargarItinerarios()
         {

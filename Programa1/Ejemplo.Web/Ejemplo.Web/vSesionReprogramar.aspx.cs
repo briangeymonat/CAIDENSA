@@ -49,6 +49,7 @@ namespace Ejemplo.Web
                 CargarEspecialistas();
                 CargarEspecialistasAgregados();
                 CargarDdlHoras();
+                ddlHasta.SelectedIndex = 2;
             }
            
 
@@ -756,6 +757,12 @@ namespace Ejemplo.Web
             {
                 ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Se requiere ingresar todos los datos de la sesión.')", true);
             }
+        }
+
+        protected void ddlDesde_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlHasta.SelectedIndex < ddlDesde.SelectedIndex)
+                ddlHasta.SelectedIndex = ddlDesde.SelectedIndex + 2;
         }
     }
 }

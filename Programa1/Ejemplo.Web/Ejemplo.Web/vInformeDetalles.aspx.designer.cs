@@ -13,6 +13,15 @@ namespace Ejemplo.Web {
     public partial class vInformeDetalles {
         
         /// <summary>
+        /// Control btnAtras.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnAtras;
+        
+        /// <summary>
         /// Control lblFecha.
         /// </summary>
         /// <remarks>

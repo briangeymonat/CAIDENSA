@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vUsuarioMostrar.aspx.cs" Inherits="Ejemplo.Web.vUsuarioMostrar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-       <script type="text/javascript">
+        <script type="text/javascript">
         function disableBackButton()
         {
             window.history.forward();
@@ -29,7 +29,7 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Panel ID="pnlUsuariosActivos" runat="server">
+                            <asp:Panel ID="pnlUsuariosActivos" runat="server" ScrollBars="Vertical" Height="300px">
                                 <asp:GridView ID="grdUsuariosActivos" Width="100%" runat="server" AutoGenerateSelectButton="True"
                                     ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                     OnSelectedIndexChanging="grdUsuariosActivos_SelectedIndexChanging"
@@ -56,7 +56,7 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Panel ID="pnlUsuariosInactivos" runat="server">
+                            <asp:Panel ID="pnlUsuariosInactivos" runat="server" ScrollBars="Vertical" Height="300px">
                                 <asp:GridView ID="grdUsuariosInactivos" Width="100%" runat="server" AutoGenerateSelectButton="True"
                                     ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                     AutoGenerateColumns="true"

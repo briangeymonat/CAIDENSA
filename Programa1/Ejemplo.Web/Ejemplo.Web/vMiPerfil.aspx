@@ -9,10 +9,22 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <center><h1>Mi perfil
-            </h1></center>
+    <asp:Table runat="server" Width="100%">
+        <asp:TableRow>
+            
+            <asp:TableCell HorizontalAlign="Left" Width="10%">
+                <asp:ImageButton ID="btnAtras" runat="server" Text="Atrás" Style="margin-left:20px" ImageUrl="~/Img/atras.png" Width="50px" OnClick="btnAtras_Click"/>
+            </asp:TableCell>
+            <asp:TableCell HorizontalAlign="Center" Width="80%">
+    <h1>Mi perfil</h1>
+            </asp:TableCell>
+            <asp:TableCell Width="10%">
+
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
     <br />
-    <asp:Table runat="server">
+    <asp:Table runat="server" Width="100%">
         <asp:TableRow VerticalAlign="Top" HorizontalAlign="Center">
             <asp:TableCell Width="25%">
                 <asp:Table runat="server">
@@ -132,8 +144,8 @@
             </asp:TableCell>
             <asp:TableCell Width="50%">
                 <div>
-                    <asp:Panel ID="pnlItinerario" runat="server" Visible="false">
                         <asp:Label ID="lblItinerario" runat="server" Text="Itinerario semanal" Font-Bold="true" Font-Size="10"></asp:Label>
+                    <asp:Panel ID="pnlItinerario" runat="server" Visible="false" ScrollBars="Vertical" Height="700px">
                         <formview id="frmItinerario" runat="server"></formview>
                     </asp:Panel>
                 </div>
@@ -185,7 +197,8 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:GridView ID="grdBeneficiariosQueAtiende" runat="server" AutoGenerateSelectButton="True"
+                            <asp:Panel ID="pnlBeneficiariosQueAtiende" runat="server" ScrollBars="Vertical" Height="150px">
+                                <asp:GridView ID="grdBeneficiariosQueAtiende" runat="server" AutoGenerateSelectButton="True" Width="100%"
                                 ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                 OnRowCreated="grdBeneficiariosQueAtiende_RowCreated" OnSelectedIndexChanging="grdBeneficiariosQueAtiende_SelectedIndexChanging">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -199,6 +212,8 @@
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
+                            </asp:Panel>
+                            
                         </asp:TableCell>
                     </asp:TableRow>
 
@@ -210,7 +225,8 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:GridView ID="grdInformesPendientes" runat="server" AutoGenerateSelectButton="True"
+                            <asp:Panel ID="pnlInformesPendientes" runat="server" ScrollBars="Vertical" Height="150px">
+                            <asp:GridView ID="grdInformesPendientes" runat="server" AutoGenerateSelectButton="True" Width="100%"
                                 ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
                                 OnRowCreated="grdInformesPendientes_RowCreated" OnSelectedIndexChanging="grdInformesPendientes_SelectedIndexChanging" ShowHeaderWhenEmpty="True">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -224,6 +240,7 @@
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
+                                </asp:Panel>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
@@ -234,9 +251,12 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:GridView ID="grdInformesRealizados" runat="server"
+                            <asp:Panel ID="pnlInformesRealizados" runat="server" ScrollBars="Vertical" Height="150px">
+                            <asp:GridView ID="grdInformesRealizados" runat="server" Width="100%"
                                 ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None"
-                                OnRowCreated="grdInformesRealizados_RowCreated" ShowHeaderWhenEmpty="True">
+                                OnRowCreated="grdInformesRealizados_RowCreated" ShowHeaderWhenEmpty="True"
+                                OnSelectedIndexChanging="grdInformesRealizados_SelectedIndexChanging"
+                                AutoGenerateSelectButton="true">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -248,6 +268,7 @@
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
+                                </asp:Panel>
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>

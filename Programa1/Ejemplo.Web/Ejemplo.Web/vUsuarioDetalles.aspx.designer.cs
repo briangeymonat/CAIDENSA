@@ -13,6 +13,15 @@ namespace Ejemplo.Web {
     public partial class DetallesUsuario {
         
         /// <summary>
+        /// Control btnAtras.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnAtras;
+        
+        /// <summary>
         /// Control Label1.
         /// </summary>
         /// <remarks>
@@ -319,15 +328,6 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Button btnRestablecerContrasena;
         
         /// <summary>
-        /// Control pnlItinerario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlItinerario;
-        
-        /// <summary>
         /// Control lblItinerario.
         /// </summary>
         /// <remarks>
@@ -335,6 +335,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblItinerario;
+        
+        /// <summary>
+        /// Control pnlItinerario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlItinerario;
         
         /// <summary>
         /// Control frmItinerario.
@@ -382,6 +391,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblBeneficiariosQueAtiende;
         
         /// <summary>
+        /// Control pnlBeneficiariosQueAtiende.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlBeneficiariosQueAtiende;
+        
+        /// <summary>
         /// Control grdBeneficiariosQueAtiende.
         /// </summary>
         /// <remarks>
@@ -400,6 +418,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblInformesPendientes;
         
         /// <summary>
+        /// Control pnlInformesPendientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInformesPendientes;
+        
+        /// <summary>
         /// Control grdInformesPendientes.
         /// </summary>
         /// <remarks>
@@ -416,6 +443,15 @@ namespace Ejemplo.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblInformesRealizados;
+        
+        /// <summary>
+        /// Control pnlInformesRealizados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlInformesRealizados;
         
         /// <summary>
         /// Control grdInformesRealizados.

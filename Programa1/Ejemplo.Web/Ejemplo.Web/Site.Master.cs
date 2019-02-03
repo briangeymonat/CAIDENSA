@@ -77,15 +77,13 @@ namespace Ejemplo.Web
             int iA = lstNotificacionesAdministrador.Count + lstNotificacionesEspecialista.Count;
             if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrador)
             {
-                //int a = notificacionesAdministrador.Count;
                 if (iA > 0)
-                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; // y color rojo falta
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA;
             }
             else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
             {
-                //int a = notificacionesAdministrador.Count;
                 if (iA > 0)
-                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; // y color rojo falta
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; 
             }
             else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Usuario)
             {
@@ -97,9 +95,9 @@ namespace Ejemplo.Web
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Informes"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Diagnóstico"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Asistencias"));
-                //int a = notificacionesEspecialista.Count;
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Ver sesiones diarias"));
                 if (iA > 0)
-                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; // y color rojo falta
+                    MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; 
             }
 
 
@@ -134,10 +132,7 @@ namespace Ejemplo.Web
                 try
                 {
                     bool bResultado = dFachada.NotificacionCambiarEstadoVista(unaNotificacion);
-                    if (bResultado)
-                    {
                         Response.Redirect("vTareas.aspx");
-                    }                    
                 }
                 catch(Exception ex)
                 {

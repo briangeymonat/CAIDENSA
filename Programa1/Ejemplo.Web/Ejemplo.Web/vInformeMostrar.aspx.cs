@@ -156,10 +156,9 @@ namespace Ejemplo.Web
 
         protected void grdInformes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            //PODRIA APARECER UNA VENTANITA PARA EXPORTAR A PDF EL INFORME
             TableCell celdaCodigo = grdInformes.Rows[e.NewSelectedIndex].Cells[1];
             int iCodigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vInformeDetalles.aspx?InformeId=" + iCodigo.ToString());
+            Response.Redirect("vInformeDetalles.aspx?InformeId=" + iCodigo.ToString() + "&Ventana=vInformeMostrar.aspx");
 
         }
     }

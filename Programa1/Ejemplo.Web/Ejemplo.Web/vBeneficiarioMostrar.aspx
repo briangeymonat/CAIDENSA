@@ -155,7 +155,7 @@
                     <asp:TableRow>
                         <asp:TableCell>
                             <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" OnClick="btnAplicarFiltros_Click" Style="margin-left: 50px" />
-                            <asp:Button ID="btnLimpiarFiltros" runat="server" Text="Limpiar filtros" />
+                            <asp:Button ID="btnLimpiarFiltros" runat="server" Text="Limpiar filtros" OnClick="btnLimpiarFiltros_Click"/>
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>

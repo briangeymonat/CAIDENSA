@@ -952,5 +952,16 @@ namespace Ejemplo.Web
         {
             CargarEspecialistas();
         }
+
+        protected void ddlDesde_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlHasta.SelectedIndex < ddlDesde.SelectedIndex)
+                ddlHasta.SelectedIndex = ddlDesde.SelectedIndex + 2;
+        }
+
+        protected void btnAtras_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("vItinerarioDiario.aspx");
+        }
     }
 }

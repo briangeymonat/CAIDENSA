@@ -43,7 +43,7 @@
                             <asp:Label ID="Label4" runat="server" Text="Desde:" Font-Bold="true"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell>
-                            <asp:DropDownList ID="ddlDesde" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDesde" runat="server" OnSelectedIndexChanged="ddlDesde_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                         </asp:TableCell>
                         <asp:TableCell>
                             <asp:Label ID="Label5" runat="server" Text="Hasta:" Font-Bold="true"></asp:Label>
@@ -70,6 +70,8 @@
                     <asp:TableRow VerticalAlign="Top">
                         <asp:TableCell Width="35%">
                             <asp:Label ID="Label11" runat="server" Text="Beneficiarios" Font-Bold="true"></asp:Label>
+                            
+                            <asp:Panel ID="pnlBeneficiarios" runat="server" ScrollBars="Vertical" Height="150px">
                             <asp:GridView ID="grdBeneficiarios" runat="server" AutoGenerateSelectButton="true" OnSelectedIndexChanging="grdBeneficiarios_SelectedIndexChanging" ShowHeaderWhenEmpty="true" OnRowCreated="grdBeneficiarios_RowCreated">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
@@ -82,6 +84,7 @@
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
+                                </asp:Panel>
                         </asp:TableCell>
                         <asp:TableCell Width="35%">
                             <asp:Label ID="lblBeneficiariosAgregados" runat="server" Text="Beneficiarios agregados" Font-Bold="true"></asp:Label>

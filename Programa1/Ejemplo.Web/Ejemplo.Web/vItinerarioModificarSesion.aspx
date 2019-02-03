@@ -9,8 +9,18 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 style="padding-left: 60px">Detalles de la sesión de itinerario
-    </h2>
+    <asp:Table runat="server" Width="100%">
+        <asp:TableRow>
+
+            <asp:TableCell HorizontalAlign="Left" Width="10%">
+                <asp:ImageButton ID="btnAtras" runat="server" Text="Atrás" Style="margin-left: 20px" ImageUrl="~/Img/atras.png" Width="50px" OnClick="btnAtras_Click" />
+            </asp:TableCell>
+            <asp:TableCell HorizontalAlign="Left" Width="90%">
+    <h1>Detalles de la sesión de itinerario
+    </h1>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
     <asp:Table runat="server" Width="60%">
         <asp:TableRow VerticalAlign="Top">
             <asp:TableCell Style="padding-left: 50px;">
@@ -43,7 +53,7 @@
                             <asp:Label ID="Label4" runat="server" Text="Desde:" Font-Bold="true"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell>
-                            <asp:DropDownList ID="ddlDesde" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDesde" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDesde_SelectedIndexChanged"></asp:DropDownList>
                         </asp:TableCell>
                         <asp:TableCell>
                             <asp:Label ID="Label5" runat="server" Text="Hasta:" Font-Bold="true"></asp:Label>
@@ -87,6 +97,7 @@
                     <asp:TableRow VerticalAlign="Top">
                         <asp:TableCell Width="35%">
                             <asp:Label ID="Label11" runat="server" Text="Beneficiarios" Font-Bold="true"></asp:Label>
+                            <asp:Panel ID="pnlBeneficiario" runat="server" ScrollBars="Vertical" Height="150px">
                             <asp:GridView ID="grdBeneficiarios" runat="server" OnRowCreated="grdBeneficiarios_RowCreated" OnSelectedIndexChanging="grdBeneficiarios_SelectedIndexChanging">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
@@ -99,6 +110,7 @@
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
+                                </asp:Panel>
                         </asp:TableCell>
                         <asp:TableCell Width="35%">
                             <asp:Label ID="fghjk" runat="server" Text="Beneficiarios Agregados" Font-Bold="true"></asp:Label>

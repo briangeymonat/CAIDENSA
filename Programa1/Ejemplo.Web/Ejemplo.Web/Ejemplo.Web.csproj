@@ -203,6 +203,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Img\atras.png" />
     <Content Include="Img\HeaderNombre.png" />
     <Content Include="Img\EncabezadoInforme.jpg" />
     <Content Include="Img\HeaderLogo.jpg" />
@@ -230,6 +231,7 @@
     <Content Include="vMiPerfil.aspx" />
     <Content Include="vNuevaContraseña.aspx" />
     <Content Include="vReportePDF.aspx" />
+    <Content Include="vSesionDiaria.aspx" />
     <Content Include="vSesionNueva.aspx" />
     <Content Include="vSesionReprogramar.aspx" />
     <Content Include="vTareas.aspx" />
@@ -571,6 +573,13 @@
     </Compile>
     <Compile Include="vReportePDF.aspx.designer.cs">
       <DependentUpon>vReportePDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vSesionDiaria.aspx.cs">
+      <DependentUpon>vSesionDiaria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vSesionDiaria.aspx.designer.cs">
+      <DependentUpon>vSesionDiaria.aspx</DependentUpon>
     </Compile>
     <Compile Include="vSesionNueva.aspx.cs">
       <DependentUpon>vSesionNueva.aspx</DependentUpon>

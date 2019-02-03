@@ -35,7 +35,7 @@ namespace Ejemplo.Web
                     LasHoras.Add(dHora);
                 }
                 while (dHora != DateTime.Parse("20:00"));
-                this.txtFechaSesiones.Text = DateTime.Today.ToShortDateString();
+                this.txtFechaSesiones.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 CargarSesiones();
                 CargarDdlEspecialistas();
                 CargarGrdSesionesPorEspecialista();

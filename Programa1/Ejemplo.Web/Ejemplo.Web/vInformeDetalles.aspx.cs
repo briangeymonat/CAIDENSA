@@ -15,10 +15,12 @@ namespace Ejemplo.Web
     public partial class vInformeDetalles : System.Web.UI.Page
     {
         static cInforme ElInforme;
+        static string SVentanaAnterior;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                SVentanaAnterior = Request.QueryString["Ventana"];
                 ElInforme = new cInforme();
                 ElInforme.Codigo = int.Parse(Request.QueryString["InformeId"]);
                 ElInforme = dFachada.InformeTraerEspecifico(ElInforme);
@@ -152,7 +154,15 @@ namespace Ejemplo.Web
             lblMotivoConsulta.Text = ElInforme.Beneficiario.MotivoConsulta.ToString();
             lblEscolaridad.Text = ElInforme.Beneficiario.Escolaridad.ToString();
             lblEncuadre.Text = dFachada.ItinerarioTraerEncuadrePorBeneficiario(ElInforme.Beneficiario);
-            lblFecha.Text = dFachada.BeneficiarioCentroPreferencia(ElInforme.Beneficiario)+", "+DateTime.Parse(ElInforme.Fecha).ToString("dd 'de' MMMM 'de' yyyy");
+            if(ElInforme.Fecha!= null)
+            {
+                lblFecha.Text = dFachada.BeneficiarioCentroPreferencia(ElInforme.Beneficiario) + ", " + DateTime.Parse(ElInforme.Fecha).ToString("dd 'de' MMMM 'de' yyyy");
+            }
+            else
+            {
+                btnExportarPDF.Visible = false;
+            }
+                
         }
 
         private void OcultarSecciones(bool parVisible)
@@ -187,10 +197,12 @@ namespace Ejemplo.Web
             //Response.Redirect("vReportePDF.aspx?InformeId=" +Informe.Codigo);
             string sOpen = "window.open('vReportePDF.aspx?InformeId=" + ElInforme.Codigo+"', '_newtab');";
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), sOpen, true);
-
-
-
             
+        }
+
+        protected void btnAtras_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect(SVentanaAnterior);
         }
     }
 }

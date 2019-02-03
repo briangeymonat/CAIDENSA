@@ -107,6 +107,7 @@ namespace Ejemplo.Web
             } while (dHora2 != DateTime.Parse("20:00"));
             ddlHasta.DataSource = LasHorasHasta;
             ddlHasta.DataBind();
+            ddlHasta.SelectedIndex = 2;
         }
         private void CargarBeneficiarios()
         {
@@ -762,6 +763,11 @@ namespace Ejemplo.Web
             e.Row.Cells[14].Visible = false;//derivador
             e.Row.Cells[15].Visible = false;//estado
         }
-        
+
+        protected void ddlDesde_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlHasta.SelectedIndex<ddlDesde.SelectedIndex)
+            ddlHasta.SelectedIndex = ddlDesde.SelectedIndex+2;
+        }
     }
 }

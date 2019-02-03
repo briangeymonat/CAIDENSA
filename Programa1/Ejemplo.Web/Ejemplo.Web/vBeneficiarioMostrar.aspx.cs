@@ -187,7 +187,7 @@ namespace Ejemplo.Web
 
         protected void grdBeneficiarios_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + LosBeneficiarios[e.NewSelectedIndex].Codigo.ToString());
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + LosBeneficiarios[e.NewSelectedIndex].Codigo.ToString()+"&ventana=vBeneficiarioMostrar.aspx");
         }
 
         protected void grdBeneficiarios_RowCreated(object sender, GridViewRowEventArgs e)
@@ -203,6 +203,33 @@ namespace Ejemplo.Web
                 e.Row.Cells[13].Visible = false;//escolaridad
                 e.Row.Cells[14].Visible = false;//derivador
             
+        }
+
+        protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            cbActivos.Checked = false;
+            cbPasivos.Checked = false;
+            cbNuevaHelvecia.Checked = false;
+            cbJuanLacaze.Checked = false;
+            cblSexo.Items[0].Selected = false;
+            cblSexo.Items[1].Selected = false;
+            cblPlan.Items[0].Selected = false;
+            cblPlan.Items[1].Selected = false;
+            cblPlan.Items[2].Selected = false;
+            cblPlan.Items[3].Selected = false;
+            cblPlan.Items[4].Selected = false;
+            cblPlan.Items[5].Selected = false;
+            cblPlan.Items[6].Selected = false;
+            txtDesde.Text = string.Empty;
+            txtHasta.Text = string.Empty;
+            cblEspecialidad.Items[0].Selected = false;
+            cblEspecialidad.Items[1].Selected = false;
+            cblEspecialidad.Items[2].Selected = false;
+            cblEspecialidad.Items[3].Selected = false;
+            cblEspecialidad.Items[4].Selected = false;
+            ddlDiagnosticos.SelectedIndex = 0;
+            ActualizarTodosLosBeneficiarios();
+            ActualizarGrdBeneficiarios();
         }
     }
 }

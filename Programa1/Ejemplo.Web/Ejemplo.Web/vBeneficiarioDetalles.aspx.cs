@@ -21,10 +21,12 @@ namespace Ejemplo.Web
         private static List<cPlan> LosPlanesInactivos;
         private static List<ListarInformes> LosInformes;
         private static bool BPensionista;
+        private static string SVentanaAnterior;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                SVentanaAnterior = Request.QueryString["ventana"];
                 ElBeneficiario = new cBeneficiario();
                 ElBeneficiario.Codigo = int.Parse(Request.QueryString["BeneficiarioId"]);
                 habilitarCampos(false);
@@ -676,6 +678,11 @@ namespace Ejemplo.Web
         {
             e.Row.Cells[0].Visible = false; //codigo
             e.Row.Cells[4].Visible = false; //cod beneficiario
+        }
+
+        protected void btnAtras_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect(SVentanaAnterior);
         }
     }
 }

@@ -172,7 +172,7 @@ namespace Ejemplo.Web
         {
             TableCell celdaCodigo = grdPlanesPorVencerse.Rows[e.NewSelectedIndex].Cells[1];
             int iCodigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString());
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString()+"&ventana=vTareas.aspx");
         }
         protected void grdBeneficiariosConPlanSinFechaVencimiento_RowCreated(object sender, GridViewRowEventArgs e)
         {
@@ -192,7 +192,7 @@ namespace Ejemplo.Web
         {
             TableCell celdaCodigo = grdBeneficiariosConPlanSinFechaVencimiento.Rows[e.NewSelectedIndex].Cells[1];
             int iCodigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString());
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString() + "&ventana=vTareas.aspx");
         }
         #endregion
         #region TAREAS ESPECIALISTAS

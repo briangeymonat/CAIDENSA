@@ -14,7 +14,7 @@
     <h2 style="padding-left: 50px">Sesiones diarias
     </h2>
 
-    <asp:Table runat="server">
+    <asp:Table runat="server" Width="100%">
         <asp:TableRow VerticalAlign="Top">
             <asp:TableCell ColumnSpan="2" Width="50%">
                 <asp:Table runat="server">
@@ -57,7 +57,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow VerticalAlign="Top">
-            <asp:TableCell Width="40%">
+            <asp:TableCell Width="20%">
                 <asp:Table runat="server" Width="100%">
                     <asp:TableRow>
                         <asp:TableCell>
@@ -85,11 +85,13 @@
                     </asp:TableRow>
                 </asp:Table>
             </asp:TableCell>
-            <asp:TableCell Width="60%">
-                <asp:Table runat="server">
+            <asp:TableCell Width="80%">
+                <asp:Table runat="server" Width="100%">
                     <asp:TableRow>
                         <asp:TableCell>
+                            <asp:Panel ID="pnlSesiones" runat="server" ScrollBars="Vertical" Height="600px" Width="100%">
                             <formview id="frmSesiones" runat="server"></formview>
+                                </asp:Panel>
                         </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>

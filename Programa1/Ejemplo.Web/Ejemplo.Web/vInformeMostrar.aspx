@@ -23,6 +23,7 @@
         <asp:TableRow VerticalAlign="Top">
             <asp:TableCell Style="padding-left: 50px;">
                         <br />
+                            <asp:Panel ID="pnlBeneficiario" runat="server" ScrollBars="Vertical" Height="500px">
                         <asp:GridView ID="grdInformes" runat="server" AutoGenerateSelectButton="True"
                             OnRowCreated="grdInformes_RowCreated" OnSelectedIndexChanging="grdInformes_SelectedIndexChanging"
                             ViewStateMode="Enabled" CellPadding="4" ForeColor="#333333" GridLines="None">
@@ -37,6 +38,7 @@
                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
+                                </asp:Panel>
                     </asp:TableCell>
             <asp:TableCell>
                 <asp:Table runat="server" Style="width: 250px;">

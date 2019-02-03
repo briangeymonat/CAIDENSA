@@ -139,6 +139,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
+        /// Control pnlBeneficiario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlBeneficiario;
+        
+        /// <summary>
         /// Control grdBeneficiarios.
         /// </summary>
         /// <remarks>

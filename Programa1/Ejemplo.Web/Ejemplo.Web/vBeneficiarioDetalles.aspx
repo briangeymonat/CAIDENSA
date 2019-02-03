@@ -9,8 +9,18 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 style="padding-left: 50px">Detalles del beneficiario
-    </h2>
+    <asp:Table runat="server" Width="100%">
+        <asp:TableRow>
+
+            <asp:TableCell HorizontalAlign="Left" Width="10%">
+                <asp:ImageButton ID="btnAtras" runat="server" Text="Atrás" Style="margin-left: 20px" ImageUrl="~/Img/atras.png" Width="50px" OnClick="btnAtras_Click" />
+            </asp:TableCell>
+            <asp:TableCell HorizontalAlign="Left" Width="90%">
+    <h1 style="padding-left: 50px">Detalles del beneficiario
+    </h1>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
     <br />
     <asp:Table runat="server" Style="margin-left: 50px" Width="100%">
         <asp:TableRow VerticalAlign="Top">

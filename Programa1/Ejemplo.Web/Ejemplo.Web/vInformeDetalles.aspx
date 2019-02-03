@@ -10,17 +10,26 @@
             height: 21px;
         }
     </style>
-       <script type="text/javascript">
-        function disableBackButton()
-        {
+    <script type="text/javascript">
+        function disableBackButton() {
             window.history.forward();
         }
         setTimeout("disableBackButton()", 0);
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 style="padding-left:50px">Detalles del informe
-    </h2>
+    <asp:Table runat="server" Width="100%">
+        <asp:TableRow>
+
+            <asp:TableCell HorizontalAlign="Left" Width="10%">
+                <asp:ImageButton ID="btnAtras" runat="server" Text="Atrás" Style="margin-left: 20px" ImageUrl="~/Img/atras.png" Width="50px" OnClick="btnAtras_Click" />
+            </asp:TableCell>
+            <asp:TableCell HorizontalAlign="Left" Width="90%"> 
+    <h1 style="padding-left:50px">Detalles del informe
+    </h1>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
     <asp:Table runat="server">
         <asp:TableRow VerticalAlign="Top">
             <asp:TableCell HorizontalAlign="Right" ColumnSpan="5">
@@ -28,7 +37,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px">
+            <asp:TableCell Style="padding-left: 50px">
                 <asp:Label ID="Label1" runat="server" Text="Tipo:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="3">
@@ -36,7 +45,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px">
+            <asp:TableCell Style="padding-left: 50px">
                 <asp:Label ID="Label2" runat="server" Text="Título:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="3">
@@ -44,7 +53,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px">
+            <asp:TableCell Style="padding-left: 50px">
                 <asp:Label ID="Label3" runat="server" Text="Nombre:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="3">
@@ -52,7 +61,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px">
+            <asp:TableCell Style="padding-left: 50px">
                 <asp:Label ID="Label4" runat="server" Text="Cédula de identidad:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="3">
@@ -60,7 +69,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px">
+            <asp:TableCell Style="padding-left: 50px">
                 <asp:Label ID="Label5" runat="server" Text="Fecha de nacimiento:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
@@ -74,7 +83,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px">
+            <asp:TableCell Style="padding-left: 50px">
                 <asp:Label ID="Label7" runat="server" Text="Motivo de consulta:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="3">
@@ -82,7 +91,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px">
+            <asp:TableCell Style="padding-left: 50px">
                 <asp:Label ID="Label8" runat="server" Text="Escolaridad:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="3">
@@ -90,7 +99,7 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px">
+            <asp:TableCell Style="padding-left: 50px">
                 <asp:Label ID="Label10" runat="server" Text="Encuadre:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="3">
@@ -98,111 +107,122 @@
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="lblSubtituloAntecedentesPatologicos" runat="server" Text="Antecedentes patológicos:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
-            </asp:TableRow>
+        </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell ColumnSpan="3" style="padding-left:50px">
+            <asp:TableCell ColumnSpan="3" Style="padding-left: 50px">
                 <asp:Label ID="lblAntecedentesPatologicos" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="lblSubtituloDesarrollo" runat="server" Text="Desarrollo:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblDesarrollo" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="Label11" runat="server" Text="Presentación:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblPresentacion" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="lblSubtituloAbPsicomotriz" runat="server" Text="Abordaje Psicomotriz:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblAbordajePsicomotriz" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="lblSubtituloAbPedagogico" runat="server" Text="Abordaje Pedagógico:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblAbordajePedagogico" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="lblSubtituloAbPsicologico" runat="server" Text="Abordaje Psicológico:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblAbordajePsicologico" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="lblSubtituloAbFonoaudiologico" runat="server" Text="Abordaje Fonoaudiológico:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblAbordajeFonoaudiologico" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="lblSubtituloAbFisioterapeutico" runat="server" Text="Abordaje Fisioterapeútico:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblAbordajeFisioterapeutico" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="Label15" runat="server" Text="En suma:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell  style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblEnSuma" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px"><br />
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
                 <asp:Label ID="lblSubtituloSugerencia" runat="server" Text="Sugerencias:" Font-Bold="True"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="5">
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
                 <asp:Label ID="lblSugerencias" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
-            <asp:TableCell style="padding-left:50px" ColumnSpan="2"><br />
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="2">
+                <br />
                 <asp:Button ID="btnExportarPDF" runat="server" Text="Exportar informe a pdf" OnClick="btnExportarPDF_Click" />
             </asp:TableCell>
         </asp:TableRow>

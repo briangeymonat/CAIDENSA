@@ -767,7 +767,7 @@ namespace Ejemplo.Web
             if (vMiPerfil.U.NickName == sNickName)
             {
                 this.grdUsuariosActivos.SelectedIndex = 3;
-                Response.Redirect("vMiPerfil.aspx");
+                Response.Redirect("vMiPerfil.aspx?ventana=vUsuarioMostrar.aspx");
 
             }
             else
