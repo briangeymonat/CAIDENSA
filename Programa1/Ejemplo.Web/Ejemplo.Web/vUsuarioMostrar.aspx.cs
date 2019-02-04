@@ -588,7 +588,6 @@ namespace Ejemplo.Web
             CargarGrillas();
         }
 
-
         private void CargarGrillas()
         {
             this.grdUsuariosActivos.DataSource = null;
@@ -725,8 +724,6 @@ namespace Ejemplo.Web
 
             CargarGrillas();
         }
-
-
 
         protected void btnLimpiarFiltros_Click(object sender, EventArgs e)
         {

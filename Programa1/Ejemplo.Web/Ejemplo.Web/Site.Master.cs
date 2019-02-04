@@ -82,6 +82,7 @@ namespace Ejemplo.Web
             }
             else if (vMiPerfil.U.Tipo == cUtilidades.TipoDeUsuario.Administrativo)
             {
+                MenuNavegacion.FindItem("Extras").ChildItems.Remove(MenuNavegacion.FindItem("Extras").ChildItems[2]);
                 if (iA > 0)
                     MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; 
             }
@@ -93,9 +94,9 @@ namespace Ejemplo.Web
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Beneficiarios"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Itinerario"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Informes"));
-                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Diagnóstico"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Asistencias"));
                 MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Ver sesiones diarias"));
+                MenuNavegacion.Items.Remove(MenuNavegacion.FindItem("Extras"));
                 if (iA > 0)
                     MenuNavegacion.FindItem("Tareas").Text = "Tareas " + iA; 
             }
@@ -111,12 +112,12 @@ namespace Ejemplo.Web
 
         protected void MenuNavegacion_MenuItemClick(object sender, MenuEventArgs e)
         {
-           
+
             String sA = e.Item.Text;
             string[] aParts = sA.Split(' ');
             string sPart1;
             string sPart2;
-            if (aParts.Length==1)
+            if (aParts.Length == 1)
             {
                 sPart1 = aParts[0];
             }
@@ -124,23 +125,23 @@ namespace Ejemplo.Web
             {
                 sPart1 = aParts[0];
                 sPart2 = aParts[1];
-            }             
-            if (sPart1=="Tareas")
+            }
+            if (sPart1 == "Tareas")
             {
                 cNotificacion unaNotificacion = new cNotificacion();
                 unaNotificacion.Usuario = vMiPerfil.U;
                 try
                 {
                     bool bResultado = dFachada.NotificacionCambiarEstadoVista(unaNotificacion);
-                        Response.Redirect("vTareas.aspx");
+                    Response.Redirect("vTareas.aspx");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw ex;
-                }               
-                
+                }
+
             }
-            
+                                    
         }
 
         protected void ImgLogoPequeño_Click(object sender, ImageClickEventArgs e)

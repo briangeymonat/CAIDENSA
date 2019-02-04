@@ -231,6 +231,7 @@
     <Content Include="vMiPerfil.aspx" />
     <Content Include="vNuevaContraseña.aspx" />
     <Content Include="vReportePDF.aspx" />
+    <Content Include="vRestablecerItinerario.aspx" />
     <Content Include="vSesionDiaria.aspx" />
     <Content Include="vSesionNueva.aspx" />
     <Content Include="vSesionReprogramar.aspx" />
@@ -573,6 +574,13 @@
     </Compile>
     <Compile Include="vReportePDF.aspx.designer.cs">
       <DependentUpon>vReportePDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vRestablecerItinerario.aspx.cs">
+      <DependentUpon>vRestablecerItinerario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vRestablecerItinerario.aspx.designer.cs">
+      <DependentUpon>vRestablecerItinerario.aspx</DependentUpon>
     </Compile>
     <Compile Include="vSesionDiaria.aspx.cs">
       <DependentUpon>vSesionDiaria.aspx</DependentUpon>

@@ -732,5 +732,106 @@ namespace Persistencia.Clases
             }
             return unRetorno;
         }
+
+
+        public static bool Restablecer()
+        {
+            bool bRetorno = true;
+
+            try
+            {
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
+
+                SqlCommand cmd = new SqlCommand("Itinerario_Restablecer", vConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                int iRtn = cmd.ExecuteNonQuery();
+                if (iRtn <= 0)
+                {
+                    bRetorno = false;
+                }
+                if (vConn.State == ConnectionState.Open)
+                {
+                    vConn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return bRetorno;
+        }
+
+
+        public static List<cItinerario> TraerTodos()
+        {
+            List<cItinerario> lstRetorno = new List<cItinerario>();
+            cItinerario unItinerario;
+
+            try
+            {
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
+
+                SqlCommand cmd = new SqlCommand("Itinerario_TraerTodos", vConn);
+                cmd.CommandType = CommandType.StoredProcedure;            
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        unItinerario = new cItinerario();
+
+                        unItinerario.Codigo = int.Parse(oReader["ItinerarioId"].ToString());
+                        switch (int.Parse(oReader["ItinerarioTipoSesion"].ToString()))
+                        {
+                            case 0:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.Individual;
+                                break;
+                            case 1:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.Grupo2;
+                                break;
+                            case 2:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.Grupo3;
+                                break;
+                            case 3:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.Taller;
+                                break;
+                            case 4:
+                                unItinerario.TipoSesion = cUtilidades.TipoSesion.PROES;
+                                break;
+                        }
+                        unItinerario.Dia = oReader["ItinerarioDia"].ToString();
+                        unItinerario.HoraInicio = DateTime.Parse(oReader["ItinerarioHoraInicio"].ToString()).ToShortTimeString();
+                        unItinerario.HoraFin = DateTime.Parse(oReader["ItinerarioHoraFin"].ToString()).ToShortTimeString();
+                        unItinerario.Comentario = oReader["ItinerarioComentario"].ToString();
+                        switch (int.Parse(oReader["ItinerarioCentro"].ToString()))
+                        {
+                            case 0:
+                                unItinerario.Centro = cUtilidades.Centro.JuanLacaze;
+                                break;
+                            case 1:
+                                unItinerario.Centro = cUtilidades.Centro.NuevaHelvecia;
+                                break;
+                        }
+                        unItinerario.Estado = bool.Parse(oReader["ItinerarioEstado"].ToString());
+
+                        lstRetorno.Add(unItinerario);
+                    }
+                }
+                if (vConn.State == ConnectionState.Open)
+                {
+                    vConn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return lstRetorno;
+        }
+
+
+
     }
 }

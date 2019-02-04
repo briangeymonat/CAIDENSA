@@ -379,6 +379,14 @@ namespace Dominio
         {
             return dItinerario.Eliminar(parItinerario);
         }
+        public static bool ItinerarioRestablecer()
+        {
+            return dItinerario.Restablecer();
+        }
+        public static List<cItinerario> ItinerarioTraerTodos()
+        {
+            return dItinerario.TraerTodos();
+        }
         #endregion
 
         #region Notificacion

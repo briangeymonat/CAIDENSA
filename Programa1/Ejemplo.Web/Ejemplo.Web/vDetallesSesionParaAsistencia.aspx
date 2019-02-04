@@ -6,13 +6,16 @@
 <head runat="server">
     <title>Detalles de la sesión</title>
     <script type="text/javascript">
+        function cerrar() {
+            window.close();
+        }
         function disableBackButton() {
             window.history.forward();
         }
         setTimeout("disableBackButton()", 0);
     </script>
 </head>
-<body>
+<body onload="setTimeout('cerrar()', 420000)">
     <form id="form1" runat="server">
         <div>
             <table style="padding:30px;">

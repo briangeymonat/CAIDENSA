@@ -835,7 +835,7 @@ namespace Ejemplo.Web
 
         protected void txtSemana_TextChanged(object sender, EventArgs e)
         {
-            CargarCalendario();
+            CargarSesionesReprogramadas();
         }
 
         protected void btnAtras_Click(object sender, ImageClickEventArgs e)

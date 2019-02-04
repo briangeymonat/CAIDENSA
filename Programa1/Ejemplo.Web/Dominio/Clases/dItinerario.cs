@@ -64,5 +64,13 @@ namespace Dominio.Clases
         {
             return pItinerario.Eliminar(parItinerario);
         }
+        public static bool Restablecer()
+        {
+            return pItinerario.Restablecer();
+        }
+        public static List<cItinerario> TraerTodos()
+        {
+            return pItinerario.TraerTodos();
+        }
     }
 }

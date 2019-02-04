@@ -13,7 +13,7 @@
         }
         setTimeout("disableBackButton()", 0);
     </script>
-    <title></title>
+    <title>Agregar observación a la sesión</title>
 </head>
 <body onload="setTimeout('cerrar()', 420000)">
     <form id="form1" runat="server">
