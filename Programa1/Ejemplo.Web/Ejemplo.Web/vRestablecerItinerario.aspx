@@ -28,7 +28,7 @@
 <body onload="Click()"> 
     <form id="form1" runat="server">
     <div>
-        <asp:Button ID="btnConfirm" runat="server" OnClick = "OnConfirm" Text = "Raise Confirm" OnClientClick = "Confirm()"/>
+        <asp:Button ID="btnConfirm" runat="server" OnClick = "OnConfirm" Text = " " OnClientClick = "Confirm()"/>
     </div>
     </form>
 </body>
