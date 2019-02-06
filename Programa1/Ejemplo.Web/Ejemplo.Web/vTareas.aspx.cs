@@ -355,7 +355,7 @@ namespace Ejemplo.Web
                 ventanaReprogramar = false;
                 TableCell celdaId = grdSesionesPasadasDelDia.Rows[e.NewSelectedIndex].Cells[1];
                 int iIdSesion = int.Parse(celdaId.Text);
-                string sVtn = "window.open('vDetallesSesionParaAsistencia.aspx?Id=" + LasSesionesPasaronDelDia[e.NewSelectedIndex].Codigo + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
+                string sVtn = "window.open('vDetallesSesionParaAsistencia.aspx?Id=" + LasSesionesPasaronDelDia[e.NewSelectedIndex].Codigo + "','Detalles de sesion','scrollbars=yes,resizable=yes, height=800, width=900')";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
             }
             else
@@ -372,7 +372,7 @@ namespace Ejemplo.Web
                 ventanaObservacion = false;
                 TableCell celdaId = grdObservacionesDeSesiones.Rows[e.NewSelectedIndex].Cells[1];
                 int iIdSesion = int.Parse(celdaId.Text);
-                string sVtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + iIdSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
+                string sVtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + iIdSesion + "','Agregar observación de sesion','scrollbars=yes,resizable=yes,height=500, width=850')";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
             }
             else
@@ -388,7 +388,7 @@ namespace Ejemplo.Web
         {
             TableCell celdaId = grdSesionesDelDia.Rows[e.NewSelectedIndex].Cells[1];
             int iIdSesion = int.Parse(celdaId.Text);
-            string sVtn = "window.open('vDetallesSesion.aspx?Id=" + iIdSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=100', 'width=700')";
+            string sVtn = "window.open('vDetallesSesion.aspx?Id=" + iIdSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes,height=500, width=900')";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
 
         }
@@ -411,7 +411,7 @@ namespace Ejemplo.Web
                 ventanaObservacion = false;
                 TableCell celdaId = grdSesionesObservacionesRealizadas.Rows[e.NewSelectedIndex].Cells[1];
                 int iIdSesion = int.Parse(celdaId.Text);
-                string sVtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + iIdSesion + "','Detalles de sesion','scrollbars=yes,resizable=yes','height=200', 'width=300')";
+                string sVtn = "window.open('vAgregarObservacionSesion.aspx?SesionId=" + iIdSesion + "','Detalles de sesión con observación realizada','scrollbars=yes,resizable=yes,height=500, width=800')";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "popup", sVtn, true);
             }
             else
@@ -437,8 +437,8 @@ namespace Ejemplo.Web
 
         protected void grdSesionesDelDia_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            e.Row.Cells[1].Visible = false; //codigo
-            e.Row.Cells[2].Visible = false;//comentario
+           e.Row.Cells[1].Visible = false; //codigo
+            e.Row.Cells[2].Visible = false;//comentarios
         }
 
         protected void grdSesionesObservacionesRealizadas_RowCreated(object sender, GridViewRowEventArgs e)

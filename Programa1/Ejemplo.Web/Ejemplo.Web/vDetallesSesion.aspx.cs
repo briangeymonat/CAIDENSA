@@ -93,6 +93,7 @@ namespace Ejemplo.Web
         protected void grdEspecialistas_RowCreated(object sender, GridViewRowEventArgs e)
         {
             e.Row.Cells[0].Visible = false;
+            e.Row.Cells[1].Visible = false;
             e.Row.Cells[2].Visible = false; 
             e.Row.Cells[6].Visible = false;
             e.Row.Cells[7].Visible = false; 
