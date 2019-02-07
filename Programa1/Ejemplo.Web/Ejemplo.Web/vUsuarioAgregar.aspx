@@ -41,7 +41,11 @@
                     <asp:Label ID="lblCi" runat="server" Text="Cédula de identidad:"></asp:Label>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="txtCi" runat="server" TextMode="Number" Width="160px"></asp:TextBox><asp:Label ID="lblObligatorio4" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                    <asp:TextBox ID="txtCi" runat="server" TextMode="Number" Width="160px" MaxLength="8"></asp:TextBox><asp:Label ID="lblObligatorio4" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                     <asp:RangeValidator ID="rfvCi" ControlToValidate="txtCi" Type="Integer" MinimumValue="01000000" MaximumValue="99999999" ErrorMessage="Por favor ingrese una cédula correcta." 
+                                Display="Dynamic" runat="server" ></asp:RangeValidator>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>

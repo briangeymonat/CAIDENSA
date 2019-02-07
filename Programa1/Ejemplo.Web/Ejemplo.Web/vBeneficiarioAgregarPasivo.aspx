@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vBeneficiarioAgregarPasivo.aspx.cs" Inherits="Ejemplo.Web.vBeneficiarioAgregarPasivo1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-       <script type="text/javascript">
-        function disableBackButton()
-        {
+    <script type="text/javascript">
+        function disableBackButton() {
             window.history.forward();
         }
         setTimeout("disableBackButton()", 0);
@@ -13,9 +12,9 @@
     <h2 style="padding-left: 50px">Agregar beneficiario pasivo
     </h2>
     <br />
-    <asp:Table runat="server">
+    <asp:Table runat="server" Width="100%">
         <asp:TableRow VerticalAlign="Top">
-            <asp:TableCell Width="25%" Style="padding-left: 20px;">
+            <asp:TableCell Width="40%" Style="padding-left: 20px;">
                 <%-- TABLA FORMULARIO DEL BENEFICIARIO --%>
                 <asp:Table runat="server">
                     <%-- NOMBRE --%>
@@ -44,8 +43,12 @@
                             <asp:Label ID="lblCi" runat="server" Text="Cédula de identidad:"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell>
-                            <asp:TextBox ID="txtCi" runat="server" TextMode="Number" Width="160px"></asp:TextBox>
+                            <asp:TextBox ID="txtCi" runat="server" TextMode="Number" Width="160px" MaxLength="8"></asp:TextBox>
                             <asp:Label ID="Label17" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:RangeValidator ID="rfvCi" ControlToValidate="txtCi" Type="Integer" MinimumValue="01000000" MaximumValue="99999999" ErrorMessage="Por favor ingrese una cédula correcta."
+                                Display="Dynamic" runat="server"></asp:RangeValidator>
                         </asp:TableCell>
                     </asp:TableRow>
                     <%-- FECHA DE NACIMIENTO --%>
@@ -164,8 +167,8 @@
             </asp:TableCell>
             <asp:TableCell Width="50%">
                 <div>
-                    <asp:Button ID="btnPrimeraSesionMostrar" runat="server" Text="Mostrar primera sesión" OnClick="btnPrimeraSesionMostrar_Click" />
-                    <asp:Button ID="btnPrimeraSesionOcultar" runat="server" Text="Ocultar primera sesión" OnClick="btnPrimeraSesionOcultar_Click" />
+                    <asp:Button ID="btnPrimeraSesionMostrar" runat="server" Text="Mostrar primera sesión" OnClick="btnPrimeraSesionMostrar_Click" Width="200px" Style="text-align:left" />
+                    <asp:Button ID="btnPrimeraSesionOcultar" runat="server" Text="Ocultar primera sesión" OnClick="btnPrimeraSesionOcultar_Click"  Width="200px" Style="text-align:left"/>
                     <%-- PANEL PRIMERA SESION --%>
                     <asp:Panel ID="pnlPrimeraSesion" runat="server" Style="border: solid 1px black; padding: 15px;" Width="70%">
                         <h2 style="padding-left: 50px">Primera sesión
@@ -293,8 +296,8 @@
                     </asp:Panel>
                 </div>
                 <div>
-                    <asp:Button ID="btnUltimaSesionMostrar" runat="server" Text="Mostrar última sesión" OnClick="btnUltimaSesionMostrar_Click" />
-                    <asp:Button ID="btnUltimaSesionOcultar" runat="server" Text="Ocultar última sesión" OnClick="btnUltimaSesionOcultar_Click" />
+                    <asp:Button ID="btnUltimaSesionMostrar" runat="server" Text="Mostrar última sesión" OnClick="btnUltimaSesionMostrar_Click"  Width="200px" Style="text-align:left"/>
+                    <asp:Button ID="btnUltimaSesionOcultar" runat="server" Text="Ocultar última sesión" OnClick="btnUltimaSesionOcultar_Click" Width="200px" Style="text-align:left" />
 
                     <asp:Panel ID="pnlUltimaSesion" runat="server" Style="border: solid 1px black; padding: 15px;" Width="70%">
                         <h2 style="padding-left: 50px">Última sesión
@@ -417,12 +420,12 @@
                     </asp:Panel>
                 </div>
 
-                <asp:Button ID="btnAgregarPlanMostrar" runat="server" Text="Mostrar agregar plan" OnClick="btnAgregarPlanMostrar_Click" />
-                <asp:Button ID="btnAgregarPlanOcultar" runat="server" Text="Ocultar agregar plan" OnClick="btnAgregarPlanOcultar_Click" />
+                <asp:Button ID="btnAgregarPlanMostrar" runat="server" Text="Mostrar agregar plan" OnClick="btnAgregarPlanMostrar_Click" Width="200px" Style="text-align:left" />
+                <asp:Button ID="btnAgregarPlanOcultar" runat="server" Text="Ocultar agregar plan" OnClick="btnAgregarPlanOcultar_Click" Width="200px" Style="text-align:left" />
 
                 <div id="divAgregarNuevoPlan">
                     <asp:Panel ID="pnlAgregarPlan" runat="server" Style="border: solid 1px black; padding: 15px;" Width="50%">
-                        <h2 style="padding-left: 50px" >Agregar plan</h2>
+                        <h2 style="padding-left: 50px">Agregar plan</h2>
                         <asp:Table runat="server">
                             <asp:TableRow>
                                 <asp:TableCell>
@@ -462,8 +465,8 @@
                     </asp:Panel>
                 </div>
 
-                <asp:Button ID="btnAgregarDiagnosticoMostrar" runat="server" Text="Mostrar agregar diagnóstico" OnClick="btnAgregarDiagnosticoMostrar_Click" />
-                <asp:Button ID="btnAgregarDiagnosticoOcultar" runat="server" Text="Ocultar agregar diagnóstico" OnClick="btnAgregarDiagnosticoOcultar_Click" />
+                <asp:Button ID="btnAgregarDiagnosticoMostrar" runat="server" Text="Mostrar agregar diagnóstico" OnClick="btnAgregarDiagnosticoMostrar_Click" Width="200px" Style="text-align:left" />
+                <asp:Button ID="btnAgregarDiagnosticoOcultar" runat="server" Text="Ocultar agregar diagnóstico" OnClick="btnAgregarDiagnosticoOcultar_Click" Width="200px" Style="text-align:left" />
                 <asp:Panel ID="pnlAgregarDiagnostico" runat="server" Style="border: solid 1px black; padding: 15px;" Width="70%">
 
 
@@ -477,38 +480,38 @@
                                         <asp:TableCell Width="50%">
                                             <asp:Label ID="Label22" runat="server" Text="Todos los diagnósticos:" Font-Bold="true"></asp:Label>
                                             <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="250px">
-                                            <asp:GridView ID="grdTodosDiagnosticos" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdTodosDiagnosticos_RowCreated" OnSelectedIndexChanging="grdTodosDiagnosticos_SelectedIndexChanging" ShowHeaderWhenEmpty="True">
-                                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                                <EditRowStyle BackColor="#999999" />
-                                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                                            </asp:GridView>
+                                                <asp:GridView ID="grdTodosDiagnosticos" runat="server" AutoGenerateSelectButton="True" OnRowCreated="grdTodosDiagnosticos_RowCreated" OnSelectedIndexChanging="grdTodosDiagnosticos_SelectedIndexChanging" ShowHeaderWhenEmpty="True">
+                                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                                    <EditRowStyle BackColor="#999999" />
+                                                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                                </asp:GridView>
                                             </asp:Panel>
                                         </asp:TableCell>
                                         <asp:TableCell Width="50%">
                                             <asp:Label ID="Label23" runat="server" Text="Diagnósticos agregados:" Font-Bold="true"></asp:Label>
                                             <asp:Panel ID="Panel2" runat="server" ScrollBars="Vertical" Height="250px">
-                                            <asp:GridView ID="grdDiagnosticosAgregados" runat="server" AutoGenerateDeleteButton="True"
-                                                OnRowCreated="grdDiagnosticosAgregados_RowCreated" OnRowDeleting="grdDiagnosticosAgregados_RowDeleting"
-                                                ShowHeaderWhenEmpty="True">
-                                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                                <EditRowStyle BackColor="#999999" />
-                                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                                            </asp:GridView>                                                
+                                                <asp:GridView ID="grdDiagnosticosAgregados" runat="server" AutoGenerateDeleteButton="True"
+                                                    OnRowCreated="grdDiagnosticosAgregados_RowCreated" OnRowDeleting="grdDiagnosticosAgregados_RowDeleting"
+                                                    ShowHeaderWhenEmpty="True">
+                                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                                    <EditRowStyle BackColor="#999999" />
+                                                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                                </asp:GridView>
                                             </asp:Panel>
                                         </asp:TableCell>
                                     </asp:TableRow>

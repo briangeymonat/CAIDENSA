@@ -85,7 +85,7 @@ namespace Ejemplo.Web
             else
             {
                 BFiltroPorCheckBox = true;
-                #region Agrego a la lstUsuariosCBActivos e Inactivos los usuarios que tengan la especialidad y tipo de usuario deseada
+                #region Agrego a la LosUsuariosCBActivos e Inactivos los usuarios que tengan la especialidad y tipo de usuario deseada
 
                 if (cbFisioterapeuta.Checked || cbFonoaudiologo.Checked || cbPedagogo.Checked || cbPsicologo.Checked || cbPsicomotricista.Checked || cbSinEspecialidad.Checked)
                 {

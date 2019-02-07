@@ -121,6 +121,15 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label lblObligatorio4;
         
         /// <summary>
+        /// Control rfvCi.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rfvCi;
+        
+        /// <summary>
         /// Control lblDomicilio.
         /// </summary>
         /// <remarks>

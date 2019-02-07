@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
        <script type="text/javascript">
+
         function disableBackButton()
         {
             window.history.forward();
@@ -16,7 +17,7 @@
     <br />
     <asp:Table runat="server" CellPadding="20">
         <asp:TableRow VerticalAlign="Top">
-            <asp:TableCell>
+            <asp:TableCell Width="600px" >
 
                 <asp:Table runat="server">
                     <asp:TableRow>
@@ -43,8 +44,12 @@
                             <asp:Label ID="lblCi" runat="server" Text="Cédula de identidad:"></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell>
-                            <asp:TextBox ID="txtCi" runat="server" Width="160px"></asp:TextBox>
-                            <asp:Label ID="Label4" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
+                            <asp:TextBox ID="txtCi" runat="server" Width="160px" TextMode="Number" MaxLength="8"></asp:TextBox>
+                            <asp:Label ID="Label4" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>                           
+                        </asp:TableCell>
+                        <asp:TableCell>
+                             <asp:RangeValidator ID="rfvCi" ControlToValidate="txtCi" Type="Integer" MinimumValue="01000000" MaximumValue="99999999" ErrorMessage="Por favor ingrese una cédula correcta." 
+                                Display="Dynamic" runat="server" ></asp:RangeValidator>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
@@ -99,7 +104,7 @@
                             <asp:TextBox ID="txtAtributario" runat="server" Width="160px"></asp:TextBox>
                             <asp:Label ID="Label7" runat="server" Text="*" CssClass="camposObligatorios"></asp:Label>
                         </asp:TableCell>
-                        <asp:TableCell>
+                        <asp:TableCell HorizontalAlign="Left" ColumnSpan="2">
                             <asp:CheckBox ID="cbPensionista" runat="server" Text="Pensionista" AutoPostBack="True" OnCheckedChanged="cbPensionista_CheckedChanged" />
                         </asp:TableCell>
                     </asp:TableRow>
@@ -138,7 +143,7 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell ColumnSpan="3">
-                            <asp:Button ID="btnAgregarBeneficiario" runat="server" Text="Agregar beneficiario" OnClick="btnAgregarBeneficiario_Click" />
+                            <asp:Button ID="btnAgregarBeneficiario" runat="server" Text="Agregar beneficiario" OnClick="btnAgregarBeneficiario_Click"/>
                         </asp:TableCell>
                     </asp:TableRow>
                     <asp:TableRow>
@@ -149,7 +154,7 @@
                 </asp:Table>
             </asp:TableCell>
             <asp:TableCell>
-                <div id="divAgregarNuevoPlan" style="border: solid 1px black; padding: 15px;">
+                <div id="divAgregarNuevoPlan" style="border: solid 1px black; padding: 15px; ">
                     <asp:Label ID="lblBeneficiariosQueAtiende" runat="server" Text="Agregar plan:" Font-Bold="true" Font-Size="12"></asp:Label>
                     <asp:Table runat="server">
                         <asp:TableRow>
