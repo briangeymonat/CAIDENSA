@@ -68,19 +68,19 @@ namespace Ejemplo.Web
 
                 if (vMiPerfil.U.TipoContrato.ToString() == "Empleado")
                 {
-                    rblTipoDeEmpleado.SelectedIndex = 0;
+                    //rblTipoDeEmpleado.SelectedIndex = 0;
                     lblVinculo.Visible = false;
                     rblTipoDeEmpleado.Visible = false;
                 }
                 if (vMiPerfil.U.TipoContrato.ToString() == "Contratado")
                 {
-                    rblTipoDeEmpleado.SelectedIndex = 1;
+                   // rblTipoDeEmpleado.SelectedIndex = 1;
                     lblVinculo.Visible = false;
                     rblTipoDeEmpleado.Visible = false;
                 }
                 if (vMiPerfil.U.TipoContrato.ToString() == "Socio")
                 {
-                    rblTipoDeEmpleado.SelectedIndex = 2;
+                   // rblTipoDeEmpleado.SelectedIndex = 2;
                 }
 
 
