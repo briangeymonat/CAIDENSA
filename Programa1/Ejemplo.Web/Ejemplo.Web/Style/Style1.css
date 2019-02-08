@@ -1,0 +1,127 @@
+﻿body {
+    width: 100%;
+    background: #ffffff;
+    font-size: .80em;
+    font-family: Arial;
+    margin: 0px;
+    padding: 0px;
+    color: #000000;
+}
+
+.title {
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+    background-color: #fff;
+}
+
+.page {
+    width: 100%;
+    background-color: #fff;
+    margin: 0px auto 0px auto;
+}
+
+.header {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    background: #FFF;
+    width: 100%;
+}
+
+    .header h1 {
+        font-family: "Arial";
+         font-weight: 700;
+        margin: 0px;
+        padding: 0px 0px 0px 20px;
+        color: #007aff;
+        border: none;
+        line-height: 2em;
+        font-size: 35px;
+    }
+
+    .header h2 {
+        font-family: "Arial";
+         font-weight: 700;
+        margin: 0px;
+        padding: 0px 0px 0px 20px;
+        color: #007aff;
+        border: none;
+        line-height: 2em;
+        font-size: 25px;
+    }
+
+div.hideSkiplink {
+    background-color: #007aff; /*celeste*/
+    width: 100%;
+}
+
+.menu {
+     font-family: Arial;
+    /*padding: 15px 10px 20px 10px;*/
+}
+
+    .menu li {
+         font-family: Arial;
+        /*padding: 0px 20px 0px 20px;*/
+    }
+
+        .menu li a {
+            color: #fff;
+        }
+
+    .menu ul {
+         font-family: Arial;
+        list-style: none;
+        margin: 0px;
+        padding: 15px 10px 20px 10px;
+        text-decoration: none;
+        display: block;
+        white-space: nowrap;
+    }
+
+div.menu ul li a:hover {
+    background-color: #0059ba; /*rojo*/
+    color: #fff;
+    text-decoration: none;
+}
+
+div.menu ul li a:active {
+    background-color: #16ff00; /*verde*/
+    color: #cfdbe6;
+    text-decoration: none;
+}
+
+div.menu ul li a, div.menu ul li a:visited {
+    background-color: #007aff; /*rosa*/
+    color: #dde4ec;
+    display: block;
+    line-height: 1.50em;
+    padding: 15px 10px 10px 10px;
+    margin: 0px 10px 0px 10px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.table {
+    margin-left: 20px;
+}
+
+.VentanaEmergente {
+    background-color: #fff;
+    border: solid 1px red;
+}
+
+.camposObligatorios {
+    color: #FF0000;
+}
+
+.alinearArriba {
+    align-items: flex-start;
+    align-content: flex-start;
+    text-align: start;
+    vertical-align: top;
+    top: 0px;
+    margin-top: 0px;
+}

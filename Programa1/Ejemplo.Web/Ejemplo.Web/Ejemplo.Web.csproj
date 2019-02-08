@@ -284,7 +284,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
-    <Content Include="Style\Style.css" />
+    <Content Include="Style\Style1.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="vUsuarioMostrar.aspx" />
     <Content Include="Web.config" />

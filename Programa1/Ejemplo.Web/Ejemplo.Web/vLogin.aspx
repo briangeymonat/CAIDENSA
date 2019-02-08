@@ -4,7 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title></title>    
+    <link href="~/Style/Style1.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         function disableBackButton() {
             window.history.forward();

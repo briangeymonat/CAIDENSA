@@ -1,8 +1,9 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
 body {
+    font-family: Arial;
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color:#ffffff;
+    background-color: #ffffff;
 }
 
 /* Wrapping element */
@@ -33,6 +34,7 @@ input[type="select"] {
     .jumbotron {
         margin-top: 20px;
     }
+
     .body-content {
         padding: 0;
     }
