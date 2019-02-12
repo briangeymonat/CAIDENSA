@@ -44,7 +44,7 @@ namespace Ejemplo.Web
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan datos')", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Falta el dato obligatorio')", true);
             }   
             
         }

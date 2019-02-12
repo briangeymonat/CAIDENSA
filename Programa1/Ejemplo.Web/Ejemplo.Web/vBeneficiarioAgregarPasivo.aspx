@@ -170,7 +170,7 @@
                     <asp:Button ID="btnPrimeraSesionMostrar" runat="server" Text="Mostrar primera sesión" OnClick="btnPrimeraSesionMostrar_Click" Width="200px" Style="text-align:left" />
                     <asp:Button ID="btnPrimeraSesionOcultar" runat="server" Text="Ocultar primera sesión" OnClick="btnPrimeraSesionOcultar_Click"  Width="200px" Style="text-align:left"/>
                     <%-- PANEL PRIMERA SESION --%>
-                    <asp:Panel ID="pnlPrimeraSesion" runat="server" Style="border: solid 1px black; padding: 15px;" Width="70%">
+                    <asp:Panel ID="pnlPrimeraSesion" runat="server" Style="border: solid 1px black; padding: 15px; " Width="90%">
                         <h2 style="padding-left: 50px">Primera sesión
                         </h2>
 
@@ -299,7 +299,7 @@
                     <asp:Button ID="btnUltimaSesionMostrar" runat="server" Text="Mostrar última sesión" OnClick="btnUltimaSesionMostrar_Click"  Width="200px" Style="text-align:left"/>
                     <asp:Button ID="btnUltimaSesionOcultar" runat="server" Text="Ocultar última sesión" OnClick="btnUltimaSesionOcultar_Click" Width="200px" Style="text-align:left" />
 
-                    <asp:Panel ID="pnlUltimaSesion" runat="server" Style="border: solid 1px black; padding: 15px;" Width="70%">
+                    <asp:Panel ID="pnlUltimaSesion" runat="server" Style="border: solid 1px black; padding: 15px;" Width="90%">
                         <h2 style="padding-left: 50px">Última sesión
                         </h2>
                         <asp:Table runat="server">
@@ -424,7 +424,7 @@
                 <asp:Button ID="btnAgregarPlanOcultar" runat="server" Text="Ocultar agregar plan" OnClick="btnAgregarPlanOcultar_Click" Width="200px" Style="text-align:left" />
 
                 <div id="divAgregarNuevoPlan">
-                    <asp:Panel ID="pnlAgregarPlan" runat="server" Style="border: solid 1px black; padding: 15px;" Width="50%">
+                    <asp:Panel ID="pnlAgregarPlan" runat="server" Style="border: solid 1px black; padding: 15px;" Width="90%">
                         <h2 style="padding-left: 50px">Agregar plan</h2>
                         <asp:Table runat="server">
                             <asp:TableRow>
@@ -467,7 +467,7 @@
 
                 <asp:Button ID="btnAgregarDiagnosticoMostrar" runat="server" Text="Mostrar agregar diagnóstico" OnClick="btnAgregarDiagnosticoMostrar_Click" Width="200px" Style="text-align:left" />
                 <asp:Button ID="btnAgregarDiagnosticoOcultar" runat="server" Text="Ocultar agregar diagnóstico" OnClick="btnAgregarDiagnosticoOcultar_Click" Width="200px" Style="text-align:left" />
-                <asp:Panel ID="pnlAgregarDiagnostico" runat="server" Style="border: solid 1px black; padding: 15px;" Width="70%">
+                <asp:Panel ID="pnlAgregarDiagnostico" runat="server" Style="border: solid 1px black; padding: 15px;" Width="90%">
 
 
                     <h2 style="padding-left: 50px">Agregar diagnóstico

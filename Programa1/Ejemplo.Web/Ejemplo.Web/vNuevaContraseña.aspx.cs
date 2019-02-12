@@ -38,12 +38,12 @@ namespace Ejemplo.Web
                         bool bResultado = dFachada.UsuarioAgregarConstrasena(unUsuario);
                         if(bResultado)
                         {
-                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se restableció la contraseña correctamente')", true);
+                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se registró la nueva contraseña correctamente')", true);
                             Response.Redirect("vLogin.aspx");
                         }
                         else
                         {
-                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo restablecer la contraseña')", true);
+                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo agregar la nueva contraseña')", true);
                         }
                     }
                 }

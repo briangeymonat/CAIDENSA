@@ -561,7 +561,7 @@ namespace Ejemplo.Web
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido habilitar el beneficiario.')", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido habilitar al beneficiario.')", true);
             }
 
         }
@@ -570,7 +570,7 @@ namespace Ejemplo.Web
         {
             if (LosPlanesActivos.Count > 0)
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar el beneficiario porque hay planes activos.')", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar al beneficiario porque hay planes activos.')", true);
             }
             else
             {
@@ -585,7 +585,7 @@ namespace Ejemplo.Web
                 }
                 else
                 {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar el beneficiario.')", true);
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se ha podido inhabilitar al beneficiario.')", true);
                 }
             }
 

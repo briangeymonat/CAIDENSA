@@ -794,7 +794,7 @@ namespace Ejemplo.Web
 
                     if (DateTime.Parse(ddlDesde.SelectedValue) >= DateTime.Parse(ddlHasta.SelectedValue))
                     {
-                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La fecha de fin de la sesión debe ser mayor a la de inicio.')", true);
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La hora de fin de la sesión debe ser mayor a la de inicio.')", true);
                     }
                     else
                     {

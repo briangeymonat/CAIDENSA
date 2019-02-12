@@ -251,23 +251,31 @@ namespace Ejemplo.Web
                     }
                     unUsuario.Especialidad = new cEspecialidad();
                     unUsuario.Especialidad.Codigo = int.Parse(this.ddlEspecialidad.SelectedValue);
-                    try
+                    if (ddlTipoUsuario.SelectedValue == "Usuario" && unUsuario.Especialidad.Codigo == 6)
                     {
-                        bool bResultado = dFachada.UsuarioModificar(unUsuario);
-                        if (bResultado)
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se puede tener a un usuario de tipo usuario que no tenga especialidad.')", true);
+                    }
+                    else
+                    {
+                        try
                         {
-                            lblMensaje.Text = "Modificado correctamente";
-                            ModoEdicion(false);
+                            bool bResultado = dFachada.UsuarioModificar(unUsuario);
+                            if (bResultado)
+                            {
+                                lblMensaje.Text = "Modificado correctamente";
+                                ModoEdicion(false);
+                            }
+                            else
+                            {
+                                lblMensaje.Text = "ERROR: No se pudo modificar";
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            lblMensaje.Text = "ERROR: No se pudo agregar";
+                            throw ex;
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
+                    
                 }
             }
             else

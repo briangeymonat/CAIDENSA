@@ -185,15 +185,14 @@ namespace Ejemplo.Web
             bool bResultado = dFachada.SesionAgregarObservacion(unUS);
             if (bResultado)
             {
-                //vTareas.ventanaObservacion = false;
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se descartó la sesión para realizar la observación')", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se descartó la sesión sin observación')", true);
                 string sScript = "window.opener.location.reload(); window.close();";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "closewindows", sScript, true);
-                //Response.Redirect("vInicio.aspx");
+               
             }
             else
             {
-                lblMensaje.Text = "ERROR: No se pudo agregar la observación correctamente";
+                lblMensaje.Text = "ERROR: No se pudo descartar la sesión sin observar correctamente";
             }
         }
 

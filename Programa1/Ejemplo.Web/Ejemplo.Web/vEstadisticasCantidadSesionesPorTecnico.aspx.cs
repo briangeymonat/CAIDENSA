@@ -30,6 +30,7 @@ namespace Ejemplo.Web
                 ddlAños.DataBind();
                 ddlMeses.DataSource = LosMeses;
                 ddlMeses.DataBind();
+                ddlMeses.SelectedIndex=DateTime.Today.Month-1;
                 CargarGrilla();
             }
         }

@@ -303,7 +303,7 @@ namespace Ejemplo.Web
                             }
                             else
                             {
-                                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan ingresar el diagnóstico.')", true);
+                                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Falta ingresar el diagnóstico.')", true);
 
                             }
                         }
