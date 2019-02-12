@@ -124,19 +124,22 @@ namespace Ejemplo.Web
         }
         protected DataTable GetData1()
         {
-            cDiagnostico unDiagnostico = new cDiagnostico();
-            unDiagnostico.Codigo = int.Parse(ddlDiagnosticos.SelectedValue);
-            var vResultado = dFachada.EstadisticaTraerCantidadParaCadaAñoPorDiagnostico(unDiagnostico);
-            List<string> lstAños = vResultado.Item1;
-            List<int> lstCantidad = vResultado.Item2;
             DataTable dtReport = new DataTable();
-            dtReport.Columns.Add("Años", typeof(string));
-            dtReport.Columns.Add("Cantidad", typeof(int));
-
-            for (int i=0; i<lstAños.Count; i++)
+            cDiagnostico unDiagnostico = new cDiagnostico();
+            if (ddlDiagnosticos.SelectedValue != "")
             {
-                dtReport.Rows.Add(lstAños[i], lstCantidad[i]);
-            }    
+                unDiagnostico.Codigo = int.Parse(ddlDiagnosticos.SelectedValue);
+                var vResultado = dFachada.EstadisticaTraerCantidadParaCadaAñoPorDiagnostico(unDiagnostico);
+                List<string> lstAños = vResultado.Item1;
+                List<int> lstCantidad = vResultado.Item2;
+                dtReport.Columns.Add("Años", typeof(string));
+                dtReport.Columns.Add("Cantidad", typeof(int));
+
+                for (int i = 0; i < lstAños.Count; i++)
+                {
+                    dtReport.Rows.Add(lstAños[i], lstCantidad[i]);
+                }
+            }
             return dtReport;
         }
         public void CargarGrafica1(DataTable dtReport)
@@ -172,31 +175,35 @@ namespace Ejemplo.Web
 
         protected DataTable GetData2()
         {
-            int iAño = int.Parse(ddlAños.SelectedValue);
-            var vResultado = dFachada.EstadisticaTraerCantidadParaCadaDiagnosticoPorAño(iAño);
-            List<cDiagnostico> lstDiagnosticos = vResultado.Item1;
-            List<int> lstCantidad = vResultado.Item2;
-            List<cDiagnostico> lstTodosDiagnosticos = dFachada.DiagnosticoTraerTodos();
-
             DataTable dtReport = new DataTable();
-            dtReport.Columns.Add("Diagnosticos", typeof(string));
-            dtReport.Columns.Add("Cantidad", typeof(int));
-
-            for(int i=0; i<lstTodosDiagnosticos.Count; i++)
+            if (ddlAños.SelectedValue != "")
             {
-                for (int j = 0; j < lstDiagnosticos.Count; j++)
+                int iAño = int.Parse(ddlAños.SelectedValue);
+                var vResultado = dFachada.EstadisticaTraerCantidadParaCadaDiagnosticoPorAño(iAño);
+                List<cDiagnostico> lstDiagnosticos = vResultado.Item1;
+                List<int> lstCantidad = vResultado.Item2;
+                List<cDiagnostico> lstTodosDiagnosticos = dFachada.DiagnosticoTraerTodos();
+
+
+                dtReport.Columns.Add("Diagnosticos", typeof(string));
+                dtReport.Columns.Add("Cantidad", typeof(int));
+
+                for (int i = 0; i < lstTodosDiagnosticos.Count; i++)
                 {
-                    if(lstTodosDiagnosticos[i].Codigo == lstDiagnosticos[j].Codigo)
+                    for (int j = 0; j < lstDiagnosticos.Count; j++)
                     {
-                        dtReport.Rows.Add(lstDiagnosticos[j].Tipo, lstCantidad[j]);
-                        break;
+                        if (lstTodosDiagnosticos[i].Codigo == lstDiagnosticos[j].Codigo)
+                        {
+                            dtReport.Rows.Add(lstDiagnosticos[j].Tipo, lstCantidad[j]);
+                            break;
+                        }
+                        else
+                        {
+                            if ((j + 1) == lstDiagnosticos.Count)
+                                dtReport.Rows.Add(lstTodosDiagnosticos[i].Tipo, 0);
+                        }
                     }
-                    else
-                    {
-                        if ((j+1)==lstDiagnosticos.Count)
-                        dtReport.Rows.Add(lstTodosDiagnosticos[i].Tipo, 0);
-                    }
-                } 
+                }
             }
             return dtReport;
         }

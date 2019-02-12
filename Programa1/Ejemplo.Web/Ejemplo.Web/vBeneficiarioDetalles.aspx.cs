@@ -26,6 +26,10 @@ namespace Ejemplo.Web
         {
             if (!Page.IsPostBack)
             {
+                LosHistorialDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                LosUltimosDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                LosPlanesActivos = new List<cPlan>();
+                LosPlanesInactivos = new List<cPlan>();
                 SVentanaAnterior = Request.QueryString["ventana"];
                 ElBeneficiario = new cBeneficiario();
                 ElBeneficiario.Codigo = int.Parse(Request.QueryString["BeneficiarioId"]);
@@ -545,7 +549,7 @@ namespace Ejemplo.Web
 
         protected void btnAgregarInforme_Click(object sender, EventArgs e)
         {
-            Response.Redirect("vInformeNuevo.aspx?idBeneficiario=" + ElBeneficiario.Codigo.ToString());
+            Response.Redirect("vInformeNuevo.aspx?idBeneficiario=" + ElBeneficiario.Codigo.ToString()+"&ventana="+SVentanaAnterior);
         }
 
         protected void btnHabilitar_Click(object sender, EventArgs e)

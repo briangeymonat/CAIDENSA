@@ -14,10 +14,12 @@ namespace Ejemplo.Web
         static cBeneficiario ElBeneficiario;
         static List<cUsuario> LosTodosEspecialistas;
         static List<cUsuario> LosEspecialistasAgregados;
+        static string SVentana;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                SVentana = Request.QueryString["ventana"];
                 LosTodosEspecialistas = new List<cUsuario>();
                 LosEspecialistasAgregados = new List<cUsuario>();
                 LosTodosEspecialistas = dFachada.UsuarioTraerTodosEspecialistasActivos();
@@ -407,7 +409,7 @@ namespace Ejemplo.Web
 
 
                         ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('Se realizó el nuevo informe correctamente')", true);
-                        Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + ElBeneficiario.Codigo);
+                        Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + ElBeneficiario.Codigo+"&ventana="+SVentana);
                     }
                     else
                     {

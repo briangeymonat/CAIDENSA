@@ -1029,11 +1029,17 @@ namespace Persistencia.Clases
                     while (oReader.Read())
                     {
                         dFecha = new DateTime();
-                        dFecha = DateTime.Parse(oReader["maximo"].ToString());
-                        lstRetorno.Add(dFecha);
+                        if (oReader["maximo"] != DBNull.Value)
+                        {
+                            dFecha = DateTime.Parse(oReader["maximo"].ToString());
+                            lstRetorno.Add(dFecha);
+                        }
                         dFecha = new DateTime();
-                        dFecha = DateTime.Parse(oReader["minimo"].ToString());
-                        lstRetorno.Add(dFecha);
+                        if (oReader["minimo"] != DBNull.Value)
+                        {
+                            dFecha = DateTime.Parse(oReader["minimo"].ToString());
+                            lstRetorno.Add(dFecha);
+                        }
                     }
                     vConn.Close();
                 }
@@ -1048,7 +1054,7 @@ namespace Persistencia.Clases
         public static List<string> TraerAsistenciasDeBeneficiarioPorMes(cBeneficiario parBeneficiario, string parAno, string parMes)
         {
             List<string> lstRetorno = new List<string>();
-            for(int i=1;i<32;i++)
+            for (int i = 1; i < 32; i++)
             {
                 lstRetorno.Add("");
             }
@@ -1095,7 +1101,7 @@ namespace Persistencia.Clases
                             }
                             else
                             {
-                                switch(lstRetorno[iDia])
+                                switch (lstRetorno[iDia])
                                 {
                                     case "X":
                                         if (sEstado != "X" && sEstado != "R")
@@ -1110,8 +1116,8 @@ namespace Persistencia.Clases
                                         }
                                         break;
                                     default:
-                                        if(sEstado != "X" && sEstado != "R")
-                                        lstRetorno[iDia] = (int.Parse(lstRetorno[iDia]) + int.Parse(sEstado)).ToString();
+                                        if (sEstado != "X" && sEstado != "R")
+                                            lstRetorno[iDia] = (int.Parse(lstRetorno[iDia]) + int.Parse(sEstado)).ToString();
                                         break;
                                 }
                             }
@@ -1120,7 +1126,7 @@ namespace Persistencia.Clases
                     vConn.Close();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

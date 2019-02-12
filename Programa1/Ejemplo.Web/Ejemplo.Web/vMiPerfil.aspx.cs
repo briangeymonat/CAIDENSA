@@ -115,7 +115,6 @@ namespace Ejemplo.Web
                 else
                 {
                     i = 1;
-                    //Response.Redirect("vInicio.aspx?nick=" + unUsuario.NickName);
                     Response.Redirect("vInicio.aspx?ventana=no");
                 }
             }

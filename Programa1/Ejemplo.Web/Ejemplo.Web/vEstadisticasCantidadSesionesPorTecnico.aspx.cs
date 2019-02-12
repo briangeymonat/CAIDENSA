@@ -20,11 +20,18 @@ namespace Ejemplo.Web
             {
                 LosAños = new List<string>();
                 List<DateTime> lstFechas = dFachada.SesionTraerMaximaFechaYMinimaFecha();
-                DateTime dFechaMaxima = lstFechas[0];
-                DateTime dFechaMinima = lstFechas[1];
-                for (int i = dFechaMaxima.Year; i >= dFechaMinima.Year; i--)
+                if (lstFechas.Count != 0)
                 {
-                    LosAños.Add(i.ToString());
+                    DateTime dFechaMaxima = lstFechas[0];
+                    DateTime dFechaMinima = lstFechas[1];
+                    for (int i = dFechaMaxima.Year; i >= dFechaMinima.Year; i--)
+                    {
+                        LosAños.Add(i.ToString());
+                    }
+                }
+                else
+                {
+                    LosAños.Add(DateTime.Today.Year.ToString());
                 }
                 ddlAños.DataSource = LosAños;
                 ddlAños.DataBind();
