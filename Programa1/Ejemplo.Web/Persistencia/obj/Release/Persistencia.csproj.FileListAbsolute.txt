@@ -1,0 +1,7 @@
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\bin\Release\Persistencia.dll
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\bin\Release\Persistencia.pdb
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\bin\Release\Common.dll
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\bin\Release\Common.pdb
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\obj\Release\Persistencia.csprojResolveAssemblyReference.cache
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\obj\Release\Persistencia.dll
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Persistencia\obj\Release\Persistencia.pdb

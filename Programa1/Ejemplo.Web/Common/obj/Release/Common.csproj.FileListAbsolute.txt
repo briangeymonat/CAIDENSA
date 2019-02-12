@@ -1,0 +1,4 @@
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\bin\Release\Common.dll
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\bin\Release\Common.pdb
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\obj\Release\Common.dll
+C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\obj\Release\Common.pdb
