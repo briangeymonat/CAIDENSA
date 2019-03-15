@@ -159,79 +159,89 @@
             </asp:TableRow>
         </asp:Table>
     </asp:Panel>
-    <asp:Table runat="server">
+    <asp:Table runat="server" Width="100%">
         <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px">
-                <asp:CheckBox ID="cbAntecedentesPatologicos" runat="server" Text="Antecedentes patológicos:" Font-Bold="true" AutoPostBack="True" OnCheckedChanged="cbAntecedentesPatologicos_CheckedChanged" />
+            <asp:TableCell Width="50%">
+                <asp:Table runat="server" Width="100%">
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px" Width="50%" ColumnSpan="2">
+                            <asp:CheckBox ID="cbAntecedentesPatologicos" runat="server" Text="Antecedentes patológicos:" Font-Bold="true" AutoPostBack="True" OnCheckedChanged="cbAntecedentesPatologicos_CheckedChanged" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:TextBox ID="txtAntecedentesPatologicos" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px" Width="100%">
+                            <asp:CheckBox ID="cbDesarrollo" runat="server" Text="Desarrollo:" Font-Bold="true" AutoPostBack="True" OnCheckedChanged="cbDesarrollo_CheckedChanged" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:TextBox ID="txtDesarrollo" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:Label ID="Label7" runat="server" Text="Presentación:" Font-Bold="true" Width="100%"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:TextBox ID="txtPresentacion" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:Label ID="lblAbordajePerfil" runat="server" Text="Abordaje" Font-Bold="true" Width="100%"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:TextBox ID="txtAbordaje" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:Label ID="Label11" runat="server" Text="En SUMA:" Font-Bold="true" Width="100%"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:TextBox ID="txtEnsuma" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:CheckBox ID="cbSugerencia" runat="server" Text="Sugerencias:" Font-Bold="true" AutoPostBack="True" OnCheckedChanged="cbSugerencia_CheckedChanged" Width="100%" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px">
+                            <asp:TextBox ID="txtSugerencia" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px" Width="50%">
+                            <asp:Button ID="btnSalirSinGuardar" runat="server" Text="Salir sin guardar cambios de mis secciones" OnClick="btnSalirSinGuardar_Click" />
+                            <asp:Button ID="btnGuardar" runat="server" Text="Guardar cambios de mis secciones" OnClick="btnGuardar_Click" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell Style="padding-left: 50px" Width="50%">
+                            <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar mis secciones" OnClick="btnFinalizar_Click" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                </asp:Table>
             </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell ColumnSpan="2" Style="padding-left: 50px">
-                <asp:TextBox ID="txtAntecedentesPatologicos" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px">
-                <asp:CheckBox ID="cbDesarrollo" runat="server" Text="Desarrollo:" Font-Bold="true" AutoPostBack="True" OnCheckedChanged="cbDesarrollo_CheckedChanged" />
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell ColumnSpan="2" Style="padding-left: 50px">
-                <asp:TextBox ID="txtDesarrollo" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px">
-                <asp:Label ID="Label7" runat="server" Text="Presentación:" Font-Bold="true"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell ColumnSpan="2" Style="padding-left: 50px">
-                <asp:TextBox ID="txtPresentacion" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px">
-                <asp:Label ID="Label9" runat="server" Text="Abordaje" Font-Bold="true"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px" ColumnSpan="2">
-                <asp:TextBox ID="txtAbordaje" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px">
-                <asp:Label ID="Label11" runat="server" Text="En SUMA:" Font-Bold="true"></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px" ColumnSpan="2">
-                <asp:TextBox ID="txtEnsuma" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px">
-                <asp:CheckBox ID="cbSugerencia" runat="server" Text="Sugerencias:" Font-Bold="true" AutoPostBack="True" OnCheckedChanged="cbSugerencia_CheckedChanged" />
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell Style="padding-left: 50px" ColumnSpan="2">
-                <asp:TextBox ID="txtSugerencia" runat="server" TextMode="MultiLine" Height="130px" Width="100%"></asp:TextBox>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell style="padding-left: 50px" Width="50%">
-                <asp:Button ID="btnSalirSinGuardar" runat="server" Text="Salir sin guardar cambios de mis secciones" OnClick="btnSalirSinGuardar_Click" />
-            </asp:TableCell>
-            <asp:TableCell style="padding-left: 50px" Width="50%">
-                <asp:Button ID="btnGuardar" runat="server" Text="Guardar cambios de mis secciones" OnClick="btnGuardar_Click" />
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableCell style="padding-left: 50px" Width="50%">
-                <asp:Button ID="btnFinalizar" runat="server" Text="Finalizar mis secciones" OnClick="btnFinalizar_Click" />
+            <asp:TableCell  Width="50%" HorizontalAlign="Left" Style="padding-left:50px" >
+                <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="500px" Style="vertical-align:middle">
+                <asp:Label ID="lblAbordajes" runat="server" Width="100%"></asp:Label>
+                </asp:Panel>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+
 </asp:Content>

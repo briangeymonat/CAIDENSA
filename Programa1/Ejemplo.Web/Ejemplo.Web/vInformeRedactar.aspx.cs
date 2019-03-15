@@ -40,6 +40,7 @@ namespace Ejemplo.Web
                 txtSugerencia.Enabled = false;
                 CargarDatosEnProceso();
                 CargarGrillasDiagnostico();
+                CargarAbordajes();
             }
         }
 
@@ -702,6 +703,62 @@ namespace Ejemplo.Web
                     throw ex;
                 }
 
+            }
+        }
+
+        private void CargarAbordajes()
+        {
+            string sAbordaje = "";
+            if (vMiPerfil.U.Especialidad.Nombre == "Psicologia")
+            {
+                sAbordaje = "Abordaje psicológico";
+            }
+            else if (vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
+            {
+                sAbordaje = "Abordaje pedagógico";
+            }
+            else if (vMiPerfil.U.Especialidad.Nombre == "Fisioterapia")
+            {
+                sAbordaje = "Abordaje fisioterapéutico";
+            }
+            else if (vMiPerfil.U.Especialidad.Nombre == "Fonoaudiologia")
+            {
+                sAbordaje = "Abordaje fonoaudiólogo";
+            }
+            else if (vMiPerfil.U.Especialidad.Nombre == "Psicomotricidad")
+            {
+                sAbordaje = "Abordaje psicomotriz";
+            }
+            lblAbordajePerfil.Text = sAbordaje.ToString();
+
+            for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
+            {
+                if (ElInforme.lstSecciones[i].lstUsuariosSeccion.Count == 1 && ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Codigo != vMiPerfil.U.Codigo)
+                {
+                    if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Psicologia")
+                    {
+                        sAbordaje = "Abordaje psicológico";
+                    }
+                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Pedadogia")
+                    {
+                        sAbordaje = "Abordaje pedagógico";
+                    }
+                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Fisioterapia")
+                    {
+                        sAbordaje = "Abordaje fisioterapéutico";
+                    }
+                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Fonoaudiologia")
+                    {
+                        sAbordaje = "Abordaje fonoaudiólogo";
+                    }
+                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Psicomotricidad")
+                    {
+                        sAbordaje = "Abordaje psicomotriz";
+                    }
+
+                    lblAbordajes.Text += "<p><b>" + sAbordaje + "</b></p>";
+                    lblAbordajes.Text += "<p>" + ElInforme.lstSecciones[i].Contenido.ToString() + "</p>";
+                }
             }
         }
     }
