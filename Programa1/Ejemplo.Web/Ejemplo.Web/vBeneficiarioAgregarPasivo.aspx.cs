@@ -32,9 +32,10 @@ namespace Ejemplo.Web
 
                 LosTodosDiagnosticos = dFachada.DiagnosticoTraerTodos();
                 LosDiagnosticosAgregados = new List<cDiagnostico>();
-
+                /*
                 CargarCombos();
                 CargarGrillas();
+                
                 this.btnPrimeraSesionMostrar.Visible = true;
                 this.pnlPrimeraSesion.Visible = false;
 
@@ -57,9 +58,9 @@ namespace Ejemplo.Web
                 this.btnAgregarDiagnosticoOcultar.Visible = false;
                 this.rblLocalidadPS.SelectedIndex = 0;
                 this.rblLocalidadUS.SelectedIndex = 0;
-
+                
                 CargarDdlHoras();
-
+                */
             }
         }
 
@@ -110,225 +111,170 @@ namespace Ejemplo.Web
         {
             if (!FaltanDatosBeneficiario())
             {
-                if (!FaltanDatosPrimeraSesion())
+                if (!FaltanDatosAgregarDiagnostico())
                 {
-                    if (!FaltanDatosUltimaSesion())
+                    #region cargar beneficiario
+                    cBeneficiario unBeneficiario = new cBeneficiario();
+                    unBeneficiario.Nombres = txtNombres.Text;
+                    unBeneficiario.Apellidos = txtApellidos.Text;
+                    unBeneficiario.CI = int.Parse(txtCi.Text);
+                    unBeneficiario.FechaNacimiento = txtFechaNac.Text;
+                    unBeneficiario.Domicilio = txtDomicilio.Text;
+                    unBeneficiario.Telefono1 = txtTel1.Text;
+                    unBeneficiario.Telefono2 = txtTel2.Text;
+                    if (rblSexo.SelectedItem.Text == "Masculino")
                     {
-                        if (!FaltanDatosAgregarPlan())
-                        {
-                            if (!FaltanDatosAgregarDiagnostico())
-                            {
-                                if (DateTime.Parse(ddlDesdePS.SelectedValue) < DateTime.Parse(ddlHastaPS.SelectedValue))
-                                {
-                                    if (DateTime.Parse(ddlDesdeUS.SelectedValue) < DateTime.Parse(ddlHastaUS.SelectedValue))
-                                    {
-                                        if (DateTime.Parse(txtFechaPS.Text) <= DateTime.Parse(txtFechaUS.Text))
-                                        {
-                                            if (DateTime.Parse(txtDesde.Text) <= DateTime.Parse(txtHasta.Text))
-                                            {
-                                                #region cargar beneficiario
-                                                cBeneficiario unBeneficiario = new cBeneficiario();
-                                                unBeneficiario.Nombres = txtNombres.Text;
-                                                unBeneficiario.Apellidos = txtApellidos.Text;
-                                                unBeneficiario.CI = int.Parse(txtCi.Text);
-                                                unBeneficiario.FechaNacimiento = txtFechaNac.Text;
-                                                unBeneficiario.Domicilio = txtDomicilio.Text;
-                                                unBeneficiario.Telefono1 = txtTel1.Text;
-                                                unBeneficiario.Telefono2 = txtTel2.Text;
-                                                if (rblSexo.SelectedItem.Text == "Masculino")
-                                                {
-                                                    unBeneficiario.Sexo = "M";
-                                                }
-                                                else
-                                                {
-                                                    unBeneficiario.Sexo = "F";
-                                                }
-                                                if (cbPensionista.Checked)
-                                                {
-                                                    unBeneficiario.Atributario = "Pensionista";
-                                                }
-                                                else
-                                                {
-                                                    unBeneficiario.Atributario = txtAtributario.Text;
-                                                }
-                                                unBeneficiario.MotivoConsulta = txtMotivoConsulta.Text;
-                                                unBeneficiario.Escolaridad = txtEscolaridad.Text;
-                                                unBeneficiario.Derivador = txtDerivador.Text;
-                                                unBeneficiario.Email = txtEmail.Text;
-                                                unBeneficiario.Estado = false;
-                                                #endregion
-                                                if (dFachada.BeneficiarioTraerEspecificoCI(unBeneficiario) == null)
-                                                {
-                                                    #region cargar plan
-                                                    cPlan unPlan = new cPlan();
-                                                    unPlan.Activo = false;
-                                                    unPlan.Evaluacion = cbEvaluacion.Checked;
-                                                    unPlan.Tratamiento = cbTratamiento.Checked;
-                                                    unPlan.Tipo = ddlTipoPlanes.SelectedItem.Text;
-                                                    unPlan.FechaInicio = txtDesde.Text;
-                                                    unPlan.FechaFin = txtHasta.Text;
-                                                    unBeneficiario.lstPlanes = new List<cPlan>();
-                                                    unBeneficiario.lstPlanes.Add(unPlan);
-                                                    #endregion
-                                                    bool b = dFachada.BeneficiarioAgregar(unBeneficiario);
-                                                    if (b)
-                                                    {
-                                                        unBeneficiario.lstPlanes = dFachada.PlanTraerTodosPorBeneficiario(unBeneficiario);
-                                                    }
-                                                    #region cargar primera sesion
-                                                    cSesion unaPrimeraSesion = new cSesion();
-                                                    string sTipo = ddlTipoSesionPS.SelectedValue.ToString();
-                                                    if (sTipo == "Individual")
-                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
-                                                    if (sTipo == "Grupo2")
-                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
-                                                    if (sTipo == "Grupo3")
-                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
-                                                    if (sTipo == "Taller")
-                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
-                                                    if (sTipo == "PROES")
-                                                        unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
-                                                    unaPrimeraSesion.Fecha = txtFechaPS.Text;
-                                                    if (rblLocalidadPS.SelectedIndex == 0)
-                                                        unaPrimeraSesion.Centro = cUtilidades.Centro.JuanLacaze;
-                                                    else
-                                                        unaPrimeraSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
-
-                                                    unaPrimeraSesion.HoraInicio = ddlDesdePS.SelectedValue;
-                                                    unaPrimeraSesion.HoraFin = ddlHastaPS.SelectedValue;
-                                                    cBeneficiarioSesion unBS = new cBeneficiarioSesion();
-                                                    unBS.Beneficiario = unBeneficiario;
-                                                    unBS.Plan = unBeneficiario.lstPlanes[0];
-                                                    unBS.Estado = cUtilidades.EstadoSesion.Asistio;
-                                                    unaPrimeraSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
-                                                    unaPrimeraSesion.lstBeneficiarios.Add(unBS);
-                                                    unaPrimeraSesion.lstUsuarios = LosEspecialistasAgregadosPS;
-                                                    unaPrimeraSesion.Comentario = txtComentarioPS.Text;
-                                                    #endregion
-
-                                                    #region cargar ultima sesion
-                                                    cSesion unaUltimaSesion = new cSesion();
-                                                    string sTipo1 = ddlTipoSesionUS.SelectedValue.ToString();
-                                                    if (sTipo1 == "Individual")
-                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
-                                                    if (sTipo1 == "Grupo2")
-                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
-                                                    if (sTipo1 == "Grupo3")
-                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
-                                                    if (sTipo1 == "Taller")
-                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
-                                                    if (sTipo1 == "PROES")
-                                                        unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
-                                                    unaUltimaSesion.Fecha = txtFechaUS.Text;
-                                                    if (rblLocalidadUS.SelectedIndex == 0)
-                                                        unaUltimaSesion.Centro = cUtilidades.Centro.JuanLacaze;
-                                                    else
-                                                        unaUltimaSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
-                                                    unaUltimaSesion.HoraInicio = ddlDesdeUS.SelectedValue;
-                                                    unaUltimaSesion.HoraFin = ddlHastaUS.SelectedValue;
-                                                    cBeneficiarioSesion unBS1 = new cBeneficiarioSesion();
-                                                    unBS1.Beneficiario = unBeneficiario;
-                                                    unBS1.Plan = unBeneficiario.lstPlanes[0];
-                                                    unBS1.Estado = cUtilidades.EstadoSesion.Asistio;
-                                                    unaUltimaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
-                                                    unaUltimaSesion.lstBeneficiarios.Add(unBS1);
-                                                    unaUltimaSesion.lstUsuarios = LosEspecialistasAgregadosUS;
-                                                    unaUltimaSesion.Comentario = txtComentarioUS.Text;
-                                                    #endregion
-
-                                                    #region cargar diagnostico
-                                                    unBeneficiario.lstDiagnosticos = new List<cDiagnosticoBeneficiario>();
-                                                    cDiagnosticoBeneficiario db;
-                                                    for (int i = 0; i < LosDiagnosticosAgregados.Count; i++)
-                                                    {
-                                                        db = new cDiagnosticoBeneficiario();
-                                                        db.Diagnostico = LosDiagnosticosAgregados[i];
-                                                        db.Fecha = unaUltimaSesion.Fecha;
-                                                        unBeneficiario.lstDiagnosticos.Add(db);
-                                                    }
-                                                    #endregion
-                                                    if (b && dFachada.SesionAgregar(unaPrimeraSesion) &&
-                                                        dFachada.SesionAgregar(unaUltimaSesion) &&
-                                                        dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(unBeneficiario))
-                                                    {
-                                                        lblMensajeBeneficiario.Text = "Beneficiario pasivo agregado correctamente.";
-                                                        LimpiarCampos();
-                                                        this.btnPrimeraSesionMostrar.Visible = true;
-                                                        this.pnlPrimeraSesion.Visible = false;
-                                                        this.btnUltimaSesionMostrar.Visible = true;
-                                                        this.pnlUltimaSesion.Visible = false;
-                                                        this.btnAgregarPlanMostrar.Visible = true;
-                                                        this.pnlAgregarPlan.Visible = false;
-                                                        this.btnAgregarDiagnosticoMostrar.Visible = true;
-                                                        this.pnlAgregarDiagnostico.Visible = false;
-                                                        this.btnPrimeraSesionOcultar.Visible = false;
-                                                        this.btnUltimaSesionOcultar.Visible = false;
-                                                        this.btnAgregarPlanOcultar.Visible = false;
-                                                        this.btnAgregarDiagnosticoOcultar.Visible = false;
-                                                    }
-                                                    else
-                                                    {
-                                                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo concretar el registro del beneficiario.')", true);
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Ya existe un beneficiario en el sistema con esa CI.')", true);
-                                                }
-                                            }
-                                            else
-                                            {
-                                                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La fecha de inicio del plan es mayor a la fecha de fin .')", true);
-
-                                            }
-                                        }
-                                        else
-                                        {
-                                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La fecha de la primera sesión es mayor a la fecha de la última sesión .')", true);
-
-                                        }
-                                    }
-                                    else
-                                    {
-                                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La hora de inicio de la ultima sesion es mayor a la hora de fin .')", true);
-
-                                    }
-                                }
-                                else
-                                {
-                                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La hora de inicio de la primera sesion es mayor a la hora de fin .')", true);
-
-                                }
-                            }
-                            else
-                            {
-                                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Falta ingresar el diagnóstico.')", true);
-
-                            }
-                        }
-                        else
-                        {
-                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan ingresar datos del plan.')", true);
-                        }
+                        unBeneficiario.Sexo = "M";
                     }
                     else
                     {
-                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan ingresar datos de la última sesión.')", true);
+                        unBeneficiario.Sexo = "F";
+                    }
+                    if (cbPensionista.Checked)
+                    {
+                        unBeneficiario.Atributario = "Pensionista";
+                    }
+                    else
+                    {
+                        unBeneficiario.Atributario = txtAtributario.Text;
+                    }
+                    unBeneficiario.MotivoConsulta = txtMotivoConsulta.Text;
+                    unBeneficiario.Escolaridad = txtEscolaridad.Text;
+                    unBeneficiario.Derivador = txtDerivador.Text;
+                    unBeneficiario.Email = txtEmail.Text;
+                    unBeneficiario.Estado = false;
+                    #endregion
+                    if (dFachada.BeneficiarioTraerEspecificoCI(unBeneficiario) == null)
+                    {
+                        #region cargar plan
+                        cPlan unPlan = new cPlan();
+                        unPlan.Activo = false;
+                        unPlan.Evaluacion = cbEvaluacion.Checked;
+                        unPlan.Tratamiento = cbTratamiento.Checked;
+                        unPlan.Tipo = ddlTipoPlanes.SelectedItem.Text;
+                        unPlan.FechaInicio = txtDesde.Text;
+                        unPlan.FechaFin = txtHasta.Text;
+                        unBeneficiario.lstPlanes = new List<cPlan>();
+                        unBeneficiario.lstPlanes.Add(unPlan);
+                        #endregion
+                        bool b = dFachada.BeneficiarioAgregar(unBeneficiario);
+                        if (b)
+                        {
+                            unBeneficiario.lstPlanes = dFachada.PlanTraerTodosPorBeneficiario(unBeneficiario);
+                        }
+                        #region cargar primera sesion
+                        cSesion unaPrimeraSesion = new cSesion();
+                        string sTipo = ddlTipoSesionPS.SelectedValue.ToString();
+                        if (sTipo == "Individual")
+                            unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
+                        if (sTipo == "Grupo2")
+                            unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
+                        if (sTipo == "Grupo3")
+                            unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
+                        if (sTipo == "Taller")
+                            unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
+                        if (sTipo == "PROES")
+                            unaPrimeraSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
+                        unaPrimeraSesion.Fecha = txtFechaPS.Text;
+                        if (rblLocalidadPS.SelectedIndex == 0)
+                            unaPrimeraSesion.Centro = cUtilidades.Centro.JuanLacaze;
+                        else
+                            unaPrimeraSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
+
+                        unaPrimeraSesion.HoraInicio = ddlDesdePS.SelectedValue;
+                        unaPrimeraSesion.HoraFin = ddlHastaPS.SelectedValue;
+                        cBeneficiarioSesion unBS = new cBeneficiarioSesion();
+                        unBS.Beneficiario = unBeneficiario;
+                        unBS.Plan = unBeneficiario.lstPlanes[0];
+                        unBS.Estado = cUtilidades.EstadoSesion.Asistio;
+                        unaPrimeraSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
+                        unaPrimeraSesion.lstBeneficiarios.Add(unBS);
+                        unaPrimeraSesion.lstUsuarios = LosEspecialistasAgregadosPS;
+                        unaPrimeraSesion.Comentario = txtComentarioPS.Text;
+                        #endregion
+
+                        #region cargar ultima sesion
+                        cSesion unaUltimaSesion = new cSesion();
+                        string sTipo1 = ddlTipoSesionUS.SelectedValue.ToString();
+                        if (sTipo1 == "Individual")
+                            unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Individual;
+                        if (sTipo1 == "Grupo2")
+                            unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo2;
+                        if (sTipo1 == "Grupo3")
+                            unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Grupo3;
+                        if (sTipo1 == "Taller")
+                            unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.Taller;
+                        if (sTipo1 == "PROES")
+                            unaUltimaSesion.TipoSesion = cUtilidades.TipoSesion.PROES;
+                        unaUltimaSesion.Fecha = txtFechaUS.Text;
+                        if (rblLocalidadUS.SelectedIndex == 0)
+                            unaUltimaSesion.Centro = cUtilidades.Centro.JuanLacaze;
+                        else
+                            unaUltimaSesion.Centro = cUtilidades.Centro.NuevaHelvecia;
+                        unaUltimaSesion.HoraInicio = ddlDesdeUS.SelectedValue;
+                        unaUltimaSesion.HoraFin = ddlHastaUS.SelectedValue;
+                        cBeneficiarioSesion unBS1 = new cBeneficiarioSesion();
+                        unBS1.Beneficiario = unBeneficiario;
+                        unBS1.Plan = unBeneficiario.lstPlanes[0];
+                        unBS1.Estado = cUtilidades.EstadoSesion.Asistio;
+                        unaUltimaSesion.lstBeneficiarios = new List<cBeneficiarioSesion>();
+                        unaUltimaSesion.lstBeneficiarios.Add(unBS1);
+                        unaUltimaSesion.lstUsuarios = LosEspecialistasAgregadosUS;
+                        unaUltimaSesion.Comentario = txtComentarioUS.Text;
+                        #endregion
+
+                        #region cargar diagnostico
+                        unBeneficiario.lstDiagnosticos = new List<cDiagnosticoBeneficiario>();
+                        cDiagnosticoBeneficiario db;
+                        for (int i = 0; i < LosDiagnosticosAgregados.Count; i++)
+                        {
+                            db = new cDiagnosticoBeneficiario();
+                            db.Diagnostico = LosDiagnosticosAgregados[i];
+                            db.Fecha = unaUltimaSesion.Fecha;
+                            unBeneficiario.lstDiagnosticos.Add(db);
+                        }
+                        #endregion
+                        if (b && dFachada.SesionAgregar(unaPrimeraSesion) &&
+                            dFachada.SesionAgregar(unaUltimaSesion) &&
+                            dFachada.DiagnosticoAgregarDiagnosticoBeneficiario(unBeneficiario))
+                        {
+                            lblMensajeBeneficiario.Text = "Beneficiario pasivo agregado correctamente.";
+                            LimpiarCampos();
+                            this.btnPrimeraSesionMostrar.Visible = true;
+                            this.pnlPrimeraSesion.Visible = false;
+                            this.btnUltimaSesionMostrar.Visible = true;
+                            this.pnlUltimaSesion.Visible = false;
+                            this.btnAgregarPlanMostrar.Visible = true;
+                            this.pnlAgregarPlan.Visible = false;
+                            this.btnAgregarDiagnosticoMostrar.Visible = true;
+                            this.pnlAgregarDiagnostico.Visible = false;
+                            this.btnPrimeraSesionOcultar.Visible = false;
+                            this.btnUltimaSesionOcultar.Visible = false;
+                            this.btnAgregarPlanOcultar.Visible = false;
+                            this.btnAgregarDiagnosticoOcultar.Visible = false;
+                        }
+                        else
+                        {
+                            ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: No se pudo concretar el registro del beneficiario.')", true);
+                        }
+
+                    }
+                    else
+                    {
+                        ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Ya existe un beneficiario en el sistema con esa CI.')", true);
                     }
                 }
                 else
                 {
-                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan ingresar datos de la primera sesión.')", true);
+                    ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: La fecha de la primera sesión es mayor a la fecha de la última sesión .')", true);
+
                 }
             }
             else
             {
-                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Faltan ingresar datos personales del beneficiario.')", true);
+                ClientScript.RegisterClientScriptBlock(GetType(), "alert", "alert('ERROR: Falta ingresar el diagnóstico.')", true);
+
             }
-
-
-
         }
 
         private void LimpiarCampos()
@@ -403,18 +349,6 @@ namespace Ejemplo.Web
                 return false;
             }
         }
-        private bool FaltanDatosUltimaSesion()
-        {
-            if (txtFechaUS.Text == string.Empty ||
-                LosEspecialistasAgregadosUS.Count <= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         private bool FaltanDatosAgregarPlan()
         {
             if (txtDesde.Text == string.Empty || txtHasta.Text == string.Empty || (!cbTratamiento.Checked && !cbEvaluacion.Checked))
@@ -438,97 +372,8 @@ namespace Ejemplo.Web
             }
         }
         #endregion
-
-        #region Botones de mostrar y ocultar
-        protected void btnPrimeraSesionMostrar_Click(object sender, EventArgs e)
-        {
-            this.pnlPrimeraSesion.Visible = true;
-            this.btnPrimeraSesionMostrar.Visible = false;
-            this.btnPrimeraSesionOcultar.Visible = true;
-        }
-
-        protected void btnPrimeraSesionOcultar_Click(object sender, EventArgs e)
-        {
-            this.pnlPrimeraSesion.Visible = false;
-            this.btnPrimeraSesionMostrar.Visible = true;
-            this.btnPrimeraSesionOcultar.Visible = false;
-        }
-
-        protected void btnUltimaSesionMostrar_Click(object sender, EventArgs e)
-        {
-            this.pnlUltimaSesion.Visible = true;
-            this.btnUltimaSesionMostrar.Visible = false;
-            this.btnUltimaSesionOcultar.Visible = true;
-        }
-
-        protected void btnUltimaSesionOcultar_Click(object sender, EventArgs e)
-        {
-            this.pnlUltimaSesion.Visible = false;
-            this.btnUltimaSesionMostrar.Visible = true;
-            this.btnUltimaSesionOcultar.Visible = false;
-        }
-
-        protected void btnAgregarPlanMostrar_Click(object sender, EventArgs e)
-        {
-            this.pnlAgregarPlan.Visible = true;
-            this.btnAgregarPlanMostrar.Visible = false;
-            this.btnAgregarPlanOcultar.Visible = true;
-        }
-
-        protected void btnAgregarPlanOcultar_Click(object sender, EventArgs e)
-        {
-            this.pnlAgregarPlan.Visible = false;
-            this.btnAgregarPlanMostrar.Visible = true;
-            this.btnAgregarPlanOcultar.Visible = false;
-        }
-
-        protected void btnAgregarDiagnosticoMostrar_Click(object sender, EventArgs e)
-        {
-            this.pnlAgregarDiagnostico.Visible = true;
-            this.btnAgregarDiagnosticoMostrar.Visible = false;
-            this.btnAgregarDiagnosticoOcultar.Visible = true;
-        }
-
-        protected void btnAgregarDiagnosticoOcultar_Click(object sender, EventArgs e)
-        {
-            this.pnlAgregarDiagnostico.Visible = false;
-            this.btnAgregarDiagnosticoMostrar.Visible = true;
-            this.btnAgregarDiagnosticoOcultar.Visible = false;
-        }
-        #endregion
-
+       
         #region Cargar combos y grillas
-        protected void CargarCombos()
-        {
-            CargarComboEspecialidades();
-            CargarComboTipoSesion();
-            CargarComboTipoPlanes();
-        }
-
-        protected void CargarComboTipoSesion()
-        {
-            List<string> lstEnums = new List<string>();
-            foreach (var item in Enum.GetValues(typeof(cUtilidades.TipoSesion)))
-            {
-                lstEnums.Add(item.ToString());
-            }
-            this.ddlTipoSesionPS.DataSource = lstEnums;
-            this.ddlTipoSesionPS.DataBind();
-            this.ddlTipoSesionUS.DataSource = lstEnums;
-            this.ddlTipoSesionUS.DataBind();
-
-        }
-        protected void CargarComboEspecialidades()
-        {
-            this.ddlEspecialidadesPS.DataSource = dFachada.EspecialidadTraerTodas();//sacar la especialidad sin especialidad
-            this.ddlEspecialidadesPS.DataTextField = "Nombre";
-            this.ddlEspecialidadesPS.DataValueField = "Codigo";
-            this.ddlEspecialidadesPS.DataBind();
-            this.ddlEspecialidadesUS.DataSource = dFachada.EspecialidadTraerTodas();
-            this.ddlEspecialidadesUS.DataTextField = "Nombre";
-            this.ddlEspecialidadesUS.DataValueField = "Codigo";
-            this.ddlEspecialidadesUS.DataBind();
-        }
         protected void CargarComboTipoPlanes()
         {
             this.ddlTipoPlanes.DataSource = LosTiposPlanes;
