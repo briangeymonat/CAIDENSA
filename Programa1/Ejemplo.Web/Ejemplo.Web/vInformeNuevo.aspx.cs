@@ -371,6 +371,18 @@ namespace Ejemplo.Web
                         unaSeccion.lstUsuariosSeccion.Add(unUS);
                         unInforme.lstSecciones.Add(unaSeccion);
                     }
+                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Psicopedagogo")
+                    {
+                        unaSeccion = new cSeccion();
+                        unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicopedagógico;
+                        unaSeccion.lstUsuariosSeccion = new List<cUsuarioSeccion>();
+                        cUsuarioSeccion unUS = new cUsuarioSeccion();
+                        unUS.Usuario = new cUsuario();
+                        unUS.Usuario = LosEspecialistasAgregados[a];
+                        unUS.Estado = 0;
+                        unaSeccion.lstUsuariosSeccion.Add(unUS);
+                        unInforme.lstSecciones.Add(unaSeccion);
+                    }
                 }
                 #endregion
                 #region En Suma

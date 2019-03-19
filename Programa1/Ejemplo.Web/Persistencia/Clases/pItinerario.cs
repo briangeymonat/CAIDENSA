@@ -622,6 +622,8 @@ namespace Persistencia.Clases
                                 sRetorno = sRetorno + "fonoaudiológico";
                             if (lstEspecialidades[j] == "Psicomotricidad")
                                 sRetorno = sRetorno + "psicomotriz";
+                            if (lstEspecialidades[j] == "Psicopedagogo")
+                                sRetorno = sRetorno + "psicopedagógico";
                         }
                         else if ((lstEspecialidades.Count - j) == 1)
                         {
@@ -635,6 +637,8 @@ namespace Persistencia.Clases
                                 sRetorno = sRetorno + " y fonoaudiológico";
                             if (lstEspecialidades[j] == "Psicomotricidad")
                                 sRetorno = sRetorno + " y psicomotriz";
+                            if (lstEspecialidades[j] == "Psicopedagogo")
+                                sRetorno = sRetorno + " y psicopedagógico";
                         }
                         else
                         {
@@ -648,6 +652,8 @@ namespace Persistencia.Clases
                                 sRetorno = sRetorno + ", fonoaudiológico";
                             if (lstEspecialidades[j] == "Psicomotricidad")
                                 sRetorno = sRetorno + ", psicomotriz";
+                            if (lstEspecialidades[j] == "Psicopedagogo")
+                                sRetorno = sRetorno + ", psicopedagógico";
                         }
                     }
                     sRetorno = sRetorno + " " + i + " veces semanales.";

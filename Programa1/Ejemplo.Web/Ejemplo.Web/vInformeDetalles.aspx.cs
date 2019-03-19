@@ -84,6 +84,13 @@ namespace Ejemplo.Web
                     lblAbordajePedagogico.Visible = true;
                     lblAbordajePedagogico.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
+                //ABORDAJE PSICOPEDAGOGICO
+                else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico)
+                {
+                    lblSubtituloAbPsicopedagogico.Visible = true;
+                    lblAbordajePsicopedagogico.Visible = true;
+                    lblAbordajePsicopedagogico.Text = ElInforme.lstSecciones[i].Contenido.ToString();
+                }
                 //ABORDAJE PSICOLOGICO
                 else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico)
                 {

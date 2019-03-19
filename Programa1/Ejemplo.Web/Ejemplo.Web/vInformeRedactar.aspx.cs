@@ -183,6 +183,10 @@ namespace Ejemplo.Web
                 {
                     txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogo")
+                {
+                    txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
+                }
                 if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
                 {
                     txtEnsuma.Text = ElInforme.lstSecciones[i].Contenido.ToString();
@@ -358,6 +362,10 @@ namespace Ejemplo.Web
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
                     else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico && vMiPerfil.U.Especialidad.Nombre == "Fisioterapia")
+                    {
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
+                    }
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogo")
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
@@ -558,6 +566,10 @@ namespace Ejemplo.Web
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogo")
+                    {
+                        ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
+                    }
                     else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.En_Suma)
                     {
                         ElInforme.lstSecciones[i].Contenido = txtEnsuma.Text;
@@ -729,6 +741,10 @@ namespace Ejemplo.Web
             {
                 sAbordaje = "Abordaje psicomotriz";
             }
+            else if (vMiPerfil.U.Especialidad.Nombre == "Psicopedagogo")
+            {
+                sAbordaje = "Abordaje psicopedagógico";
+            }
             lblAbordajePerfil.Text = sAbordaje.ToString();
 
             for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
@@ -754,6 +770,10 @@ namespace Ejemplo.Web
                     else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Psicomotricidad")
                     {
                         sAbordaje = "Abordaje psicomotriz";
+                    }
+                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Psicopedagogo")
+                    {
+                        sAbordaje = "Abordaje psicopedagógico";
                     }
 
                     lblAbordajes.Text += "<p><b>" + sAbordaje + "</b></p>";

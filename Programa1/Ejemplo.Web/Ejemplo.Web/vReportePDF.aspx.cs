@@ -289,6 +289,23 @@ namespace Ejemplo.Web
                 }
                 for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
                 {
+                    //ABORDAJE PSICOPEDAGOGICO
+                    if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico)
+                    {
+                        parrafo = new Paragraph("   Abordaje psicopedagógico: ", fontTitulo2);
+                        parrafo.Alignment = Element.ALIGN_LEFT;
+                        doc.Add(parrafo);
+                        parrafo = new Paragraph("\n");
+                        doc.Add(parrafo);
+                        parrafo = new Paragraph(ElInforme.lstSecciones[i].Contenido.ToString(), fontParrafo);
+                        parrafo.Alignment = Element.ALIGN_LEFT;
+                        doc.Add(parrafo);
+                        parrafo = new Paragraph("\n");
+                        doc.Add(parrafo);
+                    }
+                }
+                for (int i = 0; i < ElInforme.lstSecciones.Count; i++)
+                {
                     //ABORDAJE PSICOLOGICO
                     if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicológico)
                     {

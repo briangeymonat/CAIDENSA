@@ -27,7 +27,7 @@ namespace Ejemplo.Web
             if (!Page.IsPostBack)
             {
                 SVentanaAnterior = Request.QueryString["ventana"];
-                if(SVentanaAnterior=="nomostrar")
+                if (SVentanaAnterior == "nomostrar")
                 {
                     btnAtras.Visible = false;
                 }
@@ -42,38 +42,40 @@ namespace Ejemplo.Web
                 {
                     cargarUsuarioLogeado();
                 }
-                CargarCombos();
-                cargarDatos();
-                CargarGrillaBeneficiariosQueAtiende();
-                CargarGrillaInformesPendientes();
-                CargarGrillaInformesRealizados();
-                ModoEdicion(false);
+                CargarTodo();
+            }
+        }
+
+        private void CargarTodo()
+        {
+            CargarCombos();
+            cargarDatos();
+            CargarGrillaBeneficiariosQueAtiende();
+            CargarGrillaInformesPendientes();
+            CargarGrillaInformesRealizados();
+            ModoEdicion(false);
 
 
-                // CARGA DE HORAS
-                DateTime dHora = DateTime.Parse("08:00");
-                LasHoras = new List<DateTime>();
+            // CARGA DE HORAS
+            DateTime dHora = DateTime.Parse("08:00");
+            LasHoras = new List<DateTime>();
+            LasHoras.Add(dHora);
+            do
+            {
+                dHora = dHora.AddMinutes(15);
                 LasHoras.Add(dHora);
-                do
-                {
-                    dHora = dHora.AddMinutes(15);
-                    LasHoras.Add(dHora);
-                } while (dHora != DateTime.Parse("20:00"));
-                if (U.Especialidad.Codigo != 6)
-                {
-                    CargarCalendario();
-                }
-                else
-                {
-                    lblBeneficiariosQueAtiende.Visible = false;
-                    lblInformesPendientes.Visible = false;
-                    lblInformesRealizados.Visible = false;
-                    pnlBeneficiariosQueAtiende.Visible = false;
-                    pnlInformesPendientes.Visible = false;
-                    pnlInformesRealizados.Visible = false;
-                    lblItinerario.Visible = false;
-                    @ref.Visible = false;
-                }
+            } while (dHora != DateTime.Parse("20:00"));
+            if (U.Especialidad.Nombre != "Sin especialidad")
+            {
+                lblBeneficiariosQueAtiende.Visible = true;
+                lblInformesPendientes.Visible = true;
+                lblInformesRealizados.Visible = true;
+                pnlBeneficiariosQueAtiende.Visible = true;
+                pnlInformesPendientes.Visible = true;
+                pnlInformesRealizados.Visible = true;
+                lblItinerario.Visible = true;
+                @ref.Visible = true;
+                CargarCalendario();
                 if (grdBeneficiariosQueAtiende.PageCount <= 0)
                 {
                     pnlBeneficiariosQueAtiende.Visible = false;
@@ -97,6 +99,19 @@ namespace Ejemplo.Web
                 }
 
             }
+            else
+            {
+                lblBeneficiariosQueAtiende.Visible = false;
+                lblInformesPendientes.Visible = false;
+                lblInformesRealizados.Visible = false;
+                pnlBeneficiariosQueAtiende.Visible = false;
+                pnlInformesPendientes.Visible = false;
+                pnlInformesRealizados.Visible = false;
+                lblItinerario.Visible = false;
+                @ref.Visible = false;
+                frmItinerario.InnerHtml = "";
+            }
+            
         }
         private void cargarUsuarioLogeado()
         {
@@ -317,6 +332,7 @@ namespace Ejemplo.Web
                     }
                     unUsuario.Especialidad = new cEspecialidad();
                     unUsuario.Especialidad.Codigo = int.Parse(this.ddlEspecialidad.SelectedValue);
+                    unUsuario.Especialidad = dFachada.EspecialidadTraerEspecifica(unUsuario.Especialidad);
 
                     try
                     {
@@ -325,6 +341,7 @@ namespace Ejemplo.Web
                         {
                             lblMensaje.Text = "Modificado correctamente";
                             U = unUsuario;
+                            CargarTodo();
                         }
                         else
                         {
@@ -389,7 +406,7 @@ namespace Ejemplo.Web
             ii = 1;
             TableCell celdaCodigo = grdBeneficiariosQueAtiende.Rows[e.NewSelectedIndex].Cells[1];
             int iCodigo = int.Parse(celdaCodigo.Text);
-            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString()+ "&ventana=vMiPerfil.aspx?nick=" + U.NickName);
+            Response.Redirect("vBeneficiarioDetalles.aspx?BeneficiarioId=" + iCodigo.ToString() + "&ventana=vMiPerfil.aspx?nick=" + U.NickName);
         }
 
         protected void grdInformesPendientes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
@@ -412,10 +429,10 @@ namespace Ejemplo.Web
             for (int i = 0; i < LosDias.Count; i++)
             {
                 string sColor = "80B7D8";
-                if (i == DateTime.Today.DayOfWeek.GetHashCode()-1)
+                if (i == DateTime.Today.DayOfWeek.GetHashCode() - 1)
                     sColor = "FF86FD";
 
-                sItinerarios += "<td style='height:20px;color:#000000; background-color:#" + sColor+";width:100px;'>" + LosDias[i] + "</td>";
+                sItinerarios += "<td style='height:20px;color:#000000; background-color:#" + sColor + ";width:100px;'>" + LosDias[i] + "</td>";
             }
             sItinerarios += "</tr>";
 
@@ -598,7 +615,7 @@ namespace Ejemplo.Web
                         {
                             if (DateTime.Parse(LasSesiones[k].HoraInicio) >= LasHoras[i] && DateTime.Parse(LasSesiones[k].HoraInicio) < LasHoras[i + 1])
                             {
-                                if (DateTime.Parse(LasSesiones[k].Fecha).DayOfWeek.GetHashCode()-1 == j)
+                                if (DateTime.Parse(LasSesiones[k].Fecha).DayOfWeek.GetHashCode() - 1 == j)
                                 {
                                     bHayAlgunaSesion = true;
                                     lstCeldas[i].Add(LasSesiones[k]);

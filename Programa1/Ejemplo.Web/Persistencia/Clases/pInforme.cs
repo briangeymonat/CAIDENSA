@@ -133,6 +133,7 @@ namespace Persistencia.Clases
                         if (iNum == 10) unSecc = cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico;
                         if (iNum == 11) unSecc = cUtilidades.NombreSeccion.En_Suma;
                         if (iNum == 12) unSecc = cUtilidades.NombreSeccion.Sugerencias;
+                        if (iNum == 13) unSecc = cUtilidades.NombreSeccion.Abordaje_Psicopedagógico;
                         lstNombresSecciones.Add(unSecc);
                     }
                 }
@@ -291,6 +292,7 @@ namespace Persistencia.Clases
                         if (iNum == 10) unSecc = cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico;
                         if (iNum == 11) unSecc = cUtilidades.NombreSeccion.En_Suma;
                         if (iNum == 12) unSecc = cUtilidades.NombreSeccion.Sugerencias;
+                        if (iNum == 13) unSecc = cUtilidades.NombreSeccion.Abordaje_Psicopedagógico;
                         lstNombresSecciones.Add(unSecc);
                     }
                 }
@@ -454,6 +456,7 @@ namespace Persistencia.Clases
                         if (iNum == 10) unSecc = cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico;
                         if (iNum == 11) unSecc = cUtilidades.NombreSeccion.En_Suma;
                         if (iNum == 12) unSecc = cUtilidades.NombreSeccion.Sugerencias;
+                        if (iNum == 13) unSecc = cUtilidades.NombreSeccion.Abordaje_Psicopedagógico;
                         lstNombresSecciones.Add(unSecc);
                     }
                 }

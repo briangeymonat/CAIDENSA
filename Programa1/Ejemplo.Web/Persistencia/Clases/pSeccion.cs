@@ -45,6 +45,7 @@ namespace Persistencia.Clases
                         if (i == 10) unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Fisioterapéutico;
                         if (i == 11) unaSeccion.Nombre = cUtilidades.NombreSeccion.En_Suma;
                         if (i == 12) unaSeccion.Nombre = cUtilidades.NombreSeccion.Sugerencias;
+                        if (i == 13) unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicopedagógico;
                         unaSeccion.Contenido = oReader["SeccionContenido"].ToString();
                         lstRetorno.Add(unaSeccion);
                     }

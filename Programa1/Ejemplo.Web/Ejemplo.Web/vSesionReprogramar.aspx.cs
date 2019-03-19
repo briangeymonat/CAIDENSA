@@ -13,7 +13,7 @@ namespace Ejemplo.Web
     {
         private static List<string> LosTiposDeSesion = new List<string>() { "Individual", "Grupo 2", "Grupo 3", "Taller", "PROES" };
         private static List<string> LosDias = new List<string>() { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
-        private static List<string> LasEspecialidades = new List<string>() { "Psicologia", "Pedadogia", "Fisioterapia", "Fonoaudiologia", "Psicomotricidad" };
+        private static List<string> LasEspecialidades = new List<string>() { "Psicologia", "Pedadogia", "Fisioterapia", "Fonoaudiologia", "Psicomotricidad", "Psicopedagogo" };
         private static List<cBeneficiario> LosBenefiicarios;
         private static List<cBeneficiario> LosBeneficiariosAgregados;
         private static List<cUsuario> LosEspecialistas;

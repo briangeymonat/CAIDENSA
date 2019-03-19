@@ -27,6 +27,7 @@ namespace Common.Clases
             Abordaje_Fonoaudiológico,
             Abordaje_Fisioterapéutico,
             En_Suma,
-            Sugerencias }
+            Sugerencias,
+            Abordaje_Psicopedagógico}
     }
 }

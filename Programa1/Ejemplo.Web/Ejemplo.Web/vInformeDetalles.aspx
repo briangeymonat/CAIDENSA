@@ -162,7 +162,17 @@
                 <asp:Label ID="lblAbordajePedagogico" runat="server" Width="530px"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
-
+        <asp:TableRow>
+            <asp:TableCell Style="padding-left: 50px">
+                <br />
+                <asp:Label ID="lblSubtituloAbPsicopedagogico" runat="server" Text="Abordaje Psicopedagógico:" Font-Bold="True"></asp:Label>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow>
+            <asp:TableCell Style="padding-left: 50px" ColumnSpan="5">
+                <asp:Label ID="lblAbordajePsicopedagogico" runat="server" Width="530px"></asp:Label>
+            </asp:TableCell>
+        </asp:TableRow>
         <asp:TableRow>
             <asp:TableCell Style="padding-left: 50px">
                 <br />
