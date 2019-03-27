@@ -63,7 +63,7 @@ namespace Ejemplo.Web
                 */
             }
         }
-
+        /*
         private void CargarDdlHoras()
         {
             DateTime dHora1 = DateTime.Parse("08:00");
@@ -601,6 +601,6 @@ namespace Ejemplo.Web
             e.Row.Cells[12].Visible = false;//estado
             e.Row.Cells[13].Visible = false;//tipo de contrato
         }
-        #endregion
+        #endregion*/
     }
 }

@@ -223,6 +223,18 @@ namespace Ejemplo.Web
                         bOr = true;
                     }
                 }
+                if (cbPsicopedagogo.Checked)
+                {
+                    if (bOr)
+                    {
+                        lstCondiciones.Add(" or E.EspecialidadNombre='Psicopedagogia'");
+                    }
+                    else
+                    {
+                        lstCondiciones.Add(" and (E.EspecialidadNombre='Psicopedagogia'");
+                        bOr = true;
+                    }
+                }
                 if (bOr)
                 {
                     lstCondiciones.Add(")");
@@ -374,6 +386,7 @@ namespace Ejemplo.Web
             cbFisioterapeuta.Checked = false;
             cbPedagogo.Checked = false;
             cbPsicologo.Checked = false;
+            cbPsicopedagogo.Checked = false;
             txtDesde.Text = string.Empty;
             txtHasta.Text = string.Empty;
             txtBuscarBeneficiarios.Text = string.Empty;
