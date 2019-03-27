@@ -167,7 +167,7 @@ namespace Ejemplo.Web
                 {
                     txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
-                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedagogia")
                 {
                     txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
@@ -183,7 +183,7 @@ namespace Ejemplo.Web
                 {
                     txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
-                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogo")
+                if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogia")
                 {
                     txtAbordaje.Text = ElInforme.lstSecciones[i].Contenido.ToString();
                 }
@@ -349,7 +349,7 @@ namespace Ejemplo.Web
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedagogia")
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
@@ -365,7 +365,7 @@ namespace Ejemplo.Web
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogo")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogia")
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
@@ -550,7 +550,7 @@ namespace Ejemplo.Web
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Pedagógico && vMiPerfil.U.Especialidad.Nombre == "Pedagogia")
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
@@ -566,7 +566,7 @@ namespace Ejemplo.Web
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
-                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogo")
+                    else if (ElInforme.lstSecciones[i].Nombre == cUtilidades.NombreSeccion.Abordaje_Psicopedagógico && vMiPerfil.U.Especialidad.Nombre == "Psicopedagogia")
                     {
                         ElInforme.lstSecciones[i].Contenido = txtAbordaje.Text;
                     }
@@ -725,7 +725,7 @@ namespace Ejemplo.Web
             {
                 sAbordaje = "Abordaje psicológico";
             }
-            else if (vMiPerfil.U.Especialidad.Nombre == "Pedadogia")
+            else if (vMiPerfil.U.Especialidad.Nombre == "Pedagogia")
             {
                 sAbordaje = "Abordaje pedagógico";
             }
@@ -741,7 +741,7 @@ namespace Ejemplo.Web
             {
                 sAbordaje = "Abordaje psicomotriz";
             }
-            else if (vMiPerfil.U.Especialidad.Nombre == "Psicopedagogo")
+            else if (vMiPerfil.U.Especialidad.Nombre == "Psicopedagogia")
             {
                 sAbordaje = "Abordaje psicopedagógico";
             }
@@ -755,7 +755,7 @@ namespace Ejemplo.Web
                     {
                         sAbordaje = "Abordaje psicológico";
                     }
-                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Pedadogia")
+                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Pedagogia")
                     {
                         sAbordaje = "Abordaje pedagógico";
                     }
@@ -771,7 +771,7 @@ namespace Ejemplo.Web
                     {
                         sAbordaje = "Abordaje psicomotriz";
                     }
-                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Psicopedagogo")
+                    else if (ElInforme.lstSecciones[i].lstUsuariosSeccion[0].Usuario.Especialidad.Nombre == "Psicopedagogia")
                     {
                         sAbordaje = "Abordaje psicopedagógico";
                     }

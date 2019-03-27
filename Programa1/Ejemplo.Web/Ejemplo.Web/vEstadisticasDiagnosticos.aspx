@@ -50,6 +50,7 @@
                     </asp:TableRow>
                     <asp:TableRow >
                         <asp:TableCell HorizontalAlign="Left"  Style="padding-left: 80px;">
+                            Año: 
                             <asp:DropDownList ID="ddlAños" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlAños_SelectedIndexChanged"></asp:DropDownList>
                         </asp:TableCell>
                     </asp:TableRow>
@@ -79,6 +80,7 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell HorizontalAlign="Left"  Style="padding-left: 80px;">
+                            Diagnóstico:
                             <asp:DropDownList ID="ddlDiagnosticos" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlDiagnosticos_SelectedIndexChanged"></asp:DropDownList>
                         </asp:TableCell>
                     </asp:TableRow>

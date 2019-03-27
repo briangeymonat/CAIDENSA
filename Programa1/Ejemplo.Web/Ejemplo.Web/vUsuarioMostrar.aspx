@@ -119,6 +119,11 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell ColumnSpan="2">
+                            <asp:CheckBox ID="cbPsicopedagogo" runat="server" Text="Psicopedagogo" Style="margin-left:50px" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell ColumnSpan="2">
                             <asp:CheckBox ID="cbSinEspecialidad" runat="server" Text="Sin especialidad" Style="margin-left: 50px" />
                         </asp:TableCell>
                     </asp:TableRow>

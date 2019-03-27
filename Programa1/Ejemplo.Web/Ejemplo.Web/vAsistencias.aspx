@@ -169,6 +169,11 @@
                     </asp:TableRow>
                     <asp:TableRow>
                         <asp:TableCell>
+                            <asp:CheckBox ID="cbPsicopedagogo" runat="server" Text="Psicopedagogo" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
                             <br />
                             <asp:Button ID="btnAplicarFiltros" runat="server" Text="Aplicar" OnClick="btnAplicarFiltros_Click" />
                             <asp:Button ID="btnLimpiarFiltros" runat="server" Text="Limpiar Filtros" OnClick="btnLimpiarFiltros_Click" />

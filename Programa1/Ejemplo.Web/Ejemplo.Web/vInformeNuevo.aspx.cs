@@ -323,7 +323,7 @@ namespace Ejemplo.Web
                         unaSeccion.lstUsuariosSeccion.Add(unUS);
                         unInforme.lstSecciones.Add(unaSeccion);
                     }
-                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Pedadogia")
+                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Pedagogia")
                     {
                         unaSeccion = new cSeccion();
                         unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Pedagógico;
@@ -371,7 +371,7 @@ namespace Ejemplo.Web
                         unaSeccion.lstUsuariosSeccion.Add(unUS);
                         unInforme.lstSecciones.Add(unaSeccion);
                     }
-                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Psicopedagogo")
+                    if (LosEspecialistasAgregados[a].Especialidad.Nombre == "Psicopedagogia")
                     {
                         unaSeccion = new cSeccion();
                         unaSeccion.Nombre = cUtilidades.NombreSeccion.Abordaje_Psicopedagógico;

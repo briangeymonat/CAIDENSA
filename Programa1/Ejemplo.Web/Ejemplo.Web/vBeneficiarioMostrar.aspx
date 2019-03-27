@@ -138,6 +138,7 @@
                                 <asp:ListItem Text="Pedadogia"></asp:ListItem>
                                 <asp:ListItem Text="Psicologia"></asp:ListItem>
                                 <asp:ListItem Text="Psicomotricidad"></asp:ListItem>
+                                <asp:ListItem Text="Psicopedagogia"></asp:ListItem>
                             </asp:CheckBoxList>
                         </asp:TableCell>
                     </asp:TableRow>

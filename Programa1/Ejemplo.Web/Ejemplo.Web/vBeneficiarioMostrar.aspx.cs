@@ -222,11 +222,8 @@ namespace Ejemplo.Web
             cblPlan.Items[6].Selected = false;
             txtDesde.Text = string.Empty;
             txtHasta.Text = string.Empty;
-            cblEspecialidad.Items[0].Selected = false;
-            cblEspecialidad.Items[1].Selected = false;
-            cblEspecialidad.Items[2].Selected = false;
-            cblEspecialidad.Items[3].Selected = false;
-            cblEspecialidad.Items[4].Selected = false;
+            cblEspecialidad.ClearSelection();
+
             ddlDiagnosticos.SelectedIndex = 0;
             ActualizarTodosLosBeneficiarios();
             ActualizarGrdBeneficiarios();

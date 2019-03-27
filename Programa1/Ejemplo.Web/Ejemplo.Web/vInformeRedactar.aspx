@@ -237,7 +237,7 @@
                 </asp:Table>
             </asp:TableCell>
             <asp:TableCell  Width="50%" HorizontalAlign="Left" Style="padding-left:50px" >
-                <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="500px" Style="vertical-align:middle">
+                <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Width="100%" Height="500px" Style="vertical-align:middle">
                 <asp:Label ID="lblAbordajes" runat="server" Width="100%"></asp:Label>
                 </asp:Panel>
             </asp:TableCell>

@@ -79,7 +79,8 @@ namespace Ejemplo.Web
                 txtCi.Text == string.Empty ||
                 txtFechaNac.Text == string.Empty ||
                 (txtAtributario.Text == string.Empty && !cbPensionista.Checked) ||
-                txtMotivoConsulta.Text == string.Empty)
+                txtMotivoConsulta.Text == string.Empty
+                || txtEscolaridad.Text ==string.Empty)
             {
                 return true;
             }

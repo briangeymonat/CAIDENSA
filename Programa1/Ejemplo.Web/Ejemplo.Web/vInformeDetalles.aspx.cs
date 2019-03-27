@@ -195,6 +195,9 @@ namespace Ejemplo.Web
             lblSubtituloAbPsicologico.Visible = parVisible;
             lblAbordajePsicologico.Visible = parVisible;
 
+            lblSubtituloAbPsicopedagogico.Visible = parVisible;
+            lblAbordajePsicopedagogico.Visible = parVisible;
+
             lblSubtituloSugerencia.Visible = parVisible;
             lblSugerencias.Visible = parVisible;
         }
