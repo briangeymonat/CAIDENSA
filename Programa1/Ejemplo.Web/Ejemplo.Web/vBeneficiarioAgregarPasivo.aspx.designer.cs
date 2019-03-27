@@ -382,13 +382,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Label Label27;
         
         /// <summary>
-        /// Control RadioButtonList1.
+        /// Control rblLocalidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblLocalidad;
         
         /// <summary>
         /// Control Label30.
@@ -445,13 +445,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Panel Panel3;
         
         /// <summary>
-        /// Control GridView1.
+        /// Control grdTodosDiagnosticos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView grdTodosDiagnosticos;
         
         /// <summary>
         /// Control Label32.
@@ -472,13 +472,13 @@ namespace Ejemplo.Web {
         protected global::System.Web.UI.WebControls.Panel Panel4;
         
         /// <summary>
-        /// Control GridView2.
+        /// Control grdDiagnosticosAgregados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView grdDiagnosticosAgregados;
         
         /// <summary>
         /// Control cblEspecialidades.

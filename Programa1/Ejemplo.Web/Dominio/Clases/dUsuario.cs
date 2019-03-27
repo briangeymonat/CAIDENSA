@@ -107,7 +107,11 @@ namespace Dominio.Clases
         {
             return pUsuario.TraerTodosPorSeccion(parSeccion);
         }
-        
+        public static cUsuario TraerPrimeroPorEspecialidad(cEspecialidad parEspecialidad)
+        {
+            return pUsuario.TraerPrimeroPorEspecialidad(parEspecialidad);
+        }
+
         #region Estadistica cantidad de sesion por tipo de sesion
         public static List<List<string>> TraerCantidadSesionPorTipoSesion(string parConsulta)
         {

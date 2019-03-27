@@ -110,6 +110,10 @@ namespace Dominio
         {
             return dUsuario.TraerTodosPorSeccion(parSeccion);
         }
+        public static cUsuario UsuarioTraerPrimeroPorEspecialidad(cEspecialidad parEspecialidad)
+        {
+            return dUsuario.TraerPrimeroPorEspecialidad(parEspecialidad);
+        }
 
 
         #endregion

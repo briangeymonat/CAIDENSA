@@ -1330,7 +1330,80 @@ namespace Persistencia.Clases
             }
             return lstRetorno;
         }
+        public static cUsuario TraerPrimeroPorEspecialidad(cEspecialidad parEspecialidad)
+        {
+            cUsuario unRetorno = null;
+            try
+            {
+                var vConn = new SqlConnection(CadenaDeConexion);
+                vConn.Open();
 
+                SqlCommand cmd = new SqlCommand("Usuario_TraerPrimeroPorEspecialidad", vConn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@EspecialidadNombre", parEspecialidad.Nombre));
+
+                using (SqlDataReader oReader = cmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        unRetorno = new cUsuario();
+                        unRetorno.Codigo = int.Parse(oReader["UsuarioId"].ToString());
+                        unRetorno.NickName = oReader["UsuarioNickName"].ToString();
+                        unRetorno.Nombres = oReader["UsuarioNombres"].ToString();
+                        unRetorno.Apellidos = oReader["UsuarioApellidos"].ToString();
+                        unRetorno.CI = int.Parse(oReader["UsuarioCI"].ToString());
+                        int i = int.Parse(oReader["UsuarioTipo"].ToString());
+                        if (i == 0)
+                        {
+                            unRetorno.Tipo = cUtilidades.TipoDeUsuario.Administrador;
+                        }
+                        if (i == 1)
+                        {
+                            unRetorno.Tipo = cUtilidades.TipoDeUsuario.Administrativo;
+                        }
+                        if (i == 2)
+                        {
+                            unRetorno.Tipo = cUtilidades.TipoDeUsuario.Usuario;
+                        }
+                        unRetorno.Domicilio = oReader["UsuarioDomicilio"].ToString();
+                        if (oReader["UsuarioFechaNacimiento"] != DBNull.Value)
+                        {
+                            unRetorno.FechaNacimiento = DateTime.Parse(oReader["UsuarioFechaNacimiento"].ToString()).ToShortDateString();
+                        }
+
+                        unRetorno.Telefono = oReader["UsuarioTelefono"].ToString();
+                        unRetorno.Estado = bool.Parse(oReader["UsuarioEstado"].ToString());
+                        unRetorno.Email = oReader["UsuarioEmail"].ToString();
+                        string sA = oReader["UsuarioTipoContrato"].ToString();
+                        if (sA == "S")
+                        {
+                            unRetorno.TipoContrato = "Socio";
+                        }
+                        if (sA == "C")
+                        {
+                            unRetorno.TipoContrato = "Contratado";
+                        }
+                        if (sA == "E")
+                        {
+                            unRetorno.TipoContrato = "Empleado";
+                        }
+                        unRetorno.Especialidad = new cEspecialidad();
+                        unRetorno.Especialidad.Codigo = int.Parse(oReader["EspecialidadId"].ToString());
+                        unRetorno.Especialidad.Nombre = oReader["EspecialidadNombre"].ToString();
+
+
+                    }
+                    vConn.Close();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return unRetorno;
+        }
 
         #region USUARIOS SECCION
         public static List<cUsuarioSeccion> TraerTodosPorSeccion(cSeccion parSeccion)
