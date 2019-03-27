@@ -7,4 +7,3 @@ C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\bin\Debug\Common.dll
 C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\bin\Debug\Common.pdb
 C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\obj\Debug\Common.dll
 C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\obj\Debug\Common.pdb
-C:\GitHub\PROYECTO\CAIDENSA\Programa1\Ejemplo.Web\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

@@ -63,7 +63,7 @@ namespace Ejemplo.Web
             LosUsuariosCBInactivos = new List<cUsuario>();
 
             if (!cbFisioterapeuta.Checked && !cbFonoaudiologo.Checked && !cbPedagogo.Checked && !cbPsicologo.Checked
-                    && !cbPsicomotricista.Checked && !cbSinEspecialidad.Checked && !cbAdministrador.Checked &&
+                    && !cbPsicomotricista.Checked && !cbPsicopedagogo.Checked && !cbSinEspecialidad.Checked && !cbAdministrador.Checked &&
                     !cbAdministrativo.Checked && !cbEspecialista.Checked)
             {
                 if (BFiltroPorBusqueda)
@@ -87,7 +87,7 @@ namespace Ejemplo.Web
                 BFiltroPorCheckBox = true;
                 #region Agrego a la LosUsuariosCBActivos e Inactivos los usuarios que tengan la especialidad y tipo de usuario deseada
 
-                if (cbFisioterapeuta.Checked || cbFonoaudiologo.Checked || cbPedagogo.Checked || cbPsicologo.Checked || cbPsicomotricista.Checked || cbSinEspecialidad.Checked)
+                if (cbFisioterapeuta.Checked || cbFonoaudiologo.Checked || cbPedagogo.Checked || cbPsicologo.Checked || cbPsicomotricista.Checked || cbPsicopedagogo.Checked || cbSinEspecialidad.Checked)
                 {
                     #region cbFisioterapeuta
                     if (this.cbFisioterapeuta.Checked)
@@ -395,6 +395,74 @@ namespace Ejemplo.Web
                         for (int i = 0; i < LosUsuariosInactivos.Count; i++)
                         {
                             if (LosUsuariosInactivos[i].Especialidad.Nombre == "Psicomotricidad")
+                            {
+                                if (this.cbAdministrador.Checked)
+                                {
+                                    if (LosUsuariosInactivos[i].Tipo == cUtilidades.TipoDeUsuario.Administrador)
+                                    {
+                                        LosUsuariosCBInactivos.Add(LosUsuariosInactivos[i]);
+                                    }
+                                }
+                                if (this.cbAdministrativo.Checked)
+                                {
+                                    if (LosUsuariosInactivos[i].Tipo == cUtilidades.TipoDeUsuario.Administrativo)
+                                    {
+                                        LosUsuariosCBInactivos.Add(LosUsuariosInactivos[i]);
+                                    }
+                                }
+                                if (this.cbEspecialista.Checked)
+                                {
+                                    if (LosUsuariosInactivos[i].Tipo == cUtilidades.TipoDeUsuario.Usuario)
+                                    {
+                                        LosUsuariosCBInactivos.Add(LosUsuariosInactivos[i]);
+                                    }
+                                }
+                                if (!cbEspecialista.Checked && !cbAdministrador.Checked && !cbAdministrativo.Checked)
+                                {
+                                    LosUsuariosCBInactivos.Add(LosUsuariosInactivos[i]);
+                                }
+                            }
+                        }
+
+                    }
+                    #endregion
+                    #region cbPsicopedagogo
+                    if (this.cbPsicopedagogo.Checked)
+                    {
+                        for (int i = 0; i < LosUsuariosActivos.Count; i++)
+                        {
+                            if (LosUsuariosActivos[i].Especialidad.Nombre == "Psicopedagogia")
+                            {
+                                if (this.cbAdministrador.Checked)
+                                {
+                                    if (LosUsuariosActivos[i].Tipo == cUtilidades.TipoDeUsuario.Administrador)
+                                    {
+                                        LosUsuariosCBActivos.Add(LosUsuariosActivos[i]);
+                                    }
+                                }
+                                if (this.cbAdministrativo.Checked)
+                                {
+                                    if (LosUsuariosActivos[i].Tipo == cUtilidades.TipoDeUsuario.Administrativo)
+                                    {
+                                        LosUsuariosCBActivos.Add(LosUsuariosActivos[i]);
+                                    }
+                                }
+                                if (this.cbEspecialista.Checked)
+                                {
+                                    if (LosUsuariosActivos[i].Tipo == cUtilidades.TipoDeUsuario.Usuario)
+                                    {
+                                        LosUsuariosCBActivos.Add(LosUsuariosActivos[i]);
+                                    }
+                                }
+                                if (!cbEspecialista.Checked && !cbAdministrador.Checked && !cbAdministrativo.Checked)
+                                {
+                                    LosUsuariosCBActivos.Add(LosUsuariosActivos[i]);
+                                }
+                            }
+                        }
+                        for (int i = 0; i < LosUsuariosInactivos.Count; i++)
+                        {
+                            if (LosUsuariosInactivos[i].Especialidad.Nombre == "Psicopedagogia")
                             {
                                 if (this.cbAdministrador.Checked)
                                 {
@@ -748,6 +816,7 @@ namespace Ejemplo.Web
             this.cbPedagogo.Checked = false;
             this.cbPsicologo.Checked = false;
             this.cbPsicomotricista.Checked = false;
+            this.cbPsicopedagogo.Checked = false;
             this.cbSinEspecialidad.Checked = false;
             CargarGrillas();
             #endregion
